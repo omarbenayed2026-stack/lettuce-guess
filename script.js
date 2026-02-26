@@ -1,8 +1,81 @@
 // --- TRANSLATIONS ---
+// --- TRANSLATIONS (Fixed Arabic & Kept Brand Name) ---
 const translations = {
-    en: { brand: "Lettuce Guess", studentFriendly: "Student Friendly", cheap: "Cheap (< 6 DT) 🪙", expensive: "Expensive 💰", discover: "Discover", dailyPick: "Dinner of the Day" },
-    fr: { brand: "Laitue Devine", studentFriendly: "Pour Étudiant", cheap: "Pas Cher (< 6 DT) 🪙", expensive: "Cher 💰", discover: "Découvrir", dailyPick: "Plat du Jour" },
-    ar: { brand: "دع الخس يخمن", studentFriendly: "مناسب للطلاب", cheap: "رخيص (أقل من 6 دينار) 🪙", expensive: "مكلف 💰", discover: "اكتشف", dailyPick: "طبق اليوم" }
+    en: { 
+        brand: "Lettuce Guess", 
+        welcome: "Lettuce find something to prepare! 🥬",
+        seoIntro: "Welcome to the ultimate random recipe generator. We help students and lazy cooks find delicious, budget-friendly meals. Just set your preferences and let our algorithm decide your dinner!",
+        togglePrefs: "⚙️ Toggle Preferences",
+        customize: "Customize Your Craving",
+        studentFriendly: "Student Friendly", 
+        cheap: "Cheap (< 6 DT) 🪙", 
+        expensive: "Expensive 💰", 
+        tunisianStyle: "Tunisian Style 🇹🇳",
+        asianStyle: "Asian 🥢",
+        withChicken: "With Chicken 🐔",
+        fish: "Fish 🐟",
+        fried: "Fried 🍟",
+        vegan: "Vegan 🌱",
+        discover: "Discover", 
+        dailyPick: "Dinner of the Day",
+        lazyMode: "🟢 Lazy Mode",
+        lazyHint: "Fast, cheap, microwave-friendly.",
+        chefMode: "🔴 Chef Mode",
+        chefHint: "Use the stove, impress your friends.",
+        ingredients: "Ingredients & Spices",
+        steps: "Instructions",
+        footerText: "Helping students eat better, one click at a time."
+    },
+    fr: { 
+        brand: "Lettuce Guess", 
+        welcome: "Trouvons quelque chose à préparer ! 🥬",
+        seoIntro: "Le générateur de recettes pour étudiants. Choisissez vos préférences et laissez l'algorithme décider de votre dîner !",
+        togglePrefs: "⚙️ Préférences",
+        customize: "Personnalisez",
+        studentFriendly: "Pour Étudiant", 
+        cheap: "Pas Cher (< 6 DT) 🪙", 
+        expensive: "Cher 💰", 
+        tunisianStyle: "Style Tunisien 🇹🇳",
+        asianStyle: "Asiatique 🥢",
+        withChicken: "Poulet 🐔",
+        fish: "Poisson 🐟",
+        fried: "Frit 🍟",
+        vegan: "Végan 🌱",
+        discover: "Découvrir", 
+        dailyPick: "Plat du Jour",
+        lazyMode: "🟢 Mode Fainéant",
+        lazyHint: "Rapide, pas cher, micro-ondes.",
+        chefMode: "🔴 Mode Chef",
+        chefHint: "Utilisez la cuisinière, impressionnez vos amis.",
+        ingredients: "Ingrédients & Épices",
+        steps: "Instructions",
+        footerText: "Aider les étudiants à mieux manger, un clic à la fois."
+    },
+    ar: { 
+        brand: "Lettuce Guess", 
+        welcome: "Lettuce Guess سيختار لك ماذا تطبخ! 🥬",
+        seoIntro: "أفضل موقع لاقتراح وصفات عشوائية للطلاب والطهاة الكسالى. حدد ميزانيتك ودع الخوارزمية تختار عشاءك!",
+        togglePrefs: "⚙️ إعدادات التفضيلات",
+        customize: "خصص رغباتك",
+        studentFriendly: "مناسب للطلاب", 
+        cheap: "رخيص (أقل من 6 د.ت) 🪙", 
+        expensive: "مكلف 💰", 
+        tunisianStyle: "تونسي 🇹🇳",
+        asianStyle: "آسيوي 🥢",
+        withChicken: "بالدجاج 🐔",
+        fish: "سمك 🐟",
+        fried: "مقلية 🍟",
+        vegan: "نباتي 🌱",
+        discover: "اكتشف طعامك", 
+        dailyPick: "طبق اليوم",
+        lazyMode: "🟢 وضع الكسل",
+        lazyHint: "سريع، رخيص، ومناسب للميكروويف.",
+        chefMode: "🔴 وضع الطاهي",
+        chefHint: "استخدم الموقد وأبهر أصدقاءك.",
+        ingredients: "المكونات والبهارات",
+        steps: "طريقة التحضير",
+        footerText: "نساعد الطلاب على تناول طعام أفضل بضغطة زر."
+    }
 };
 
 // --- FUNNY LOADING TEXTS ---
@@ -271,4 +344,5 @@ window.openRecipeDetails = function(mode) {
 
 window.closeRecipeDetails = function() {
     document.getElementById('recipeModal').classList.add('hidden');
+
 };

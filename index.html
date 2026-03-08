@@ -1,130 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lettuce Guess 🥬 | Random Student Meals</title>
-    <meta name="description" content="Can't decide what to eat? Lettuce Guess helps students find cheap, easy, and delicious recipes.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥬</text></svg>">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Lettuce Guess 🥬 | Random Student Meals</title>
+  <meta name="description" content="Can't decide what to eat? Lettuce Guess helps students find cheap, easy, and delicious recipes." />
+
+  <meta name="theme-color" content="#0b0f14" />
+  <meta name="application-name" content="Lettuce Guess" />
+  <meta property="og:site_name" content="Lettuce Guess" />
+  <meta property="og:title" content="Lettuce Guess" />
+  <meta property="og:description" content="Random meals for students: budget tags, filters, and two recipe modes." />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥬</text></svg>">
+  <link rel="stylesheet" href="styles.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
 </head>
-<body class="light-theme">
-    
-    <div id="toastContainer" class="toast-container"></div>
-    <div class="top-canopy"></div>
 
-    <div class="ad-panel ad-left">Ad Space<br>(Google AdSense)</div>
-    <div class="ad-panel ad-right">Ad Space<br>(Google AdSense)</div>
+<body class="theme-dark">
+  <div class="bg-orbs" aria-hidden="true"></div>
 
-    <!-- Top Navigation (Now includes visible Theme & Language controls) -->
-    <nav class="top-bar">
-        <div class="nav-left">
-            <span class="lettuce-icon">🥬</span>
-            <span class="nav-brand" data-i18n="brand">Lettuce Guess</span>
-        </div>
-        <div class="nav-right">
-            <select id="languageSelect" class="styled-select-small">
-                <option value="en">EN</option>
-                <option value="fr">FR</option>
-                <option value="ar">AR</option>
-            </select>
-            <button id="themeToggleBtn" class="icon-btn" title="Toggle Dark Mode">🌙</button>
-        </div>
-    </nav>
-
-    <div class="content-wrapper" id="mainContent">
-        <h1 class="welcome-text" data-i18n="welcome">Lettuce find something to prepare! 🥬</h1>
-        
-        <p class="seo-intro" data-i18n="seoIntro">Welcome to the ultimate random recipe generator. We help students and lazy cooks find delicious, budget-friendly meals. Just set your preferences and let our algorithm decide your dinner!</p>
-
-        <div class="button-wrapper">
-            <button id="suggestBtn" class="main-action-btn">
-                <span class="btn-icon">🍽️</span>
-                <span class="btn-text" data-i18n="discover">Discover</span>
-            </button>
-            <br>
-            <!-- Daily Pick moved to the main screen -->
-            <button id="dailyPickBtn" class="secondary-btn">🌟 <span data-i18n="dailyPick">Dinner of the Day</span></button>
-            
-            <p id="funnyLoadingText" class="funny-text hidden"></p>
-        </div>
-        
-        <button id="toggleFiltersBtn" class="toggle-btn" data-i18n="togglePrefs">⚙️ Toggle Preferences</button>
-
-        <!-- Filters (Student Tag added back) -->
-        <section id="preferencesPanel" class="preferences hidden">
-            <h3 data-i18n="customize" style="margin-top: 0;">Customize Your Craving</h3>
-            <div class="filters">
-                <label class="checkbox-container student-filter"><input type="checkbox" id="studentOnly"> 🎓 <span data-i18n="studentFriendly">Student Friendly</span></label>
-                
-                <label class="checkbox-container price-filter cheap"><input type="checkbox" id="cheapOnly"> <span data-i18n="cheap">Cheap (< 6 DT) 🪙</span></label>
-                <label class="checkbox-container price-filter expensive"><input type="checkbox" id="expensiveOnly"> <span data-i18n="expensive">Expensive 💰</span></label>
-                
-                <label class="checkbox-container"><input type="checkbox" id="tunisianStyle"> <span data-i18n="tunisianStyle">Tunisian Style 🇹🇳</span></label>
-                <label class="checkbox-container"><input type="checkbox" id="asianStyle"> <span data-i18n="asianStyle">Asian 🥢</span></label>
-                <label class="checkbox-container"><input type="checkbox" id="withChicken"> <span data-i18n="withChicken">With Chicken 🐔</span></label>
-                <label class="checkbox-container"><input type="checkbox" id="loveFish"> <span data-i18n="fish">Fish 🐟</span></label>
-                <label class="checkbox-container"><input type="checkbox" id="friedOnly"> <span data-i18n="fried">Fried 🍟</span></label>
-                <label class="checkbox-container"><input type="checkbox" id="vegan"> <span data-i18n="vegan">Vegan 🌱</span></label>
-            </div>
-        </section>
-
-        <!-- Recipe Result Card -->
-        <section id="result" class="result-container hidden">
-            <div class="food-header-banner">
-                <div class="title-row">
-                    <span id="foodEmoji" class="title-emoji">🍲</span>
-                    <h2 id="foodName">Food Name</h2>
-                </div>
-                <div class="badge-group">
-                    <span id="foodDifficulty" class="badge">Difficulty</span>
-                    <span id="foodCost" class="badge cost-badge">Cost</span>
-                    <span id="foodOrigin" class="badge-outline">Origin</span>
-                </div>
-            </div>
-            
-            <p id="foodDesc" class="description">Description...</p>
-
-            <div class="recipe-split">
-                <div class="recipe-card simple clickable" onclick="openRecipeDetails('simple')">
-                    <h3 data-i18n="lazyMode">🟢 Lazy Mode</h3>
-                    <p class="mode-hint" data-i18n="lazyHint">Fast, cheap, microwave-friendly.</p>
-                </div>
-                <div class="recipe-card hard clickable" onclick="openRecipeDetails('hard')">
-                    <h3 data-i18n="chefMode">🔴 Chef Mode</h3>
-                    <p class="mode-hint" data-i18n="chefHint">Use the stove, impress your friends.</p>
-                </div>
-            </div>
-        </section>
-        
-        <footer class="professional-footer">
-            <div class="footer-divider"></div>
-            <div class="footer-content">
-                <h3 data-i18n="brand" style="margin-bottom: 5px;">Lettuce Guess</h3>
-                <p data-i18n="footerText" style="margin-top: 0; opacity: 0.8; font-size: 0.95rem;">Helping students eat better, one click at a time.</p>
-            </div>
-        </footer>
-    </div> 
-
-    <!-- Recipe Modal -->
-    <div id="recipeModal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeRecipeDetails()">✖</span>
-            <h2 id="modalTitle">Recipe Mode</h2>
-            <div class="modal-stats">
-                <span id="modalTime" class="badge-outline">⏱️ <span id="timeVal"></span></span>
-                <span id="modalTemp" class="badge-outline">🌡️ <span id="tempVal"></span></span>
-            </div>
-            <h3 data-i18n="ingredients">Ingredients & Spices</h3>
-            <ul id="modalIngredients" class="recipe-list"></ul>
-            <h3 data-i18n="steps">Instructions</h3>
-            <ol id="modalSteps" class="recipe-list"></ol>
-        </div>
+  <!-- Top Bar -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-emoji" aria-hidden="true">🥬</span>
+      <span class="brand-name" data-i18n="brand">Lettuce Guess</span>
+      <span class="brand-pill" data-i18n="brandPill">fast • cheap • tasty</span>
     </div>
 
-    <script src="script.js"></script>
+    <div class="topbar-actions">
+      <button id="helpBtn" class="icon-btn" type="button" title="Help">?</button>
+
+      <select id="languageSelect" class="select" aria-label="Language">
+        <option value="en">EN</option>
+        <option value="fr">FR</option>
+        <option value="ar">AR</option>
+      </select>
+
+      <button id="themeToggleBtn" class="icon-btn" type="button" title="Toggle theme">🌙</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero / Intro -->
+    <section class="hero">
+      <h1 class="hero-title" data-i18n="welcome">Lettuce find something to prepare! 🥬</h1>
+      <p class="hero-sub" data-i18n="seoIntro">
+        Welcome to the ultimate random recipe generator. We help students and lazy cooks find delicious, budget-friendly meals.
+        Choose your preferences, then hit Discover.
+      </p>
+
+      <div class="hero-cta">
+        <button id="discoverBtnTop" class="btn btn-primary" type="button">
+          <span class="btn-icon" aria-hidden="true">✨</span>
+          <span data-i18n="discover">Discover</span>
+        </button>
+
+        <button id="dailyPickBtnTop" class="btn btn-ghost" type="button">
+          <span class="btn-icon" aria-hidden="true">🌟</span>
+          <span data-i18n="dailyPick">Menu of the Day</span>
+        </button>
+
+        <button id="preferencesBtnTop" class="btn btn-ghost" type="button">
+          <span class="btn-icon" aria-hidden="true">⚙️</span>
+          <span data-i18n="preferences">Preferences</span>
+        </button>
+      </div>
+
+      <p id="hintText" class="hint hidden" data-i18n="discoverHint">
+        Tip: tap Discover again for a new meal.
+      </p>
+
+      <p id="funnyLoadingText" class="loadingline hidden"></p>
+    </section>
+
+    <!-- Preferences Panel -->
+    <section id="preferencesPanel" class="panel hidden" aria-label="Preferences">
+      <div class="panel-header">
+        <h2 class="panel-title" data-i18n="customize">Customize your craving</h2>
+        <button id="closePreferencesBtn" class="icon-btn" type="button" title="Close">✕</button>
+      </div>
+
+      <div class="panel-body">
+        <div class="panel-block">
+          <h3 class="panel-subtitle" data-i18n="includeTitle">Include</h3>
+          <div class="chips">
+            <label class="chip chip-blue"><input type="checkbox" id="studentOnly" /> <span>🎓</span><span data-i18n="studentFriendly">Student Friendly</span></label>
+
+            <label class="chip chip-green"><input type="checkbox" id="cheapOnly" /> <span>🪙</span><span data-i18n="cheap">Cheap (&lt; 6 DT)</span></label>
+            <label class="chip chip-red"><input type="checkbox" id="expensiveOnly" /> <span>💰</span><span data-i18n="expensive">Costs money</span></label>
+
+            <label class="chip"><input type="checkbox" id="tunisianStyle" /> <span>🇹🇳</span><span data-i18n="tunisianStyle">Tunisian</span></label>
+            <label class="chip"><input type="checkbox" id="asianStyle" /> <span>🥢</span><span data-i18n="asianStyle">Asian</span></label>
+
+            <label class="chip"><input type="checkbox" id="withChicken" /> <span>🐔</span><span data-i18n="withChicken">Chicken</span></label>
+            <label class="chip"><input type="checkbox" id="loveFish" /> <span>🐟</span><span data-i18n="fish">Fish</span></label>
+
+            <label class="chip"><input type="checkbox" id="friedOnly" /> <span>🍟</span><span data-i18n="fried">Fried</span></label>
+            <label class="chip"><input type="checkbox" id="vegan" /> <span>🌱</span><span data-i18n="vegan">Vegan</span></label>
+          </div>
+        </div>
+
+        <div class="panel-block">
+          <h3 class="panel-subtitle" data-i18n="excludeTitle">Blacklist (Exclude)</h3>
+          <div class="chips">
+            <label class="chip chip-outline-red"><input type="checkbox" id="noFish" /> <span>🚫🐟</span><span data-i18n="noFish">No Fish</span></label>
+            <label class="chip chip-outline-red"><input type="checkbox" id="noChicken" /> <span>🚫🐔</span><span data-i18n="noChicken">No Chicken</span></label>
+            <label class="chip chip-outline-red"><input type="checkbox" id="noSpicy" /> <span>🚫🌶️</span><span data-i18n="noSpicy">No Spicy</span></label>
+          </div>
+        </div>
+
+        <div class="panel-block panel-actions">
+          <button id="resetFiltersBtn" class="btn btn-ghost" type="button">
+            <span class="btn-icon" aria-hidden="true">🧹</span>
+            <span data-i18n="reset">Reset</span>
+          </button>
+          <button id="applyFiltersBtn" class="btn btn-primary" type="button">
+            <span class="btn-icon" aria-hidden="true">✅</span>
+            <span data-i18n="apply">Apply</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Not Found -->
+    <section id="notFound" class="card hidden">
+      <div class="card-inner center">
+        <div class="big-emoji" aria-hidden="true">🕵️‍♂️</div>
+        <h2 class="card-title" data-i18n="notFoundTitle">No matches found</h2>
+        <p class="card-sub" data-i18n="notFoundText">Sorry, not available yet. We will find something soon!</p>
+        <div class="row">
+          <button id="relaxFiltersBtn" class="btn btn-primary" type="button">
+            <span class="btn-icon" aria-hidden="true">🔓</span>
+            <span data-i18n="relax">Relax filters</span>
+          </button>
+          <button id="openPreferencesBtn2" class="btn btn-ghost" type="button">
+            <span class="btn-icon" aria-hidden="true">⚙️</span>
+            <span data-i18n="preferences">Preferences</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Result -->
+    <section id="result" class="card hidden">
+      <div class="card-inner">
+        <div class="result-header">
+          <div class="result-title">
+            <div id="foodEmoji" class="emoji-badge" aria-hidden="true">🍲</div>
+            <div class="result-title-text">
+              <h2 id="foodName" class="card-title">Food Name</h2>
+              <div class="badges">
+                <span id="foodOrigin" class="badge badge-outline">🌍 Origin</span>
+                <span id="foodCost" class="badge badge-gold">Est. price</span>
+                <span id="foodDifficulty" class="badge badge-green">EASY</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p id="foodDesc" class="card-sub">Description...</p>
+
+        <div class="modes">
+          <button class="mode mode-soft" type="button" id="lazyModeBtn">
+            <div class="mode-title" data-i18n="lazyMode">🟢 Lazy Mode</div>
+            <div class="mode-sub" data-i18n="lazyHint">Fast, cheap, microwave-friendly.</div>
+          </button>
+
+          <button class="mode mode-pro" type="button" id="chefModeBtn">
+            <div class="mode-title" data-i18n="chefMode">🔴 Chef Mode</div>
+            <div class="mode-sub" data-i18n="chefHint">Use the stove, impress your friends.</div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-line"></div>
+      <div class="footer-grid">
+        <div class="footer-left">
+          <div class="footer-brand">
+            <span aria-hidden="true">🥬</span>
+            <span>Lettuce Guess</span>
+          </div>
+          <div class="footer-muted" data-i18n="footerText">Helping students eat better, one click at a time.</div>
+        </div>
+
+        <div class="footer-right">
+          <div class="footer-muted">© <span id="copyrightYear">2026</span> Lettuce Guess. <span data-i18n="rights">All rights reserved.</span></div>
+          <div class="footer-muted">
+            <span data-i18n="contact">Contact/Feedback:</span>
+            <a class="footer-link" href="mailto:omarbenayed2026@gmail.com">omarbenayed2026@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Sticky Bottom Action Bar (the “always visible” Discover) -->
+  <div class="stickybar" role="navigation" aria-label="Actions">
+    <button id="preferencesBtnSticky" class="sticky-icon" type="button" title="Preferences">⚙️</button>
+
+    <button id="discoverBtnSticky" class="sticky-primary" type="button">
+      <span class="spark" aria-hidden="true">✨</span>
+      <span class="sticky-text" data-i18n="discover">Discover</span>
+    </button>
+
+    <button id="dailyPickBtnSticky" class="sticky-icon" type="button" title="Menu of the Day">🌟</button>
+  </div>
+
+  <!-- Intro / Onboarding (first time only) -->
+  <div id="introModal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Welcome">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div class="modal-title">
+          <span class="emoji-badge" aria-hidden="true">🥬</span>
+          <div>
+            <div class="modal-title-main">Lettuce Guess</div>
+            <div class="modal-title-sub" data-i18n="introTagline">Pick a meal in seconds.</div>
+          </div>
+        </div>
+        <button id="closeIntroBtn" class="icon-btn" type="button" title="Close">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-text" data-i18n="introText">
+          Welcome! Use Discover to get a random meal. Open Preferences to filter by budget, style, and ingredients.
+          Tap again for a new suggestion (we also try to avoid repeats).
+        </p>
+
+        <div class="intro-features">
+          <div class="intro-feature">
+            <div class="intro-emoji" aria-hidden="true">✨</div>
+            <div>
+              <div class="intro-title" data-i18n="introF1Title">One-tap suggestions</div>
+              <div class="intro-sub" data-i18n="introF1Sub">Discover stays visible at the bottom.</div>
+            </div>
+          </div>
+
+          <div class="intro-feature">
+            <div class="intro-emoji" aria-hidden="true">🪙</div>
+            <div>
+              <div class="intro-title" data-i18n="introF2Title">Budget aware</div>
+              <div class="intro-sub" data-i18n="introF2Sub">Cheap vs costs money tags + DT estimates.</div>
+            </div>
+          </div>
+
+          <div class="intro-feature">
+            <div class="intro-emoji" aria-hidden="true">🧠</div>
+            <div>
+              <div class="intro-title" data-i18n="introF3Title">Smarter variety</div>
+              <div class="intro-sub" data-i18n="introF3Sub">Avoids repeats and tries to mix cuisines.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <button id="introDiscoverBtn" class="btn btn-primary" type="button">
+            <span class="btn-icon" aria-hidden="true">✨</span>
+            <span data-i18n="startDiscover">Start discovering</span>
+          </button>
+          <button id="introPreferencesBtn" class="btn btn-ghost" type="button">
+            <span class="btn-icon" aria-hidden="true">⚙️</span>
+            <span data-i18n="preferences">Preferences</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recipe Modal -->
+  <div id="recipeModal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Recipe">
+    <div class="modal-card modal-wide">
+      <div class="modal-head">
+        <div class="modal-title">
+          <span id="modalModeEmoji" class="emoji-badge" aria-hidden="true">🟢</span>
+          <div>
+            <div id="modalTitle" class="modal-title-main">Recipe Mode</div>
+            <div class="modal-title-sub">
+              <span class="pill" id="modalTime">⏱️ <span id="timeVal"></span></span>
+              <span class="pill" id="modalTemp">🌡️ <span id="tempVal"></span></span>
+            </div>
+          </div>
+        </div>
+        <button id="closeRecipeBtn" class="icon-btn" type="button" title="Close">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <h3 class="modal-section" data-i18n="ingredients">Ingredients & Spices</h3>
+        <ul id="modalIngredients" class="list"></ul>
+
+        <h3 class="modal-section" data-i18n="steps">Instructions</h3>
+        <ol id="modalSteps" class="list"></ol>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

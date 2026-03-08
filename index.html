@@ -10,6 +10,7 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body class="theme-dark" dir="ltr">
     <!-- Top bar -->
     <header class="topbar">
@@ -19,7 +20,7 @@
       </div>
 
       <div class="topbar__right">
-        <select id="languageSelect" class="select">
+        <select id="languageSelect" class="select" aria-label="Language">
           <option value="en">EN</option>
           <option value="fr">FR</option>
           <option value="ar">AR</option>
@@ -30,131 +31,150 @@
       </div>
     </header>
 
-    <!-- Hero -->
-    <main class="container">
-      <section class="hero">
-        <h1 class="hero__title" data-i18n="welcome">Lettuce find something to prepare! 🥬</h1>
-        <p class="hero__subtitle seo-intro" data-i18n="seoIntro">
-          Welcome to the ultimate random recipe generator. We help students and lazy cooks find delicious,
-          budget-friendly meals. Choose your preferences, then hit Discover.
-        </p>
-
-        <div class="hero__actions">
-          <button id="discoverBtnTop" class="btn btn-primary" data-i18n="discover">Discover</button>
-          <button id="dailyPickBtnTop" class="btn btn-ghost" data-i18n="dailyPick">Menu of the Day</button>
-          <button id="preferencesBtnTop" class="btn btn-ghost" data-i18n="preferences">Preferences</button>
+    <!-- 3-column layout: left ads / app / right ads -->
+    <div class="layout">
+      <aside class="adcol">
+        <div class="adbox">
+          <div class="adbox__title">Ad Space</div>
+          <div class="adbox__hint">Left 160×600 / 300×600</div>
         </div>
+      </aside>
 
-        <div id="funnyLoadingText" class="loadingline hidden" aria-live="polite"></div>
-        <div id="hintText" class="hint hidden" data-i18n="discoverHint">
-          Tip: tap Discover again for a new meal.
-        </div>
-      </section>
+      <main class="container">
+        <!-- Hero -->
+        <section class="hero">
+          <h1 class="hero__title" data-i18n="welcome">Lettuce find something to prepare! 🥬</h1>
+          <p class="hero__subtitle seo-intro" data-i18n="seoIntro">
+            Welcome to the ultimate random recipe generator. We help students and lazy cooks find delicious,
+            budget-friendly meals. Choose your preferences, then hit Discover.
+          </p>
 
-      <!-- Preferences Panel -->
-      <section id="preferencesPanel" class="panel hidden">
-        <div class="panel__header">
-          <div>
-            <div class="panel__title" data-i18n="preferences">Preferences</div>
-            <div class="panel__subtitle" data-i18n="customize">Customize your craving</div>
+          <div class="hero__actions">
+            <button id="discoverBtnTop" class="btn btn-primary" data-i18n="discover">Discover</button>
+            <button id="dailyPickBtnTop" class="btn btn-ghost" data-i18n="dailyPick">Menu of the Day</button>
+            <button id="preferencesBtnTop" class="btn btn-ghost" data-i18n="preferences">Preferences</button>
           </div>
 
-          <button id="closePreferencesBtn" class="iconbtn" title="Close">✕</button>
-        </div>
-
-        <div class="panel__grid">
-          <div class="panel__col">
-            <div class="panel__sectionTitle" data-i18n="includeTitle">Include</div>
-
-            <label class="chk"><input id="studentOnly" type="checkbox" /> <span data-i18n="studentFriendly">Student Friendly</span></label>
-            <label class="chk"><input id="cheapOnly" type="checkbox" /> <span data-i18n="cheap">Cheap (&lt; 6 DT)</span></label>
-            <label class="chk"><input id="expensiveOnly" type="checkbox" /> <span data-i18n="expensive">Costs money</span></label>
-
-            <div class="divider"></div>
-
-            <label class="chk"><input id="tunisianStyle" type="checkbox" /> <span data-i18n="tunisianStyle">Tunisian</span></label>
-            <label class="chk"><input id="asianStyle" type="checkbox" /> <span data-i18n="asianStyle">Asian</span></label>
-
-            <div class="divider"></div>
-
-            <label class="chk"><input id="withChicken" type="checkbox" /> <span data-i18n="withChicken">Chicken</span></label>
-            <label class="chk"><input id="loveFish" type="checkbox" /> <span data-i18n="fish">Fish</span></label>
-            <label class="chk"><input id="friedOnly" type="checkbox" /> <span data-i18n="fried">Fried</span></label>
-            <label class="chk"><input id="vegan" type="checkbox" /> <span data-i18n="vegan">Vegan</span></label>
+          <div id="funnyLoadingText" class="loadingline hidden" aria-live="polite"></div>
+          <div id="hintText" class="hint hidden" data-i18n="discoverHint">
+            Tip: tap Discover again for a new meal.
           </div>
+        </section>
 
-          <div class="panel__col">
-            <div class="panel__sectionTitle" data-i18n="excludeTitle">Blacklist (Exclude)</div>
-
-            <label class="chk"><input id="noFish" type="checkbox" /> <span data-i18n="noFish">No Fish</span></label>
-            <label class="chk"><input id="noChicken" type="checkbox" /> <span data-i18n="noChicken">No Chicken</span></label>
-            <label class="chk"><input id="noSpicy" type="checkbox" /> <span data-i18n="noSpicy">No Spicy</span></label>
-
-            <div class="panel__footer">
-              <button id="resetFiltersBtn" class="btn btn-ghost" data-i18n="reset">Reset</button>
-              <button id="applyFiltersBtn" class="btn btn-primary" data-i18n="apply">Apply</button>
+        <!-- Preferences Panel -->
+        <section id="preferencesPanel" class="panel hidden">
+          <div class="panel__header">
+            <div>
+              <div class="panel__title" data-i18n="preferences">Preferences</div>
+              <div class="panel__subtitle" data-i18n="customize">Customize your craving</div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- Result -->
-      <section id="result" class="result hidden">
-        <div class="card">
-          <div class="card__top">
-            <div id="foodEmoji" class="foodEmoji">🍲</div>
-            <div class="card__meta">
-              <div id="foodName" class="foodName">—</div>
-              <div class="row">
-                <div id="foodOrigin" class="pill">🌍</div>
-                <div id="foodCost" class="pill">—</div>
-                <div id="foodDifficulty" class="pill badge-blue">—</div>
+            <button id="closePreferencesBtn" class="iconbtn" title="Close">✕</button>
+          </div>
+
+          <div class="panel__grid">
+            <div class="panel__col">
+              <div class="panel__sectionTitle" data-i18n="includeTitle">Include</div>
+
+              <label class="chk"><input id="studentOnly" type="checkbox" /> <span data-i18n="studentFriendly">Student Friendly</span></label>
+              <label class="chk"><input id="cheapOnly" type="checkbox" /> <span data-i18n="cheap">Cheap (&lt; 6 DT)</span></label>
+              <label class="chk"><input id="expensiveOnly" type="checkbox" /> <span data-i18n="expensive">Costs money</span></label>
+
+              <div class="divider"></div>
+
+              <label class="chk"><input id="tunisianStyle" type="checkbox" /> <span data-i18n="tunisianStyle">Tunisian</span></label>
+              <label class="chk"><input id="asianStyle" type="checkbox" /> <span data-i18n="asianStyle">Asian</span></label>
+
+              <div class="divider"></div>
+
+              <label class="chk"><input id="withChicken" type="checkbox" /> <span data-i18n="withChicken">Chicken</span></label>
+              <label class="chk"><input id="loveFish" type="checkbox" /> <span data-i18n="fish">Fish</span></label>
+              <label class="chk"><input id="friedOnly" type="checkbox" /> <span data-i18n="fried">Fried</span></label>
+              <label class="chk"><input id="vegan" type="checkbox" /> <span data-i18n="vegan">Vegan</span></label>
+            </div>
+
+            <div class="panel__col">
+              <div class="panel__sectionTitle" data-i18n="excludeTitle">Blacklist (Exclude)</div>
+
+              <label class="chk"><input id="noFish" type="checkbox" /> <span data-i18n="noFish">No Fish</span></label>
+              <label class="chk"><input id="noChicken" type="checkbox" /> <span data-i18n="noChicken">No Chicken</span></label>
+              <label class="chk"><input id="noSpicy" type="checkbox" /> <span data-i18n="noSpicy">No Spicy</span></label>
+
+              <div class="panel__footer">
+                <button id="resetFiltersBtn" class="btn btn-ghost" data-i18n="reset">Reset</button>
+                <button id="applyFiltersBtn" class="btn btn-primary" data-i18n="apply">Apply</button>
               </div>
             </div>
           </div>
+        </section>
 
-          <p id="foodDesc" class="foodDesc">—</p>
+        <!-- Result -->
+        <section id="result" class="result hidden">
+          <div class="card">
+            <div class="card__top">
+              <div id="foodEmoji" class="foodEmoji">🍲</div>
+              <div class="card__meta">
+                <div id="foodName" class="foodName">—</div>
+                <div class="row">
+                  <div id="foodOrigin" class="pill">🌍</div>
+                  <div id="foodCost" class="pill">—</div>
+                  <div id="foodDifficulty" class="pill badge-blue">—</div>
+                </div>
+              </div>
+            </div>
 
-          <div class="modes">
-            <button id="lazyModeBtn" class="modebtn">
-              <div class="modebtn__title" data-i18n="lazyMode">🟢 Lazy Mode</div>
-              <div class="modebtn__sub" data-i18n="lazyHint">Fast, cheap, microwave-friendly.</div>
-            </button>
+            <p id="foodDesc" class="foodDesc">—</p>
 
-            <button id="chefModeBtn" class="modebtn">
-              <div class="modebtn__title" data-i18n="chefMode">🔴 Chef Mode</div>
-              <div class="modebtn__sub" data-i18n="chefHint">Use the stove, impress your friends.</div>
-            </button>
+            <div class="modes">
+              <button id="lazyModeBtn" class="modebtn">
+                <div class="modebtn__title" data-i18n="lazyMode">🟢 Lazy Mode</div>
+                <div class="modebtn__sub" data-i18n="lazyHint">Fast, cheap, microwave-friendly.</div>
+              </button>
+
+              <button id="chefModeBtn" class="modebtn">
+                <div class="modebtn__title" data-i18n="chefMode">🔴 Chef Mode</div>
+                <div class="modebtn__sub" data-i18n="chefHint">Use the stove, impress your friends.</div>
+              </button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Not found -->
-      <section id="notFound" class="notfound hidden">
-        <div class="card">
-          <h2 data-i18n="notFoundTitle">No matches found</h2>
-          <p data-i18n="notFoundText">Sorry, not available yet. We will find something soon!</p>
+        <!-- Not found -->
+        <section id="notFound" class="notfound hidden">
+          <div class="card">
+            <h2 data-i18n="notFoundTitle">No matches found</h2>
+            <p data-i18n="notFoundText">Sorry, not available yet. We will find something soon!</p>
 
-          <div class="notfound__actions">
-            <button id="relaxFiltersBtn" class="btn btn-primary" data-i18n="relax">Relax filters</button>
-            <button id="openPreferencesBtn2" class="btn btn-ghost" data-i18n="preferences">Preferences</button>
+            <div class="notfound__actions">
+              <button id="relaxFiltersBtn" class="btn btn-primary" data-i18n="relax">Relax filters</button>
+              <button id="openPreferencesBtn2" class="btn btn-ghost" data-i18n="preferences">Preferences</button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <footer class="footer">
-        <div data-i18n="footerText">Helping students eat better, one click at a time.</div>
-        <div class="footer__small">
-          © <span id="copyrightYear"></span> Lettuce Guess — <span data-i18n="rights">All rights reserved.</span>
+        <footer class="footer">
+          <div data-i18n="footerText">Helping students eat better, one click at a time.</div>
+          <div class="footer__small">
+            © <span id="copyrightYear"></span> Lettuce Guess — <span data-i18n="rights">All rights reserved.</span>
+            <span class="footer__sep">•</span>
+            <span data-i18n="contact">Contact/Feedback:</span> <span class="footer__email">omarbenayed2026@gmail.com</span>
+          </div>
+        </footer>
+      </main>
+
+      <aside class="adcol">
+        <div class="adbox">
+          <div class="adbox__title">Ad Space</div>
+          <div class="adbox__hint">Right 160×600 / 300×600</div>
         </div>
-      </footer>
-    </main>
+      </aside>
+    </div>
 
     <!-- Sticky bottom bar -->
-    <div class="stickybar">
+    <div class="stickybar" aria-label="Quick actions">
+      <button id="preferencesBtnSticky" class="btn btn-ghost stickybar__btn" data-i18n="preferences">Preferences</button>
       <button id="discoverBtnSticky" class="btn btn-primary stickybar__btn" data-i18n="discover">Discover</button>
       <button id="dailyPickBtnSticky" class="btn btn-ghost stickybar__btn" data-i18n="dailyPick">Menu of the Day</button>
-      <button id="preferencesBtnSticky" class="btn btn-ghost stickybar__btn" data-i18n="preferences">Preferences</button>
     </div>
 
     <!-- Intro Modal -->

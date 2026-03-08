@@ -1,22 +1,28 @@
 /* =========================================
-   Lettuce Guess — CLEAN STABLE DESIGN (GREEN)
-   Works with your ORIGINAL HTML (data-i18n + IDs)
+   Lettuce Guess — "Alive" UI upgrade (drop-in)
+   Paste this UNDER your current CSS (or replace the stable CSS with this).
+   - Mouse-follow glow
+   - Button glow on hover
+   - Softer glass cards
+   - Better checkboxes
+   - Fix emoji visibility (no grayscale filters)
    ========================================= */
 
+/* --- Theme tokens --- */
 :root{
   --bg:#070b10;
   --text:#eef3ff;
   --muted:rgba(238,243,255,.72);
-  --card:rgba(255,255,255,.06);
-  --card2:rgba(255,255,255,.10);
-  --border:rgba(255,255,255,.12);
-  --shadow:0 18px 55px rgba(0,0,0,.45);
+  --card:rgba(255,255,255,.07);
+  --card2:rgba(255,255,255,.11);
+  --border:rgba(255,255,255,.14);
+  --shadow:0 22px 80px rgba(0,0,0,.55);
 
-  /* GREEN accent */
   --green:#22c55e;
   --green2:#34d399;
 
   --radius:18px;
+  --radius2:14px;
 }
 
 body.theme-light{
@@ -26,69 +32,164 @@ body.theme-light{
   --card:rgba(0,0,0,.06);
   --card2:rgba(0,0,0,.10);
   --border:rgba(0,0,0,.12);
-  --shadow:0 18px 55px rgba(0,0,0,.18);
+  --shadow:0 18px 60px rgba(0,0,0,.20);
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-
+/* --- Background + mouse-follow glow --- */
 body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--text);
+  position:relative;
+  overflow-x:hidden;
   background:
-    radial-gradient(900px 650px at 18% 0%, rgba(34,197,94,.20), transparent 60%),
-    radial-gradient(800px 650px at 85% 20%, rgba(167,139,250,.16), transparent 55%),
+    radial-gradient(950px 680px at 18% 0%, rgba(34,197,94,.20), transparent 62%),
+    radial-gradient(820px 640px at 86% 18%, rgba(167,139,250,.16), transparent 56%),
     var(--bg);
 }
 
-.hidden{display:none !important}
+/* Mouse glow layer */
+body::before{
+  content:"";
+  position:fixed;
+  inset:-50vmax;
+  pointer-events:none;
+  z-index:0;
+  /* We set --mx/--my from JS */
+  background:
+    radial-gradient(260px 260px at var(--mx, 50%) var(--my, 40%),
+      rgba(34,197,94,.18),
+      transparent 65%),
+    radial-gradient(520px 520px at var(--mx, 50%) var(--my, 40%),
+      rgba(34,197,94,.08),
+      transparent 70%);
+  transform:translateZ(0);
+  filter: blur(0px);
+}
 
-/* ---------- Buttons / inputs ---------- */
-button{
-  font:inherit;
-}
-.btn, button{
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
-  border-radius:14px;
-  padding:10px 14px;
-}
-.btn:hover, button:hover{background:var(--card2); cursor:pointer}
-.btn-primary{
-  background:linear-gradient(135deg,var(--green),var(--green2));
-  border-color:rgba(34,197,94,.35);
-}
-.btn-primary:hover{filter:brightness(1.05)}
+/* Keep content above glow */
+body > *{position:relative; z-index:1}
 
-/* ---------- Header brand color ---------- */
+/* --- Make brand green gradient --- */
 [data-i18n="brand"]{
+  font-weight:950;
   background:linear-gradient(135deg,var(--green),var(--green2));
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent;
-  font-weight:950;
 }
 
-/* ---------- Simple layout helpers ----------
-   Your project likely already has more CSS.
-   These are safe: they won't break layout if selectors don't exist.
-*/
-#preferencesPanel, #result, #notFound, #introModal .modal__card, #recipeModal .modal__card{
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.04);
-  box-shadow:var(--shadow);
-  border-radius:var(--radius);
+/* --- Glass cards / panels / modals (safe selectors) --- */
+#preferencesPanel,
+#result,
+#notFound,
+#introModal .modal__card,
+#recipeModal .modal__card,
+.card,
+.panel{
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
 }
 
-/* sticky bar */
-#stickyBar, .stickybar, #discoverBtnSticky, #dailyPickBtnSticky, #preferencesBtnSticky{
-  border-radius:16px;
+/* --- Buttons: glow + lift + focus ring --- */
+button, .btn{
+  position:relative;
+  transition:
+    transform .12s ease,
+    box-shadow .18s ease,
+    filter .18s ease,
+    background .18s ease,
+    border-color .18s ease;
 }
 
-/* badges (difficulty) */
-.badge-green{border-color:rgba(34,197,94,.55) !important; color:rgba(34,197,94,1) !important}
-.badge-gold{border-color:rgba(247,201,72,.55) !important; color:rgba(247,201,72,1) !important}
-.badge-red{border-color:rgba(255,84,112,.55) !important; color:rgba(255,84,112,1) !important}
-.badge-blue{border-color:rgba(92,200,255,.55) !important; color:rgba(92,200,255,1) !important}
+/* subtle inner shine */
+button::after, .btn::after{
+  content:"";
+  position:absolute;
+  inset:1px;
+  border-radius:inherit;
+  pointer-events:none;
+  background: radial-gradient(120px 60px at 30% 0%, rgba(255,255,255,.18), transparent 70%);
+  opacity:.0;
+  transition: opacity .18s ease;
+}
+
+button:hover, .btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 18px 45px rgba(0,0,0,.30);
+}
+
+button:hover::after, .btn:hover::after{opacity:1}
+
+/* Primary button = strong green glow */
+.btn-primary,
+#discoverBtnTop, #discoverBtnSticky,
+#applyFiltersBtn, #relaxFiltersBtn{
+  background: linear-gradient(135deg,var(--green),var(--green2));
+  border-color: rgba(34,197,94,.38);
+  box-shadow: 0 16px 36px rgba(34,197,94,.16);
+}
+
+.btn-primary:hover,
+#discoverBtnTop:hover, #discoverBtnSticky:hover,
+#applyFiltersBtn:hover, #relaxFiltersBtn:hover{
+  box-shadow:
+    0 18px 44px rgba(34,197,94,.22),
+    0 0 0 3px rgba(34,197,94,.18);
+  filter: brightness(1.06);
+}
+
+/* Accessible focus */
+button:focus-visible, .btn:focus-visible{
+  outline:none;
+  box-shadow: 0 0 0 3px rgba(34,197,94,.28);
+}
+
+/* --- Sticky bar more premium --- */
+.stickybar, #stickyBar{
+  background: rgba(0,0,0,.42);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(16px);
+}
+body.theme-light .stickybar, body.theme-light #stickyBar{
+  background: rgba(255,255,255,.70);
+}
+
+/* --- Checkboxes: nicer + green accent --- */
+input[type="checkbox"]{
+  width:18px;
+  height:18px;
+  accent-color: var(--green);
+}
+
+/* If your checkboxes are inside a "row card" style, add glow on hover */
+.chk, label{
+  transition: background .18s ease, border-color .18s ease, transform .12s ease;
+}
+.chk:hover, label:hover{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(34,197,94,.22);
+}
+
+/* --- Fix emoji visibility (in case some CSS was dimming them) --- */
+.leaf, #foodEmoji, .foodEmoji{
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* --- Result emoji bigger / nicer --- */
+#foodEmoji, .foodEmoji{
+  font-size: 52px;
+  line-height: 1;
+  text-shadow: 0 18px 35px rgba(0,0,0,.35);
+}
+
+/* --- Smooth page feel --- */
+*{
+  scroll-behavior:smooth;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce){
+  button, .btn{transition:none}
+  body::before{display:none}
+}

@@ -146,7 +146,7 @@ const foodDatabase = [
                 name: "لبلابي حار", origin: "تونس", difficulty: "سهل", cost: "حوالي 3.50 د.ت", 
                 description: "حساء الشارع الشهير والرخيص بالحمص والثوم، يُسكب فوق الخبز البائت.", 
                 simple: { time: "15 دقيقة", temp: "غليان", ingredients: ["حمص معلب", "ملعقة هريسة", "خبز بائت", "ثوم مهروس", "كمون", "زيت زيتون"], steps: ["اغلي الحمص في مائه مع الثوم والكمون والملح لـ 10 دقائق.", "قطع الخبز البائت في وعاء.", "اسكب الحساء المغلي فوق الخبز وزينه بالهريسة وزيت الزيتون."] }, 
-                hard: { time: "ساعتان", temp: "نار هادئة", ingredients: ["حمص جاف", "ثوم", "هريسة", "زيت زيتون", "كمون", "تونة", "بيضة نصف مسلوقة"], steps: ["انقع الحمص طوال الليل واغله لساعتين حتى يلين جداً.", "حضر وعاء الخبز المقطع.", "أضف الحمص والمرق، وزينه بسخاء بزيت الزيتون والكمون والهريسة والتونة والبيضة."] } 
+                hard: { time: "ساعتان", temp: "نار هادئة", ingredients: ["حمص جاف", "ثوم", "هريسة", "زيت زيتون", "كمون", "تونة", "بيضة نصف مسلوقة"], steps: ["انقع الحمص طوال الليل واغله لساعتين حتى يلين جداً.", "حضّر وعاء الخبز المقطع.", "أضف الحمص والمرق، وزينه بسخاء بزيت الزيتون والكمون والهريسة والتونة والبيضة."] } 
             }
         }
     },
@@ -218,6 +218,367 @@ const foodDatabase = [
                 hard: { time: "12 ساعة", temp: "زيت 160 درجة", ingredients: ["دجاج بالعظم", "لبن", "دقيق", "نشا", "فلفل أحمر حار، ثوم، بصل، فلفل أبيض"], steps: ["انقع الدجاج ليلة كاملة في اللبن والصلصة الحارة.", "اخلط الدقيق والنشا والبهارات.", "غلف الدجاج بالخليط واضغط بقوة.", "اقله في زيت غزير لـ 12-15 دقيقة. دعه يرتاح على شبكة معدنية."] } 
             }
         }
+    },
+    {
+        id: "tun_4", tags: ["tunisian", "cheap", "student", "fried"], emoji: "🍳", difficultyCSS: "easy",
+        translations: {
+            en: {
+                name: "Ojja (Tunisian Egg & Tomato)", origin: "Tunisia", difficulty: "Easy", cost: "Est. 5.00 DT",
+                description: "A quick tomato, pepper, and egg skillet meal—perfect for students.",
+                simple: {
+                    time: "15 mins", temp: "Medium Heat",
+                    ingredients: ["2 Eggs", "Tomato sauce", "1 Bell pepper", "Onion", "Harissa (optional)", "Olive oil", "Salt & Pepper"],
+                    steps: [
+                        "Sauté onion and pepper in olive oil.",
+                        "Add tomato sauce and simmer 5 minutes (add harissa if you want).",
+                        "Make small wells, crack eggs in.",
+                        "Cover until eggs set. Eat with bread."
+                    ]
+                },
+                hard: {
+                    time: "25 mins", temp: "Medium Heat",
+                    ingredients: ["3 Eggs", "Fresh tomatoes", "1 Bell pepper", "Onion", "Garlic", "Harissa", "Cumin", "Olive oil"],
+                    steps: [
+                        "Grate tomatoes and cook them down with onion, garlic, and pepper.",
+                        "Season with cumin + harissa.",
+                        "Crack eggs, cover, and cook to your liking."
+                    ]
+                }
+            },
+            fr: {
+                name: "Ojja (Œufs à la tomate)", origin: "Tunisie", difficulty: "Facile", cost: "Env. 5.00 DT",
+                description: "Plat rapide à base de tomate, poivron et œufs—parfait pour les étudiants.",
+                simple: {
+                    time: "15 mins", temp: "Feu Moyen",
+                    ingredients: ["2 Œufs", "Sauce tomate", "1 Poivron", "Oignon", "Harissa (optionnel)", "Huile d'olive", "Sel & Poivre"],
+                    steps: [
+                        "Faire revenir oignon et poivron dans l'huile d'olive.",
+                        "Ajouter la sauce tomate et mijoter 5 minutes (harissa si vous voulez).",
+                        "Faire des petits trous et casser les œufs.",
+                        "Couvrir jusqu'à cuisson des œufs. Manger avec du pain."
+                    ]
+                },
+                hard: {
+                    time: "25 mins", temp: "Feu Moyen",
+                    ingredients: ["3 Œufs", "Tomates fraîches", "1 Poivron", "Oignon", "Ail", "Harissa", "Cumin", "Huile d'olive"],
+                    steps: [
+                        "Râper les tomates et les faire réduire avec oignon, ail et poivron.",
+                        "Assaisonner avec cumin + harissa.",
+                        "Ajouter les œufs, couvrir et cuire."
+                    ]
+                }
+            },
+            ar: {
+                name: "عجّة تونسية", origin: "تونس", difficulty: "سهل", cost: "حوالي 5.00 د.ت",
+                description: "طبق سريع بالطماطم والفلفل والبيض—ممتاز للطلاب.",
+                simple: {
+                    time: "15 دقيقة", temp: "نار متوسطة",
+                    ingredients: ["بيضتان", "صلصة طماطم", "فلفل حلو", "بصل", "هريسة (اختياري)", "زيت زيتون", "ملح وفلفل"],
+                    steps: [
+                        "شوّح البصل والفلفل في زيت الزيتون.",
+                        "أضف صلصة الطماطم واتركها 5 دقائق (أضف هريسة إذا تحب).",
+                        "اصنع حفر صغيرة واكسر البيض.",
+                        "غطِّ المقلاة حتى ينضج البيض. يؤكل مع الخبز."
+                    ]
+                },
+                hard: {
+                    time: "25 دقيقة", temp: "نار متوسطة",
+                    ingredients: ["3 بيض", "طماطم طازجة", "فلفل", "بصل", "ثوم", "هريسة", "كمون", "زيت زيتون"],
+                    steps: [
+                        "ابشر الطماطم واطبخها مع البصل والثوم والفلفل حتى تتركز.",
+                        "تبّل بالكمون والهريسة.",
+                        "أضف البيض وغطِّ حتى ينضج حسب الرغبة."
+                    ]
+                }
+            }
+        }
+    },
+    {
+        id: "tun_5", tags: ["tunisian", "cheap", "student", "vegan", "boiled"], emoji: "🥗", difficultyCSS: "easy",
+        translations: {
+            en: {
+                name: "Tunisian Slata Mechouia", origin: "Tunisia", difficulty: "Easy", cost: "Est. 6.00 DT",
+                description: "Smoky grilled pepper & tomato salad—fresh, cheap, and legendary.",
+                simple: {
+                    time: "20 mins", temp: "High Heat",
+                    ingredients: ["2 Peppers", "2 Tomatoes", "Garlic", "Olive oil", "Salt", "Lemon"],
+                    steps: [
+                        "Grill peppers and tomatoes until skin blackens.",
+                        "Peel, chop, and mix with garlic, salt, lemon, and olive oil.",
+                        "Serve with bread (optional tuna/egg on top)."
+                    ]
+                },
+                hard: {
+                    time: "35 mins", temp: "High Heat",
+                    ingredients: ["Peppers", "Tomatoes", "Onion", "Garlic", "Olive oil", "Cumin", "Caraway", "Harissa (optional)"],
+                    steps: [
+                        "Roast peppers and tomatoes, peel and remove seeds.",
+                        "Chop finely and season with cumin + caraway.",
+                        "Add olive oil and (optional) a little harissa."
+                    ]
+                }
+            },
+            fr: {
+                name: "Slata Mechouia", origin: "Tunisie", difficulty: "Facile", cost: "Env. 6.00 DT",
+                description: "Salade fumée de poivrons et tomates grillés—fraîche et pas chère.",
+                simple: {
+                    time: "20 mins", temp: "Feu Vif",
+                    ingredients: ["2 Poivrons", "2 Tomates", "Ail", "Huile d'olive", "Sel", "Citron"],
+                    steps: [
+                        "Griller poivrons et tomates jusqu'à noircissement.",
+                        "Éplucher, hacher, puis assaisonner avec ail, sel, citron et huile.",
+                        "Servir avec du pain (thon/œuf en option)."
+                    ]
+                },
+                hard: {
+                    time: "35 mins", temp: "Feu Vif",
+                    ingredients: ["Poivrons", "Tomates", "Oignon", "Ail", "Huile d'olive", "Cumin", "Carvi", "Harissa (optionnel)"],
+                    steps: [
+                        "Rôtir poivrons et tomates, éplucher et enlever les graines.",
+                        "Hacher finement et assaisonner avec cumin + carvi.",
+                        "Ajouter huile d'olive et un peu de harissa (optionnel)."
+                    ]
+                }
+            },
+            ar: {
+                name: "سلاطة مشوية", origin: "تونس", difficulty: "سهل", cost: "حوالي 6.00 د.ت",
+                description: "سلاطة دخانية بالفلفل والطماطم المشوية—خفيفة ورخيصة.",
+                simple: {
+                    time: "20 دقيقة", temp: "نار عالية",
+                    ingredients: ["فلفلتان", "طماطمان", "ثوم", "زيت زيتون", "ملح", "عصير ليمون"],
+                    steps: [
+                        "اشوِ الفلفل والطماطم حتى تسود القشرة.",
+                        "قشّر وقطّع وامزج مع الثوم والملح والليمون والزيت.",
+                        "تُقدّم مع الخبز (يمكن إضافة تونة/بيض فوقها)."
+                    ]
+                },
+                hard: {
+                    time: "35 دقيقة", temp: "نار عالية",
+                    ingredients: ["فلفل", "طماطم", "بصل", "ثوم", "زيت زيتون", "كمون", "كروية", "هريسة (اختياري)"],
+                    steps: [
+                        "اشوِ الفلفل والطماطم ثم قشّر وانزع البذور.",
+                        "فرم جيداً وتبّل بالكمون والكروية.",
+                        "أضف زيت الزيتون وقليل هريسة (اختياري)."
+                    ]
+                }
+            }
+        }
+    },
+    { 
+        id: "int_11", tags: ["student", "cheap", "vegan", "boiled"], emoji: "🍚", difficultyCSS: "easy",
+        translations: {
+            en: {
+                name: "Soy Garlic Rice Bowl", origin: "Asia", difficulty: "Easy", cost: "Est. 4.50 DT",
+                description: "A fast rice bowl with soy, garlic, and veggies—cheap and filling.",
+                simple: {
+                    time: "15 mins", temp: "Medium Heat",
+                    ingredients: ["Cooked rice", "Soy sauce", "Garlic", "Frozen veggies", "Sesame oil (optional)", "Black pepper"],
+                    steps: [
+                        "Sauté garlic in a little oil.",
+                        "Add veggies and cook 5 minutes.",
+                        "Add rice + soy sauce and mix well."
+                    ]
+                },
+                hard: {
+                    time: "25 mins", temp: "Medium-High",
+                    ingredients: ["Rice", "Soy sauce", "Garlic", "Egg (optional)", "Green onion", "Ginger", "Chili flakes (optional)"],
+                    steps: [
+                        "Cook rice (best if slightly dry).",
+                        "Sauté garlic + ginger.",
+                        "Add rice + soy sauce; stir-fry 5 minutes.",
+                        "Top with green onion (and egg if you want)."
+                    ]
+                }
+            },
+            fr: {
+                name: "Bol de Riz Soja & Ail", origin: "Asie", difficulty: "Facile", cost: "Env. 4.50 DT",
+                description: "Bol de riz rapide au soja, ail et légumes—pas cher et rassasiant.",
+                simple: {
+                    time: "15 mins", temp: "Feu Moyen",
+                    ingredients: ["Riz cuit", "Sauce soja", "Ail", "Légumes surgelés", "Huile de sésame (optionnel)", "Poivre"],
+                    steps: [
+                        "Faire revenir l'ail dans un peu d'huile.",
+                        "Ajouter les légumes et cuire 5 mins.",
+                        "Ajouter le riz + soja et mélanger."
+                    ]
+                },
+                hard: {
+                    time: "25 mins", temp: "Feu Moyen-Vif",
+                    ingredients: ["Riz", "Sauce soja", "Ail", "Œuf (optionnel)", "Oignon vert", "Gingembre", "Flocons de piment (optionnel)"],
+                    steps: [
+                        "Cuire le riz (meilleur un peu sec).",
+                        "Faire revenir ail + gingembre.",
+                        "Ajouter le riz + soja, sauter 5 mins.",
+                        "Ajouter l'oignon vert (et l'œuf si vous voulez)."
+                    ]
+                }
+            },
+            ar: {
+                name: "طبق أرز بالصويا والثوم", origin: "آسيا", difficulty: "سهل", cost: "حوالي 4.50 د.ت",
+                description: "طبق أرز سريع مع صويا وثوم وخضار—رخيص ومشبع.",
+                simple: {
+                    time: "15 دقيقة", temp: "نار متوسطة",
+                    ingredients: ["أرز مطبوخ", "صوص صويا", "ثوم", "خضار مجمدة", "زيت سمسم (اختياري)", "فلفل أسود"],
+                    steps: [
+                        "شوّح الثوم في قليل زيت.",
+                        "أضف الخضار واطبخ 5 دقائق.",
+                        "أضف الأرز وصوص الصويا وامزج جيداً."
+                    ]
+                },
+                hard: {
+                    time: "25 دقيقة", temp: "نار متوسطة-عالية",
+                    ingredients: ["أرز", "صوص صويا", "ثوم", "بيضة (اختياري)", "بصل أخضر", "زنجبيل", "رقائق فلفل حار (اختياري)"],
+                    steps: [
+                        "اطبخ الأرز (أفضل إذا كان جاف قليلاً).",
+                        "شوّح الثوم والزنجبيل.",
+                        "أضف الأرز وصوص الصويا وقلّب 5 دقائق.",
+                        "زيّن بالبصل الأخضر (وأضف البيض إن أحببت)."
+                    ]
+                }
+            }
+        }
+    },
+    {
+        id: "int_12", tags: ["student", "cheap", "vegan", "boiled", "spicy"], emoji: "🍜", difficultyCSS: "easy",
+        translations: {
+            en: {
+                name: "Spicy Instant Ramen Upgrade", origin: "Japan", difficulty: "Easy", cost: "Est. 4.00 DT",
+                description: "Instant noodles upgraded with garlic, chili, and veggies—tastes 10x better.",
+                simple: {
+                    time: "10 mins", temp: "Boiling",
+                    ingredients: ["Instant ramen", "Garlic", "Chili flakes", "Frozen veggies", "Soy sauce (optional)", "Green onion"],
+                    steps: [
+                        "Boil water and cook noodles.",
+                        "Add veggies in the last 2 minutes.",
+                        "Mix garlic + chili (and soy) then pour soup over it."
+                    ]
+                },
+                hard: {
+                    time: "20 mins", temp: "Medium Heat",
+                    ingredients: ["Ramen", "Garlic", "Ginger", "Chili", "Peanut butter (optional)", "Egg (optional)"],
+                    steps: [
+                        "Make a quick sauce: garlic + ginger + chili + (optional peanut butter).",
+                        "Cook noodles, toss into sauce.",
+                        "Top with egg if you want."
+                    ]
+                }
+            },
+            fr: {
+                name: "Ramen Instant Amélioré", origin: "Japon", difficulty: "Facile", cost: "Env. 4.00 DT",
+                description: "Nouilles instant améliorées avec ail, piment et légumes—beaucoup meilleur.",
+                simple: {
+                    time: "10 mins", temp: "Ébullition",
+                    ingredients: ["Ramen instant", "Ail", "Flocons de piment", "Légumes surgelés", "Sauce soja (optionnel)", "Oignon vert"],
+                    steps: [
+                        "Cuire les nouilles.",
+                        "Ajouter les légumes les 2 dernières minutes.",
+                        "Mélanger ail + piment (et soja) puis verser la soupe dessus."
+                    ]
+                },
+                hard: {
+                    time: "20 mins", temp: "Feu Moyen",
+                    ingredients: ["Ramen", "Ail", "Gingembre", "Piment", "Beurre de cacahuète (optionnel)", "Œuf (optionnel)"],
+                    steps: [
+                        "Préparer une sauce: ail + gingembre + piment + (optionnel beurre de cacahuète).",
+                        "Cuire les nouilles et les mélanger à la sauce.",
+                        "Ajouter un œuf si vous voulez."
+                    ]
+                }
+            },
+            ar: {
+                name: "رامن سريع محسّن", origin: "اليابان", difficulty: "سهل", cost: "حوالي 4.00 د.ت",
+                description: "نودلز فورية محسّنة بالثوم والفلفل والخضار—طعم أفضل بكثير.",
+                simple: {
+                    time: "10 دقائق", temp: "غليان",
+                    ingredients: ["نودلز فورية", "ثوم", "رقائق فلفل", "خضار مجمدة", "صوص صويا (اختياري)", "بصل أخضر"],
+                    steps: [
+                        "اسلق الماء واطبخ النودلز.",
+                        "أضف الخضار في آخر دقيقتين.",
+                        "اخلط الثوم والفلفل (وصويا اختياري) ثم اسكب المرق فوقه."
+                    ]
+                },
+                hard: {
+                    time: "20 دقيقة", temp: "نار متوسطة",
+                    ingredients: ["رامن", "ثوم", "زنجبيل", "فلفل حار", "زبدة فول سوداني (اختياري)", "بيضة (اختياري)"],
+                    steps: [
+                        "حضّر صوص سريع: ثوم + زنجبيل + فلفل + (اختياري زبدة فول سوداني).",
+                        "اطبخ النودلز وامزجها مع الصوص.",
+                        "أضف بيضة إذا تحب."
+                    ]
+                }
+            }
+        }
+    },
+    {
+        id: "int_13", tags: ["student", "cheap", "vegan", "fried"], emoji: "🌮", difficultyCSS: "medium",
+        translations: {
+            en: {
+                name: "Bean & Veggie Wrap", origin: "International", difficulty: "Medium", cost: "Est. 6.00 DT",
+                description: "A cheap wrap with beans and veggies—great for meal prep.",
+                simple: {
+                    time: "15 mins", temp: "Medium Heat",
+                    ingredients: ["Tortilla", "Canned beans", "Onion", "Bell pepper", "Spices", "Yogurt sauce (optional)"],
+                    steps: [
+                        "Sauté onion + pepper.",
+                        "Add beans + spices and heat.",
+                        "Wrap in tortilla and toast lightly in pan."
+                    ]
+                },
+                hard: {
+                    time: "30 mins", temp: "Medium Heat",
+                    ingredients: ["Tortillas", "Beans", "Corn (optional)", "Garlic", "Cumin", "Paprika", "Lettuce", "Tomato"],
+                    steps: [
+                        "Cook beans with garlic and spices.",
+                        "Assemble wrap with lettuce + tomato.",
+                        "Toast for a crispy finish."
+                    ]
+                }
+            },
+            fr: {
+                name: "Wrap Haricots & Légumes", origin: "International", difficulty: "Moyen", cost: "Env. 6.00 DT",
+                description: "Wrap pas cher avec haricots et légumes—parfait pour préparer à l'avance.",
+                simple: {
+                    time: "15 mins", temp: "Feu Moyen",
+                    ingredients: ["Tortilla", "Haricots en boîte", "Oignon", "Poivron", "Épices", "Sauce yaourt (optionnel)"],
+                    steps: [
+                        "Faire revenir oignon + poivron.",
+                        "Ajouter haricots + épices.",
+                        "Rouler dans la tortilla et griller légèrement."
+                    ]
+                },
+                hard: {
+                    time: "30 mins", temp: "Feu Moyen",
+                    ingredients: ["Tortillas", "Haricots", "Maïs (optionnel)", "Ail", "Cumin", "Paprika", "Salade", "Tomate"],
+                    steps: [
+                        "Cuire les haricots avec ail et épices.",
+                        "Monter le wrap avec salade + tomate.",
+                        "Griller pour un effet croustillant."
+                    ]
+                }
+            },
+            ar: {
+                name: "راب بالفاصوليا والخضار", origin: "عالمي", difficulty: "متوسط", cost: "حوالي 6.00 د.ت",
+                description: "راب رخيص بالفاصوليا والخضار—مناسب للتحضير المسبق.",
+                simple: {
+                    time: "15 دقيقة", temp: "نار متوسطة",
+                    ingredients: ["تورتيلا", "فاصوليا معلبة", "بصل", "فلفل", "بهارات", "صوص ياغورت (اختياري)"],
+                    steps: [
+                        "شوّح البصل والفلفل.",
+                        "أضف الفاصوليا والبهارات وسخّنها.",
+                        "لفّها في التورتيلا وحمّصها قليلاً."
+                    ]
+                },
+                hard: {
+                    time: "30 دقيقة", temp: "نار متوسطة",
+                    ingredients: ["تورتيلا", "فاصوليا", "ذرة (اختياري)", "ثوم", "كمون", "بابريكا", "خس", "طماطم"],
+                    steps: [
+                        "اطبخ الفاصوليا مع الثوم والبهارات.",
+                        "حضّر الراب مع الخس والطماطم.",
+                        "حمّصه ليصبح مقرمشاً."
+                    ]
+                }
+            }
+        }
     }
 ];
 
@@ -242,12 +603,10 @@ document.getElementById('themeToggleBtn').addEventListener('click', (e) => {
     e.target.innerText = isDark ? "☀️" : "🌙";
     localStorage.setItem('lettuceTheme', isDark ? 'dark' : 'light');
 });
-
 document.getElementById('languageSelect').addEventListener('change', (e) => {
     currentLang = e.target.value;
     localStorage.setItem('lettuceLang', currentLang);
     applyLanguage(currentLang);
-    
     // Refresh food translation if a food is currently showing
     if (currentFood && document.getElementById('result').style.display !== 'none') {
         let prefix = "";
@@ -255,7 +614,6 @@ document.getElementById('languageSelect').addEventListener('change', (e) => {
             prefix = `🌟 ${translations[currentLang].dailyPick}: `;
         }
         showResultUI(prefix); 
-        
         // Refresh Modal if it is open
         if (!document.getElementById('recipeModal').classList.contains('hidden')) {
             const isSimple = document.getElementById('modalTitle').innerText.includes("🟢");
@@ -263,10 +621,8 @@ document.getElementById('languageSelect').addEventListener('change', (e) => {
         }
     }
 });
-
 function applyLanguage(lang) {
     currentLang = lang;
-    
     // 1. Update HTML text based on data-i18n attributes
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -284,7 +640,6 @@ function applyLanguage(lang) {
             else el.innerHTML = translations[lang][key]; 
         }
     });
-
     // 2. Set direction for CSS (This triggers the Tajawal font automatically now!)
     if (lang === 'ar') {
         document.body.setAttribute('dir', 'rtl');
@@ -292,12 +647,10 @@ function applyLanguage(lang) {
         document.body.setAttribute('dir', 'ltr');
     }
 }
-
 // --- UI LOGIC ---
 document.getElementById('toggleFiltersBtn').addEventListener('click', () => {
     document.getElementById('preferencesPanel').classList.toggle('hidden');
 });
-
 // Daily Pick Button Logic
 document.getElementById('dailyPickBtn').addEventListener('click', () => {
     const dateStr = new Date().toDateString(); 
@@ -306,7 +659,6 @@ document.getElementById('dailyPickBtn').addEventListener('click', () => {
     currentFood = foodDatabase[Math.abs(hash) % foodDatabase.length];
     showResultUI(`🌟 ${translations[currentLang].dailyPick}: `); 
 });
-
 // Main Discover Button Logic
 document.getElementById('suggestBtn').addEventListener('click', () => {
     const filters = { 
@@ -320,7 +672,6 @@ document.getElementById('suggestBtn').addEventListener('click', () => {
         friedOnly: document.getElementById('friedOnly').checked, 
         isVegan: document.getElementById('vegan').checked 
     };
-
     let availableFood = foodDatabase.filter(food => {
         if (filters.studentOnly && !food.tags.includes('student')) return false; 
         if (filters.cheapOnly && !food.tags.includes('cheap')) return false;
@@ -333,73 +684,55 @@ document.getElementById('suggestBtn').addEventListener('click', () => {
         if (filters.isVegan && !food.tags.includes('vegan')) return false;
         return true;
     });
-    
     if (availableFood.length === 0) {
         alert("No food matches those exact filters! Try unchecking a few boxes.");
         return;
     }
-
     const btn = document.getElementById('suggestBtn');
     const loadingText = document.getElementById('funnyLoadingText');
     const resultSec = document.getElementById('result');
-    
     btn.disabled = true;
     resultSec.classList.add('hidden');
-    
     // Pick random funny text translated to current language
     const funnyArray = translations[currentLang].funnyTexts;
     loadingText.innerText = funnyArray[Math.floor(Math.random() * funnyArray.length)];
     loadingText.classList.remove('hidden');
-
     currentFood = availableFood[Math.floor(Math.random() * availableFood.length)];
-
     setTimeout(() => {
         loadingText.classList.add('hidden');
         btn.disabled = false;
         showResultUI("");
     }, 800);
 });
-
 function showResultUI(customTitlePrefix) {
     const locFood = currentFood.translations[currentLang]; // Use Current Language!
-    
     document.getElementById('result').classList.remove('hidden');
     document.querySelector('.welcome-text').style.display = 'none';
     document.querySelector('.seo-intro').style.display = 'none';
-    
     document.getElementById('foodEmoji').innerText = currentFood.emoji;
     document.getElementById('foodName').innerText = customTitlePrefix + locFood.name;
     document.getElementById('foodOrigin').innerText = `🌍 ${locFood.origin}`;
-    
     const diffBadge = document.getElementById('foodDifficulty');
     diffBadge.innerText = locFood.difficulty.toUpperCase();
     diffBadge.className = 'badge ' + currentFood.difficultyCSS; 
-    
     document.getElementById('foodCost').innerText = locFood.cost;
     document.getElementById('foodDesc').innerText = locFood.description;
-    
     setTimeout(() => document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
 }
-
 // --- RECIPE MODAL LOGIC ---
 window.openRecipeDetails = function(mode) {
     if (!currentFood) return;
     const r = currentFood.translations[currentLang][mode]; 
     const t = translations[currentLang];
-
     document.getElementById('modalTitle').innerText = mode === 'simple' ? t.lazyMode : t.chefMode;
     document.getElementById('timeVal').innerText = r.time;
     document.getElementById('tempVal').innerText = r.temp;
-    
     document.getElementById('modalIngredients').innerHTML = '';
     r.ingredients.forEach(i => document.getElementById('modalIngredients').innerHTML += `<li>${i}</li>` );
-    
     document.getElementById('modalSteps').innerHTML = '';
     r.steps.forEach(s => document.getElementById('modalSteps').innerHTML += `<li>${s}</li>` );
-    
     document.getElementById('recipeModal').classList.remove('hidden');
 };
-
 window.closeRecipeDetails = function() {
     document.getElementById('recipeModal').classList.add('hidden');
 };

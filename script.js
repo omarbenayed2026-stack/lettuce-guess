@@ -1,16 +1,25 @@
-/* Lettuce Guess — rewritten from scratch (robust, no-id mismatch) */
-console.log("✅ Lettuce Guess script.js loaded");
+/* =========================================
+   Lettuce Guess — stable version (FIXED)
+   Goals:
+   - Keep your ORIGINAL HTML IDs (so nothing breaks)
+   - Keep your ORIGINAL data-i18n system
+   - Restore green accents + clean design
+   - Discover/Daily Pick/Preferences all work
+   - No schema changes to your recipes
+   ========================================= */
 
-const i18n = {
+/* ---------- I18N (same keys you already use) ---------- */
+const translations = {
   en: {
+    brand: "Lettuce Guess",
     brandPill: "fast • cheap • tasty",
     welcome: "Lettuce find something to prepare! 🥬",
     seoIntro:
-      "Welcome to the ultimate random recipe generator. Choose your preferences, then hit Discover.",
+      "Welcome to the ultimate random recipe generator. We help students and lazy cooks find delicious, budget-friendly meals. Choose your preferences, then hit Discover.",
     discover: "Discover",
+    discoverHint: "Tip: tap Discover again for a new meal.",
     dailyPick: "Menu of the Day",
     preferences: "Preferences",
-    discoverHint: "Tip: tap Discover again for a new meal.",
     customize: "Customize your craving",
     includeTitle: "Include",
     excludeTitle: "Blacklist (Exclude)",
@@ -19,7 +28,7 @@ const i18n = {
     expensive: "Costs money",
     tunisianStyle: "Tunisian",
     asianStyle: "Asian",
-    chicken: "Chicken",
+    withChicken: "Chicken",
     fish: "Fish",
     fried: "Fried",
     vegan: "Vegan",
@@ -39,11 +48,18 @@ const i18n = {
     steps: "Instructions",
     footerText: "Helping students eat better, one click at a time.",
     rights: "All rights reserved.",
+    contact: "Contact/Feedback:",
     introTagline: "Pick a meal in seconds.",
     introText:
-      "Welcome! Use Discover to get a random meal. Open Preferences to filter. Tap again for a new suggestion (we avoid repeats).",
+      "Welcome! Use Discover to get a random meal. Open Preferences to filter by budget, style, and ingredients. Tap again for a new suggestion (we also try to avoid repeats).",
+    introF1Title: "One-tap suggestions",
+    introF1Sub: "Discover stays visible at the bottom.",
+    introF2Title: "Budget aware",
+    introF2Sub: "Cheap vs costs money tags + DT estimates.",
+    introF3Title: "Smarter variety",
+    introF3Sub: "Avoids repeats and tries to mix cuisines.",
     startDiscover: "Start discovering",
-    funny: [
+    funnyTexts: [
       "Checking your wallet...",
       "Finding something fast (and tasty)...",
       "Avoiding boring meals...",
@@ -52,14 +68,15 @@ const i18n = {
     ]
   },
   fr: {
+    brand: "Lettuce Guess",
     brandPill: "rapide • pas cher • bon",
     welcome: "Trouvons quelque chose à préparer ! 🥬",
     seoIntro:
       "Le générateur de recettes pour étudiants. Choisissez vos préférences puis appuyez sur Découvrir.",
     discover: "Découvrir",
+    discoverHint: "Astuce : appuyez encore sur Découvrir pour une nouvelle idée.",
     dailyPick: "Menu du jour",
     preferences: "Préférences",
-    discoverHint: "Astuce : appuyez encore sur Découvrir pour une nouvelle idée.",
     customize: "Personnalisez",
     includeTitle: "Inclure",
     excludeTitle: "Liste noire (Exclure)",
@@ -68,7 +85,7 @@ const i18n = {
     expensive: "Ça coûte",
     tunisianStyle: "Tunisien",
     asianStyle: "Asiatique",
-    chicken: "Poulet",
+    withChicken: "Poulet",
     fish: "Poisson",
     fried: "Frit",
     vegan: "Végan",
@@ -88,11 +105,18 @@ const i18n = {
     steps: "Instructions",
     footerText: "Aider les étudiants à mieux manger, un clic à la fois.",
     rights: "Tous droits réservés.",
+    contact: "Contact/Feedback :",
     introTagline: "Choisis un plat en quelques secondes.",
     introText:
-      "Bienvenue ! Utilisez Découvrir pour une recette aléatoire. Ouvrez Préférences pour filtrer. Appuyez à nouveau pour une autre suggestion (on évite les répétitions).",
+      "Bienvenue ! Utilisez Découvrir pour une recette aléatoire. Ouvrez Préférences pour filtrer par budget, style et ingrédients. Appuyez à nouveau pour une autre suggestion (on évite aussi les répétitions).",
+    introF1Title: "Suggestions en un clic",
+    introF1Sub: "Découvrir reste visible en bas.",
+    introF2Title: "Budget",
+    introF2Sub: "Tags pas cher / ça coûte + estimation DT.",
+    introF3Title: "Variété",
+    introF3Sub: "Évite les répétitions et mélange les cuisines.",
     startDiscover: "Commencer",
-    funny: [
+    funnyTexts: [
       "Vérification du portefeuille...",
       "On cherche quelque chose de rapide...",
       "On évite les plats ennuyeux...",
@@ -101,14 +125,15 @@ const i18n = {
     ]
   },
   ar: {
+    brand: "Lettuce Guess",
     brandPill: "سريع • رخيص • لذيذ",
     welcome: "Lettuce Guess سيختار لك ماذا تطبخ! 🥬",
     seoIntro:
       "مولّد وصفات عشوائية للطلاب والطهاة الكسالى. اختر تفضيلاتك ثم اضغط «اكتشف».",
     discover: "اكتشف",
+    discoverHint: "نصيحة: اضغط «اكتشف» مرة أخرى لاقتراح جديد.",
     dailyPick: "طبق اليوم",
     preferences: "التفضيلات",
-    discoverHint: "نصيحة: اضغط «اكتشف» مرة أخرى لاقتراح جديد.",
     customize: "خصص رغباتك",
     includeTitle: "إضافة",
     excludeTitle: "القائمة السوداء (استبعاد)",
@@ -117,7 +142,7 @@ const i18n = {
     expensive: "مكلف",
     tunisianStyle: "تونسي",
     asianStyle: "آسيوي",
-    chicken: "دجاج",
+    withChicken: "دجاج",
     fish: "سمك",
     fried: "مقلي",
     vegan: "نباتي",
@@ -137,11 +162,18 @@ const i18n = {
     steps: "طريقة التحضير",
     footerText: "نساعد الطلاب على تناول طعام أفضل بضغطة زر.",
     rights: "جميع الحقوق محفوظة.",
+    contact: "للتواصل/الملاحظات:",
     introTagline: "اختر وجبة في ثوانٍ.",
     introText:
-      "مرحبًا! استخدم «اكتشف» للحصول على وجبة عشوائية. افتح «التفضيلات» للتصفية. اضغط مرة أخرى لاقتراح جديد (ونحاول تجنب التكرار).",
+      "مرحبًا! استخدم «اكتشف» للحصول على وجبة عشوائية. افتح «التفضيلات» للتصفية حسب الميزانية والنوع والمكونات. اضغط مرة أخرى لاقتراح جديد (ونحاول تجنب التكرار).",
+    introF1Title: "اقتراح بضغطة واحدة",
+    introF1Sub: "زر «اكتشف» يبقى ظاهرًا في الأسفل.",
+    introF2Title: "مراعاة الميزانية",
+    introF2Sub: "رخيص/مكلف + تقدير بالدينار.",
+    introF3Title: "تنويع أذكى",
+    introF3Sub: "يتجنب التكرار ويحاول تنويع الأطباق.",
     startDiscover: "ابدأ",
-    funny: [
+    funnyTexts: [
       "جاري فحص محفظتك...",
       "نبحث عن شيء سريع ولذيذ...",
       "نتجنب الأكل الممل...",
@@ -151,31 +183,58 @@ const i18n = {
   }
 };
 
-const db = [
-  /* originals */
+let currentLang = "en";
+
+/* ---------- Recipe Database (KEEP YOUR ORIGINAL SCHEMA) ---------- */
+/* IMPORTANT: Do NOT rename "translations" to anything else */
+const foodDatabase = [
   {
     id: "tun_1",
     tags: ["fried", "fish", "student", "tunisian", "cheap"],
     emoji: "🥟",
     difficultyCSS: "medium",
-    t: {
+    translations: {
       en: {
         name: "Tunisian Brika",
         origin: "Tunisia",
         difficulty: "Medium",
         cost: "Est. 3.00 DT",
-        description: "A crispy triangle pastry stuffed with tuna, parsley and egg.",
+        description:
+          "A perfectly crispy triangle pastry, stuffed with tuna, parsley, and a runny egg.",
         simple: {
           time: "10 mins",
           temp: "Medium-High (Stove)",
-          ingredients: ["1 Malsouka sheet", "Canned Tuna", "1 Egg", "Parsley & Onion", "Salt & Black Pepper"],
-          steps: ["Mix tuna + herbs + spices.", "Place on sheet, crack egg.", "Fold triangle.", "Fry 2–3 mins per side."]
+          ingredients: [
+            "1 Malsouka sheet",
+            "Canned Tuna",
+            "1 Egg",
+            "Chopped Parsley & Onion",
+            "Pinch of Black Pepper & Salt"
+          ],
+          steps: [
+            "Mix tuna, parsley, onion, salt, and black pepper.",
+            "Place the mixture on the Malsouka sheet and make a small hole in the middle.",
+            "Crack the egg into the hole.",
+            "Fold into a triangle quickly and fry in hot oil for 2-3 mins per side until golden."
+          ]
         },
         hard: {
           time: "25 mins",
           temp: "Medium-High",
-          ingredients: ["Malsouka", "Tuna", "Capers", "Boiled Potato", "1 Egg", "Black Pepper", "Tabil"],
-          steps: ["Mash potato + tuna + spices.", "Add egg, fold.", "Fry until deeply crispy."]
+          ingredients: [
+            "Malsouka",
+            "Tuna",
+            "Capers",
+            "Boiled Potato",
+            "1 Egg",
+            "Black Pepper",
+            "Tabil (Tunisian Spice)"
+          ],
+          steps: [
+            "Boil and mash 1 potato. Mix it with a pinch of Tabil, black pepper, tuna, and capers.",
+            "Spread the filling on the sheet, crack the egg inside.",
+            "Fold into a triangle and fry in hot oil until deeply crispy."
+          ]
         }
       },
       fr: {
@@ -183,18 +242,34 @@ const db = [
         origin: "Tunisie",
         difficulty: "Moyen",
         cost: "Env. 3.00 DT",
-        description: "Un triangle croustillant farci au thon, persil et œuf.",
+        description:
+          "Un triangle de pâte croustillante, farci au thon, persil et un œuf coulant.",
         simple: {
           time: "10 mins",
           temp: "Feu Vif",
-          ingredients: ["1 Feuille de Malsouka", "Thon", "1 Œuf", "Persil & oignon", "Sel & poivre"],
-          steps: ["Mélanger la farce.", "Casser l'œuf.", "Plier.", "Frire 2–3 mins par face."]
+          ingredients: [
+            "1 Feuille de Malsouka",
+            "Thon",
+            "1 Œuf",
+            "Persil et oignon hachés",
+            "Sel & Poivre"
+          ],
+          steps: [
+            "Mélanger thon, persil, oignon et épices.",
+            "Placer sur la feuille, faire un creux.",
+            "Casser l'œuf dedans.",
+            "Plier en triangle et frire 2-3 mins par face."
+          ]
         },
         hard: {
           time: "25 mins",
           temp: "Feu Vif",
           ingredients: ["Malsouka", "Thon", "Câpres", "Pomme de terre", "1 Œuf", "Poivre", "Tabel"],
-          steps: ["Écraser PDT + thon + épices.", "Ajouter œuf, plier.", "Frire jusqu'à croustillant."]
+          steps: [
+            "Écraser la pomme de terre bouillie, mélanger avec Tabel, thon et câpres.",
+            "Placer la farce, ajouter l'œuf.",
+            "Frire dans l'huile bien chaude."
+          ]
         }
       },
       ar: {
@@ -202,18 +277,27 @@ const db = [
         origin: "تونس",
         difficulty: "متوسط",
         cost: "حوالي 3.00 د.ت",
-        description: "مثلث مقرمش محشو بالتونة والبقدونس والبيض.",
+        description: "مثلث عجين مقرمش محشو بالتونة، البقدونس، وبيضة سائلة.",
         simple: {
           time: "10 دقائق",
           temp: "نار متوسطة-عالية",
-          ingredients: ["ورقة ملسوقة", "تونة", "بيضة", "بقدونس وبصل", "ملح وفلفل أسود"],
-          steps: ["اخلط الحشوة.", "اكسر البيض.", "اطو مثلث.", "اقلي 2–3 دقايق لكل جهة."]
+          ingredients: ["ورقة ملسوقة", "تونة", "بيضة", "بقدونس وبصل مقطع", "ملح وفلفل أسود"],
+          steps: [
+            "اخلط التونة، البقدونس، البصل، والبهارات.",
+            "ضع الخليط على الملسوقة واصنع حفرة صغيرة.",
+            "اكسر البيضة داخل الحفرة.",
+            "اطوها على شكل مثلث واقليها في زيت ساخن حتى تصبح ذهبية."
+          ]
         },
         hard: {
           time: "25 دقيقة",
           temp: "نار عالية",
-          ingredients: ["ملسوقة", "تونة", "كَبَر", "بطاطا مسلوقة", "بيضة", "فلفل أسود", "تابل"],
-          steps: ["اهرِس البطاطا + تونة + بهارات.", "زيد البيض واطو.", "اقلي حتى تقرمش."]
+          ingredients: ["ملسوقة", "تونة", "كَبَر", "بطاطا مسلوقة", "بيضة", "فلفل أسود", "تابل وكروية"],
+          steps: [
+            "اسلق البطاطا واهرسها، اخلطها مع التابل والتونة والكبر.",
+            "ضع الحشوة والبيضة على الورقة.",
+            "اقليها في زيت ساخن جداً حتى تقرمش."
+          ]
         }
       }
     }
@@ -224,24 +308,40 @@ const db = [
     tags: ["boiled", "student", "spicy", "vegan", "tunisian", "cheap"],
     emoji: "🥣",
     difficultyCSS: "easy",
-    t: {
+    translations: {
       en: {
         name: "Spicy Lablebi",
         origin: "Tunisia",
         difficulty: "Easy",
         cost: "Est. 3.50 DT",
-        description: "Cheap chickpea soup poured over bread with garlic and harissa.",
+        description:
+          "The ultimate cheap, garlicky chickpea street-food soup poured over day-old bread.",
         simple: {
           time: "15 mins",
           temp: "Boiling",
-          ingredients: ["1 can chickpeas", "Harissa", "Stale bread", "Garlic", "Cumin", "Olive oil"],
-          steps: ["Boil chickpeas with garlic + cumin.", "Tear bread in bowl.", "Pour soup, add harissa + oil."]
+          ingredients: [
+            "1 Can Chickpeas",
+            "1 tbsp Harissa",
+            "Stale Baguette",
+            "2 cloves Garlic (crushed)",
+            "1 tsp Cumin",
+            "Olive Oil"
+          ],
+          steps: [
+            "Boil chickpeas in their water with crushed garlic, cumin, and salt for 10 minutes.",
+            "Tear the stale bread into small pieces in a bowl.",
+            "Pour the boiling soup over the bread. Top with Harissa, olive oil, and extra cumin."
+          ]
         },
         hard: {
           time: "2 hours",
           temp: "Low Simmer",
-          ingredients: ["Dried chickpeas", "Garlic", "Harissa", "Olive oil", "Cumin", "Tuna (optional)", "Soft egg (optional)"],
-          steps: ["Soak + boil chickpeas.", "Serve over bread.", "Top with oil + cumin + harissa (and tuna/egg)."]
+          ingredients: ["Dried Chickpeas", "Garlic", "Harissa", "Olive Oil", "Cumin", "Canned Tuna", "1 Soft-Boiled Egg"],
+          steps: [
+            "Soak chickpeas overnight. Boil them for 2 hours until very soft.",
+            "Prepare a bowl with torn bread.",
+            "Add the hot chickpeas and broth. Top heavily with olive oil, cumin, Harissa, tuna, and mix the soft-boiled egg in."
+          ]
         }
       },
       fr: {
@@ -249,18 +349,27 @@ const db = [
         origin: "Tunisie",
         difficulty: "Facile",
         cost: "Env. 3.50 DT",
-        description: "Soupe de pois chiches à l'ail et harissa sur du pain.",
+        description:
+          "Soupe de rue pas chère aux pois chiches et à l'ail, versée sur du pain de la veille.",
         simple: {
           time: "15 mins",
           temp: "Ébullition",
-          ingredients: ["Pois chiches", "Harissa", "Pain rassis", "Ail", "Cumin", "Huile d'olive"],
-          steps: ["Bouillir avec ail + cumin.", "Pain dans un bol.", "Verser + harissa + huile."]
+          ingredients: ["Pois chiches en boîte", "Harissa", "Pain rassis", "Ail", "Cumin", "Huile d'olive"],
+          steps: [
+            "Bouillir les pois chiches avec l'ail et le cumin 10 mins.",
+            "Déchirer le pain dans un bol.",
+            "Verser la soupe brûlante. Ajouter harissa et huile d'olive."
+          ]
         },
         hard: {
           time: "2 heures",
           temp: "Frémir",
-          ingredients: ["Pois chiches secs", "Ail", "Harissa", "Huile", "Cumin", "Thon (option)", "Œuf (option)"],
-          steps: ["Tremper + bouillir.", "Servir sur pain.", "Assaisonner (option thon/œuf)."]
+          ingredients: ["Pois chiches secs", "Ail", "Harissa", "Huile d'olive", "Cumin", "Thon", "Œuf mollet"],
+          steps: [
+            "Tremper les pois chiches la nuit. Bouillir 2h.",
+            "Mettre le pain dans un bol.",
+            "Ajouter pois chiches, bouillon, huile, cumin, harissa, thon et l'œuf."
+          ]
         }
       },
       ar: {
@@ -268,18 +377,27 @@ const db = [
         origin: "تونس",
         difficulty: "سهل",
         cost: "حوالي 3.50 د.ت",
-        description: "حساء حمص رخيص بالثوم والهريسة فوق الخبز.",
+        description:
+          "حساء الشارع الشهير والرخيص بالحمص والثوم، يُسكب فوق الخبز البائت.",
         simple: {
           time: "15 دقيقة",
           temp: "غليان",
-          ingredients: ["حمص", "هريسة", "خبز بايت", "ثوم", "كمون", "زيت زيتون"],
-          steps: ["اغلي الحمص مع الثوم والكمون.", "حط الخبز في وعاء.", "اسكب الحساء وزيد الهريسة والزيت."]
+          ingredients: ["حمص معلب", "ملعقة هريسة", "خبز بائت", "ثوم مهروس", "كمون", "زيت زيتون"],
+          steps: [
+            "اغلي الحمص في مائه مع الثوم والكمون والملح لـ 10 دقائق.",
+            "قطع الخبز البائت في وعاء.",
+            "اسكب الحساء المغلي فوق الخبز وزينه بالهريسة وزيت الزيتون."
+          ]
         },
         hard: {
           time: "ساعتان",
           temp: "نار هادئة",
-          ingredients: ["حمص جاف", "ثوم", "هريسة", "زيت", "كمون", "تونة (اختياري)", "بيضة (اختياري)"],
-          steps: ["انقع واطبخ.", "قدم فوق الخبز.", "بهّر (اختياري تونة/بيضة)."]
+          ingredients: ["حمص جاف", "ثوم", "هريسة", "زيت زيتون", "كمون", "تونة", "بيضة نصف مسلوقة"],
+          steps: [
+            "انقع الحمص طوال الليل واغله لساعتين حتى يلين جداً.",
+            "حضر وعاء الخبز المقطع.",
+            "أضف الحمص والمرق، وزينه بسخاء بزيت الزيتون والكمون والهريسة والتونة والبيضة."
+          ]
         }
       }
     }
@@ -290,24 +408,35 @@ const db = [
     tags: ["boiled", "tunisian", "expensive"],
     emoji: "🥘",
     difficultyCSS: "hard",
-    t: {
+    translations: {
       en: {
         name: "Traditional Mloukhiya",
         origin: "Tunisia",
         difficulty: "Hard",
         cost: "Est. 25.00 DT",
-        description: "Dark green stew simmered for hours with jute leaf powder and beef.",
+        description:
+          "A rich, dark green stew simmered for hours, made with jute leaf powder and tender beef.",
         simple: {
           time: "3.5 hours",
           temp: "Low Heat",
-          ingredients: ["Mloukhiya powder", "Olive oil", "Beef", "Garlic", "Bay leaves", "Tabil & Karwia"],
-          steps: ["Mix powder + oil.", "Add boiling water slowly.", "Add spices + beef.", "Simmer ~3 hours."]
+          ingredients: ["Mloukhiya powder", "Olive Oil", "Beef chunks", "Minced Garlic", "Bay Leaves", "Tabil & Karwia"],
+          steps: [
+            "Mix the green powder with olive oil in a cold pot until it forms a paste.",
+            "Turn on medium heat, gradually whisk in 1.5 liters of boiling water.",
+            "Add garlic, bay leaves, Tabil, and beef.",
+            "Cover and simmer on very low heat for 3 hours until the oil separates."
+          ]
         },
         hard: {
           time: "5 hours",
           temp: "Lowest Heat",
-          ingredients: ["Mloukhiya", "Olive oil", "Beef shank", "Garlic", "Mint", "Spices", "Bay leaves"],
-          steps: ["Marinate beef.", "Fry powder briefly.", "Add water.", "Simmer long until oil separates."]
+          ingredients: ["Mloukhiya powder", "Premium Olive Oil", "Beef Shank", "Whole Head of Garlic", "Dried Mint", "Tabil & Karwia", "Bay Leaves"],
+          steps: [
+            "Marinate beef overnight with garlic, Tabil, Karwia, and salt.",
+            "Fry the powder in olive oil for 3 minutes (do not burn).",
+            "Whisk in boiling water.",
+            "Simmer for 2 hours, add beef. Cook 3 more hours until oil separates."
+          ]
         }
       },
       fr: {
@@ -315,18 +444,29 @@ const db = [
         origin: "Tunisie",
         difficulty: "Difficile",
         cost: "Env. 25.00 DT",
-        description: "Ragoût vert foncé mijoté longtemps avec bœuf.",
+        description:
+          "Ragoût vert foncé riche, mijoté pendant des heures avec de la poudre de corète et du bœuf.",
         simple: {
           time: "3.5 heures",
           temp: "Feu Doux",
-          ingredients: ["Mloukhiya", "Huile d'olive", "Bœuf", "Ail", "Laurier", "Tabel & Karwia"],
-          steps: ["Mélanger poudre + huile.", "Ajouter eau bouillante.", "Ajouter viande + épices.", "Mijoter ~3h."]
+          ingredients: ["Poudre de Mloukhiya", "Huile d'olive", "Bœuf", "Ail", "Laurier", "Tabel & Karwia"],
+          steps: [
+            "Mélanger la poudre et l'huile à froid.",
+            "Chauffer et ajouter l'eau bouillante.",
+            "Ajouter ail, épices et viande.",
+            "Mijoter à feu très doux 3h jusqu'à ce que l'huile remonte."
+          ]
         },
         hard: {
           time: "5 heures",
           temp: "Feu Très Doux",
-          ingredients: ["Mloukhiya", "Huile", "Jarret", "Ail", "Menthe", "Épices", "Laurier"],
-          steps: ["Mariner.", "Frire poudre.", "Ajouter eau.", "Cuire longtemps."]
+          ingredients: ["Mloukhiya", "Huile d'olive", "Jarret de bœuf", "Ail", "Menthe séchée", "Tabel & Karwia", "Laurier"],
+          steps: [
+            "Mariner la viande la nuit avec les épices.",
+            "Frire la poudre dans l'huile 3 mins.",
+            "Ajouter l'eau bouillante doucement.",
+            "Mijoter 2h, ajouter la viande. Cuire encore 3h."
+          ]
         }
       },
       ar: {
@@ -334,18 +474,29 @@ const db = [
         origin: "تونس",
         difficulty: "صعب",
         cost: "حوالي 25.00 د.ت",
-        description: "يخنة ملوخية داكنة تطبخ لساعات مع اللحم.",
+        description:
+          "يخنة غنية وداكنة تُطبخ لساعات من مسحوق الملوخية ولحم البقر الطري.",
         simple: {
           time: "3.5 ساعات",
           temp: "نار هادئة",
-          ingredients: ["ملوخية", "زيت زيتون", "لحم", "ثوم", "رند", "تابل وكروية"],
-          steps: ["اخلط المسحوق بالزيت.", "زيد الماء المغلي.", "زيد اللحم والبهارات.", "اطبخ 3 ساعات."]
+          ingredients: ["مسحوق ملوخية", "زيت زيتون", "قطع لحم بقر", "ثوم", "رند (غار)", "تابل وكروية"],
+          steps: [
+            "اخلط المسحوق مع الزيت في قدر بارد.",
+            "سخن القدر وأضف الماء المغلي تدريجياً.",
+            "أضف الثوم والرند واللحم.",
+            "اتركها تطبخ على نار هادئة جداً لـ 3 ساعات حتى يطفو الزيت."
+          ]
         },
         hard: {
           time: "5 ساعات",
-          temp: "نار هادئة جدًا",
-          ingredients: ["ملوخية", "زيت", "لحم", "ثوم", "نعناع", "بهارات", "رند"],
-          steps: ["تبّل اللحم.", "اقلِ المسحوق شوية.", "زيد الماء.", "اطبخ مدة طويلة."]
+          temp: "نار هادئة جداً",
+          ingredients: ["ملوخية", "زيت زيتون رفيع", "لحم بقر (هبرة)", "رأس ثوم كامل", "نعناع شايح", "تابل وكروية", "رند"],
+          steps: [
+            "تبل اللحم ليلة كاملة بالثوم والبهارات.",
+            "اقلِ الملوخية في الزيت لـ 3 دقائق.",
+            "أضف الماء المغلي مع التحريك المستمر.",
+            "اطبخها لساعتين ثم أضف اللحم. اتركها 3 ساعات أخرى حتى يقر زيتها."
+          ]
         }
       }
     }
@@ -356,24 +507,32 @@ const db = [
     tags: ["student", "boiled", "cheap"],
     emoji: "🍝",
     difficultyCSS: "medium",
-    t: {
+    translations: {
       en: {
         name: "Garlic Butter Pasta",
         origin: "Italy",
         difficulty: "Medium",
         cost: "Est. 4.00 DT",
-        description: "A 5-star tasting meal made from cheap pantry ingredients.",
+        description: "A 5-star tasting meal made from standard, cheap pantry ingredients.",
         simple: {
           time: "15 mins",
           temp: "Boiling",
-          ingredients: ["Spaghetti", "Butter", "Garlic powder", "Salt & pepper", "Cheese"],
-          steps: ["Boil pasta.", "Melt butter + garlic.", "Toss pasta, add cheese."]
+          ingredients: ["Spaghetti", "2 tbsp Butter", "1 tsp Garlic Powder", "Salt & Black Pepper", "Grated Cheese"],
+          steps: [
+            "Boil water, add salt, and cook pasta for 10 mins. Drain it.",
+            "In the same hot pot, melt butter, add garlic powder and black pepper.",
+            "Toss the pasta in the butter, top with cheese."
+          ]
         },
         hard: {
           time: "20 mins",
           temp: "Medium Heat",
-          ingredients: ["Spaghetti", "Butter", "Fresh garlic", "Parsley", "Chili flakes", "Parmesan"],
-          steps: ["Cook pasta (save water).", "Sauté garlic + chili.", "Toss with water, top parsley."]
+          ingredients: ["Spaghetti", "Real Butter", "4 cloves Fresh Garlic", "Fresh Parsley", "Chili Flakes", "Parmesan Cheese"],
+          steps: [
+            "Cook pasta, save half a cup of pasta water.",
+            "In a pan, melt butter. Sauté fresh minced garlic and chili flakes for 2 mins.",
+            "Add pasta and the saved water. Toss vigorously until a creamy sauce forms. Top with parsley."
+          ]
         }
       },
       fr: {
@@ -381,18 +540,26 @@ const db = [
         origin: "Italie",
         difficulty: "Moyen",
         cost: "Env. 4.00 DT",
-        description: "Un repas très bon avec des ingrédients simples.",
+        description: "Un repas 5 étoiles réalisé avec des ingrédients simples et pas chers.",
         simple: {
           time: "15 mins",
           temp: "Ébullition",
-          ingredients: ["Spaghetti", "Beurre", "Ail en poudre", "Sel & poivre", "Fromage"],
-          steps: ["Cuire les pâtes.", "Fondre beurre + ail.", "Mélanger + fromage."]
+          ingredients: ["Spaghetti", "Beurre", "Ail en poudre", "Sel & Poivre", "Fromage râpé"],
+          steps: [
+            "Cuire les pâtes 10 mins et égoutter.",
+            "Fondre le beurre dans la casserole avec l'ail en poudre.",
+            "Mélanger les pâtes et ajouter le fromage."
+          ]
         },
         hard: {
           time: "20 mins",
           temp: "Feu Moyen",
-          ingredients: ["Spaghetti", "Beurre", "Ail frais", "Persil", "Piment", "Parmesan"],
-          steps: ["Cuire (garder eau).", "Sauter ail + piment.", "Mélanger + persil."]
+          ingredients: ["Spaghetti", "Beurre", "Ail frais", "Persil", "Piment en flocons", "Parmesan"],
+          steps: [
+            "Cuire les pâtes, garder un peu d'eau de cuisson.",
+            "Fondre le beurre, sauter l'ail et le piment 2 mins.",
+            "Ajouter les pâtes et l'eau. Mélanger fort pour créer une sauce crémeuse."
+          ]
         }
       },
       ar: {
@@ -400,18 +567,26 @@ const db = [
         origin: "إيطاليا",
         difficulty: "متوسط",
         cost: "حوالي 4.00 د.ت",
-        description: "وجبة بنينة بمكونات رخيصة.",
+        description: "وجبة بمذاق 5 نجوم بمكونات رخيصة ومتوفرة في كل مطبخ.",
         simple: {
           time: "15 دقيقة",
           temp: "غليان",
-          ingredients: ["سباغيتي", "زبدة", "بودرة ثوم", "ملح وفلفل", "جبن"],
-          steps: ["اسلق المكرونة.", "أذب الزبدة + الثوم.", "قلّب وزين بالجبن."]
+          ingredients: ["سباغيتي", "زبدة", "بودرة ثوم", "ملح وفلفل أسود", "جبن مبشور"],
+          steps: [
+            "اسلق المكرونة لـ 10 دقائق وصفها.",
+            "في نفس القدر، أذب الزبدة وأضف بودرة الثوم والفلفل.",
+            "قلب المكرونة في الزبدة وزينها بالجبن."
+          ]
         },
         hard: {
           time: "20 دقيقة",
           temp: "نار متوسطة",
-          ingredients: ["سباغيتي", "زبدة", "ثوم", "بقدونس", "فلفل حار", "بارميزان"],
-          steps: ["اسلق وخلي شوية ماء.", "شوّح الثوم.", "اخلط وزين بالبقدونس."]
+          ingredients: ["سباغيتي", "زبدة حيوانية", "ثوم طازج", "بقدونس طازج", "رقائق فلفل حار", "جبن بارميزان"],
+          steps: [
+            "اسلق المكرونة واحتفظ بنصف كوب من ماء السلق.",
+            "أذب الزبدة وشوّح الثوم الطازج والفلفل لـ دقيقتين.",
+            "أضف المكرونة وماء السلق. قلب بقوة حتى تتكون صلصة كريمية."
+          ]
         }
       }
     }
@@ -422,24 +597,34 @@ const db = [
     tags: ["chicken", "fried", "expensive", "spicy"],
     emoji: "🍗",
     difficultyCSS: "hard",
-    t: {
+    translations: {
       en: {
         name: "Spicy Fried Chicken",
         origin: "USA",
         difficulty: "Hard",
         cost: "Est. 18.00 DT",
-        description: "Golden crispy fried chicken with heavy spices.",
+        description: "Golden, ultra-crispy fried chicken with heavy spices.",
         simple: {
           time: "25 mins",
           temp: "High Heat",
-          ingredients: ["Chicken", "Flour", "Eggs", "Spices", "Oil"],
-          steps: ["Season flour.", "Dip chicken egg→flour.", "Fry until golden."]
+          ingredients: ["Chicken Breasts", "Flour", "2 Eggs", "Paprika, Garlic Powder, Salt, Black Pepper", "Frying Oil"],
+          steps: [
+            "Cut chicken into chunks.",
+            "Mix flour with a heavy amount of paprika, salt, and pepper.",
+            "Dip chicken in beaten egg, then in spiced flour.",
+            "Fry in 170°C hot oil for 7-10 minutes until golden brown."
+          ]
         },
         hard: {
           time: "12 hours",
           temp: "160°C Oil",
-          ingredients: ["Chicken pieces", "Buttermilk", "Flour", "Cornstarch", "Spices"],
-          steps: ["Marinate overnight.", "Dredge well.", "Fry 12–15 mins.", "Rest on rack."]
+          ingredients: ["Bone-in Chicken pieces", "Lben (Buttermilk)", "Flour", "Cornstarch", "Red Chili Powder, Garlic, Onion, White Pepper"],
+          steps: [
+            "Marinate chicken overnight in Lben and hot sauce.",
+            "Mix 2 parts flour, 1 part cornstarch, and spices.",
+            "Dredge chicken in flour, pressing hard.",
+            "Fry in deep oil for 12-15 minutes. Rest on a wire rack."
+          ]
         }
       },
       fr: {
@@ -447,18 +632,18 @@ const db = [
         origin: "USA",
         difficulty: "Difficile",
         cost: "Env. 18.00 DT",
-        description: "Poulet frit doré très croustillant.",
+        description: "Poulet frit doré et ultra-croustillant avec beaucoup d'épices.",
         simple: {
           time: "25 mins",
           temp: "Feu Vif",
-          ingredients: ["Poulet", "Farine", "Œufs", "Épices", "Huile"],
-          steps: ["Assaisonner farine.", "Œuf→farine.", "Frire jusqu'à doré."]
+          ingredients: ["Blancs de poulet", "Farine", "2 Œufs", "Paprika, Ail, Sel, Poivre", "Huile de friture"],
+          steps: ["Couper le poulet.", "Mélanger farine et épices.", "Tremper le poulet dans l'œuf puis la farine.", "Frire à 170°C pendant 7-10 mins."]
         },
         hard: {
           time: "12 heures",
           temp: "Huile 160°C",
-          ingredients: ["Poulet", "Lben", "Farine", "Maïzena", "Épices"],
-          steps: ["Mariner la nuit.", "Enrober.", "Frire 12–15 mins.", "Repos sur grille."]
+          ingredients: ["Poulet avec os", "Lben (Babeurre)", "Farine", "Maïzena", "Piment rouge, Ail, Oignon, Poivre blanc"],
+          steps: ["Mariner le poulet la nuit dans le Lben.", "Mélanger farine, maïzena et épices.", "Enrober le poulet en pressant fort.", "Frire 12-15 mins. Laisser reposer sur une grille."]
         }
       },
       ar: {
@@ -466,482 +651,121 @@ const db = [
         origin: "أمريكا",
         difficulty: "صعب",
         cost: "حوالي 18.00 د.ت",
-        description: "دجاج مقلي ذهبي ومقرمش بالبهارات.",
+        description: "دجاج مقلي ذهبي ومقرمش جداً ومليء بالبهارات.",
         simple: {
           time: "25 دقيقة",
           temp: "نار عالية",
-          ingredients: ["دجاج", "دقيق", "بيض", "بهارات", "زيت"],
-          steps: ["بهّر الدقيق.", "بيض→دقيق.", "اقلي حتى يحمّر."]
+          ingredients: ["صدور دجاج", "دقيق", "بيضتان", "بابريكا، بودرة ثوم، ملح، فلفل أسود", "زيت قلي"],
+          steps: ["قطع الدجاج إلى قطع.", "اخلط الدقيق مع البهارات.", "اغمس الدجاج في البيض ثم في الدقيق المتبل.", "اقله في زيت ساخن (170 درجة) لـ 7-10 دقائق."]
         },
         hard: {
           time: "12 ساعة",
-          temp: "زيت 160",
-          ingredients: ["دجاج", "لبن", "دقيق", "نشا", "بهارات"],
-          steps: ["انقع ليلة.", "غلّف مليح.", "اقلي 12–15 دق.", "خليه يرتاح."]
-        }
-      }
-    }
-  },
-
-  /* +5 NEW recipes translated */
-  {
-    id: "tun_4",
-    tags: ["student", "tunisian", "cheap", "fried"],
-    emoji: "🍳",
-    difficultyCSS: "easy",
-    t: {
-      en: {
-        name: "Tunisian Ojja (Eggs & Tomato)",
-        origin: "Tunisia",
-        difficulty: "Easy",
-        cost: "Est. 4.50 DT",
-        description: "Eggs poached in a spicy tomato sauce. Fast and filling.",
-        simple: {
-          time: "15 mins",
-          temp: "Medium Heat",
-          ingredients: ["Eggs", "Tomato", "Harissa (optional)", "Olive oil", "Salt & pepper"],
-          steps: ["Simmer tomato + oil.", "Crack eggs.", "Cover until set.", "Serve with bread."]
-        },
-        hard: {
-          time: "30 mins",
-          temp: "Medium Heat",
-          ingredients: ["Eggs", "Tomatoes", "Bell pepper", "Garlic", "Harissa", "Cumin", "Optional merguez"],
-          steps: ["Cook peppers + garlic.", "Add tomatoes + spices.", "Crack eggs.", "Cover until done."]
-        }
-      },
-      fr: {
-        name: "Ojja Tunisienne (Œufs & Tomate)",
-        origin: "Tunisie",
-        difficulty: "Facile",
-        cost: "Env. 4.50 DT",
-        description: "Œufs cuits dans une sauce tomate épicée. Rapide et rassasiant.",
-        simple: {
-          time: "15 mins",
-          temp: "Feu Moyen",
-          ingredients: ["Œufs", "Tomate", "Harissa (option)", "Huile d'olive", "Sel & poivre"],
-          steps: ["Mijoter tomate + huile.", "Casser les œufs.", "Couvrir.", "Servir avec pain."]
-        },
-        hard: {
-          time: "30 mins",
-          temp: "Feu Moyen",
-          ingredients: ["Œufs", "Tomates", "Poivron", "Ail", "Harissa", "Cumin", "Option merguez"],
-          steps: ["Cuire poivron + ail.", "Ajouter tomates + épices.", "Ajouter œufs.", "Couvrir."]
-        }
-      },
-      ar: {
-        name: "عُجّة تونسية (بيض بالطماطم)",
-        origin: "تونس",
-        difficulty: "سهل",
-        cost: "حوالي 4.50 د.ت",
-        description: "بيض يطيب في صوص طماطم حار. سريع ويشبع.",
-        simple: {
-          time: "15 دقيقة",
-          temp: "نار متوسطة",
-          ingredients: ["بيض", "طماطم", "هريسة (اختياري)", "زيت زيتون", "ملح وفلفل"],
-          steps: ["خلّي الطماطم تطيب بزيت.", "اكسر البيض.", "غطّي حتى يطيب.", "قدم مع الخبز."]
-        },
-        hard: {
-          time: "30 دقيقة",
-          temp: "نار متوسطة",
-          ingredients: ["بيض", "طماطم", "فلفل", "ثوم", "هريسة", "كمون", "اختياري مرڨاز"],
-          steps: ["شوّح الفلفل والثوم.", "زيد الطماطم والبهارات.", "اكسر البيض.", "غطّي."]
-        }
-      }
-    }
-  },
-
-  {
-    id: "tun_5",
-    tags: ["student", "tunisian", "cheap", "vegan"],
-    emoji: "🌶️",
-    difficultyCSS: "easy",
-    t: {
-      en: {
-        name: "Slata Mechouia (Quick)",
-        origin: "Tunisia",
-        difficulty: "Easy",
-        cost: "Est. 5.00 DT",
-        description: "Smoky grilled salad from peppers and tomatoes.",
-        simple: {
-          time: "20 mins",
-          temp: "High Heat",
-          ingredients: ["Peppers", "Tomato", "Olive oil", "Salt"],
-          steps: ["Char veggies.", "Peel + chop.", "Season with oil + salt."]
-        },
-        hard: {
-          time: "35 mins",
-          temp: "High Heat",
-          ingredients: ["Peppers", "Tomatoes", "Garlic", "Cumin", "Olive oil", "Optional tuna/eggs/olives"],
-          steps: ["Grill until black.", "Peel.", "Chop/mash.", "Season and add toppings."]
-        }
-      },
-      fr: {
-        name: "Slata Mechouia (Rapide)",
-        origin: "Tunisie",
-        difficulty: "Facile",
-        cost: "Env. 5.00 DT",
-        description: "Salade grillée fumée à base de poivrons et tomates.",
-        simple: {
-          time: "20 mins",
-          temp: "Feu Vif",
-          ingredients: ["Poivrons", "Tomate", "Huile d'olive", "Sel"],
-          steps: ["Griller.", "Peler + couper.", "Assaisonner."]
-        },
-        hard: {
-          time: "35 mins",
-          temp: "Feu Vif",
-          ingredients: ["Poivrons", "Tomates", "Ail", "Cumin", "Huile", "Option thon/œufs/olives"],
-          steps: ["Griller.", "Peler.", "Hacher/écraser.", "Assaisonner + toppings."]
-        }
-      },
-      ar: {
-        name: "سلاطة مشوية (سريعة)",
-        origin: "تونس",
-        difficulty: "سهل",
-        cost: "حوالي 5.00 د.ت",
-        description: "سلاطة مشوية بنكهة دخان من الفلفل والطماطم.",
-        simple: {
-          time: "20 دقيقة",
-          temp: "نار عالية",
-          ingredients: ["فلفل", "طماطم", "زيت زيتون", "ملح"],
-          steps: ["اشوي.", "قشّر وقطّع.", "بهّر بزيت وملح."]
-        },
-        hard: {
-          time: "35 دقيقة",
-          temp: "نار عالية",
-          ingredients: ["فلفل", "طماطم", "ثوم", "كمون", "زيت", "اختياري تونة/بيض/زيتون"],
-          steps: ["اشوي.", "قشّر.", "افرُم/اهرِس.", "بهّر وزيد الإضافات."]
-        }
-      }
-    }
-  },
-
-  {
-    id: "int_11",
-    tags: ["student", "cheap", "asian", "fried"],
-    emoji: "🍚",
-    difficultyCSS: "easy",
-    t: {
-      en: {
-        name: "Egg Fried Rice",
-        origin: "Asia",
-        difficulty: "Easy",
-        cost: "Est. 5.50 DT",
-        description: "Perfect for leftover rice. Fast and cheap.",
-        simple: {
-          time: "15 mins",
-          temp: "High Heat",
-          ingredients: ["Cooked rice", "Eggs", "Soy sauce", "Oil", "Optional veggies"],
-          steps: ["Scramble eggs.", "Fry rice.", "Add soy + veggies.", "Mix eggs back in."]
-        },
-        hard: {
-          time: "25 mins",
-          temp: "High Heat",
-          ingredients: ["Rice", "Eggs", "Soy", "Garlic", "Green onion", "Sesame oil (optional)"],
-          steps: ["Sauté garlic.", "Fry rice.", "Season.", "Add eggs + onions."]
-        }
-      },
-      fr: {
-        name: "Riz Cantonais (Œufs)",
-        origin: "Asie",
-        difficulty: "Facile",
-        cost: "Env. 5.50 DT",
-        description: "Parfait pour utiliser le riz de la veille.",
-        simple: {
-          time: "15 mins",
-          temp: "Feu Vif",
-          ingredients: ["Riz cuit", "Œufs", "Sauce soja", "Huile", "Option légumes"],
-          steps: ["Brouiller œufs.", "Sauter riz.", "Ajouter soja + légumes.", "Remettre œufs."]
-        },
-        hard: {
-          time: "25 mins",
-          temp: "Feu Vif",
-          ingredients: ["Riz", "Œufs", "Soja", "Ail", "Oignon vert", "Huile de sésame (option)"],
-          steps: ["Sauter ail.", "Sauter riz.", "Assaisonner.", "Ajouter œufs + oignon vert."]
-        }
-      },
-      ar: {
-        name: "رز مقلي بالبيض",
-        origin: "آسيا",
-        difficulty: "سهل",
-        cost: "حوالي 5.50 د.ت",
-        description: "ممتاز لِرز البارح. سريع ورخيص.",
-        simple: {
-          time: "15 دقيقة",
-          temp: "نار عالية",
-          ingredients: ["رز مطبوخ", "بيض", "صويا صوص", "زيت", "اختياري خضرة"],
-          steps: ["اعمل بيض مخلوط.", "قلّي الرز.", "زيد الصويا والخضرة.", "رجّع البيض وخلّط."]
-        },
-        hard: {
-          time: "25 دقيقة",
-          temp: "نار عالية",
-          ingredients: ["رز", "بيض", "صويا", "ثوم", "بصل أخضر", "زيت سمسم (اختياري)"],
-          steps: ["شوّح الثوم.", "قلّي الرز.", "بهّر.", "زيد البيض والبصل الأخضر."]
-        }
-      }
-    }
-  },
-
-  {
-    id: "int_12",
-    tags: ["student", "cheap", "vegan", "asian", "boiled"],
-    emoji: "🍜",
-    difficultyCSS: "easy",
-    t: {
-      en: {
-        name: "Soy Garlic Noodles",
-        origin: "Asia",
-        difficulty: "Easy",
-        cost: "Est. 4.80 DT",
-        description: "Quick noodles in soy-garlic sauce.",
-        simple: {
-          time: "12 mins",
-          temp: "Boiling + Pan",
-          ingredients: ["Noodles", "Soy sauce", "Garlic", "Oil", "Pinch of sugar"],
-          steps: ["Boil noodles.", "Sauté garlic.", "Add soy + sugar.", "Toss noodles."]
-        },
-        hard: {
-          time: "20 mins",
-          temp: "Medium Heat",
-          ingredients: ["Noodles", "Soy", "Garlic", "Ginger (opt)", "Chili (opt)", "Green onion (opt)"],
-          steps: ["Boil.", "Sauté garlic/ginger.", "Toss with soy.", "Top with onion."]
-        }
-      },
-      fr: {
-        name: "Nouilles Soja-Ail",
-        origin: "Asie",
-        difficulty: "Facile",
-        cost: "Env. 4.80 DT",
-        description: "Nouilles rapides avec sauce soja et ail.",
-        simple: {
-          time: "12 mins",
-          temp: "Ébullition + Poêle",
-          ingredients: ["Nouilles", "Soja", "Ail", "Huile", "Pincée de sucre"],
-          steps: ["Cuire.", "Sauter ail.", "Ajouter soja + sucre.", "Mélanger."]
-        },
-        hard: {
-          time: "20 mins",
-          temp: "Feu Moyen",
-          ingredients: ["Nouilles", "Soja", "Ail", "Gingembre (opt)", "Piment (opt)", "Oignon vert (opt)"],
-          steps: ["Cuire.", "Sauter ail/gingembre.", "Mélanger avec soja.", "Ajouter oignon vert."]
-        }
-      },
-      ar: {
-        name: "نودلز بالصويا والثوم",
-        origin: "آسيا",
-        difficulty: "سهل",
-        cost: "حوالي 4.80 د.ت",
-        description: "نودلز سريعة بصوص صويا وثوم.",
-        simple: {
-          time: "12 دقيقة",
-          temp: "غليان + مقلاة",
-          ingredients: ["نودلز", "صويا", "ثوم", "زيت", "رشة سكر"],
-          steps: ["اسلق.", "شوّح الثوم.", "زيد صويا + سكر.", "قلّب النودلز."]
-        },
-        hard: {
-          time: "20 دقيقة",
-          temp: "نار متوسطة",
-          ingredients: ["نودلز", "صويا", "ثوم", "زنجبيل (اختياري)", "فلفل (اختياري)", "بصل أخضر (اختياري)"],
-          steps: ["اسلق.", "شوّح الثوم/الزنجبيل.", "قلّب مع الصويا.", "زيّن بالبصل."]
-        }
-      }
-    }
-  },
-
-  {
-    id: "int_13",
-    tags: ["student", "cheap", "boiled"],
-    emoji: "🥔",
-    difficultyCSS: "easy",
-    t: {
-      en: {
-        name: "Tuna Potato Bowl",
-        origin: "International",
-        difficulty: "Easy",
-        cost: "Est. 5.80 DT",
-        description: "Boiled potato + tuna + olive oil = fast high-protein meal.",
-        simple: {
-          time: "18 mins",
-          temp: "Boiling",
-          ingredients: ["Potatoes", "Tuna", "Olive oil", "Salt & pepper", "Optional lemon"],
-          steps: ["Boil potatoes.", "Mix with tuna + oil.", "Season and eat."]
-        },
-        hard: {
-          time: "25 mins",
-          temp: "Boiling + Mix",
-          ingredients: ["Potatoes", "Tuna", "Onion", "Parsley", "Olive oil", "Vinegar/lemon"],
-          steps: ["Boil + cut.", "Mix with tuna + onion + parsley.", "Season with oil + lemon."]
-        }
-      },
-      fr: {
-        name: "Bol Thon & Pommes de Terre",
-        origin: "International",
-        difficulty: "Facile",
-        cost: "Env. 5.80 DT",
-        description: "PDT + thon + huile d'olive = repas rapide et protéiné.",
-        simple: {
-          time: "18 mins",
-          temp: "Ébullition",
-          ingredients: ["Pommes de terre", "Thon", "Huile d'olive", "Sel & poivre", "Option citron"],
-          steps: ["Cuire.", "Mélanger thon + huile.", "Assaisonner."]
-        },
-        hard: {
-          time: "25 mins",
-          temp: "Ébullition + Mélange",
-          ingredients: ["PDT", "Thon", "Oignon", "Persil", "Huile", "Vinaigre/citron"],
-          steps: ["Cuire.", "Mélanger.", "Assaisonner."]
-        }
-      },
-      ar: {
-        name: "بطاطا بالتونة",
-        origin: "عالمي",
-        difficulty: "سهل",
-        cost: "حوالي 5.80 د.ت",
-        description: "بطاطا مسلوقة + تونة + زيت زيتون = وجبة بروتين سريعة.",
-        simple: {
-          time: "18 دقيقة",
-          temp: "غليان",
-          ingredients: ["بطاطا", "تونة", "زيت زيتون", "ملح وفلفل", "اختياري ليمون"],
-          steps: ["اسلق البطاطا.", "اخلط مع التونة والزيت.", "بهّر وكل."]
-        },
-        hard: {
-          time: "25 دقيقة",
-          temp: "غليان + خلط",
-          ingredients: ["بطاطا", "تونة", "بصل", "بقدونس", "زيت", "خل/ليمون"],
-          steps: ["اسلق.", "اخلط.", "بهّر."]
+          temp: "زيت 160 درجة",
+          ingredients: ["دجاج بالعظم", "لبن", "دقيق", "نشا", "فلفل أحمر حار، ثوم، بصل، فلفل أبيض"],
+          steps: ["انقع الدجاج ليلة كاملة في اللبن والصلصة الحارة.", "اخلط الدقيق والنشا والبهارات.", "غلف الدجاج بالخليط واضغط بقوة.", "اقله في زيت غزير لـ 12-15 دقيقة. دعه يرتاح على شبكة معدنية."]
         }
       }
     }
   }
 ];
 
-/* state */
-const RECENT_LIMIT = 6;
-let currentLang = loadStr("lettuceLang", "en");
+/* ---------- State / Memory ---------- */
 let currentFood = null;
+const RECENT_LIMIT = 6;
 let recentIds = loadJson("lettuceRecentIds", []);
 let lastCuisineTag = loadStr("lettuceLastCuisine", "");
 let hintShown = loadStr("lettuceHintShown", "0") === "1";
 
-/* DOM (simple ids only) */
-const $ = (id) => document.getElementById(id);
-
+/* ---------- DOM (YOUR ORIGINAL IDS) ---------- */
 const els = {
-  languageSelect: $("languageSelect"),
-  themeToggleBtn: $("themeToggleBtn"),
-  helpBtn: $("helpBtn"),
+  languageSelect: document.getElementById("languageSelect"),
+  themeToggleBtn: document.getElementById("themeToggleBtn"),
+  helpBtn: document.getElementById("helpBtn"),
 
-  discoverBtn: $("discoverBtn"),
-  dailyPickBtn: $("dailyPickBtn"),
-  preferencesBtn: $("preferencesBtn"),
+  // hero
+  discoverBtnTop: document.getElementById("discoverBtnTop"),
+  dailyPickBtnTop: document.getElementById("dailyPickBtnTop"),
+  preferencesBtnTop: document.getElementById("preferencesBtnTop"),
+  funnyLoadingText: document.getElementById("funnyLoadingText"),
+  hintText: document.getElementById("hintText"),
 
-  discoverBtnSticky: $("discoverBtnSticky"),
-  dailyPickBtnSticky: $("dailyPickBtnSticky"),
-  preferencesBtnSticky: $("preferencesBtnSticky"),
+  // sticky bar
+  discoverBtnSticky: document.getElementById("discoverBtnSticky"),
+  dailyPickBtnSticky: document.getElementById("dailyPickBtnSticky"),
+  preferencesBtnSticky: document.getElementById("preferencesBtnSticky"),
 
-  loadingLine: $("loadingLine"),
-  hintLine: $("hintLine"),
+  // preferences
+  preferencesPanel: document.getElementById("preferencesPanel"),
+  closePreferencesBtn: document.getElementById("closePreferencesBtn"),
+  resetFiltersBtn: document.getElementById("resetFiltersBtn"),
+  applyFiltersBtn: document.getElementById("applyFiltersBtn"),
 
-  preferencesPanel: $("preferencesPanel"),
-  closePreferencesBtn: $("closePreferencesBtn"),
-  resetFiltersBtn: $("resetFiltersBtn"),
-  applyFiltersBtn: $("applyFiltersBtn"),
+  // filters
+  studentOnly: document.getElementById("studentOnly"),
+  cheapOnly: document.getElementById("cheapOnly"),
+  expensiveOnly: document.getElementById("expensiveOnly"),
+  tunisianStyle: document.getElementById("tunisianStyle"),
+  asianStyle: document.getElementById("asianStyle"),
+  withChicken: document.getElementById("withChicken"),
+  loveFish: document.getElementById("loveFish"),
+  friedOnly: document.getElementById("friedOnly"),
+  vegan: document.getElementById("vegan"),
+  noFish: document.getElementById("noFish"),
+  noChicken: document.getElementById("noChicken"),
+  noSpicy: document.getElementById("noSpicy"),
 
-  studentOnly: $("studentOnly"),
-  cheapOnly: $("cheapOnly"),
-  expensiveOnly: $("expensiveOnly"),
-  tunisianStyle: $("tunisianStyle"),
-  asianStyle: $("asianStyle"),
-  withChicken: $("withChicken"),
-  loveFish: $("loveFish"),
-  friedOnly: $("friedOnly"),
-  vegan: $("vegan"),
-  noFish: $("noFish"),
-  noChicken: $("noChicken"),
-  noSpicy: $("noSpicy"),
+  // result
+  result: document.getElementById("result"),
+  notFound: document.getElementById("notFound"),
+  relaxFiltersBtn: document.getElementById("relaxFiltersBtn"),
+  openPreferencesBtn2: document.getElementById("openPreferencesBtn2"),
 
-  result: $("result"),
-  notFound: $("notFound"),
-  relaxFiltersBtn: $("relaxFiltersBtn"),
-  openPreferencesBtn2: $("openPreferencesBtn2"),
+  foodEmoji: document.getElementById("foodEmoji"),
+  foodName: document.getElementById("foodName"),
+  foodOrigin: document.getElementById("foodOrigin"),
+  foodCost: document.getElementById("foodCost"),
+  foodDifficulty: document.getElementById("foodDifficulty"),
+  foodDesc: document.getElementById("foodDesc"),
+  lazyModeBtn: document.getElementById("lazyModeBtn"),
+  chefModeBtn: document.getElementById("chefModeBtn"),
 
-  foodEmoji: $("foodEmoji"),
-  foodName: $("foodName"),
-  foodOrigin: $("foodOrigin"),
-  foodCost: $("foodCost"),
-  foodDifficulty: $("foodDifficulty"),
-  foodDesc: $("foodDesc"),
-  lazyModeBtn: $("lazyModeBtn"),
-  chefModeBtn: $("chefModeBtn"),
+  // intro
+  introModal: document.getElementById("introModal"),
+  closeIntroBtn: document.getElementById("closeIntroBtn"),
+  introDiscoverBtn: document.getElementById("introDiscoverBtn"),
+  introPreferencesBtn: document.getElementById("introPreferencesBtn"),
 
-  introModal: $("introModal"),
-  closeIntroBtn: $("closeIntroBtn"),
-  introDiscoverBtn: $("introDiscoverBtn"),
-  introPreferencesBtn: $("introPreferencesBtn"),
+  // recipe modal
+  recipeModal: document.getElementById("recipeModal"),
+  closeRecipeBtn: document.getElementById("closeRecipeBtn"),
+  modalModeEmoji: document.getElementById("modalModeEmoji"),
+  modalTitle: document.getElementById("modalTitle"),
+  timeVal: document.getElementById("timeVal"),
+  tempVal: document.getElementById("tempVal"),
+  modalIngredients: document.getElementById("modalIngredients"),
+  modalSteps: document.getElementById("modalSteps"),
 
-  recipeModal: $("recipeModal"),
-  closeRecipeBtn: $("closeRecipeBtn"),
-  modalModeEmoji: $("modalModeEmoji"),
-  modalTitle: $("modalTitle"),
-  timeVal: $("timeVal"),
-  tempVal: $("tempVal"),
-  modalIngredients: $("modalIngredients"),
-  modalSteps: $("modalSteps"),
-
-  year: $("year"),
-
-  /* text nodes */
-  brandPill: $("brandPill"),
-  welcomeText: $("welcomeText"),
-  seoIntro: $("seoIntro"),
-
-  preferencesTitle: $("preferencesTitle"),
-  customizeTitle: $("customizeTitle"),
-  includeTitle: $("includeTitle"),
-  excludeTitle: $("excludeTitle"),
-
-  studentFriendly: $("studentFriendly"),
-  cheapText: $("cheapText"),
-  expensiveText: $("expensiveText"),
-  tunisianText: $("tunisianText"),
-  asianText: $("asianText"),
-  chickenText: $("chickenText"),
-  fishText: $("fishText"),
-  friedText: $("friedText"),
-  veganText: $("veganText"),
-  noFishText: $("noFishText"),
-  noChickenText: $("noChickenText"),
-  noSpicyText: $("noSpicyText"),
-
-  lazyModeTitle: $("lazyModeTitle"),
-  lazyHint: $("lazyHint"),
-  chefModeTitle: $("chefModeTitle"),
-  chefHint: $("chefHint"),
-
-  notFoundTitle: $("notFoundTitle"),
-  notFoundText: $("notFoundText"),
-
-  footerText: $("footerText"),
-  rightsText: $("rightsText"),
-
-  ingredientsTitle: $("ingredientsTitle"),
-  stepsTitle: $("stepsTitle"),
-
-  introTagline: $("introTagline"),
-  introText: $("introText")
+  copyrightYear: document.getElementById("copyrightYear")
 };
 
-init();
+/* ---------- Boot ---------- */
+boot();
 
-function init() {
+function boot() {
   // year
-  if (els.year) els.year.textContent = String(new Date().getFullYear());
+  if (els.copyrightYear) {
+    els.copyrightYear.textContent = String(new Date().getFullYear());
+  }
 
-  // language + theme
-  if (els.languageSelect) els.languageSelect.value = currentLang;
-  applyLang(currentLang);
+  // language
+  const savedLang = loadStr("lettuceLang", "en");
+  currentLang = savedLang;
+  if (els.languageSelect) els.languageSelect.value = savedLang;
+  applyLanguage(savedLang);
 
-  setTheme(loadStr("lettuceTheme", "dark"));
+  // theme (default dark)
+  const savedTheme = loadStr("lettuceTheme", "dark");
+  setTheme(savedTheme);
 
   // intro
   const introDone = loadStr("lettuceIntroDone", "0") === "1";
@@ -949,23 +773,27 @@ function init() {
 
   // hint once
   if (!hintShown) {
-    els.hintLine?.classList.remove("hidden");
+    els.hintText?.classList.remove("hidden");
     hintShown = true;
     saveStr("lettuceHintShown", "1");
-    setTimeout(() => els.hintLine?.classList.add("hidden"), 6000);
+    setTimeout(() => els.hintText?.classList.add("hidden"), 6000);
   }
 
-  wire();
+  wireEvents();
 }
 
-function wire() {
+/* ---------- Events ---------- */
+function wireEvents() {
   els.languageSelect?.addEventListener("change", (e) => {
-    currentLang = e.target.value;
-    saveStr("lettuceLang", currentLang);
-    applyLang(currentLang);
+    const lang = e.target.value;
+    currentLang = lang;
+    saveStr("lettuceLang", lang);
+    applyLanguage(lang);
+
     if (currentFood) renderFood(currentFood);
-    if (!els.recipeModal.classList.contains("hidden")) {
-      const mode = els.modalModeEmoji.textContent.includes("🟢") ? "simple" : "hard";
+
+    if (els.recipeModal && !els.recipeModal.classList.contains("hidden")) {
+      const mode = (els.modalModeEmoji?.textContent || "").includes("🟢") ? "simple" : "hard";
       openRecipe(mode);
     }
   });
@@ -977,20 +805,28 @@ function wire() {
 
   els.helpBtn?.addEventListener("click", () => openIntro());
 
-  const discover = () => handleDiscover(false);
-  const daily = () => handleDiscover(true);
-  const prefs = () => openPreferences();
+  // Discover
+  els.discoverBtnTop?.addEventListener("click", () => handleDiscover(false));
+  els.discoverBtnSticky?.addEventListener("click", () => handleDiscover(false));
+  els.introDiscoverBtn?.addEventListener("click", () => {
+    closeIntro(true);
+    handleDiscover(false);
+  });
 
-  els.discoverBtn?.addEventListener("click", discover);
-  els.discoverBtnSticky?.addEventListener("click", discover);
+  // Daily pick
+  els.dailyPickBtnTop?.addEventListener("click", () => handleDiscover(true));
+  els.dailyPickBtnSticky?.addEventListener("click", () => handleDiscover(true));
 
-  els.dailyPickBtn?.addEventListener("click", daily);
-  els.dailyPickBtnSticky?.addEventListener("click", daily);
+  // Preferences open
+  els.preferencesBtnTop?.addEventListener("click", openPreferences);
+  els.preferencesBtnSticky?.addEventListener("click", openPreferences);
+  els.openPreferencesBtn2?.addEventListener("click", openPreferences);
+  els.introPreferencesBtn?.addEventListener("click", () => {
+    closeIntro(true);
+    openPreferences();
+  });
 
-  els.preferencesBtn?.addEventListener("click", prefs);
-  els.preferencesBtnSticky?.addEventListener("click", prefs);
-  els.openPreferencesBtn2?.addEventListener("click", prefs);
-
+  // Preferences close / apply
   els.closePreferencesBtn?.addEventListener("click", closePreferences);
   els.resetFiltersBtn?.addEventListener("click", resetFilters);
   els.applyFiltersBtn?.addEventListener("click", () => {
@@ -998,27 +834,22 @@ function wire() {
     handleDiscover(false);
   });
 
+  // Relax filters
   els.relaxFiltersBtn?.addEventListener("click", () => {
     resetFilters();
     closePreferences();
     handleDiscover(false);
   });
 
+  // Recipe modes
   els.lazyModeBtn?.addEventListener("click", () => openRecipe("simple"));
   els.chefModeBtn?.addEventListener("click", () => openRecipe("hard"));
 
+  // Close modals
   els.closeIntroBtn?.addEventListener("click", () => closeIntro(true));
-  els.introDiscoverBtn?.addEventListener("click", () => {
-    closeIntro(true);
-    handleDiscover(false);
-  });
-  els.introPreferencesBtn?.addEventListener("click", () => {
-    closeIntro(true);
-    openPreferences();
-  });
-
   els.closeRecipeBtn?.addEventListener("click", closeRecipe);
 
+  // Click outside modal closes
   els.introModal?.addEventListener("click", (e) => {
     if (e.target === els.introModal) closeIntro(true);
   });
@@ -1026,6 +857,7 @@ function wire() {
     if (e.target === els.recipeModal) closeRecipe();
   });
 
+  // Escape closes
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       closePreferences();
@@ -1035,93 +867,39 @@ function wire() {
   });
 }
 
-/* language */
-function applyLang(lang) {
-  const t = i18n[lang] || i18n.en;
-  document.body.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
-
-  // top/hero
-  setText(els.brandPill, t.brandPill);
-  setText(els.welcomeText, t.welcome);
-  setText(els.seoIntro, t.seoIntro);
-
-  setText(els.discoverBtn, t.discover);
-  setText(els.dailyPickBtn, t.dailyPick);
-  setText(els.preferencesBtn, t.preferences);
-
-  setText(els.discoverBtnSticky, t.discover);
-  setText(els.dailyPickBtnSticky, t.dailyPick);
-  setText(els.preferencesBtnSticky, t.preferences);
-
-  setText(els.hintLine, t.discoverHint);
-
-  // preferences labels
-  setText(els.preferencesTitle, t.preferences);
-  setText(els.customizeTitle, t.customize);
-  setText(els.includeTitle, t.includeTitle);
-  setText(els.excludeTitle, t.excludeTitle);
-
-  setText(els.studentFriendly, t.studentFriendly);
-  setText(els.cheapText, t.cheap);
-  setText(els.expensiveText, t.expensive);
-  setText(els.tunisianText, t.tunisianStyle);
-  setText(els.asianText, t.asianStyle);
-  setText(els.chickenText, t.chicken);
-  setText(els.fishText, t.fish);
-  setText(els.friedText, t.fried);
-  setText(els.veganText, t.vegan);
-
-  setText(els.noFishText, t.noFish);
-  setText(els.noChickenText, t.noChicken);
-  setText(els.noSpicyText, t.noSpicy);
-
-  setText(els.resetFiltersBtn, t.reset);
-  setText(els.applyFiltersBtn, t.apply);
-
-  // cards
-  setText(els.lazyModeTitle, t.lazyMode);
-  setText(els.lazyHint, t.lazyHint);
-  setText(els.chefModeTitle, t.chefMode);
-  setText(els.chefHint, t.chefHint);
-
-  setText(els.notFoundTitle, t.notFoundTitle);
-  setText(els.notFoundText, t.notFoundText);
-  setText(els.relaxFiltersBtn, t.relax);
-  setText(els.openPreferencesBtn2, t.preferences);
-
-  setText(els.footerText, t.footerText);
-  setText(els.rightsText, t.rights);
-
-  // modals
-  setText(els.introTagline, t.introTagline);
-  setText(els.introText, t.introText);
-  setText(els.introDiscoverBtn, t.startDiscover);
-  setText(els.introPreferencesBtn, t.preferences);
-
-  setText(els.ingredientsTitle, t.ingredients);
-  setText(els.stepsTitle, t.steps);
-
-  // recipe modal title refresh if open
-  if (!els.recipeModal.classList.contains("hidden")) {
-    const mode = els.modalModeEmoji.textContent.includes("🟢") ? "simple" : "hard";
-    els.modalTitle.textContent = mode === "simple" ? t.lazyMode : t.chefMode;
-  }
-}
-
-function setText(el, text) {
-  if (!el) return;
-  el.textContent = text ?? "";
-}
-
-/* theme */
+/* ---------- Theme ---------- */
 function setTheme(mode) {
   document.body.classList.remove("theme-dark", "theme-light");
   document.body.classList.add(mode === "light" ? "theme-light" : "theme-dark");
   saveStr("lettuceTheme", mode);
-  if (els.themeToggleBtn) els.themeToggleBtn.textContent = mode === "light" ? "🌙" : "☀️";
+
+  if (els.themeToggleBtn) {
+    els.themeToggleBtn.textContent = mode === "light" ? "🌙" : "☀️";
+    els.themeToggleBtn.title = mode === "light" ? "Toggle dark" : "Toggle light";
+  }
 }
 
-/* preferences */
+/* ---------- Language / direction ---------- */
+function applyLanguage(lang) {
+  document.body.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+
+  const dict = translations[lang] || translations.en;
+
+  // your HTML uses data-i18n attributes
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    if (!key) return;
+
+    if (key === "brand") {
+      el.textContent = "Lettuce Guess";
+      return;
+    }
+
+    if (dict[key] != null) el.textContent = dict[key];
+  });
+}
+
+/* ---------- Preferences UI ---------- */
 function openPreferences() {
   els.preferencesPanel?.classList.remove("hidden");
   els.preferencesPanel?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1130,17 +908,18 @@ function closePreferences() {
   els.preferencesPanel?.classList.add("hidden");
 }
 function resetFilters() {
-  [
+  const ids = [
     "studentOnly","cheapOnly","expensiveOnly","tunisianStyle","asianStyle",
     "withChicken","loveFish","friedOnly","vegan",
     "noFish","noChicken","noSpicy"
-  ].forEach((id) => {
-    const el = $(id);
+  ];
+  ids.forEach((id) => {
+    const el = document.getElementById(id);
     if (el) el.checked = false;
   });
 }
 
-/* modals */
+/* ---------- Intro Modal ---------- */
 function openIntro() {
   els.introModal?.classList.remove("hidden");
 }
@@ -1148,36 +927,39 @@ function closeIntro(markDone) {
   els.introModal?.classList.add("hidden");
   if (markDone) saveStr("lettuceIntroDone", "1");
 }
-function closeRecipe() {
-  els.recipeModal?.classList.add("hidden");
-}
 
-/* discover */
+/* ---------- Discover Logic ---------- */
 function handleDiscover(isDailyPick) {
   hideNotFound();
 
-  const t = i18n[currentLang] || i18n.en;
-  showLoading(t.funny);
+  // loading line
+  const ui = translations[currentLang] || translations.en;
+  showLoadingLine(ui.funnyTexts);
 
   const filters = readFilters();
-  const pool = filterDb(db, filters);
+  const pool = filterDatabase(foodDatabase, filters);
 
   if (pool.length === 0) {
-    hideLoading();
+    hideLoadingLine();
     showNotFound();
     return;
   }
 
-  const picked = isDailyPick ? dailyPick(pool) : smartPick(pool, filters);
+  const picked = isDailyPick ? deterministicDailyPick(pool) : smartPick(pool, filters);
 
   setTimeout(() => {
-    hideLoading();
-    if (!picked) return showNotFound();
+    hideLoadingLine();
+    if (!picked) {
+      showNotFound();
+      return;
+    }
+
     currentFood = picked;
-    remember(picked);
+    rememberPick(picked);
     renderFood(picked);
+
     els.result?.scrollIntoView({ behavior: "smooth", block: "center" });
-  }, 400);
+  }, 450);
 }
 
 function readFilters() {
@@ -1201,9 +983,9 @@ function readFilters() {
   };
 }
 
-function filterDb(list, filters) {
-  return list.filter((f) => {
-    const tags = f.tags || [];
+function filterDatabase(db, filters) {
+  return db.filter((food) => {
+    const tags = food.tags || [];
 
     if (filters.exclude.noFish && tags.includes("fish")) return false;
     if (filters.exclude.noChicken && tags.includes("chicken")) return false;
@@ -1223,7 +1005,7 @@ function filterDb(list, filters) {
   });
 }
 
-function dailyPick(pool) {
+function deterministicDailyPick(pool) {
   const dateStr = new Date().toDateString();
   let hash = 0;
   for (let i = 0; i < dateStr.length; i++) hash = dateStr.charCodeAt(i) + ((hash << 5) - hash);
@@ -1232,21 +1014,44 @@ function dailyPick(pool) {
 
 function smartPick(pool, filters) {
   const lastId = currentFood?.id;
-  let candidates = pool.filter((x) => x.id !== lastId && !recentIds.includes(x.id));
-  if (candidates.length === 0) candidates = pool.filter((x) => x.id !== lastId);
+  let candidates = pool.filter((f) => f.id !== lastId && !recentIds.includes(f.id));
+  if (candidates.length === 0) candidates = pool.filter((f) => f.id !== lastId);
   if (candidates.length === 0) candidates = pool.slice();
 
   const forcedCuisine = filters.include.tunisianStyle || filters.include.asianStyle;
   if (!forcedCuisine && lastCuisineTag) {
-    const rotated = candidates.filter((x) => !(x.tags || []).includes(lastCuisineTag));
+    const rotated = candidates.filter((f) => !(f.tags || []).includes(lastCuisineTag));
     if (rotated.length > 0) candidates = rotated;
+  }
+
+  // small variety pressure (keep your original idea)
+  const varietyTags = ["fried", "vegan", "chicken", "fish", "spicy"];
+  const forced = new Set();
+  if (filters.include.friedOnly) forced.add("fried");
+  if (filters.include.vegan) forced.add("vegan");
+  if (filters.include.withChicken) forced.add("chicken");
+  if (filters.include.loveFish) forced.add("fish");
+
+  if (currentFood) {
+    const lastTags = new Set(currentFood.tags || []);
+    for (const tag of varietyTags) {
+      if (forced.has(tag)) continue;
+      if (lastTags.has(tag)) {
+        const rotated = candidates.filter((f) => !(f.tags || []).includes(tag));
+        if (rotated.length > 0) {
+          candidates = rotated;
+          break;
+        }
+      }
+    }
   }
 
   return candidates[Math.floor(Math.random() * candidates.length)];
 }
 
-function remember(food) {
+function rememberPick(food) {
   if (!food?.id) return;
+
   recentIds = [food.id, ...recentIds.filter((x) => x !== food.id)].slice(0, RECENT_LIMIT);
   saveJson("lettuceRecentIds", recentIds);
 
@@ -1258,97 +1063,125 @@ function remember(food) {
   }
 }
 
-/* render */
+/* ---------- Rendering ---------- */
 function renderFood(food) {
-  const t = food.t?.[currentLang] || food.t?.en;
+  if (!food) return;
+
+  const t = food.translations?.[currentLang] || food.translations?.en;
   if (!t) return;
 
   els.result?.classList.remove("hidden");
   els.notFound?.classList.add("hidden");
 
-  els.foodEmoji.textContent = food.emoji || "🍲";
-  els.foodName.textContent = t.name || "Meal";
-  els.foodOrigin.textContent = `🌍 ${t.origin || ""}`;
-  els.foodCost.textContent = t.cost || "";
+  if (els.foodEmoji) els.foodEmoji.textContent = food.emoji || "🍲";
+  if (els.foodName) els.foodName.textContent = t.name || "Meal";
+  if (els.foodOrigin) els.foodOrigin.textContent = `🌍 ${t.origin || ""}`;
+  if (els.foodCost) els.foodCost.textContent = t.cost || "";
 
-  els.foodDifficulty.classList.remove("badge-green", "badge-gold", "badge-red", "badge-blue");
-  const diff = (food.difficultyCSS || "").toLowerCase();
   const diffText = (t.difficulty || "").toUpperCase();
-  els.foodDifficulty.textContent = diffText || "—";
-  if (diff === "easy") els.foodDifficulty.classList.add("badge-green");
-  else if (diff === "medium") els.foodDifficulty.classList.add("badge-gold");
-  else if (diff === "hard") els.foodDifficulty.classList.add("badge-red");
-  else els.foodDifficulty.classList.add("badge-blue");
+  if (els.foodDifficulty) {
+    els.foodDifficulty.textContent = diffText || "—";
+    els.foodDifficulty.classList.remove("badge-green", "badge-gold", "badge-red", "badge-blue");
 
-  els.foodDesc.textContent = t.description || "";
+    const diff = (food.difficultyCSS || "").toLowerCase();
+    if (diff === "easy") els.foodDifficulty.classList.add("badge-green");
+    else if (diff === "medium") els.foodDifficulty.classList.add("badge-gold");
+    else if (diff === "hard") els.foodDifficulty.classList.add("badge-red");
+    else els.foodDifficulty.classList.add("badge-blue");
+  }
+
+  if (els.foodDesc) els.foodDesc.textContent = t.description || "";
 }
 
 function showNotFound() {
   els.result?.classList.add("hidden");
   els.notFound?.classList.remove("hidden");
+  els.notFound?.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 function hideNotFound() {
   els.notFound?.classList.add("hidden");
 }
 
-/* recipe modal */
+/* ---------- Recipe Modal ---------- */
 function openRecipe(mode) {
   if (!currentFood) return;
-  const t = currentFood.t?.[currentLang] || currentFood.t?.en;
+  const t = currentFood.translations?.[currentLang] || currentFood.translations?.en;
   if (!t) return;
-
   const r = t[mode];
   if (!r) return;
 
-  const ui = i18n[currentLang] || i18n.en;
+  const ui = translations[currentLang] || translations.en;
 
-  els.modalModeEmoji.textContent = mode === "simple" ? "🟢" : "🔴";
-  els.modalTitle.textContent = mode === "simple" ? ui.lazyMode : ui.chefMode;
+  if (els.modalModeEmoji) els.modalModeEmoji.textContent = mode === "simple" ? "🟢" : "🔴";
+  if (els.modalTitle) els.modalTitle.textContent = mode === "simple" ? ui.lazyMode : ui.chefMode;
+  if (els.timeVal) els.timeVal.textContent = r.time || "";
+  if (els.tempVal) els.tempVal.textContent = r.temp || "";
 
-  els.timeVal.textContent = r.time || "";
-  els.tempVal.textContent = r.temp || "";
+  if (els.modalIngredients) {
+    els.modalIngredients.innerHTML = "";
+    (r.ingredients || []).forEach((ing) => {
+      const li = document.createElement("li");
+      li.textContent = ing;
+      els.modalIngredients.appendChild(li);
+    });
+  }
 
-  els.modalIngredients.innerHTML = "";
-  (r.ingredients || []).forEach((ing) => {
-    const li = document.createElement("li");
-    li.textContent = ing;
-    els.modalIngredients.appendChild(li);
-  });
+  if (els.modalSteps) {
+    els.modalSteps.innerHTML = "";
+    (r.steps || []).forEach((step) => {
+      const li = document.createElement("li");
+      li.textContent = step;
+      els.modalSteps.appendChild(li);
+    });
+  }
 
-  els.modalSteps.innerHTML = "";
-  (r.steps || []).forEach((step) => {
-    const li = document.createElement("li");
-    li.textContent = step;
-    els.modalSteps.appendChild(li);
-  });
-
-  els.recipeModal.classList.remove("hidden");
+  els.recipeModal?.classList.remove("hidden");
+}
+function closeRecipe() {
+  els.recipeModal?.classList.add("hidden");
 }
 
-/* loading */
-function showLoading(funnyArr) {
-  const arr = Array.isArray(funnyArr) ? funnyArr : i18n.en.funny;
+/* ---------- Loading line ---------- */
+let loadingTimer = null;
+
+function showLoadingLine(funnyTexts) {
+  const arr = Array.isArray(funnyTexts) ? funnyTexts : (translations.en.funnyTexts || []);
   const msg = arr[Math.floor(Math.random() * arr.length)];
-  els.loadingLine.textContent = msg;
-  els.loadingLine.classList.remove("hidden");
-}
-function hideLoading() {
-  els.loadingLine.classList.add("hidden");
+
+  if (els.funnyLoadingText) {
+    els.funnyLoadingText.textContent = msg;
+    els.funnyLoadingText.classList.remove("hidden");
+  }
+
+  clearTimeout(loadingTimer);
+  loadingTimer = setTimeout(() => {}, 0);
 }
 
-/* storage */
+function hideLoadingLine() {
+  els.funnyLoadingText?.classList.add("hidden");
+}
+
+/* ---------- Storage helpers ---------- */
 function loadStr(key, fallback = "") {
   try {
     const v = localStorage.getItem(key);
     return v == null ? fallback : v;
-  } catch { return fallback; }
+  } catch {
+    return fallback;
+  }
 }
-function saveStr(key, value) { try { localStorage.setItem(key, value); } catch {} }
+function saveStr(key, value) {
+  try { localStorage.setItem(key, value); } catch {}
+}
 function loadJson(key, fallback) {
   try {
     const raw = localStorage.getItem(key);
     if (!raw) return fallback;
     return JSON.parse(raw);
-  } catch { return fallback; }
+  } catch {
+    return fallback;
+  }
 }
-function saveJson(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} }
+function saveJson(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
+}

@@ -1,12 +1,13 @@
 /* =========================================
-   Lettuce Guess — "Alive" UI upgrade (drop-in)
-   Paste this UNDER your current CSS (or replace the stable CSS with this).
-   - Mouse-follow glow
-   - Button glow on hover
-   - Softer glass cards
-   - Better checkboxes
-   - Fix emoji visibility (no grayscale filters)
+   Lettuce Guess — Complete Stylesheet
+   Structural layout + Apple-style visual design
+   - Layout: topbar, hero, panel, cards, modals, stickybar
+   - Visual: glassmorphism, glow effects, modern typography
+   - Emoji fix: no grayscale filters
    ========================================= */
+
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap');
 
 /* --- Theme tokens --- */
 :root{
@@ -35,15 +36,642 @@ body.theme-light{
   --shadow:0 18px 60px rgba(0,0,0,.20);
 }
 
-/* --- Background + mouse-follow glow --- */
+/* =========================================
+   STRUCTURAL LAYOUT
+   ========================================= */
+
+/* --- Global resets --- */
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+
+/* --- Utility: hidden --- */
+.hidden{
+  display: none !important;
+}
+
+/* --- Base body & typography --- */
 body{
-  position:relative;
-  overflow-x:hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
   background:
     radial-gradient(950px 680px at 18% 0%, rgba(34,197,94,.20), transparent 62%),
     radial-gradient(820px 640px at 86% 18%, rgba(167,139,250,.16), transparent 56%),
     var(--bg);
 }
+
+[dir="rtl"] body,
+[lang="ar"] body,
+body[dir="rtl"]{
+  font-family: 'Tajawal', system-ui, sans-serif;
+}
+
+/* --- Topbar (fixed header) --- */
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: rgba(7,11,16,.72);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+}
+
+body.theme-light .topbar{
+  background: rgba(246,248,252,.80);
+}
+
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand__name{
+  font-size: 1.25rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--green), var(--green2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.brand__pill{
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 980px;
+  padding: 2px 10px;
+  letter-spacing: .04em;
+}
+
+.topbar__right{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --- Main layout: ads + app --- */
+.layout{
+  display: grid;
+  grid-template-columns: 160px 1fr 160px;
+  gap: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 16px 120px;
+  min-height: calc(100vh - 64px);
+}
+
+/* --- Ad columns --- */
+.adcol{
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+}
+
+.adbox{
+  background: var(--card);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--muted);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.adbox__title{
+  font-weight: 700;
+  letter-spacing: .08em;
+  font-size: .7rem;
+  color: var(--muted);
+}
+
+.adbox__hint{
+  font-size: .65rem;
+  color: var(--muted);
+  opacity: .7;
+}
+
+/* --- App (center column) --- */
+.app{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+/* --- Hero section --- */
+.hero{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  padding: 48px 16px 32px;
+}
+
+.hero__title{
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.hero__subtitle{
+  font-size: 1rem;
+  color: var(--muted);
+  max-width: 520px;
+}
+
+.hero__actions{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* --- Loading line --- */
+.loadingline{
+  width: 200px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--card2);
+  overflow: hidden;
+  position: relative;
+}
+
+.loadingline::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  animation: loadingSlide 1.2s linear infinite;
+}
+
+@keyframes loadingSlide{
+  0%  { transform: translateX(-100%); }
+  100%{ transform: translateX(200%); }
+}
+
+/* --- Hint line --- */
+.hint{
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+/* --- Panel (preferences) --- */
+.panel{
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.panel__header{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.panel__title{
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.panel__subtitle{
+  font-size: .85rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.panel__sectionTitle{
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+.panel__grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.panel__footer{
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* --- Divider --- */
+.divider{
+  height: 1px;
+  background: var(--border);
+  margin: 12px 0;
+}
+
+/* --- Checkbox labels --- */
+.chk{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius2);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: .9rem;
+  color: var(--text);
+  user-select: none;
+}
+
+/* --- Result section --- */
+.result{
+  width: 100%;
+}
+
+/* --- Card --- */
+.card{
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card__top{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.card__meta{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+/* --- Food name --- */
+.foodName{
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.foodDesc{
+  font-size: .9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* --- Row (pills row) --- */
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+/* --- Pill badges --- */
+.pill{
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 980px;
+  font-size: .78rem;
+  font-weight: 600;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.badge-blue{
+  background: rgba(99,102,241,.18);
+  border-color: rgba(99,102,241,.32);
+  color: #a5b4fc;
+}
+
+/* --- Mode buttons --- */
+.modes{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.modebtn{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  background: var(--card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  text-align: left;
+  color: var(--text);
+  width: 100%;
+}
+
+.modebtn__title{
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+.modebtn__sub{
+  font-size: .78rem;
+  color: var(--muted);
+}
+
+/* --- Not Found section --- */
+.notfound{
+  width: 100%;
+}
+
+.notfound .card{
+  text-align: center;
+  align-items: center;
+}
+
+.notfound h2{
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.notfound p{
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.notfound__actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* --- Footer --- */
+.footer{
+  margin-top: auto;
+  padding: 32px 0 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: .8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer__small{
+  font-size: .72rem;
+  opacity: .7;
+}
+
+/* --- Sticky bottom bar --- */
+.stickybar{
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 980px;
+}
+
+.stickybar__btn{
+  white-space: nowrap;
+}
+
+/* --- Modal overlay --- */
+.modal{
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(4px);
+}
+
+/* --- Modal card --- */
+.modal__card{
+  position: relative;
+  border-radius: 20px;
+  padding: 32px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal__card--wide{
+  max-width: 760px;
+}
+
+.modal__close{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.modal__title{
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.modal__text{
+  font-size: .92rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.modal__actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.modal__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.modal__mode{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.modal__meta{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.modal__grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* --- H3 heading in modals --- */
+.h3{
+  font-size: .85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+/* --- Ingredient/step lists --- */
+.list{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: .88rem;
+  line-height: 1.6;
+}
+
+/* --- Buttons: base --- */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 22px;
+  border-radius: 980px;
+  font-size: .9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--card);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.btn-ghost{
+  background: var(--card);
+  border-color: var(--border);
+}
+
+.btn-ghost:hover{
+  background: var(--card2);
+}
+
+/* --- Icon button --- */
+.iconbtn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 980px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1;
+}
+
+/* --- Select dropdown --- */
+.select{
+  appearance: none;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 980px;
+  color: var(--text);
+  font-size: .85rem;
+  font-family: inherit;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+/* --- Responsive: tablet --- */
+@media (max-width: 1024px){
+  .layout{
+    grid-template-columns: 0 1fr 0;
+    gap: 0;
+  }
+  .adcol{
+    display: none;
+  }
+}
+
+/* --- Responsive: mobile --- */
+@media (max-width: 640px){
+  .layout{
+    padding: 16px 12px 100px;
+  }
+  .panel__grid{
+    grid-template-columns: 1fr;
+  }
+  .modes{
+    grid-template-columns: 1fr;
+  }
+  .modal__grid{
+    grid-template-columns: 1fr;
+  }
+  .hero{
+    padding: 32px 8px 16px;
+  }
+  .topbar{
+    padding: 10px 16px;
+  }
+  .stickybar{
+    width: calc(100% - 32px);
+    justify-content: center;
+    border-radius: 20px;
+  }
+}
+
+/* =========================================
+   VISUAL / DESIGN — Apple-style
+   ========================================= */
 
 /* Mouse glow layer */
 body::before{

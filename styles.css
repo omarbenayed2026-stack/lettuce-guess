@@ -1,39 +1,41 @@
 /* =========================================
    Lettuce Guess — Complete Stylesheet
    Structural layout + Apple-style visual design
-   - Layout: topbar, hero, panel, cards, modals, stickybar
-   - Visual: glassmorphism, glow effects, modern typography
-   - Emoji fix: no grayscale filters
    ========================================= */
 
 /* --- Google Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap');
 
-/* --- Theme tokens --- */
-:root{
-  --bg:#070b10;
-  --text:#eef3ff;
-  --muted:rgba(238,243,255,.72);
-  --card:rgba(255,255,255,.07);
-  --card2:rgba(255,255,255,.11);
-  --border:rgba(255,255,255,.14);
-  --shadow:0 22px 80px rgba(0,0,0,.55);
+/* --- Theme tokens (Modern & Clean) --- */
+:root {
+  /* Cleaner dark mode palette */
+  --bg: #0f172a;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --card: rgba(30, 41, 59, 0.7);
+  --card2: rgba(51, 65, 85, 0.8);
+  --border: rgba(255, 255, 255, 0.1);
+  --shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
 
-  --green:#22c55e;
-  --green2:#34d399;
+  /* Refined Green Accent */
+  --green: #10b981;
+  --green2: #34d399;
+  --green-glow: rgba(16, 185, 129, 0.15);
 
-  --radius:18px;
-  --radius2:14px;
+  --radius: 24px;
+  --radius2: 16px;
 }
 
-body.theme-light{
-  --bg:#f6f8fc;
-  --text:#0b1220;
-  --muted:rgba(11,18,32,.65);
-  --card:rgba(0,0,0,.06);
-  --card2:rgba(0,0,0,.10);
-  --border:rgba(0,0,0,.12);
-  --shadow:0 18px 60px rgba(0,0,0,.20);
+body.theme-light {
+  /* Cleaner light mode palette */
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --muted: #64748b;
+  --card: #ffffff;
+  --card2: #f1f5f9;
+  --border: rgba(0, 0, 0, 0.08);
+  --shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+  --green-glow: rgba(16, 185, 129, 0.1);
 }
 
 /* =========================================
@@ -56,13 +58,11 @@ body{
   font-size: 16px;
   line-height: 1.6;
   color: var(--text);
+  background-color: var(--bg);
   min-height: 100vh;
+  margin: 0;
   position: relative;
   overflow-x: hidden;
-  background:
-    radial-gradient(950px 680px at 18% 0%, rgba(34,197,94,.20), transparent 62%),
-    radial-gradient(820px 640px at 86% 18%, rgba(167,139,250,.16), transparent 56%),
-    var(--bg);
 }
 
 [dir="rtl"] body,
@@ -72,21 +72,21 @@ body[dir="rtl"]{
 }
 
 /* --- Topbar (fixed header) --- */
-.topbar{
+.topbar {
   position: sticky;
   top: 0;
   z-index: 100;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 12px 24px;
-  background: rgba(7,11,16,.72);
+  align-items: center;
+  padding: 16px 5%;
+  background: rgba(15, 23, 42, 0.85);
   border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
-
-body.theme-light .topbar{
-  background: rgba(246,248,252,.80);
+body.theme-light .topbar { 
+  background: rgba(255, 255, 255, 0.85); 
 }
 
 .brand{
@@ -122,17 +122,18 @@ body.theme-light .topbar{
 }
 
 /* --- Main layout: ads + app --- */
-.layout{
+.layout {
   display: grid;
-  grid-template-columns: 160px 1fr 160px;
-  gap: 24px;
-  max-width: 1280px;
+  grid-template-columns: minmax(0, 200px) minmax(320px, 800px) minmax(0, 200px);
+  justify-content: center;
+  gap: 32px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 24px 16px 120px;
+  padding: 32px 24px 120px;
   min-height: calc(100vh - 64px);
 }
 
-/* --- Ad columns --- */
+/* --- Ad columns (MADE LONGER) --- */
 .adcol{
   display: flex;
   flex-direction: column;
@@ -147,7 +148,7 @@ body.theme-light .topbar{
   text-align: center;
   font-size: .75rem;
   color: var(--muted);
-  min-height: 300px;
+  min-height: 600px; /* <--- EXTENDED AD BOX PANELS */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -172,7 +173,7 @@ body.theme-light .topbar{
 .app{
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
   min-width: 0;
 }
 
@@ -236,120 +237,98 @@ body.theme-light .topbar{
   color: var(--muted);
 }
 
-/* --- Panel (preferences) --- */
-.panel{
-  border-radius: 20px;
-  padding: 24px;
+/* --- Cards, Panels & Modals (FIXED FOR LIGHT MODE READABILITY) --- */
+#preferencesPanel,
+#result,
+#notFound,
+#introModal .modal__card,
+#recipeModal .modal__card,
+.card,
+.panel {
+  background: var(--card) !important;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+  padding: 32px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.panel__header{
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 20px;
+/* --- GIANT FOOD SUGGESTION MODS --- */
+#result .card {
+  padding: 50px 30px;
+  text-align: center;
+  align-items: center;
+  border: 2px solid var(--green);
+  box-shadow: 0 0 50px rgba(16, 185, 129, 0.2);
 }
 
-.panel__title{
-  font-size: 1.2rem;
-  font-weight: 700;
+#result .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -10px var(--green-glow);
+}
+
+#result .card__top {
+  flex-direction: column; /* Stacks the emoji on top of the text */
+  gap: 20px;
+}
+
+.foodEmoji {
+  font-size: 130px !important; /* Massive Emoji */
+  margin-bottom: 8px;
+  line-height: 1;
+  text-shadow: 0 18px 35px rgba(0,0,0,.35);
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.foodName {
+  font-size: 3.5rem !important; /* Huge text for the meal name */
+  font-weight: 800;
+  letter-spacing: -0.02em;
   color: var(--text);
-}
-
-.panel__subtitle{
-  font-size: .85rem;
-  color: var(--muted);
-  margin-top: 2px;
-}
-
-.panel__sectionTitle{
-  font-size: .8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  color: var(--green);
+  line-height: 1.1;
   margin-bottom: 12px;
 }
 
-.panel__grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+#result .card__meta .row {
+  justify-content: center; /* Center the tags under the title */
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
-.panel__footer{
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-/* --- Divider --- */
-.divider{
-  height: 1px;
-  background: var(--border);
-  margin: 12px 0;
-}
-
-/* --- Checkbox labels --- */
-.chk{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 10px;
-  border-radius: var(--radius2);
-  border: 1px solid transparent;
-  cursor: pointer;
-  font-size: .9rem;
-  color: var(--text);
-  user-select: none;
-}
-
-/* --- Result section --- */
-.result{
-  width: 100%;
-}
-
-/* --- Card --- */
-.card{
-  border-radius: 20px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.card__top{
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.card__meta{
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
-}
-
-/* --- Food name --- */
-.foodName{
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1.2;
-}
-
-.foodDesc{
-  font-size: .9rem;
+.foodDesc {
+  font-size: 1.3rem !important;
   color: var(--muted);
+  line-height: 1.7;
+  text-align: center;
+  max-width: 600px;
+  margin-bottom: 24px;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Recipe Ingredients & Steps box */
+.list {
+  background: var(--card2);
+  padding: 24px 24px 24px 40px;
+  border-radius: var(--radius2);
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--text);
+  font-size: 0.95rem;
   line-height: 1.6;
 }
-
-/* --- Row (pills row) --- */
-.row{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
+.list li {
+  margin-bottom: 12px;
+}
+.list li::marker {
+  color: var(--green);
+  font-weight: bold;
 }
 
 /* --- Pill badges --- */
@@ -357,9 +336,9 @@ body.theme-light .topbar{
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 4px 12px;
-  border-radius: 980px;
-  font-size: .78rem;
+  padding: 6px 16px;
+  border-radius: 99px;
+  font-size: 0.85rem;
   font-weight: 600;
   background: var(--card2);
   border: 1px solid var(--border);
@@ -372,13 +351,97 @@ body.theme-light .topbar{
   color: #a5b4fc;
 }
 
+/* =========================================
+   GLOWING TAG CHECKBOXES (NO MORE SQUARES)
+   ========================================= */
+
+/* 1. Hide the actual checkbox completely */
+.chk input[type="checkbox"] {
+  display: none !important;
+  appearance: none;
+}
+
+/* 2. Style the label to look like a solid button tag */
+.chk {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: var(--card2) !important;
+  border: 2px solid transparent !important;
+  border-radius: 99px !important;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--muted) !important;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  margin-bottom: 8px;
+  margin-right: 6px;
+  user-select: none;
+}
+
+/* 3. Selected state: Glowing Green! */
+.chk:has(input[type="checkbox"]:checked) {
+  background: var(--green-glow) !important;
+  border-color: var(--green) !important;
+  color: var(--green) !important;
+  box-shadow: 0 8px 24px var(--green-glow) !important;
+  transform: scale(1.05);
+}
+
+/* 4. Hover state for unselected */
+.chk:hover:not(:has(:checked)) {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--text) !important;
+}
+
+/* --- Panel Headers --- */
+.panel__header{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.panel__title{
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.panel__subtitle{
+  font-size: .85rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.panel__sectionTitle{
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.panel__grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.panel__footer{
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.divider{
+  height: 1px;
+  background: var(--border);
+  margin: 12px 0;
+}
+
 /* --- Mode buttons --- */
 .modes{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
-
 .modebtn{
   display: flex;
   flex-direction: column;
@@ -393,12 +456,10 @@ body.theme-light .topbar{
   color: var(--text);
   width: 100%;
 }
-
 .modebtn__title{
   font-size: .9rem;
   font-weight: 700;
 }
-
 .modebtn__sub{
   font-size: .78rem;
   color: var(--muted);
@@ -408,23 +469,19 @@ body.theme-light .topbar{
 .notfound{
   width: 100%;
 }
-
 .notfound .card{
   text-align: center;
   align-items: center;
 }
-
 .notfound h2{
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--text);
 }
-
 .notfound p{
   color: var(--muted);
   font-size: .9rem;
 }
-
 .notfound__actions{
   display: flex;
   gap: 10px;
@@ -461,6 +518,12 @@ body.theme-light .topbar{
   gap: 8px;
   padding: 8px 12px;
   border-radius: 980px;
+  background: rgba(0,0,0,.42);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(16px);
+}
+body.theme-light .stickybar {
+  background: rgba(255,255,255,.70);
 }
 
 .stickybar__btn{
@@ -480,11 +543,9 @@ body.theme-light .topbar{
   backdrop-filter: blur(4px);
 }
 
-/* --- Modal card --- */
+/* --- Modal card specific setup --- */
 .modal__card{
   position: relative;
-  border-radius: 20px;
-  padding: 32px;
   width: 100%;
   max-width: 480px;
   max-height: 90vh;
@@ -562,43 +623,40 @@ body.theme-light .topbar{
   margin-bottom: 10px;
 }
 
-/* --- Ingredient/step lists --- */
-.list{
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding-left: 18px;
-  color: var(--muted);
-  font-size: .88rem;
-  line-height: 1.6;
-}
-
-/* --- Buttons: base --- */
-.btn{
+/* --- Modern Buttons --- */
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 10px 22px;
-  border-radius: 980px;
-  font-size: .9rem;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 99px;
+  font-size: 0.95rem;
   font-weight: 600;
-  font-family: inherit;
   cursor: pointer;
   border: 1px solid var(--border);
   color: var(--text);
-  background: var(--card);
-  text-decoration: none;
-  line-height: 1;
-}
-
-.btn-ghost{
-  background: var(--card);
-  border-color: var(--border);
-}
-
-.btn-ghost:hover{
   background: var(--card2);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--green), var(--green2));
+  color: #fff;
+  border: none;
+  box-shadow: 0 8px 20px var(--green-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 24px var(--green-glow);
+  filter: brightness(1.1);
+}
+
+.btn-ghost:hover {
+  background: var(--card2);
+  transform: translateY(-1px);
 }
 
 /* --- Icon button --- */
@@ -634,8 +692,8 @@ body.theme-light .topbar{
 /* --- Responsive: tablet --- */
 @media (max-width: 1024px){
   .layout{
-    grid-template-columns: 0 1fr 0;
-    gap: 0;
+    grid-template-columns: 1fr;
+    padding: 24px 16px 100px;
   }
   .adcol{
     display: none;
@@ -644,360 +702,24 @@ body.theme-light .topbar{
 
 /* --- Responsive: mobile --- */
 @media (max-width: 640px){
-  .layout{
-    padding: 16px 12px 100px;
+  .card, .panel, .modal__card {
+    padding: 24px 20px;
+    border-radius: 20px;
   }
-  .panel__grid{
-    grid-template-columns: 1fr;
-  }
-  .modes{
-    grid-template-columns: 1fr;
-  }
-  .modal__grid{
+  .foodName { font-size: 2.2rem !important; }
+  .foodEmoji { font-size: 90px !important; }
+  .btn { width: 100%; padding: 14px; }
+  .topbar { padding: 12px 16px; }
+  
+  .panel__grid, .modes, .modal__grid{
     grid-template-columns: 1fr;
   }
   .hero{
     padding: 32px 8px 16px;
-  }
-  .topbar{
-    padding: 10px 16px;
   }
   .stickybar{
     width: calc(100% - 32px);
     justify-content: center;
     border-radius: 20px;
   }
-}
-
-/* =========================================
-   VISUAL / DESIGN — Apple-style
-   ========================================= */
-
-/* Mouse glow layer */
-body::before{
-  content:"";
-  position:fixed;
-  inset:-50vmax;
-  pointer-events:none;
-  z-index:0;
-  /* We set --mx/--my from JS */
-  background:
-    radial-gradient(260px 260px at var(--mx, 50%) var(--my, 40%),
-      rgba(34,197,94,.18),
-      transparent 65%),
-    radial-gradient(520px 520px at var(--mx, 50%) var(--my, 40%),
-      rgba(34,197,94,.08),
-      transparent 70%);
-  transform:translateZ(0);
-  filter: blur(0px);
-}
-
-/* Keep content above glow */
-body > *{position:relative; z-index:1}
-
-/* --- Make brand green gradient --- */
-[data-i18n="brand"]{
-  font-weight:950;
-  background:linear-gradient(135deg,var(--green),var(--green2));
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
-
-/* --- Glass cards / panels / modals (safe selectors) --- */
-#preferencesPanel,
-#result,
-#notFound,
-#introModal .modal__card,
-#recipeModal .modal__card,
-.card,
-.panel{
-  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(14px);
-}
-
-/* --- Buttons: glow + lift + focus ring --- */
-button, .btn{
-  position:relative;
-  transition:
-    transform .12s ease,
-    box-shadow .18s ease,
-    filter .18s ease,
-    background .18s ease,
-    border-color .18s ease;
-}
-
-/* subtle inner shine */
-button::after, .btn::after{
-  content:"";
-  position:absolute;
-  inset:1px;
-  border-radius:inherit;
-  pointer-events:none;
-  background: radial-gradient(120px 60px at 30% 0%, rgba(255,255,255,.18), transparent 70%);
-  opacity:.0;
-  transition: opacity .18s ease;
-}
-
-button:hover, .btn:hover{
-  transform: translateY(-1px);
-  box-shadow: 0 18px 45px rgba(0,0,0,.30);
-}
-
-button:hover::after, .btn:hover::after{opacity:1}
-
-/* Primary button = strong green glow */
-.btn-primary,
-#discoverBtnTop, #discoverBtnSticky,
-#applyFiltersBtn, #relaxFiltersBtn{
-  background: linear-gradient(135deg,var(--green),var(--green2));
-  border-color: rgba(34,197,94,.38);
-  box-shadow: 0 16px 36px rgba(34,197,94,.16);
-}
-
-.btn-primary:hover,
-#discoverBtnTop:hover, #discoverBtnSticky:hover,
-#applyFiltersBtn:hover, #relaxFiltersBtn:hover{
-  box-shadow:
-    0 18px 44px rgba(34,197,94,.22),
-    0 0 0 3px rgba(34,197,94,.18);
-  filter: brightness(1.06);
-}
-
-/* Accessible focus */
-button:focus-visible, .btn:focus-visible{
-  outline:none;
-  box-shadow: 0 0 0 3px rgba(34,197,94,.28);
-}
-
-/* --- Sticky bar more premium --- */
-.stickybar, #stickyBar{
-  background: rgba(0,0,0,.42);
-  border:1px solid rgba(255,255,255,.12);
-  backdrop-filter: blur(16px);
-}
-body.theme-light .stickybar, body.theme-light #stickyBar{
-  background: rgba(255,255,255,.70);
-}
-
-/* --- Fix emoji visibility (in case some CSS was dimming them) --- */
-.leaf, #foodEmoji, .foodEmoji{
-  filter: none !important;
-  opacity: 1 !important;
-}
-
-
-/* --- Smooth page feel --- */
-*{
-  scroll-behavior:smooth;
-}
-
-/* Reduce motion for users who prefer it */
-@media (prefers-reduced-motion: reduce){
-  button, .btn{transition:none}
-  body::before{display:none}
-}
-
-/* =========================================
-   NEW CLEANER, RESPONSIVE, ENHANCED STYLES 
-   (Added at bottom to override & upgrade)
-   ========================================= */
-
-:root {
-  /* Cleaner dark mode palette */
-  --bg: #0f172a;
-  --text: #f8fafc;
-  --muted: #94a3b8;
-  --card: rgba(30, 41, 59, 0.7);
-  --card2: rgba(51, 65, 85, 0.8);
-  --border: rgba(255, 255, 255, 0.1);
-  --shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
-
-  /* Refined Green Accent */
-  --green: #10b981;
-  --green2: #34d399;
-  --green-glow: rgba(16, 185, 129, 0.15);
-
-  --radius: 24px;
-  --radius2: 16px;
-}
-
-body.theme-light {
-  /* Cleaner light mode palette */
-  --bg: #f8fafc;
-  --text: #0f172a;
-  --muted: #64748b;
-  --card: #ffffff;
-  --card2: #f1f5f9;
-  --border: rgba(0, 0, 0, 0.08);
-  --shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
-  --green-glow: rgba(16, 185, 129, 0.1);
-}
-
-/* Cleaner overrides for body / layout */
-body {
-  background-color: var(--bg);
-}
-
-.layout {
-  /* Cleaner dimensions: hides ads cleanly on smaller screens, centers main app */
-  grid-template-columns: minmax(0, 200px) minmax(320px, 800px) minmax(0, 200px);
-  justify-content: center;
-  gap: 32px;
-  max-width: 1400px;
-}
-
-.topbar {
-  padding: 16px 5%;
-  background: rgba(15, 23, 42, 0.85);
-  -webkit-backdrop-filter: blur(20px);
-}
-
-body.theme-light .topbar { 
-  background: rgba(255, 255, 255, 0.85); 
-}
-
-.card, .panel {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 32px;
-  box-shadow: var(--shadow);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 40px -10px var(--green-glow);
-  border-color: rgba(16, 185, 129, 0.3);
-}
-
-/* Recipe Ingredients & Steps box */
-.list {
-  background: var(--card2);
-  padding: 24px 24px 24px 40px;
-  border-radius: var(--radius2);
-  margin-top: 16px;
-}
-.list li {
-  margin-bottom: 12px;
-  color: var(--text);
-  font-size: 0.95rem;
-}
-.list li::marker {
-  color: var(--green);
-  font-weight: bold;
-}
-
-.pill {
-  padding: 6px 16px;
-  border-radius: 99px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  background: var(--card2);
-  border: 1px solid var(--border);
-}
-
-/* Better Mobile Dimensions (Phones) */
-@media (max-width: 1024px) {
-  .layout {
-    grid-template-columns: 1fr;
-    padding: 24px 16px 100px;
-  }
-}
-
-@media (max-width: 640px) {
-  .card, .panel {
-    padding: 24px 20px;
-    border-radius: 20px;
-  }
-  .btn { width: 100%; padding: 14px; }
-  .topbar { padding: 12px 16px; }
-}
-
-/* =========================================
-   GIANT FOOD SUGGESTION MODS
-   ========================================= */
-#result .card {
-  padding: 48px 32px;
-  text-align: center;
-  align-items: center;
-  border: 2px solid var(--green);
-  box-shadow: 0 0 40px var(--green-glow);
-}
-
-#result .card__top {
-  flex-direction: column; /* Stacks the emoji on top of the text */
-  gap: 16px;
-}
-
-.foodEmoji {
-  font-size: 110px !important; /* Massive Emoji */
-  margin-bottom: 8px;
-  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.foodName {
-  font-size: 2.8rem !important; /* Huge text for the meal name */
-  line-height: 1.1;
-  margin-bottom: 8px;
-  letter-spacing: -0.02em;
-}
-
-#result .card__meta .row {
-  justify-content: center; /* Center the tags under the title */
-  margin-top: 12px;
-  margin-bottom: 12px;
-}
-
-.foodDesc {
-  font-size: 1.2rem !important;
-  text-align: center;
-  max-width: 600px;
-  margin-bottom: 24px;
-}
-
-@keyframes popIn {
-  0% { transform: scale(0.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-/* =========================================
-   GLOWING TAG CHECKBOXES
-   ========================================= */
-/* 1. Hide the default square checkboxes completely */
-.chk input[type="checkbox"] {
-  display: none !important;
-}
-
-/* 2. Style the label wrapper to look like a pill/tag */
-.chk {
-  display: inline-flex;
-  padding: 10px 20px;
-  background: var(--card2) !important;
-  border: 2px solid var(--border) !important;
-  border-radius: 99px !important;
-  cursor: pointer;
-  transition: all 0.3s ease !important;
-  font-weight: 600;
-  color: var(--muted) !important;
-  margin-bottom: 8px;
-  margin-right: 4px;
-}
-
-/* 3. When clicked (checked), make it glow green! */
-.chk:has(input[type="checkbox"]:checked) {
-  background: rgba(16, 185, 129, 0.15) !important; /* Light green background */
-  border-color: var(--green) !important; /* Solid green border */
-  color: var(--green) !important; /* Green text */
-  box-shadow: 0 0 15px rgba(16, 185, 129, 0.5) !important; /* Green glow */
-  transform: scale(1.05); /* Pop out slightly */
-}
-
-/* 4. Hover effect when NOT selected */
-.chk:hover:not(:has(input[type="checkbox"]:checked)) {
-  border-color: rgba(255, 255, 255, 0.4) !important;
-  color: var(--text) !important;
 }

@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lettuce Guess</title>
   <meta name="description" content="Random recipe generator for students: fast, cheap, tasty." />
+  
+  <!-- Added the Lettuce Favicon for the Browser Tab! -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥬</text></svg>" />
+  
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
@@ -42,7 +46,6 @@
         </p>
 
         <div class="hero__actions">
-          <!-- FIXED IDs HERE -->
           <button id="discoverBtnTop" class="btn btn-primary">Discover</button>
           <button id="dailyPickBtnTop" class="btn btn-ghost">Menu of the Day</button>
           <button id="preferencesBtnTop" class="btn btn-ghost">Preferences</button>
@@ -65,29 +68,29 @@
           <div>
             <div id="includeTitle" class="panel__sectionTitle">Include</div>
 
-            <label class="chk"><input id="studentOnly" type="checkbox" /> <span id="studentFriendly">Student Friendly</span></label>
-            <label class="chk"><input id="cheapOnly" type="checkbox" /> <span id="cheapText">Cheap (&lt; 6 DT)</span></label>
-            <label class="chk"><input id="expensiveOnly" type="checkbox" /> <span id="expensiveText">Costs money</span></label>
+            <label class="chk"><input id="studentOnly" type="checkbox" /> <span id="studentFriendly" data-i18n="studentFriendly">🎓 Student Friendly</span></label>
+            <label class="chk"><input id="cheapOnly" type="checkbox" /> <span id="cheapText" data-i18n="cheap">🪙 Cheap (&lt; 6 DT)</span></label>
+            <label class="chk"><input id="expensiveOnly" type="checkbox" /> <span id="expensiveText" data-i18n="expensive">💸 Costs money</span></label>
 
             <div class="divider"></div>
 
-            <label class="chk"><input id="tunisianStyle" type="checkbox" /> <span id="tunisianText">Tunisian</span></label>
-            <label class="chk"><input id="asianStyle" type="checkbox" /> <span id="asianText">Asian</span></label>
+            <label class="chk"><input id="tunisianStyle" type="checkbox" /> <span id="tunisianText" data-i18n="tunisianStyle">🇹🇳 Tunisian</span></label>
+            <label class="chk"><input id="asianStyle" type="checkbox" /> <span id="asianText" data-i18n="asianStyle">🥢 Asian</span></label>
 
             <div class="divider"></div>
 
-            <label class="chk"><input id="withChicken" type="checkbox" /> <span id="chickenText">Chicken</span></label>
-            <label class="chk"><input id="loveFish" type="checkbox" /> <span id="fishText">Fish</span></label>
-            <label class="chk"><input id="friedOnly" type="checkbox" /> <span id="friedText">Fried</span></label>
-            <label class="chk"><input id="vegan" type="checkbox" /> <span id="veganText">Vegan</span></label>
+            <label class="chk"><input id="withChicken" type="checkbox" /> <span id="chickenText" data-i18n="withChicken">🍗 Chicken</span></label>
+            <label class="chk"><input id="loveFish" type="checkbox" /> <span id="fishText" data-i18n="fish">🐟 Fish</span></label>
+            <label class="chk"><input id="friedOnly" type="checkbox" /> <span id="friedText" data-i18n="fried">🍟 Fried</span></label>
+            <label class="chk"><input id="vegan" type="checkbox" /> <span id="veganText" data-i18n="vegan">🥗 Vegan</span></label>
           </div>
 
           <div>
             <div id="excludeTitle" class="panel__sectionTitle">Blacklist (Exclude)</div>
 
-            <label class="chk"><input id="noFish" type="checkbox" /> <span id="noFishText">No Fish</span></label>
-            <label class="chk"><input id="noChicken" type="checkbox" /> <span id="noChickenText">No Chicken</span></label>
-            <label class="chk"><input id="noSpicy" type="checkbox" /> <span id="noSpicyText">No Spicy</span></label>
+            <label class="chk"><input id="noFish" type="checkbox" /> <span id="noFishText" data-i18n="noFish">🚫🐟 No Fish</span></label>
+            <label class="chk"><input id="noChicken" type="checkbox" /> <span id="noChickenText" data-i18n="noChicken">🚫🍗 No Chicken</span></label>
+            <label class="chk"><input id="noSpicy" type="checkbox" /> <span id="noSpicyText" data-i18n="noSpicy">🚫🌶️ No Spicy</span></label>
 
             <div class="panel__footer">
               <button id="resetFiltersBtn" class="btn btn-ghost">Reset</button>

@@ -1,11 +1,8 @@
 /* =========================================
    Lettuce Guess — stable version (FIXED)
    Goals:
-   - Keep your ORIGINAL HTML IDs (so nothing breaks)
-   - Keep your ORIGINAL data-i18n system
-   - Restore green accents + clean design
-   - Discover/Daily Pick/Preferences all work
-   - No schema changes to your recipes
+   - Added Emojis to translation objects to keep tags looking great.
+   - Preference button now toggles correctly.
    ========================================= */
 
 /* ---------- I18N (same keys you already use) ---------- */
@@ -23,18 +20,18 @@ const translations = {
     customize: "Customize your craving",
     includeTitle: "Include",
     excludeTitle: "Blacklist (Exclude)",
-    studentFriendly: "Student Friendly",
-    cheap: "Cheap (< 6 DT)",
-    expensive: "Costs money",
-    tunisianStyle: "Tunisian",
-    asianStyle: "Asian",
-    withChicken: "Chicken",
-    fish: "Fish",
-    fried: "Fried",
-    vegan: "Vegan",
-    noFish: "No Fish",
-    noChicken: "No Chicken",
-    noSpicy: "No Spicy",
+    studentFriendly: "🎓 Student Friendly",
+    cheap: "🪙 Cheap (< 6 DT)",
+    expensive: "💸 Costs money",
+    tunisianStyle: "🇹🇳 Tunisian",
+    asianStyle: "🥢 Asian",
+    withChicken: "🍗 Chicken",
+    fish: "🐟 Fish",
+    fried: "🍟 Fried",
+    vegan: "🥗 Vegan",
+    noFish: "🚫🐟 No Fish",
+    noChicken: "🚫🍗 No Chicken",
+    noSpicy: "🚫🌶️ No Spicy",
     reset: "Reset",
     apply: "Apply",
     notFoundTitle: "No matches found",
@@ -52,12 +49,6 @@ const translations = {
     introTagline: "Pick a meal in seconds.",
     introText:
       "Welcome! Use Discover to get a random meal. Open Preferences to filter by budget, style, and ingredients. Tap again for a new suggestion (we also try to avoid repeats).",
-    introF1Title: "One-tap suggestions",
-    introF1Sub: "Discover stays visible at the bottom.",
-    introF2Title: "Budget aware",
-    introF2Sub: "Cheap vs costs money tags + DT estimates.",
-    introF3Title: "Smarter variety",
-    introF3Sub: "Avoids repeats and tries to mix cuisines.",
     startDiscover: "Start discovering",
     funnyTexts: [
       "Checking your wallet...",
@@ -80,18 +71,18 @@ const translations = {
     customize: "Personnalisez",
     includeTitle: "Inclure",
     excludeTitle: "Liste noire (Exclure)",
-    studentFriendly: "Pour étudiant",
-    cheap: "Pas cher (< 6 DT)",
-    expensive: "Ça coûte",
-    tunisianStyle: "Tunisien",
-    asianStyle: "Asiatique",
-    withChicken: "Poulet",
-    fish: "Poisson",
-    fried: "Frit",
-    vegan: "Végan",
-    noFish: "Sans poisson",
-    noChicken: "Sans poulet",
-    noSpicy: "Pas épicé",
+    studentFriendly: "🎓 Pour étudiant",
+    cheap: "🪙 Pas cher (< 6 DT)",
+    expensive: "💸 Ça coûte",
+    tunisianStyle: "🇹🇳 Tunisien",
+    asianStyle: "🥢 Asiatique",
+    withChicken: "🍗 Poulet",
+    fish: "🐟 Poisson",
+    fried: "🍟 Frit",
+    vegan: "🥗 Végan",
+    noFish: "🚫🐟 Sans poisson",
+    noChicken: "🚫🍗 Sans poulet",
+    noSpicy: "🚫🌶️ Pas épicé",
     reset: "Réinitialiser",
     apply: "Appliquer",
     notFoundTitle: "Aucun résultat",
@@ -109,12 +100,6 @@ const translations = {
     introTagline: "Choisis un plat en quelques secondes.",
     introText:
       "Bienvenue ! Utilisez Découvrir pour une recette aléatoire. Ouvrez Préférences pour filtrer par budget, style et ingrédients. Appuyez à nouveau pour une autre suggestion (on évite aussi les répétitions).",
-    introF1Title: "Suggestions en un clic",
-    introF1Sub: "Découvrir reste visible en bas.",
-    introF2Title: "Budget",
-    introF2Sub: "Tags pas cher / ça coûte + estimation DT.",
-    introF3Title: "Variété",
-    introF3Sub: "Évite les répétitions et mélange les cuisines.",
     startDiscover: "Commencer",
     funnyTexts: [
       "Vérification du portefeuille...",
@@ -137,18 +122,18 @@ const translations = {
     customize: "خصص رغباتك",
     includeTitle: "إضافة",
     excludeTitle: "القائمة السوداء (استبعاد)",
-    studentFriendly: "مناسب للطلاب",
-    cheap: "رخيص (أقل من 6 د.ت)",
-    expensive: "مكلف",
-    tunisianStyle: "تونسي",
-    asianStyle: "آسيوي",
-    withChicken: "دجاج",
-    fish: "سمك",
-    fried: "مقلي",
-    vegan: "نباتي",
-    noFish: "بدون سمك",
-    noChicken: "بدون دجاج",
-    noSpicy: "غير حار",
+    studentFriendly: "🎓 مناسب للطلاب",
+    cheap: "🪙 رخيص (أقل من 6 د.ت)",
+    expensive: "💸 مكلف",
+    tunisianStyle: "🇹🇳 تونسي",
+    asianStyle: "🥢 آسيوي",
+    withChicken: "🍗 دجاج",
+    fish: "🐟 سمك",
+    fried: "🍟 مقلي",
+    vegan: "🥗 نباتي",
+    noFish: "🚫🐟 بدون سمك",
+    noChicken: "🚫🍗 بدون دجاج",
+    noSpicy: "🚫🌶️ غير حار",
     reset: "إعادة ضبط",
     apply: "تطبيق",
     notFoundTitle: "لا توجد نتائج",
@@ -166,12 +151,6 @@ const translations = {
     introTagline: "اختر وجبة في ثوانٍ.",
     introText:
       "مرحبًا! استخدم «اكتشف» للحصول على وجبة عشوائية. افتح «التفضيلات» للتصفية حسب الميزانية والنوع والمكونات. اضغط مرة أخرى لاقتراح جديد (ونحاول تجنب التكرار).",
-    introF1Title: "اقتراح بضغطة واحدة",
-    introF1Sub: "زر «اكتشف» يبقى ظاهرًا في الأسفل.",
-    introF2Title: "مراعاة الميزانية",
-    introF2Sub: "رخيص/مكلف + تقدير بالدينار.",
-    introF3Title: "تنويع أذكى",
-    introF3Sub: "يتجنب التكرار ويحاول تنويع الأطباق.",
     startDiscover: "ابدأ",
     funnyTexts: [
       "جاري فحص محفظتك...",
@@ -185,8 +164,7 @@ const translations = {
 
 let currentLang = "en";
 
-/* ---------- Recipe Database (KEEP YOUR ORIGINAL SCHEMA) ---------- */
-/* IMPORTANT: Do NOT rename "translations" to anything else */
+/* ---------- Recipe Database ---------- */
 const foodDatabase = [
   {
     id: "tun_1",
@@ -204,37 +182,14 @@ const foodDatabase = [
         simple: {
           time: "10 mins",
           temp: "Medium-High (Stove)",
-          ingredients: [
-            "1 Malsouka sheet",
-            "Canned Tuna",
-            "1 Egg",
-            "Chopped Parsley & Onion",
-            "Pinch of Black Pepper & Salt"
-          ],
-          steps: [
-            "Mix tuna, parsley, onion, salt, and black pepper.",
-            "Place the mixture on the Malsouka sheet and make a small hole in the middle.",
-            "Crack the egg into the hole.",
-            "Fold into a triangle quickly and fry in hot oil for 2-3 mins per side until golden."
-          ]
+          ingredients: ["1 Malsouka sheet", "Canned Tuna", "1 Egg", "Chopped Parsley & Onion", "Pinch of Black Pepper & Salt"],
+          steps: ["Mix tuna, parsley, onion, salt, and black pepper.", "Place the mixture on the Malsouka sheet and make a small hole in the middle.", "Crack the egg into the hole.", "Fold into a triangle quickly and fry in hot oil for 2-3 mins per side until golden."]
         },
         hard: {
           time: "25 mins",
           temp: "Medium-High",
-          ingredients: [
-            "Malsouka",
-            "Tuna",
-            "Capers",
-            "Boiled Potato",
-            "1 Egg",
-            "Black Pepper",
-            "Tabil (Tunisian Spice)"
-          ],
-          steps: [
-            "Boil and mash 1 potato. Mix it with a pinch of Tabil, black pepper, tuna, and capers.",
-            "Spread the filling on the sheet, crack the egg inside.",
-            "Fold into a triangle and fry in hot oil until deeply crispy."
-          ]
+          ingredients: ["Malsouka", "Tuna", "Capers", "Boiled Potato", "1 Egg", "Black Pepper", "Tabil (Tunisian Spice)"],
+          steps: ["Boil and mash 1 potato. Mix it with a pinch of Tabil, black pepper, tuna, and capers.", "Spread the filling on the sheet, crack the egg inside.", "Fold into a triangle and fry in hot oil until deeply crispy."]
         }
       },
       fr: {
@@ -242,34 +197,18 @@ const foodDatabase = [
         origin: "Tunisie",
         difficulty: "Moyen",
         cost: "Env. 3.00 DT",
-        description:
-          "Un triangle de pâte croustillante, farci au thon, persil et un œuf coulant.",
+        description: "Un triangle de pâte croustillante, farci au thon, persil et un œuf coulant.",
         simple: {
           time: "10 mins",
           temp: "Feu Vif",
-          ingredients: [
-            "1 Feuille de Malsouka",
-            "Thon",
-            "1 Œuf",
-            "Persil et oignon hachés",
-            "Sel & Poivre"
-          ],
-          steps: [
-            "Mélanger thon, persil, oignon et épices.",
-            "Placer sur la feuille, faire un creux.",
-            "Casser l'œuf dedans.",
-            "Plier en triangle et frire 2-3 mins par face."
-          ]
+          ingredients: ["1 Feuille de Malsouka", "Thon", "1 Œuf", "Persil et oignon hachés", "Sel & Poivre"],
+          steps: ["Mélanger thon, persil, oignon et épices.", "Placer sur la feuille, faire un creux.", "Casser l'œuf dedans.", "Plier en triangle et frire 2-3 mins par face."]
         },
         hard: {
           time: "25 mins",
           temp: "Feu Vif",
           ingredients: ["Malsouka", "Thon", "Câpres", "Pomme de terre", "1 Œuf", "Poivre", "Tabel"],
-          steps: [
-            "Écraser la pomme de terre bouillie, mélanger avec Tabel, thon et câpres.",
-            "Placer la farce, ajouter l'œuf.",
-            "Frire dans l'huile bien chaude."
-          ]
+          steps: ["Écraser la pomme de terre bouillie, mélanger avec Tabel, thon et câpres.", "Placer la farce, ajouter l'œuf.", "Frire dans l'huile bien chaude."]
         }
       },
       ar: {
@@ -282,22 +221,13 @@ const foodDatabase = [
           time: "10 دقائق",
           temp: "نار متوسطة-عالية",
           ingredients: ["ورقة ملسوقة", "تونة", "بيضة", "بقدونس وبصل مقطع", "ملح وفلفل أسود"],
-          steps: [
-            "اخلط التونة، البقدونس، البصل، والبهارات.",
-            "ضع الخليط على الملسوقة واصنع حفرة صغيرة.",
-            "اكسر البيضة داخل الحفرة.",
-            "اطوها على شكل مثلث واقليها في زيت ساخن حتى تصبح ذهبية."
-          ]
+          steps: ["اخلط التونة، البقدونس، البصل، والبهارات.", "ضع الخليط على الملسوقة واصنع حفرة صغيرة.", "اكسر البيضة داخل الحفرة.", "اطوها على شكل مثلث واقليها في زيت ساخن حتى تصبح ذهبية."]
         },
         hard: {
           time: "25 دقيقة",
           temp: "نار عالية",
           ingredients: ["ملسوقة", "تونة", "كَبَر", "بطاطا مسلوقة", "بيضة", "فلفل أسود", "تابل وكروية"],
-          steps: [
-            "اسلق البطاطا واهرسها، اخلطها مع التابل والتونة والكبر.",
-            "ضع الحشوة والبيضة على الورقة.",
-            "اقليها في زيت ساخن جداً حتى تقرمش."
-          ]
+          steps: ["اسلق البطاطا واهرسها، اخلطها مع التابل والتونة والكبر.", "ضع الحشوة والبيضة على الورقة.", "اقليها في زيت ساخن جداً حتى تقرمش."]
         }
       }
     }
@@ -314,34 +244,18 @@ const foodDatabase = [
         origin: "Tunisia",
         difficulty: "Easy",
         cost: "Est. 3.50 DT",
-        description:
-          "The ultimate cheap, garlicky chickpea street-food soup poured over day-old bread.",
+        description: "The ultimate cheap, garlicky chickpea street-food soup poured over day-old bread.",
         simple: {
           time: "15 mins",
           temp: "Boiling",
-          ingredients: [
-            "1 Can Chickpeas",
-            "1 tbsp Harissa",
-            "Stale Baguette",
-            "2 cloves Garlic (crushed)",
-            "1 tsp Cumin",
-            "Olive Oil"
-          ],
-          steps: [
-            "Boil chickpeas in their water with crushed garlic, cumin, and salt for 10 minutes.",
-            "Tear the stale bread into small pieces in a bowl.",
-            "Pour the boiling soup over the bread. Top with Harissa, olive oil, and extra cumin."
-          ]
+          ingredients: ["1 Can Chickpeas", "1 tbsp Harissa", "Stale Baguette", "2 cloves Garlic (crushed)", "1 tsp Cumin", "Olive Oil"],
+          steps: ["Boil chickpeas in their water with crushed garlic, cumin, and salt for 10 minutes.", "Tear the stale bread into small pieces in a bowl.", "Pour the boiling soup over the bread. Top with Harissa, olive oil, and extra cumin."]
         },
         hard: {
           time: "2 hours",
           temp: "Low Simmer",
           ingredients: ["Dried Chickpeas", "Garlic", "Harissa", "Olive Oil", "Cumin", "Canned Tuna", "1 Soft-Boiled Egg"],
-          steps: [
-            "Soak chickpeas overnight. Boil them for 2 hours until very soft.",
-            "Prepare a bowl with torn bread.",
-            "Add the hot chickpeas and broth. Top heavily with olive oil, cumin, Harissa, tuna, and mix the soft-boiled egg in."
-          ]
+          steps: ["Soak chickpeas overnight. Boil them for 2 hours until very soft.", "Prepare a bowl with torn bread.", "Add the hot chickpeas and broth. Top heavily with olive oil, cumin, Harissa, tuna, and mix the soft-boiled egg in."]
         }
       },
       fr: {
@@ -349,27 +263,18 @@ const foodDatabase = [
         origin: "Tunisie",
         difficulty: "Facile",
         cost: "Env. 3.50 DT",
-        description:
-          "Soupe de rue pas chère aux pois chiches et à l'ail, versée sur du pain de la veille.",
+        description: "Soupe de rue pas chère aux pois chiches et à l'ail, versée sur du pain de la veille.",
         simple: {
           time: "15 mins",
           temp: "Ébullition",
           ingredients: ["Pois chiches en boîte", "Harissa", "Pain rassis", "Ail", "Cumin", "Huile d'olive"],
-          steps: [
-            "Bouillir les pois chiches avec l'ail et le cumin 10 mins.",
-            "Déchirer le pain dans un bol.",
-            "Verser la soupe brûlante. Ajouter harissa et huile d'olive."
-          ]
+          steps: ["Bouillir les pois chiches avec l'ail et le cumin 10 mins.", "Déchirer le pain dans un bol.", "Verser la soupe brûlante. Ajouter harissa et huile d'olive."]
         },
         hard: {
           time: "2 heures",
           temp: "Frémir",
           ingredients: ["Pois chiches secs", "Ail", "Harissa", "Huile d'olive", "Cumin", "Thon", "Œuf mollet"],
-          steps: [
-            "Tremper les pois chiches la nuit. Bouillir 2h.",
-            "Mettre le pain dans un bol.",
-            "Ajouter pois chiches, bouillon, huile, cumin, harissa, thon et l'œuf."
-          ]
+          steps: ["Tremper les pois chiches la nuit. Bouillir 2h.", "Mettre le pain dans un bol.", "Ajouter pois chiches, bouillon, huile, cumin, harissa, thon et l'œuf."]
         }
       },
       ar: {
@@ -377,27 +282,18 @@ const foodDatabase = [
         origin: "تونس",
         difficulty: "سهل",
         cost: "حوالي 3.50 د.ت",
-        description:
-          "حساء الشارع الشهير والرخيص بالحمص والثوم، يُسكب فوق الخبز البائت.",
+        description: "حساء الشارع الشهير والرخيص بالحمص والثوم، يُسكب فوق الخبز البائت.",
         simple: {
           time: "15 دقيقة",
           temp: "غليان",
           ingredients: ["حمص معلب", "ملعقة هريسة", "خبز بائت", "ثوم مهروس", "كمون", "زيت زيتون"],
-          steps: [
-            "اغلي الحمص في مائه مع الثوم والكمون والملح لـ 10 دقائق.",
-            "قطع الخبز البائت في وعاء.",
-            "اسكب الحساء المغلي فوق الخبز وزينه بالهريسة وزيت الزيتون."
-          ]
+          steps: ["اغلي الحمص في مائه مع الثوم والكمون والملح لـ 10 دقائق.", "قطع الخبز البائت في وعاء.", "اسكب الحساء المغلي فوق الخبز وزينه بالهريسة وزيت الزيتون."]
         },
         hard: {
           time: "ساعتان",
           temp: "نار هادئة",
           ingredients: ["حمص جاف", "ثوم", "هريسة", "زيت زيتون", "كمون", "تونة", "بيضة نصف مسلوقة"],
-          steps: [
-            "انقع الحمص طوال الليل واغله لساعتين حتى يلين جداً.",
-            "حضر وعاء الخبز المقطع.",
-            "أضف الحمص والمرق، وزينه بسخاء بزيت الزيتون والكمون والهريسة والتونة والبيضة."
-          ]
+          steps: ["انقع الحمص طوال الليل واغله لساعتين حتى يلين جداً.", "حضر وعاء الخبز المقطع.", "أضف الحمص والمرق، وزينه بسخاء بزيت الزيتون والكمون والهريسة والتونة والبيضة."]
         }
       }
     }
@@ -414,29 +310,18 @@ const foodDatabase = [
         origin: "Tunisia",
         difficulty: "Hard",
         cost: "Est. 25.00 DT",
-        description:
-          "A rich, dark green stew simmered for hours, made with jute leaf powder and tender beef.",
+        description: "A rich, dark green stew simmered for hours, made with jute leaf powder and tender beef.",
         simple: {
           time: "3.5 hours",
           temp: "Low Heat",
           ingredients: ["Mloukhiya powder", "Olive Oil", "Beef chunks", "Minced Garlic", "Bay Leaves", "Tabil & Karwia"],
-          steps: [
-            "Mix the green powder with olive oil in a cold pot until it forms a paste.",
-            "Turn on medium heat, gradually whisk in 1.5 liters of boiling water.",
-            "Add garlic, bay leaves, Tabil, and beef.",
-            "Cover and simmer on very low heat for 3 hours until the oil separates."
-          ]
+          steps: ["Mix the green powder with olive oil in a cold pot until it forms a paste.", "Turn on medium heat, gradually whisk in 1.5 liters of boiling water.", "Add garlic, bay leaves, Tabil, and beef.", "Cover and simmer on very low heat for 3 hours until the oil separates."]
         },
         hard: {
           time: "5 hours",
           temp: "Lowest Heat",
           ingredients: ["Mloukhiya powder", "Premium Olive Oil", "Beef Shank", "Whole Head of Garlic", "Dried Mint", "Tabil & Karwia", "Bay Leaves"],
-          steps: [
-            "Marinate beef overnight with garlic, Tabil, Karwia, and salt.",
-            "Fry the powder in olive oil for 3 minutes (do not burn).",
-            "Whisk in boiling water.",
-            "Simmer for 2 hours, add beef. Cook 3 more hours until oil separates."
-          ]
+          steps: ["Marinate beef overnight with garlic, Tabil, Karwia, and salt.", "Fry the powder in olive oil for 3 minutes (do not burn).", "Whisk in boiling water.", "Simmer for 2 hours, add beef. Cook 3 more hours until oil separates."]
         }
       },
       fr: {
@@ -444,29 +329,18 @@ const foodDatabase = [
         origin: "Tunisie",
         difficulty: "Difficile",
         cost: "Env. 25.00 DT",
-        description:
-          "Ragoût vert foncé riche, mijoté pendant des heures avec de la poudre de corète et du bœuf.",
+        description: "Ragoût vert foncé riche, mijoté pendant des heures avec de la poudre de corète et du bœuf.",
         simple: {
           time: "3.5 heures",
           temp: "Feu Doux",
           ingredients: ["Poudre de Mloukhiya", "Huile d'olive", "Bœuf", "Ail", "Laurier", "Tabel & Karwia"],
-          steps: [
-            "Mélanger la poudre et l'huile à froid.",
-            "Chauffer et ajouter l'eau bouillante.",
-            "Ajouter ail, épices et viande.",
-            "Mijoter à feu très doux 3h jusqu'à ce que l'huile remonte."
-          ]
+          steps: ["Mélanger la poudre et l'huile à froid.", "Chauffer et ajouter l'eau bouillante.", "Ajouter ail, épices et viande.", "Mijoter à feu très doux 3h jusqu'à ce que l'huile remonte."]
         },
         hard: {
           time: "5 heures",
           temp: "Feu Très Doux",
           ingredients: ["Mloukhiya", "Huile d'olive", "Jarret de bœuf", "Ail", "Menthe séchée", "Tabel & Karwia", "Laurier"],
-          steps: [
-            "Mariner la viande la nuit avec les épices.",
-            "Frire la poudre dans l'huile 3 mins.",
-            "Ajouter l'eau bouillante doucement.",
-            "Mijoter 2h, ajouter la viande. Cuire encore 3h."
-          ]
+          steps: ["Mariner la viande la nuit avec les épices.", "Frire la poudre dans l'huile 3 mins.", "Ajouter l'eau bouillante doucement.", "Mijoter 2h, ajouter la viande. Cuire encore 3h."]
         }
       },
       ar: {
@@ -474,29 +348,18 @@ const foodDatabase = [
         origin: "تونس",
         difficulty: "صعب",
         cost: "حوالي 25.00 د.ت",
-        description:
-          "يخنة غنية وداكنة تُطبخ لساعات من مسحوق الملوخية ولحم البقر الطري.",
+        description: "يخنة غنية وداكنة تُطبخ لساعات من مسحوق الملوخية ولحم البقر الطري.",
         simple: {
           time: "3.5 ساعات",
           temp: "نار هادئة",
           ingredients: ["مسحوق ملوخية", "زيت زيتون", "قطع لحم بقر", "ثوم", "رند (غار)", "تابل وكروية"],
-          steps: [
-            "اخلط المسحوق مع الزيت في قدر بارد.",
-            "سخن القدر وأضف الماء المغلي تدريجياً.",
-            "أضف الثوم والرند واللحم.",
-            "اتركها تطبخ على نار هادئة جداً لـ 3 ساعات حتى يطفو الزيت."
-          ]
+          steps: ["اخلط المسحوق مع الزيت في قدر بارد.", "سخن القدر وأضف الماء المغلي تدريجياً.", "أضف الثوم والرند واللحم.", "اتركها تطبخ على نار هادئة جداً لـ 3 ساعات حتى يطفو الزيت."]
         },
         hard: {
           time: "5 ساعات",
           temp: "نار هادئة جداً",
           ingredients: ["ملوخية", "زيت زيتون رفيع", "لحم بقر (هبرة)", "رأس ثوم كامل", "نعناع شايح", "تابل وكروية", "رند"],
-          steps: [
-            "تبل اللحم ليلة كاملة بالثوم والبهارات.",
-            "اقلِ الملوخية في الزيت لـ 3 دقائق.",
-            "أضف الماء المغلي مع التحريك المستمر.",
-            "اطبخها لساعتين ثم أضف اللحم. اتركها 3 ساعات أخرى حتى يقر زيتها."
-          ]
+          steps: ["تبل اللحم ليلة كاملة بالثوم والبهارات.", "اقلِ الملوخية في الزيت لـ 3 دقائق.", "أضف الماء المغلي مع التحريك المستمر.", "اطبخها لساعتين ثم أضف اللحم. اتركها 3 ساعات أخرى حتى يقر زيتها."]
         }
       }
     }
@@ -518,21 +381,13 @@ const foodDatabase = [
           time: "15 mins",
           temp: "Boiling",
           ingredients: ["Spaghetti", "2 tbsp Butter", "1 tsp Garlic Powder", "Salt & Black Pepper", "Grated Cheese"],
-          steps: [
-            "Boil water, add salt, and cook pasta for 10 mins. Drain it.",
-            "In the same hot pot, melt butter, add garlic powder and black pepper.",
-            "Toss the pasta in the butter, top with cheese."
-          ]
+          steps: ["Boil water, add salt, and cook pasta for 10 mins. Drain it.", "In the same hot pot, melt butter, add garlic powder and black pepper.", "Toss the pasta in the butter, top with cheese."]
         },
         hard: {
           time: "20 mins",
           temp: "Medium Heat",
           ingredients: ["Spaghetti", "Real Butter", "4 cloves Fresh Garlic", "Fresh Parsley", "Chili Flakes", "Parmesan Cheese"],
-          steps: [
-            "Cook pasta, save half a cup of pasta water.",
-            "In a pan, melt butter. Sauté fresh minced garlic and chili flakes for 2 mins.",
-            "Add pasta and the saved water. Toss vigorously until a creamy sauce forms. Top with parsley."
-          ]
+          steps: ["Cook pasta, save half a cup of pasta water.", "In a pan, melt butter. Sauté fresh minced garlic and chili flakes for 2 mins.", "Add pasta and the saved water. Toss vigorously until a creamy sauce forms. Top with parsley."]
         }
       },
       fr: {
@@ -545,21 +400,13 @@ const foodDatabase = [
           time: "15 mins",
           temp: "Ébullition",
           ingredients: ["Spaghetti", "Beurre", "Ail en poudre", "Sel & Poivre", "Fromage râpé"],
-          steps: [
-            "Cuire les pâtes 10 mins et égoutter.",
-            "Fondre le beurre dans la casserole avec l'ail en poudre.",
-            "Mélanger les pâtes et ajouter le fromage."
-          ]
+          steps: ["Cuire les pâtes 10 mins et égoutter.", "Fondre le beurre dans la casserole avec l'ail en poudre.", "Mélanger les pâtes et ajouter le fromage."]
         },
         hard: {
           time: "20 mins",
           temp: "Feu Moyen",
           ingredients: ["Spaghetti", "Beurre", "Ail frais", "Persil", "Piment en flocons", "Parmesan"],
-          steps: [
-            "Cuire les pâtes, garder un peu d'eau de cuisson.",
-            "Fondre le beurre, sauter l'ail et le piment 2 mins.",
-            "Ajouter les pâtes et l'eau. Mélanger fort pour créer une sauce crémeuse."
-          ]
+          steps: ["Cuire les pâtes, garder un peu d'eau de cuisson.", "Fondre le beurre, sauter l'ail et le piment 2 mins.", "Ajouter les pâtes et l'eau. Mélanger fort pour créer une sauce crémeuse."]
         }
       },
       ar: {
@@ -572,21 +419,13 @@ const foodDatabase = [
           time: "15 دقيقة",
           temp: "غليان",
           ingredients: ["سباغيتي", "زبدة", "بودرة ثوم", "ملح وفلفل أسود", "جبن مبشور"],
-          steps: [
-            "اسلق المكرونة لـ 10 دقائق وصفها.",
-            "في نفس القدر، أذب الزبدة وأضف بودرة الثوم والفلفل.",
-            "قلب المكرونة في الزبدة وزينها بالجبن."
-          ]
+          steps: ["اسلق المكرونة لـ 10 دقائق وصفها.", "في نفس القدر، أذب الزبدة وأضف بودرة الثوم والفلفل.", "قلب المكرونة في الزبدة وزينها بالجبن."]
         },
         hard: {
           time: "20 دقيقة",
           temp: "نار متوسطة",
           ingredients: ["سباغيتي", "زبدة حيوانية", "ثوم طازج", "بقدونس طازج", "رقائق فلفل حار", "جبن بارميزان"],
-          steps: [
-            "اسلق المكرونة واحتفظ بنصف كوب من ماء السلق.",
-            "أذب الزبدة وشوّح الثوم الطازج والفلفل لـ دقيقتين.",
-            "أضف المكرونة وماء السلق. قلب بقوة حتى تتكون صلصة كريمية."
-          ]
+          steps: ["اسلق المكرونة واحتفظ بنصف كوب من ماء السلق.", "أذب الزبدة وشوّح الثوم الطازج والفلفل لـ دقيقتين.", "أضف المكرونة وماء السلق. قلب بقوة حتى تتكون صلصة كريمية."]
         }
       }
     }
@@ -608,23 +447,13 @@ const foodDatabase = [
           time: "25 mins",
           temp: "High Heat",
           ingredients: ["Chicken Breasts", "Flour", "2 Eggs", "Paprika, Garlic Powder, Salt, Black Pepper", "Frying Oil"],
-          steps: [
-            "Cut chicken into chunks.",
-            "Mix flour with a heavy amount of paprika, salt, and pepper.",
-            "Dip chicken in beaten egg, then in spiced flour.",
-            "Fry in 170°C hot oil for 7-10 minutes until golden brown."
-          ]
+          steps: ["Cut chicken into chunks.", "Mix flour with a heavy amount of paprika, salt, and pepper.", "Dip chicken in beaten egg, then in spiced flour.", "Fry in 170°C hot oil for 7-10 minutes until golden brown."]
         },
         hard: {
           time: "12 hours",
           temp: "160°C Oil",
           ingredients: ["Bone-in Chicken pieces", "Lben (Buttermilk)", "Flour", "Cornstarch", "Red Chili Powder, Garlic, Onion, White Pepper"],
-          steps: [
-            "Marinate chicken overnight in Lben and hot sauce.",
-            "Mix 2 parts flour, 1 part cornstarch, and spices.",
-            "Dredge chicken in flour, pressing hard.",
-            "Fry in deep oil for 12-15 minutes. Rest on a wire rack."
-          ]
+          steps: ["Marinate chicken overnight in Lben and hot sauce.", "Mix 2 parts flour, 1 part cornstarch, and spices.", "Dredge chicken in flour, pressing hard.", "Fry in deep oil for 12-15 minutes. Rest on a wire rack."]
         }
       },
       fr: {
@@ -676,7 +505,7 @@ let recentIds = loadJson("lettuceRecentIds", []);
 let lastCuisineTag = loadStr("lettuceLastCuisine", "");
 let hintShown = loadStr("lettuceHintShown", "0") === "1";
 
-/* ---------- DOM (YOUR ORIGINAL IDS) ---------- */
+/* ---------- DOM ---------- */
 const els = {
   languageSelect: document.getElementById("languageSelect"),
   themeToggleBtn: document.getElementById("themeToggleBtn"),
@@ -752,26 +581,21 @@ const els = {
 boot();
 
 function boot() {
-  // year
   if (els.copyrightYear) {
     els.copyrightYear.textContent = String(new Date().getFullYear());
   }
 
-  // language
   const savedLang = loadStr("lettuceLang", "en");
   currentLang = savedLang;
   if (els.languageSelect) els.languageSelect.value = savedLang;
   applyLanguage(savedLang);
 
-  // theme (default dark)
   const savedTheme = loadStr("lettuceTheme", "dark");
   setTheme(savedTheme);
 
-  // intro
   const introDone = loadStr("lettuceIntroDone", "0") === "1";
   if (!introDone) openIntro();
 
-  // hint once
   if (!hintShown) {
     els.hintText?.classList.remove("hidden");
     hintShown = true;
@@ -817,13 +641,13 @@ function wireEvents() {
   els.dailyPickBtnTop?.addEventListener("click", () => handleDiscover(true));
   els.dailyPickBtnSticky?.addEventListener("click", () => handleDiscover(true));
 
-  // Preferences open
-  els.preferencesBtnTop?.addEventListener("click", openPreferences);
-  els.preferencesBtnSticky?.addEventListener("click", openPreferences);
-  els.openPreferencesBtn2?.addEventListener("click", openPreferences);
+  // Preferences open/toggle (FIXED: Toggles instead of just opening)
+  els.preferencesBtnTop?.addEventListener("click", togglePreferences);
+  els.preferencesBtnSticky?.addEventListener("click", togglePreferences);
+  els.openPreferencesBtn2?.addEventListener("click", togglePreferences);
   els.introPreferencesBtn?.addEventListener("click", () => {
     closeIntro(true);
-    openPreferences();
+    togglePreferences();
   });
 
   // Preferences close / apply
@@ -885,7 +709,6 @@ function applyLanguage(lang) {
 
   const dict = translations[lang] || translations.en;
 
-  // your HTML uses data-i18n attributes
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     if (!key) return;
@@ -900,13 +723,21 @@ function applyLanguage(lang) {
 }
 
 /* ---------- Preferences UI ---------- */
-function openPreferences() {
-  els.preferencesPanel?.classList.remove("hidden");
-  els.preferencesPanel?.scrollIntoView({ behavior: "smooth", block: "start" });
+function togglePreferences() {
+  const panel = els.preferencesPanel;
+  if (!panel) return;
+  if (panel.classList.contains("hidden")) {
+    panel.classList.remove("hidden");
+    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  } else {
+    panel.classList.add("hidden");
+  }
 }
+
 function closePreferences() {
   els.preferencesPanel?.classList.add("hidden");
 }
+
 function resetFilters() {
   const ids = [
     "studentOnly","cheapOnly","expensiveOnly","tunisianStyle","asianStyle",
@@ -932,7 +763,6 @@ function closeIntro(markDone) {
 function handleDiscover(isDailyPick) {
   hideNotFound();
 
-  // loading line
   const ui = translations[currentLang] || translations.en;
   showLoadingLine(ui.funnyTexts);
 
@@ -1024,7 +854,6 @@ function smartPick(pool, filters) {
     if (rotated.length > 0) candidates = rotated;
   }
 
-  // small variety pressure (keep your original idea)
   const varietyTags = ["fried", "vegan", "chicken", "fish", "spicy"];
   const forced = new Set();
   if (filters.include.friedOnly) forced.add("fried");

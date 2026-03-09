@@ -1,14 +1,11 @@
 /* =========================================
    Lettuce Guess — Complete Stylesheet
-   Structural layout + Apple-style visual design
    ========================================= */
 
-/* --- Google Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap');
 
-/* --- Theme tokens (Modern & Clean) --- */
 :root {
-  /* Cleaner dark mode palette */
+  /* Dark Mode Palette */
   --bg: #0f172a;
   --text: #f8fafc;
   --muted: #94a3b8;
@@ -17,7 +14,6 @@
   --border: rgba(255, 255, 255, 0.1);
   --shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
 
-  /* Refined Green Accent */
   --green: #10b981;
   --green2: #34d399;
   --green-glow: rgba(16, 185, 129, 0.15);
@@ -27,33 +23,22 @@
 }
 
 body.theme-light {
-  /* Cleaner light mode palette */
-  --bg: #f8fafc;
-  --text: #0f172a;
+  /* SOFTER, EYE-FRIENDLY Light Mode Palette */
+  --bg: #eef2f6; /* Softer grayish blue instead of bright white */
+  --text: #334155; /* Dark slate instead of pure black */
   --muted: #64748b;
   --card: #ffffff;
-  --card2: #f1f5f9;
-  --border: rgba(0, 0, 0, 0.08);
-  --shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
-  --green-glow: rgba(16, 185, 129, 0.1);
+  --card2: #f8fafc;
+  --border: rgba(0, 0, 0, 0.06);
+  --shadow: 0 8px 30px rgba(0,0,0,0.04);
+  --green-glow: rgba(16, 185, 129, 0.08); /* Reduced glow */
 }
-
-/* =========================================
-   STRUCTURAL LAYOUT
-   ========================================= */
 
 /* --- Global resets --- */
-*, *::before, *::after{
-  box-sizing: border-box;
-}
+*, *::before, *::after{ box-sizing: border-box; }
+.hidden{ display: none !important; }
 
-/* --- Utility: hidden --- */
-.hidden{
-  display: none !important;
-}
-
-/* --- Base body & typography --- */
-body{
+body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 16px;
   line-height: 1.6;
@@ -61,665 +46,256 @@ body{
   background-color: var(--bg);
   min-height: 100vh;
   margin: 0;
-  position: relative;
   overflow-x: hidden;
+  transition: background-color 0.3s ease;
 }
 
-[dir="rtl"] body,
-[lang="ar"] body,
-body[dir="rtl"]{
+[dir="rtl"] body, [lang="ar"] body, body[dir="rtl"]{
   font-family: 'Tajawal', system-ui, sans-serif;
 }
 
-/* --- Topbar (fixed header) --- */
-.topbar {
+/* --- FLOATING PILL TOPBAR (Smooth & Modern) --- */
+.topbar-wrapper {
   position: sticky;
-  top: 0;
+  top: 16px; /* Floats slightly off the top */
   z-index: 100;
+  pointer-events: none; /* Let clicks pass through empty space */
+}
+.topbar {
+  pointer-events: auto; /* Re-enable clicks on the bar itself */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 5%;
+  padding: 14px 24px;
+  margin: 0 auto;
+  max-width: 1350px;
+  width: calc(100% - 32px); /* Margin for sides */
   background: rgba(15, 23, 42, 0.85);
-  border-bottom: 1px solid var(--border);
+  border: 1px solid var(--border);
+  border-radius: 99px; /* This makes it completely rounded/smooth */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
 }
-body.theme-light .topbar { 
-  background: rgba(255, 255, 255, 0.85); 
-}
+body.theme-light .topbar { background: rgba(255, 255, 255, 0.85); }
 
-.brand{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
+.brand{ display: flex; align-items: center; gap: 10px; }
 .brand__name{
   font-size: 1.25rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--green), var(--green2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-
 .brand__pill{
-  font-size: .7rem;
-  font-weight: 600;
-  color: var(--muted);
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 980px;
-  padding: 2px 10px;
-  letter-spacing: .04em;
+  font-size: .7rem; font-weight: 600; color: var(--muted); background: var(--card2);
+  border: 1px solid var(--border); border-radius: 99px; padding: 4px 12px; letter-spacing: .04em;
 }
+.topbar__right{ display: flex; align-items: center; gap: 8px; }
 
-.topbar__right{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* --- Main layout: ads + app --- */
+/* --- Main layout --- */
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 200px) minmax(320px, 800px) minmax(0, 200px);
   justify-content: center;
   gap: 32px;
   max-width: 1400px;
-  margin: 0 auto;
-  padding: 32px 24px 120px;
-  min-height: calc(100vh - 64px);
+  margin: 16px auto 0 auto; /* Added top margin to space out from topbar */
+  padding: 0 24px 120px;
+  align-items: start; /* CRITICAL for sticky ads to work */
 }
 
-/* --- Ad columns (MADE LONGER) --- */
+/* --- STICKY AD COLUMNS --- */
 .adcol{
+  position: sticky;
+  top: 100px; /* Sticks right below the topbar */
+  height: calc(100vh - 120px); /* Stretches to fill vertical space */
   display: flex;
   flex-direction: column;
-  padding-top: 8px;
 }
-
 .adbox{
-  background: var(--card);
-  border: 1px dashed var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  text-align: center;
-  font-size: .75rem;
-  color: var(--muted);
-  min-height: 600px; /* <--- EXTENDED AD BOX PANELS */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+  background: var(--card); border: 1px dashed var(--border); border-radius: var(--radius);
+  text-align: center; font-size: .75rem; color: var(--muted);
+  flex: 1; /* Makes it stretch completely down */
+  width: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
 }
-
-.adbox__title{
-  font-weight: 700;
-  letter-spacing: .08em;
-  font-size: .7rem;
-  color: var(--muted);
-}
-
-.adbox__hint{
-  font-size: .65rem;
-  color: var(--muted);
-  opacity: .7;
-}
+.adbox__title{ font-weight: 700; letter-spacing: .08em; font-size: .7rem; color: var(--muted); }
+.adbox__hint{ font-size: .65rem; color: var(--muted); opacity: .7; }
 
 /* --- App (center column) --- */
-.app{
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  min-width: 0;
+.app{ display: flex; flex-direction: column; gap: 32px; min-width: 0; }
+.hero{ display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding: 32px 16px; }
+.hero__title{ font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.2; color: var(--text); }
+.hero__subtitle{ font-size: 1rem; color: var(--muted); max-width: 520px; }
+.hero__actions{ display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 8px; }
+
+.loadingline{ width: 200px; height: 3px; border-radius: 2px; background: var(--card2); overflow: hidden; position: relative; }
+.loadingline::after{ content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, var(--green), transparent); animation: loadingSlide 1.2s linear infinite; }
+@keyframes loadingSlide{ 0% { transform: translateX(-100%); } 100%{ transform: translateX(200%); } }
+.hint{ font-size: .85rem; color: var(--muted); }
+
+/* --- Cards & Panels --- */
+#preferencesPanel, #result, #notFound, .card, .panel {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 32px; transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* --- Hero section --- */
-.hero{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 16px;
-  padding: 48px 16px 32px;
-}
-
-.hero__title{
-  font-size: clamp(1.6rem, 4vw, 2.8rem);
-  font-weight: 800;
-  line-height: 1.2;
-  color: var(--text);
-}
-
-.hero__subtitle{
-  font-size: 1rem;
-  color: var(--muted);
-  max-width: 520px;
-}
-
-.hero__actions{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-/* --- Loading line --- */
-.loadingline{
-  width: 200px;
-  height: 3px;
-  border-radius: 2px;
-  background: var(--card2);
-  overflow: hidden;
-  position: relative;
-}
-
-.loadingline::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, var(--green), transparent);
-  animation: loadingSlide 1.2s linear infinite;
-}
-
-@keyframes loadingSlide{
-  0%  { transform: translateX(-100%); }
-  100%{ transform: translateX(200%); }
-}
-
-/* --- Hint line --- */
-.hint{
-  font-size: .85rem;
-  color: var(--muted);
-}
-
-/* --- Cards, Panels & Modals (FIXED FOR LIGHT MODE READABILITY) --- */
-#preferencesPanel,
-#result,
-#notFound,
-#introModal .modal__card,
-#recipeModal .modal__card,
-.card,
-.panel {
-  background: var(--card) !important;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(14px);
-  padding: 32px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* --- GIANT FOOD SUGGESTION MODS --- */
-#result .card {
-  padding: 50px 30px;
+/* --- BALANCED FOOD SUGGESTION --- */
+.result-card {
+  padding: 40px 30px;
   text-align: center;
   align-items: center;
-  border: 2px solid var(--green);
-  box-shadow: 0 0 50px rgba(16, 185, 129, 0.2);
+  border: 2px solid var(--green) !important;
+  box-shadow: 0 0 40px var(--green-glow) !important;
 }
+.result-card:hover { transform: translateY(-2px); }
 
-#result .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 40px -10px var(--green-glow);
-}
-
-#result .card__top {
-  flex-direction: column; /* Stacks the emoji on top of the text */
-  gap: 20px;
-}
+#result .card__top { flex-direction: column; gap: 16px; }
 
 .foodEmoji {
-  font-size: 130px !important; /* Massive Emoji */
+  font-size: 85px !important; /* Scaled down slightly so it's not overwhelming */
   margin-bottom: 8px;
   line-height: 1;
-  text-shadow: 0 18px 35px rgba(0,0,0,.35);
-  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
 .foodName {
-  font-size: 3.5rem !important; /* Huge text for the meal name */
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  line-height: 1.1;
-  margin-bottom: 12px;
+  font-size: 2.3rem !important; /* Scaled down slightly */
+  font-weight: 800; letter-spacing: -0.02em; color: var(--text); line-height: 1.1; margin-bottom: 8px;
 }
-
-#result .card__meta .row {
-  justify-content: center; /* Center the tags under the title */
-  margin-top: 12px;
-  margin-bottom: 12px;
-}
-
+#result .card__meta .row { justify-content: center; margin-top: 12px; margin-bottom: 12px; }
 .foodDesc {
-  font-size: 1.3rem !important;
-  color: var(--muted);
-  line-height: 1.7;
-  text-align: center;
-  max-width: 600px;
-  margin-bottom: 24px;
+  font-size: 1.1rem !important; /* Scaled down slightly */
+  color: var(--muted); line-height: 1.6; text-align: center; max-width: 600px; margin-bottom: 24px;
 }
+@keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
-@keyframes popIn {
-  0% { transform: scale(0.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-/* Recipe Ingredients & Steps box */
 .list {
-  background: var(--card2);
-  padding: 24px 24px 24px 40px;
-  border-radius: var(--radius2);
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  color: var(--text);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  background: var(--card2); padding: 24px 24px 24px 40px; border-radius: var(--radius2); margin-top: 16px;
+  display: flex; flex-direction: column; gap: 6px; color: var(--text); font-size: 0.95rem; line-height: 1.6;
 }
-.list li {
-  margin-bottom: 12px;
+.list li { margin-bottom: 12px; }
+.list li::marker { color: var(--green); font-weight: bold; }
+.pill {
+  display: inline-flex; align-items: center; gap: 4px; padding: 6px 16px; border-radius: 99px;
+  font-size: 0.85rem; font-weight: 600; background: var(--card2); border: 1px solid var(--border); color: var(--text);
 }
-.list li::marker {
-  color: var(--green);
-  font-weight: bold;
-}
-
-/* --- Pill badges --- */
-.pill{
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 6px 16px;
-  border-radius: 99px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  background: var(--card2);
-  border: 1px solid var(--border);
-  color: var(--text);
-}
-
-.badge-blue{
-  background: rgba(99,102,241,.18);
-  border-color: rgba(99,102,241,.32);
-  color: #a5b4fc;
-}
+.badge-blue{ background: rgba(99,102,241,.18); border-color: rgba(99,102,241,.32); color: #818cf8; }
 
 /* =========================================
-   GLOWING TAG CHECKBOXES (NO MORE SQUARES)
+   GLOWING TAG CHECKBOXES 
    ========================================= */
-
-/* 1. Hide the actual checkbox completely */
-.chk input[type="checkbox"] {
-  display: none !important;
-  appearance: none;
-}
-
-/* 2. Style the label to look like a solid button tag */
+.chk input[type="checkbox"] { display: none !important; appearance: none; }
 .chk {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
-  background: var(--card2) !important;
-  border: 2px solid transparent !important;
-  border-radius: 99px !important;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--muted) !important;
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-  margin-bottom: 8px;
-  margin-right: 6px;
-  user-select: none;
+  display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px;
+  background: var(--card2) !important; border: 2px solid transparent !important;
+  border-radius: 99px !important; cursor: pointer; font-weight: 700; font-size: 0.95rem;
+  color: var(--muted) !important; transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  margin-bottom: 8px; margin-right: 6px; user-select: none;
 }
-
-/* 3. Selected state: Glowing Green! */
 .chk:has(input[type="checkbox"]:checked) {
-  background: var(--green-glow) !important;
-  border-color: var(--green) !important;
-  color: var(--green) !important;
-  box-shadow: 0 8px 24px var(--green-glow) !important;
-  transform: scale(1.05);
+  background: var(--green-glow) !important; border-color: var(--green) !important;
+  color: var(--green) !important; box-shadow: 0 8px 24px var(--green-glow) !important; transform: scale(1.05);
 }
-
-/* 4. Hover state for unselected */
-.chk:hover:not(:has(:checked)) {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: var(--text) !important;
-}
+.chk:hover:not(:has(:checked)) { background: rgba(255, 255, 255, 0.1) !important; color: var(--text) !important; }
 
 /* --- Panel Headers --- */
-.panel__header{
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-.panel__title{
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--text);
-}
-.panel__subtitle{
-  font-size: .85rem;
-  color: var(--muted);
-  margin-top: 2px;
-}
-.panel__sectionTitle{
-  font-size: .8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  color: var(--green);
-  margin-bottom: 12px;
-}
-.panel__grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-.panel__footer{
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-.divider{
-  height: 1px;
-  background: var(--border);
-  margin: 12px 0;
-}
+.panel__header{ display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+.panel__title{ font-size: 1.2rem; font-weight: 700; color: var(--text); }
+.panel__subtitle{ font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.panel__sectionTitle{ font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--green); margin-bottom: 12px; }
+.panel__grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.panel__footer{ display: flex; gap: 10px; margin-top: 20px; }
+.divider{ height: 1px; background: var(--border); margin: 12px 0; }
 
-/* --- Mode buttons --- */
-.modes{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
+/* --- GIANT CHEF/LAZY MODE BUTTONS --- */
+.modes{ display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .modebtn{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  padding: 14px 16px;
-  border-radius: var(--radius);
-  background: var(--card);
-  border: 1px solid var(--border);
-  cursor: pointer;
-  text-align: left;
-  color: var(--text);
-  width: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  gap: 8px; padding: 24px 16px; border-radius: var(--radius); background: var(--card2);
+  border: 2px solid var(--border); cursor: pointer; color: var(--text); transition: all 0.3s ease;
 }
-.modebtn__title{
-  font-size: .9rem;
-  font-weight: 700;
-}
-.modebtn__sub{
-  font-size: .78rem;
-  color: var(--muted);
-}
+.modebtn:hover { transform: translateY(-4px); }
+.modebtn__title{ font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; gap: 6px; }
+.modebtn__sub{ font-size: .85rem; color: var(--muted); }
 
-/* --- Not Found section --- */
-.notfound{
-  width: 100%;
-}
-.notfound .card{
-  text-align: center;
-  align-items: center;
-}
-.notfound h2{
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--text);
-}
-.notfound p{
-  color: var(--muted);
-  font-size: .9rem;
-}
-.notfound__actions{
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+/* Specific Colors for Mode Buttons on Hover */
+.lazy-mode:hover { border-color: #10b981; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2); }
+.chef-mode:hover { border-color: #ef4444; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.2); }
 
 /* --- Footer --- */
-.footer{
-  margin-top: auto;
-  padding: 32px 0 16px;
-  text-align: center;
-  color: var(--muted);
-  font-size: .8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.footer__small{
-  font-size: .72rem;
-  opacity: .7;
-}
+.footer{ margin-top: auto; padding: 32px 0 16px; text-align: center; color: var(--muted); font-size: .8rem; display: flex; flex-direction: column; gap: 4px; }
+.footer__small{ font-size: .72rem; opacity: .7; }
 
 /* --- Sticky bottom bar --- */
 .stickybar{
-  position: fixed;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: 980px;
-  background: rgba(0,0,0,.42);
-  border:1px solid rgba(255,255,255,.12);
-  backdrop-filter: blur(16px);
+  position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 200;
+  display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 980px;
+  background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border); backdrop-filter: blur(16px); box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
-body.theme-light .stickybar {
-  background: rgba(255,255,255,.70);
-}
+body.theme-light .stickybar { background: rgba(255, 255, 255, 0.85); }
+.stickybar__btn{ white-space: nowrap; }
 
-.stickybar__btn{
-  white-space: nowrap;
-}
+/* --- Modals --- */
+.modal{ position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0,0,0,.6); backdrop-filter: blur(6px); }
 
-/* --- Modal overlay --- */
-.modal{
-  position: fixed;
-  inset: 0;
-  z-index: 300;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  background: rgba(0,0,0,.6);
-  backdrop-filter: blur(4px);
-}
-
-/* --- Modal card specific setup --- */
+/* FIXED MODAL OVERLAP (Padding Top Added) */
 .modal__card{
-  position: relative;
-  width: 100%;
-  max-width: 480px;
-  max-height: 90vh;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  position: relative; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 16px; background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 56px 32px 32px 32px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
-
-.modal__card--wide{
-  max-width: 760px;
-}
-
+.modal__card--wide{ max-width: 760px; }
 .modal__close{
-  position: absolute;
-  top: 16px;
-  right: 16px;
+  position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; border-radius: 50%;
+  background: var(--card2); display: flex; align-items: center; justify-content: center; z-index: 10;
 }
+.modal__title{ font-size: 1.5rem; font-weight: 800; color: var(--text); }
+.modal__text{ font-size: .92rem; color: var(--muted); line-height: 1.65; }
+.modal__actions{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.modal__header{ display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.modal__mode{ display: flex; align-items: center; gap: 8px; font-size: 1.1rem; font-weight: 700; color: var(--text); }
+.modal__meta{ display: flex; gap: 8px; flex-wrap: wrap; }
+.modal__grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
-.modal__title{
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--text);
-}
+.h3{ font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--green); margin-bottom: 10px; }
 
-.modal__text{
-  font-size: .92rem;
-  color: var(--muted);
-  line-height: 1.65;
-}
-
-.modal__actions{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 4px;
-}
-
-.modal__header{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.modal__mode{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.modal__meta{
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.modal__grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-/* --- H3 heading in modals --- */
-.h3{
-  font-size: .85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  color: var(--green);
-  margin-bottom: 10px;
-}
-
-/* --- Modern Buttons --- */
+/* --- Modern Buttons (MADE LARGER) --- */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 28px;
-  border-radius: 99px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1px solid var(--border);
-  color: var(--text);
-  background: var(--card2);
-  transition: all 0.2s ease;
-  position: relative;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 32px; /* Bigger Padding */
+  border-radius: 99px; font-size: 1.05rem; /* Bigger Text */
+  font-weight: 600; cursor: pointer; border: 1px solid var(--border); color: var(--text);
+  background: var(--card2); transition: all 0.2s ease; position: relative;
 }
+.btn-primary { background: linear-gradient(135deg, var(--green), var(--green2)); color: #fff; border: none; box-shadow: 0 8px 20px var(--green-glow); }
+.btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 24px var(--green-glow); filter: brightness(1.1); }
+.btn-ghost:hover { background: var(--card2); transform: translateY(-1px); }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--green), var(--green2));
-  color: #fff;
-  border: none;
-  box-shadow: 0 8px 20px var(--green-glow);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 24px var(--green-glow);
-  filter: brightness(1.1);
-}
-
-.btn-ghost:hover {
-  background: var(--card2);
-  transform: translateY(-1px);
-}
-
-/* --- Icon button --- */
+/* --- Icon button / Select --- */
 .iconbtn{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 980px;
-  border: 1px solid var(--border);
-  background: var(--card);
-  color: var(--text);
-  font-size: 1rem;
-  cursor: pointer;
-  font-family: inherit;
-  line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+  border-radius: 980px; border: 1px solid var(--border); background: var(--card); color: var(--text);
+  font-size: 1rem; cursor: pointer; font-family: inherit; line-height: 1; transition: background 0.2s ease;
 }
-
-/* --- Select dropdown --- */
+.iconbtn:hover { background: var(--card2); }
 .select{
-  appearance: none;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 980px;
-  color: var(--text);
-  font-size: .85rem;
-  font-family: inherit;
-  padding: 6px 14px;
-  cursor: pointer;
+  appearance: none; background: var(--card); border: 1px solid var(--border); border-radius: 980px;
+  color: var(--text); font-size: .85rem; font-family: inherit; padding: 8px 16px; cursor: pointer;
 }
 
-/* --- Responsive: tablet --- */
+/* --- Responsive --- */
 @media (max-width: 1024px){
-  .layout{
-    grid-template-columns: 1fr;
-    padding: 24px 16px 100px;
-  }
-  .adcol{
-    display: none;
-  }
+  .layout{ grid-template-columns: 1fr; padding: 24px 16px 100px; }
+  .adcol{ display: none; }
 }
-
-/* --- Responsive: mobile --- */
 @media (max-width: 640px){
-  .card, .panel, .modal__card {
-    padding: 24px 20px;
-    border-radius: 20px;
-  }
-  .foodName { font-size: 2.2rem !important; }
-  .foodEmoji { font-size: 90px !important; }
-  .btn { width: 100%; padding: 14px; }
-  .topbar { padding: 12px 16px; }
-  
-  .panel__grid, .modes, .modal__grid{
-    grid-template-columns: 1fr;
-  }
-  .hero{
-    padding: 32px 8px 16px;
-  }
-  .stickybar{
-    width: calc(100% - 32px);
-    justify-content: center;
-    border-radius: 20px;
-  }
+  .card, .panel, .modal__card { padding: 24px 20px; border-radius: 20px; }
+  .modal__card { padding-top: 56px; } /* keep X safe */
+  .foodName { font-size: 2rem !important; }
+  .foodEmoji { font-size: 70px !important; }
+  .btn { width: 100%; padding: 16px; }
+  .topbar { padding: 12px 16px; width: calc(100% - 16px); top: 8px; border-radius: 24px; margin-bottom: 24px;}
+  .panel__grid, .modes, .modal__grid{ grid-template-columns: 1fr; }
+  .stickybar{ width: calc(100% - 32px); justify-content: center; border-radius: 20px; }
 }

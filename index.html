@@ -6,35 +6,37 @@
   <title>Lettuce Guess</title>
   <meta name="description" content="Random recipe generator for students: fast, cheap, tasty." />
   
-  <!-- Added the Lettuce Favicon for the Browser Tab! -->
+  <!-- Web Page Icon (Favicon) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥬</text></svg>" />
   
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body class="theme-dark" dir="ltr">
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand__name">Lettuce Guess</div>
-      <div class="brand__pill" id="brandPill">fast • cheap • tasty</div>
-    </div>
+  <div class="topbar-wrapper">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand__name">Lettuce Guess</div>
+        <div class="brand__pill" id="brandPill">fast • cheap • tasty</div>
+      </div>
 
-    <div class="topbar__right">
-      <select id="languageSelect" class="select" aria-label="Language">
-        <option value="en">EN</option>
-        <option value="fr">FR</option>
-        <option value="ar">AR</option>
-      </select>
-      <button id="helpBtn" class="iconbtn" title="Help">?</button>
-      <button id="themeToggleBtn" class="iconbtn" title="Toggle theme">☀️</button>
-    </div>
-  </header>
+      <div class="topbar__right">
+        <select id="languageSelect" class="select" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="fr">FR</option>
+          <option value="ar">AR</option>
+        </select>
+        <button id="helpBtn" class="iconbtn" title="Help">?</button>
+        <button id="themeToggleBtn" class="iconbtn" title="Toggle theme">☀️</button>
+      </div>
+    </header>
+  </div>
 
   <div class="layout">
     <aside class="adcol">
       <div class="adbox">
         <div class="adbox__title">AD SPACE</div>
-        <div class="adbox__hint">Left (300×600)</div>
+        <div class="adbox__hint">Left Side (Sticky)</div>
       </div>
     </aside>
 
@@ -101,7 +103,7 @@
       </section>
 
       <section id="result" class="result hidden">
-        <div class="card">
+        <div class="card result-card">
           <div class="card__top">
             <div id="foodEmoji" class="foodEmoji">🍲</div>
             <div class="card__meta">
@@ -117,12 +119,12 @@
           <p id="foodDesc" class="foodDesc">—</p>
 
           <div class="modes">
-            <button id="lazyModeBtn" class="modebtn">
+            <button id="lazyModeBtn" class="modebtn lazy-mode">
               <div id="lazyModeTitle" class="modebtn__title">🟢 Lazy Mode</div>
               <div id="lazyHint" class="modebtn__sub">Fast, cheap, microwave-friendly.</div>
             </button>
 
-            <button id="chefModeBtn" class="modebtn">
+            <button id="chefModeBtn" class="modebtn chef-mode">
               <div id="chefModeTitle" class="modebtn__title">🔴 Chef Mode</div>
               <div id="chefHint" class="modebtn__sub">Use the stove, impress your friends.</div>
             </button>
@@ -153,7 +155,7 @@
     <aside class="adcol">
       <div class="adbox">
         <div class="adbox__title">AD SPACE</div>
-        <div class="adbox__hint">Right (300×600)</div>
+        <div class="adbox__hint">Right Side (Sticky)</div>
       </div>
     </aside>
   </div>
@@ -164,7 +166,7 @@
     <button id="dailyPickBtnSticky" class="btn btn-ghost stickybar__btn">Menu of the Day</button>
   </div>
 
-  <!-- Intro -->
+  <!-- Intro Modal -->
   <div id="introModal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="modal__card">
       <button id="closeIntroBtn" class="iconbtn modal__close">✕</button>
@@ -180,7 +182,7 @@
     </div>
   </div>
 
-  <!-- Recipe -->
+  <!-- Recipe Modal -->
   <div id="recipeModal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="modal__card modal__card--wide">
       <button id="closeRecipeBtn" class="iconbtn modal__close">✕</button>

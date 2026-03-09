@@ -24,14 +24,14 @@
 
 body.theme-light {
   /* SOFTER, EYE-FRIENDLY Light Mode Palette */
-  --bg: #eef2f6; /* Softer grayish blue instead of bright white */
-  --text: #334155; /* Dark slate instead of pure black */
+  --bg: #eef2f6; 
+  --text: #334155; 
   --muted: #64748b;
   --card: #ffffff;
   --card2: #f8fafc;
   --border: rgba(0, 0, 0, 0.06);
   --shadow: 0 8px 30px rgba(0,0,0,0.04);
-  --green-glow: rgba(16, 185, 129, 0.08); /* Reduced glow */
+  --green-glow: rgba(16, 185, 129, 0.08); 
 }
 
 /* --- Global resets --- */
@@ -48,49 +48,51 @@ body {
   margin: 0;
   overflow-x: hidden;
   transition: background-color 0.3s ease;
+  /* APPLE-STYLE TEXTURE: Subtle noise pattern to break up flat colors */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
 [dir="rtl"] body, [lang="ar"] body, body[dir="rtl"]{
   font-family: 'Tajawal', system-ui, sans-serif;
 }
 
-/* --- FLOATING PILL TOPBAR (Smooth & Modern) --- */
+/* --- FLOATING PILL TOPBAR (Bigger & Smoother) --- */
 .topbar-wrapper {
   position: sticky;
-  top: 16px; /* Floats slightly off the top */
+  top: 16px; 
   z-index: 100;
-  pointer-events: none; /* Let clicks pass through empty space */
+  pointer-events: none; 
 }
 .topbar {
-  pointer-events: auto; /* Re-enable clicks on the bar itself */
+  pointer-events: auto; 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 24px;
+  padding: 16px 32px; /* Increased size */
   margin: 0 auto;
-  max-width: 1350px;
-  width: calc(100% - 32px); /* Margin for sides */
+  max-width: 1400px;
+  width: calc(100% - 32px); 
   background: rgba(15, 23, 42, 0.85);
   border: 1px solid var(--border);
-  border-radius: 99px; /* This makes it completely rounded/smooth */
+  border-radius: 99px; 
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
 }
 body.theme-light .topbar { background: rgba(255, 255, 255, 0.85); }
 
-.brand{ display: flex; align-items: center; gap: 10px; }
+.brand{ display: flex; align-items: center; gap: 12px; }
 .brand__name{
-  font-size: 1.25rem;
+  font-size: 1.4rem; /* Bigger logo text */
   font-weight: 800;
   background: linear-gradient(135deg, var(--green), var(--green2));
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .brand__pill{
-  font-size: .7rem; font-weight: 600; color: var(--muted); background: var(--card2);
+  font-size: .75rem; font-weight: 600; color: var(--muted); background: var(--card2);
   border: 1px solid var(--border); border-radius: 99px; padding: 4px 12px; letter-spacing: .04em;
 }
-.topbar__right{ display: flex; align-items: center; gap: 8px; }
+.topbar__right{ display: flex; align-items: center; gap: 12px; }
 
 /* --- Main layout --- */
 .layout {
@@ -99,25 +101,26 @@ body.theme-light .topbar { background: rgba(255, 255, 255, 0.85); }
   justify-content: center;
   gap: 32px;
   max-width: 1400px;
-  margin: 16px auto 0 auto; /* Added top margin to space out from topbar */
+  margin: 16px auto 0 auto; 
   padding: 0 24px 120px;
-  align-items: start; /* CRITICAL for sticky ads to work */
+  align-items: start; 
 }
 
 /* --- STICKY AD COLUMNS --- */
 .adcol{
   position: sticky;
-  top: 100px; /* Sticks right below the topbar */
-  height: calc(100vh - 120px); /* Stretches to fill vertical space */
+  top: 100px; 
+  height: calc(100vh - 120px); 
   display: flex;
   flex-direction: column;
 }
 .adbox{
   background: var(--card); border: 1px dashed var(--border); border-radius: var(--radius);
   text-align: center; font-size: .75rem; color: var(--muted);
-  flex: 1; /* Makes it stretch completely down */
+  flex: 1; 
   width: 100%;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  backdrop-filter: blur(10px);
 }
 .adbox__title{ font-weight: 700; letter-spacing: .08em; font-size: .7rem; color: var(--muted); }
 .adbox__hint{ font-size: .65rem; color: var(--muted); opacity: .7; }
@@ -129,15 +132,11 @@ body.theme-light .topbar { background: rgba(255, 255, 255, 0.85); }
 .hero__subtitle{ font-size: 1rem; color: var(--muted); max-width: 520px; }
 .hero__actions{ display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 8px; }
 
-.loadingline{ width: 200px; height: 3px; border-radius: 2px; background: var(--card2); overflow: hidden; position: relative; }
-.loadingline::after{ content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, var(--green), transparent); animation: loadingSlide 1.2s linear infinite; }
-@keyframes loadingSlide{ 0% { transform: translateX(-100%); } 100%{ transform: translateX(200%); } }
-.hint{ font-size: .85rem; color: var(--muted); }
-
 /* --- Cards & Panels --- */
 #preferencesPanel, #result, #notFound, .card, .panel {
   background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
   box-shadow: var(--shadow); padding: 32px; transition: transform 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(10px);
 }
 
 /* --- BALANCED FOOD SUGGESTION --- */
@@ -153,19 +152,19 @@ body.theme-light .topbar { background: rgba(255, 255, 255, 0.85); }
 #result .card__top { flex-direction: column; gap: 16px; }
 
 .foodEmoji {
-  font-size: 85px !important; /* Scaled down slightly so it's not overwhelming */
+  font-size: 85px !important;
   margin-bottom: 8px;
   line-height: 1;
   text-shadow: 0 15px 30px rgba(0,0,0,0.2);
   animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .foodName {
-  font-size: 2.3rem !important; /* Scaled down slightly */
+  font-size: 2.3rem !important; 
   font-weight: 800; letter-spacing: -0.02em; color: var(--text); line-height: 1.1; margin-bottom: 8px;
 }
 #result .card__meta .row { justify-content: center; margin-top: 12px; margin-bottom: 12px; }
 .foodDesc {
-  font-size: 1.1rem !important; /* Scaled down slightly */
+  font-size: 1.1rem !important;
   color: var(--muted); line-height: 1.6; text-align: center; max-width: 600px; margin-bottom: 24px;
 }
 @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
@@ -181,6 +180,9 @@ body.theme-light .topbar { background: rgba(255, 255, 255, 0.85); }
   font-size: 0.85rem; font-weight: 600; background: var(--card2); border: 1px solid var(--border); color: var(--text);
 }
 .badge-blue{ background: rgba(99,102,241,.18); border-color: rgba(99,102,241,.32); color: #818cf8; }
+.badge-green{ background: rgba(16, 185, 129,.18); border-color: rgba(16, 185, 129,.32); color: #10b981; }
+.badge-gold{ background: rgba(245, 158, 11,.18); border-color: rgba(245, 158, 11,.32); color: #f59e0b; }
+.badge-red{ background: rgba(239, 68, 68,.18); border-color: rgba(239, 68, 68,.32); color: #ef4444; }
 
 /* =========================================
    GLOWING TAG CHECKBOXES 
@@ -219,7 +221,6 @@ body.theme-light .topbar { background: rgba(255, 255, 255, 0.85); }
 .modebtn__title{ font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; gap: 6px; }
 .modebtn__sub{ font-size: .85rem; color: var(--muted); }
 
-/* Specific Colors for Mode Buttons on Hover */
 .lazy-mode:hover { border-color: #10b981; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2); }
 .chef-mode:hover { border-color: #ef4444; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.2); }
 
@@ -239,11 +240,11 @@ body.theme-light .stickybar { background: rgba(255, 255, 255, 0.85); }
 /* --- Modals --- */
 .modal{ position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0,0,0,.6); backdrop-filter: blur(6px); }
 
-/* FIXED MODAL OVERLAP (Padding Top Added) */
 .modal__card{
   position: relative; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto;
   display: flex; flex-direction: column; gap: 16px; background: var(--card); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 56px 32px 32px 32px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
 }
 .modal__card--wide{ max-width: 760px; }
 .modal__close{
@@ -260,17 +261,27 @@ body.theme-light .stickybar { background: rgba(255, 255, 255, 0.85); }
 
 .h3{ font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--green); margin-bottom: 10px; }
 
-/* --- Modern Buttons (MADE LARGER) --- */
+/* --- Modern Buttons --- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 14px 32px; /* Bigger Padding */
-  border-radius: 99px; font-size: 1.05rem; /* Bigger Text */
+  padding: 14px 32px; 
+  border-radius: 99px; font-size: 1.05rem; 
   font-weight: 600; cursor: pointer; border: 1px solid var(--border); color: var(--text);
   background: var(--card2); transition: all 0.2s ease; position: relative;
 }
 .btn-primary { background: linear-gradient(135deg, var(--green), var(--green2)); color: #fff; border: none; box-shadow: 0 8px 20px var(--green-glow); }
 .btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 24px var(--green-glow); filter: brightness(1.1); }
 .btn-ghost:hover { background: var(--card2); transform: translateY(-1px); }
+
+/* --- "POP" ANIMATION FOR DISCOVER BUTTON --- */
+@keyframes buttonPop {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  50% { transform: scale(0.95); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+.btn-pop {
+  animation: buttonPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
+}
 
 /* --- Icon button / Select --- */
 .iconbtn{
@@ -291,7 +302,7 @@ body.theme-light .stickybar { background: rgba(255, 255, 255, 0.85); }
 }
 @media (max-width: 640px){
   .card, .panel, .modal__card { padding: 24px 20px; border-radius: 20px; }
-  .modal__card { padding-top: 56px; } /* keep X safe */
+  .modal__card { padding-top: 56px; } 
   .foodName { font-size: 2rem !important; }
   .foodEmoji { font-size: 70px !important; }
   .btn { width: 100%; padding: 16px; }

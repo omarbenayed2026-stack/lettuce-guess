@@ -782,34 +782,12 @@ body.theme-light .stickybar, body.theme-light #stickyBar{
   background: rgba(255,255,255,.70);
 }
 
-/* --- Checkboxes: nicer + green accent --- */
-input[type="checkbox"]{
-  width:18px;
-  height:18px;
-  accent-color: var(--green);
-}
-
-/* If your checkboxes are inside a "row card" style, add glow on hover */
-.chk, label{
-  transition: background .18s ease, border-color .18s ease, transform .12s ease;
-}
-.chk:hover, label:hover{
-  background: rgba(255,255,255,.06);
-  border-color: rgba(34,197,94,.22);
-}
-
 /* --- Fix emoji visibility (in case some CSS was dimming them) --- */
 .leaf, #foodEmoji, .foodEmoji{
   filter: none !important;
   opacity: 1 !important;
 }
 
-/* --- Result emoji bigger / nicer --- */
-#foodEmoji, .foodEmoji{
-  font-size: 52px;
-  line-height: 1;
-  text-shadow: 0 18px 35px rgba(0,0,0,.35);
-}
 
 /* --- Smooth page feel --- */
 *{
@@ -820,4 +798,206 @@ input[type="checkbox"]{
 @media (prefers-reduced-motion: reduce){
   button, .btn{transition:none}
   body::before{display:none}
+}
+
+/* =========================================
+   NEW CLEANER, RESPONSIVE, ENHANCED STYLES 
+   (Added at bottom to override & upgrade)
+   ========================================= */
+
+:root {
+  /* Cleaner dark mode palette */
+  --bg: #0f172a;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --card: rgba(30, 41, 59, 0.7);
+  --card2: rgba(51, 65, 85, 0.8);
+  --border: rgba(255, 255, 255, 0.1);
+  --shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+
+  /* Refined Green Accent */
+  --green: #10b981;
+  --green2: #34d399;
+  --green-glow: rgba(16, 185, 129, 0.15);
+
+  --radius: 24px;
+  --radius2: 16px;
+}
+
+body.theme-light {
+  /* Cleaner light mode palette */
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --muted: #64748b;
+  --card: #ffffff;
+  --card2: #f1f5f9;
+  --border: rgba(0, 0, 0, 0.08);
+  --shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+  --green-glow: rgba(16, 185, 129, 0.1);
+}
+
+/* Cleaner overrides for body / layout */
+body {
+  background-color: var(--bg);
+}
+
+.layout {
+  /* Cleaner dimensions: hides ads cleanly on smaller screens, centers main app */
+  grid-template-columns: minmax(0, 200px) minmax(320px, 800px) minmax(0, 200px);
+  justify-content: center;
+  gap: 32px;
+  max-width: 1400px;
+}
+
+.topbar {
+  padding: 16px 5%;
+  background: rgba(15, 23, 42, 0.85);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+body.theme-light .topbar { 
+  background: rgba(255, 255, 255, 0.85); 
+}
+
+.card, .panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -10px var(--green-glow);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* Recipe Ingredients & Steps box */
+.list {
+  background: var(--card2);
+  padding: 24px 24px 24px 40px;
+  border-radius: var(--radius2);
+  margin-top: 16px;
+}
+.list li {
+  margin-bottom: 12px;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+.list li::marker {
+  color: var(--green);
+  font-weight: bold;
+}
+
+.pill {
+  padding: 6px 16px;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--card2);
+  border: 1px solid var(--border);
+}
+
+/* Better Mobile Dimensions (Phones) */
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 24px 16px 100px;
+  }
+}
+
+@media (max-width: 640px) {
+  .card, .panel {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+  .btn { width: 100%; padding: 14px; }
+  .topbar { padding: 12px 16px; }
+}
+
+/* =========================================
+   GIANT FOOD SUGGESTION MODS
+   ========================================= */
+#result .card {
+  padding: 48px 32px;
+  text-align: center;
+  align-items: center;
+  border: 2px solid var(--green);
+  box-shadow: 0 0 40px var(--green-glow);
+}
+
+#result .card__top {
+  flex-direction: column; /* Stacks the emoji on top of the text */
+  gap: 16px;
+}
+
+.foodEmoji {
+  font-size: 110px !important; /* Massive Emoji */
+  margin-bottom: 8px;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.foodName {
+  font-size: 2.8rem !important; /* Huge text for the meal name */
+  line-height: 1.1;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+#result .card__meta .row {
+  justify-content: center; /* Center the tags under the title */
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.foodDesc {
+  font-size: 1.2rem !important;
+  text-align: center;
+  max-width: 600px;
+  margin-bottom: 24px;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* =========================================
+   GLOWING TAG CHECKBOXES
+   ========================================= */
+/* 1. Hide the default square checkboxes completely */
+.chk input[type="checkbox"] {
+  display: none !important;
+}
+
+/* 2. Style the label wrapper to look like a pill/tag */
+.chk {
+  display: inline-flex;
+  padding: 10px 20px;
+  background: var(--card2) !important;
+  border: 2px solid var(--border) !important;
+  border-radius: 99px !important;
+  cursor: pointer;
+  transition: all 0.3s ease !important;
+  font-weight: 600;
+  color: var(--muted) !important;
+  margin-bottom: 8px;
+  margin-right: 4px;
+}
+
+/* 3. When clicked (checked), make it glow green! */
+.chk:has(input[type="checkbox"]:checked) {
+  background: rgba(16, 185, 129, 0.15) !important; /* Light green background */
+  border-color: var(--green) !important; /* Solid green border */
+  color: var(--green) !important; /* Green text */
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.5) !important; /* Green glow */
+  transform: scale(1.05); /* Pop out slightly */
+}
+
+/* 4. Hover effect when NOT selected */
+.chk:hover:not(:has(input[type="checkbox"]:checked)) {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  color: var(--text) !important;
 }

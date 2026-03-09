@@ -6,9 +6,7 @@
   <title>Lettuce Guess</title>
   <meta name="description" content="Random recipe generator for students: fast, cheap, tasty." />
   
-  <!-- Web Page Icon (Favicon) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥬</text></svg>" />
-  
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
@@ -16,8 +14,8 @@
   <div class="topbar-wrapper">
     <header class="topbar">
       <div class="brand">
-        <div class="brand__name">Lettuce Guess</div>
-        <div class="brand__pill" id="brandPill">fast • cheap • tasty</div>
+        <div class="brand__name" data-i18n="brand">Lettuce Guess</div>
+        <div class="brand__pill" id="brandPill" data-i18n="brandPill">fast • cheap • tasty</div>
       </div>
 
       <div class="topbar__right">
@@ -42,33 +40,34 @@
 
     <main class="app">
       <section class="hero">
-        <h1 id="welcomeText" class="hero__title">Lettuce find something to prepare! 🥬</h1>
-        <p id="seoIntro" class="hero__subtitle">
+        <h1 id="welcomeText" class="hero__title" data-i18n="welcome">Lettuce find something to prepare! 🥬</h1>
+        <p id="seoIntro" class="hero__subtitle" data-i18n="seoIntro">
           Welcome to the ultimate random recipe generator. Choose your preferences, then hit Discover.
         </p>
 
         <div class="hero__actions">
-          <button id="discoverBtnTop" class="btn btn-primary">Discover</button>
-          <button id="dailyPickBtnTop" class="btn btn-ghost">Menu of the Day</button>
-          <button id="preferencesBtnTop" class="btn btn-ghost">Preferences</button>
+          <button id="dailyPickBtnTop" class="btn btn-ghost" data-i18n="dailyPick">Menu of the Day</button>
+          <button id="discoverBtnTop" class="btn btn-primary" data-i18n="discover">Discover</button>
+          <button id="preferencesBtnTop" class="btn btn-ghost" data-i18n="preferences">Preferences</button>
         </div>
 
         <div id="loadingLine" class="loadingline hidden"></div>
-        <div id="hintLine" class="hint hidden">Tip: tap Discover again for a new meal.</div>
+        <div id="hintLine" class="hint hidden" data-i18n="discoverHint">Tip: tap Discover again for a new meal.</div>
+        <div id="funnyLoadingText" class="hint hidden" style="color: var(--green); font-weight: bold; margin-top: 10px;"></div>
       </section>
 
       <section id="preferencesPanel" class="panel hidden">
         <div class="panel__header">
           <div>
-            <div id="preferencesTitle" class="panel__title">Preferences</div>
-            <div id="customizeTitle" class="panel__subtitle">Customize your craving</div>
+            <div id="preferencesTitle" class="panel__title" data-i18n="preferences">Preferences</div>
+            <div id="customizeTitle" class="panel__subtitle" data-i18n="customize">Customize your craving</div>
           </div>
           <button id="closePreferencesBtn" class="iconbtn" title="Close">✕</button>
         </div>
 
         <div class="panel__grid">
           <div>
-            <div id="includeTitle" class="panel__sectionTitle">Include</div>
+            <div id="includeTitle" class="panel__sectionTitle" data-i18n="includeTitle">Include</div>
 
             <label class="chk"><input id="studentOnly" type="checkbox" /> <span id="studentFriendly" data-i18n="studentFriendly">🎓 Student Friendly</span></label>
             <label class="chk"><input id="cheapOnly" type="checkbox" /> <span id="cheapText" data-i18n="cheap">🪙 Cheap (&lt; 6 DT)</span></label>
@@ -88,15 +87,15 @@
           </div>
 
           <div>
-            <div id="excludeTitle" class="panel__sectionTitle">Blacklist (Exclude)</div>
+            <div id="excludeTitle" class="panel__sectionTitle" data-i18n="excludeTitle">Blacklist (Exclude)</div>
 
             <label class="chk"><input id="noFish" type="checkbox" /> <span id="noFishText" data-i18n="noFish">🚫🐟 No Fish</span></label>
             <label class="chk"><input id="noChicken" type="checkbox" /> <span id="noChickenText" data-i18n="noChicken">🚫🍗 No Chicken</span></label>
             <label class="chk"><input id="noSpicy" type="checkbox" /> <span id="noSpicyText" data-i18n="noSpicy">🚫🌶️ No Spicy</span></label>
 
             <div class="panel__footer">
-              <button id="resetFiltersBtn" class="btn btn-ghost">Reset</button>
-              <button id="applyFiltersBtn" class="btn btn-primary">Apply</button>
+              <button id="resetFiltersBtn" class="btn btn-ghost" data-i18n="reset">Reset</button>
+              <button id="applyFiltersBtn" class="btn btn-primary" data-i18n="apply">Apply</button>
             </div>
           </div>
         </div>
@@ -120,13 +119,13 @@
 
           <div class="modes">
             <button id="lazyModeBtn" class="modebtn lazy-mode">
-              <div id="lazyModeTitle" class="modebtn__title">🟢 Lazy Mode</div>
-              <div id="lazyHint" class="modebtn__sub">Fast, cheap, microwave-friendly.</div>
+              <div id="lazyModeTitle" class="modebtn__title" data-i18n="lazyMode">🟢 Lazy Mode</div>
+              <div id="lazyHint" class="modebtn__sub" data-i18n="lazyHint">Fast, cheap, microwave-friendly.</div>
             </button>
 
             <button id="chefModeBtn" class="modebtn chef-mode">
-              <div id="chefModeTitle" class="modebtn__title">🔴 Chef Mode</div>
-              <div id="chefHint" class="modebtn__sub">Use the stove, impress your friends.</div>
+              <div id="chefModeTitle" class="modebtn__title" data-i18n="chefMode">🔴 Chef Mode</div>
+              <div id="chefHint" class="modebtn__sub" data-i18n="chefHint">Use the stove, impress your friends.</div>
             </button>
           </div>
         </div>
@@ -134,20 +133,20 @@
 
       <section id="notFound" class="notfound hidden">
         <div class="card">
-          <h2 id="notFoundTitle">No matches found</h2>
-          <p id="notFoundText">Sorry, not available yet. We will find something soon!</p>
+          <h2 id="notFoundTitle" data-i18n="notFoundTitle">No matches found</h2>
+          <p id="notFoundText" data-i18n="notFoundText">Sorry, not available yet. We will find something soon!</p>
 
           <div class="notfound__actions">
-            <button id="relaxFiltersBtn" class="btn btn-primary">Relax filters</button>
-            <button id="openPreferencesBtn2" class="btn btn-ghost">Preferences</button>
+            <button id="relaxFiltersBtn" class="btn btn-primary" data-i18n="relax">Relax filters</button>
+            <button id="openPreferencesBtn2" class="btn btn-ghost" data-i18n="preferences">Preferences</button>
           </div>
         </div>
       </section>
 
       <footer class="footer">
-        <div id="footerText">Helping students eat better, one click at a time.</div>
+        <div id="footerText" data-i18n="footerText">Helping students eat better, one click at a time.</div>
         <div class="footer__small">
-          © <span id="year"></span> Lettuce Guess — <span id="rightsText">All rights reserved.</span>
+          © <span id="year"></span> <span data-i18n="brand">Lettuce Guess</span> — <span id="rightsText" data-i18n="rights">All rights reserved.</span>
         </div>
       </footer>
     </main>
@@ -161,23 +160,23 @@
   </div>
 
   <div class="stickybar">
-    <button id="preferencesBtnSticky" class="btn btn-ghost stickybar__btn">Preferences</button>
-    <button id="discoverBtnSticky" class="btn btn-primary stickybar__btn">Discover</button>
-    <button id="dailyPickBtnSticky" class="btn btn-ghost stickybar__btn">Menu of the Day</button>
+    <button id="dailyPickBtnSticky" class="btn btn-ghost stickybar__btn" data-i18n="dailyPick">Menu of the Day</button>
+    <button id="discoverBtnSticky" class="btn btn-primary stickybar__btn" data-i18n="discover">Discover</button>
+    <button id="preferencesBtnSticky" class="btn btn-ghost stickybar__btn" data-i18n="preferences">Preferences</button>
   </div>
 
   <!-- Intro Modal -->
   <div id="introModal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="modal__card">
       <button id="closeIntroBtn" class="iconbtn modal__close">✕</button>
-      <h2 id="introTagline" class="modal__title">Pick a meal in seconds.</h2>
-      <p id="introText" class="modal__text">
+      <h2 id="introTagline" class="modal__title" data-i18n="introTagline">Pick a meal in seconds.</h2>
+      <p id="introText" class="modal__text" data-i18n="introText">
         Welcome! Use Discover to get a random meal. Open Preferences to filter. Tap again for a new suggestion.
       </p>
 
       <div class="modal__actions">
-        <button id="introDiscoverBtn" class="btn btn-primary">Start discovering</button>
-        <button id="introPreferencesBtn" class="btn btn-ghost">Preferences</button>
+        <button id="introDiscoverBtn" class="btn btn-primary" data-i18n="startDiscover">Start discovering</button>
+        <button id="introPreferencesBtn" class="btn btn-ghost" data-i18n="preferences">Preferences</button>
       </div>
     </div>
   </div>
@@ -200,11 +199,11 @@
 
       <div class="modal__grid">
         <div>
-          <h3 id="ingredientsTitle" class="h3">Ingredients & Spices</h3>
+          <h3 id="ingredientsTitle" class="h3" data-i18n="ingredients">Ingredients & Spices</h3>
           <ul id="modalIngredients" class="list"></ul>
         </div>
         <div>
-          <h3 id="stepsTitle" class="h3">Instructions</h3>
+          <h3 id="stepsTitle" class="h3" data-i18n="steps">Instructions</h3>
           <ol id="modalSteps" class="list"></ol>
         </div>
       </div>

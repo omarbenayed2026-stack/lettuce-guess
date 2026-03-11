@@ -185,7 +185,7 @@ const foodDatabase = [
     translations: {
       en: { name: "Spicy Fried Chicken", origin: "USA", difficulty: "Hard", cost: "Est. 18.00 DT", description: "Golden, ultra-crispy fried chicken with heavy spices.", simple: { time: "25 mins", temp: "High Heat", ingredients: ["Chicken Breasts", "Flour", "2 Eggs", "Paprika, Garlic Powder, Salt, Black Pepper", "Frying Oil"], steps: ["Cut chicken into chunks.", "Mix flour with a heavy amount of paprika, salt, and pepper.", "Dip chicken in beaten egg, then in spiced flour.", "Fry in 170°C hot oil for 7-10 minutes until golden brown."] }, hard: { time: "12 hours", temp: "160°C Oil", ingredients: ["Bone-in Chicken pieces", "Lben (Buttermilk)", "Flour", "Cornstarch", "Red Chili Powder, Garlic, Onion, White Pepper"], steps: ["Marinate chicken overnight in Lben and hot sauce.", "Mix 2 parts flour, 1 part cornstarch, and spices.", "Dredge chicken in flour, pressing hard.", "Fry in deep oil for 12-15 minutes. Rest on a wire rack."] } },
       fr: { name: "Poulet Frit Épicé", origin: "USA", difficulty: "Difficile", cost: "Env. 18.00 DT", description: "Poulet frit doré et ultra-croustillant avec beaucoup d'épices.", simple: { time: "25 mins", temp: "Feu Vif", ingredients: ["Blancs de poulet", "Farine", "2 Œufs", "Paprika, Ail, Sel, Poivre", "Huile de friture"], steps: ["Couper le poulet.", "Mélanger farine et épices.", "Tremper le poulet dans l'œuf puis la farine.", "Frire à 170°C pendant 7-10 mins."] }, hard: { time: "12 heures", temp: "Huile 160°C", ingredients: ["Poulet avec os", "Lben (Babeurre)", "Farine", "Maïzena", "Piment rouge, Ail, Oignon, Poivre blanc"], steps: ["Mariner le poulet la nuit dans le Lben.", "Mélanger farine, maïzena et épices.", "Enrober le poulet en pressant fort.", "Frire 12-15 mins. Laisser reposer sur une grille."] } },
-      ar: { name: "دجاج مقلي حار", origin: "أمريكا", difficulty: "صعب", cost: "حوالي 18.00 د.ت", description: "دجاج مقلي ذهبي ومقرمش جداً ومليء بالبهارات.", simple: { time: "25 دقيقة", temp: "نار عالية", ingredients: ["صدور دجاج", "دقيق", "بيضتان", "بابريكا، بودرة ثوم، ملح، فلفل أسود", "زيت قلي"], steps: [\"قطع الدجاج إلى قطع.\", \"اخلط الدقيق مع البهارات.\", \"اغمس الدجاج في البيض ثم في الدقيق المتبل.\", \"اقله في زيت ساخن (170 درجة) لـ 7-10 دقائق.\"] }, hard: { time: "12 ساعة", temp: "زيت 160 درجة", ingredients: ["دجاج بالعظم", "لبن", "دقيق", "نشا", "فلفل أحمر حار، ثوم، بصل، فلفل أبيض"], steps: ["انقع الدجاج ليلة كاملة في اللبن والصلصة الحارة.", "اخلط الدقيق والنشا والبهارات.", "غلف الدجاج بالخليط واضغط بقوة.", "اقله في زيت غزير لـ 12-15 دقيقة. دعه يرتاح على شبكة معدنية."] } }
+      ar: { name: "دجاج مقلي حار", origin: "أمريكا", difficulty: "صعب", cost: "حوالي 18.00 د.ت", description: "دجاج مقلي ذهبي ومقرمش جداً ومليء بالبهارات.", simple: { time: "25 دقيقة", temp: "نار عالية", ingredients: ["صدور دجاج", "دقيق", "بيضتان", "بابريكا، بودرة ثوم، ملح، فلفل أسود", "زيت قلي"], steps: ["قطع الدجاج إلى قطع.", "اخلط الدقيق مع البهارات.", "اغمس الدجاج في البيض ثم في الدقيق المتبل.", "اقله في زيت ساخن (170 درجة) لـ 7-10 دقائق."] }, hard: { time: "12 ساعة", temp: "زيت 160 درجة", ingredients: ["دجاج بالعظم", "لبن", "دقيق", "نشا", "فلفل أحمر حار، ثوم، بصل، فلفل أبيض"], steps: ["انقع الدجاج ليلة كاملة في اللبن والصلصة الحارة.", "اخلط الدقيق والنشا والبهارات.", "غلف الدجاج بالخليط واضغط بقوة.", "اقله في زيت غزير لـ 12-15 دقيقة. دعه يرتاح على شبكة معدنية."] } }
     }
   }
 ];
@@ -272,7 +272,7 @@ function boot() {
   currentLang = savedLang;
   if (els.languageSelect) els.languageSelect.value = savedLang;
   applyLanguage(savedLang);
-  const savedTheme = loadStr("lettuceTheme", "light"); // Default to light mode for apple feel
+  const savedTheme = loadStr("lettuceTheme", "light");
   setTheme(savedTheme);
   const introDone = loadStr("lettuceIntroDone", "0") === "1";
   if (!introDone) openIntro();
@@ -286,7 +286,7 @@ function boot() {
 }
 
 function wireEvents() {
-  // Intersection Observer for the Sticky Bar Logic
+  // --- MAGIC FLOATING BAR OBSERVER ---
   if (els.heroActions && els.stickyBar) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -319,8 +319,14 @@ function wireEvents() {
 
   els.helpBtn?.addEventListener("click", () => openIntro());
 
-  els.discoverBtnTop?.addEventListener("click", () => handleDiscover(false));
-  els.discoverBtnSticky?.addEventListener("click", () => handleDiscover(false));
+  const animateBtn = (btn) => {
+    if (!btn) return;
+    btn.classList.add("btn-pop");
+    setTimeout(() => btn.classList.remove("btn-pop"), 400);
+  };
+
+  els.discoverBtnTop?.addEventListener("click", () => { animateBtn(els.discoverBtnTop); handleDiscover(false); });
+  els.discoverBtnSticky?.addEventListener("click", () => { animateBtn(els.discoverBtnSticky); handleDiscover(false); });
   els.introDiscoverBtn?.addEventListener("click", () => { closeIntro(true); handleDiscover(false); });
   
   els.dailyPickBtnTop?.addEventListener("click", () => handleDiscover(true));
@@ -365,7 +371,13 @@ function applyLanguage(lang) {
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     if (!key) return;
-    if (dict[key] != null) el.textContent = dict[key];
+    if (key === "brand") { el.textContent = "Lettuce Guess"; return; }
+    if (key === "brandPill" && lang !== 'en') { el.textContent = dict[key]; return; }
+    if (dict[key] != null) {
+      if (el.innerHTML.includes("🟢") && key === "lazyMode") { el.innerHTML = `🟢 ${dict[key]}`; return; }
+      if (el.innerHTML.includes("🔴") && key === "chefMode") { el.innerHTML = `🔴 ${dict[key]}`; return; }
+      el.textContent = dict[key];
+    }
   });
 }
 
@@ -401,26 +413,20 @@ function handleDiscover(isDailyPick) {
   showLoadingLine(ui.funnyTexts);
   const filters = readFilters();
   const pool = filterDatabase(foodDatabase, filters);
-  
   if (pool.length === 0) { hideLoadingLine(); showNotFound(); return; }
   const picked = isDailyPick ? deterministicDailyPick(pool) : smartPick(pool, filters);
-  
   setTimeout(() => {
     hideLoadingLine();
     if (!picked) { showNotFound(); return; }
+    currentFood = picked; rememberPick(picked); renderFood(picked);
     
-    currentFood = picked; 
-    rememberPick(picked); 
-    renderFood(picked);
-    
-    els.result?.scrollIntoView({ behavior: "smooth", block: "center" });
-    
-    // Trigger the cool POP animation!
+    // Animate the result card
     els.result?.classList.remove("pop-animate");
-    void els.result?.offsetWidth; // Trigger reflow to restart animation
+    void els.result?.offsetWidth; 
     els.result?.classList.add("pop-animate");
     
-  }, 450);
+    els.result?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, 500); 
 }
 
 function readFilters() {
@@ -498,22 +504,29 @@ function renderFood(food) {
   if (!food) return;
   const t = food.translations?.[currentLang] || food.translations?.en;
   if (!t) return;
+  
   els.result?.classList.remove("hidden");
   els.notFound?.classList.add("hidden");
+  
   if (els.foodEmoji) els.foodEmoji.textContent = food.emoji || "🍲";
   if (els.foodName) els.foodName.textContent = t.name || "Meal";
   if (els.foodOrigin) els.foodOrigin.textContent = `🌍 ${t.origin || ""}`;
   if (els.foodCost) els.foodCost.textContent = t.cost || "";
-  const diffText = (t.difficulty || "").toUpperCase();
+  
   if (els.foodDifficulty) {
-    els.foodDifficulty.textContent = diffText || "—";
     els.foodDifficulty.classList.remove("badge-green", "badge-gold", "badge-red", "badge-blue");
     const diff = (food.difficultyCSS || "").toLowerCase();
-    if (diff === "easy") els.foodDifficulty.classList.add("badge-green");
-    else if (diff === "medium") els.foodDifficulty.classList.add("badge-gold");
-    else if (diff === "hard") els.foodDifficulty.classList.add("badge-red");
-    else els.foodDifficulty.classList.add("badge-blue");
+    
+    let textKey = "diffMedium";
+    if (diff === "easy") { els.foodDifficulty.classList.add("badge-green"); textKey = "diffEasy"; }
+    else if (diff === "medium") { els.foodDifficulty.classList.add("badge-gold"); textKey = "diffMedium"; }
+    else if (diff === "hard") { els.foodDifficulty.classList.add("badge-red"); textKey = "diffHard"; }
+    else { els.foodDifficulty.classList.add("badge-blue"); }
+    
+    const translatedDiff = (translations[currentLang] || translations.en)[textKey] || "—";
+    els.foodDifficulty.textContent = translatedDiff.toUpperCase();
   }
+  
   if (els.foodDesc) els.foodDesc.textContent = t.description || "";
 }
 

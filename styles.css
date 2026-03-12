@@ -67,7 +67,10 @@ body {
   background-attachment: fixed;
 }
 
-[dir="rtl"] body { font-family: 'Tajawal', system-ui, sans-serif; }
+/* Magic for Arabic Font - Targets absolutely everything */
+[dir="rtl"], [dir="rtl"] * { 
+  font-family: 'Tajawal', system-ui, sans-serif !important; 
+}
 
 /* --- Topbar (Glassmorphism) --- */
 .topbar {
@@ -194,6 +197,9 @@ body {
 }
 .pill.outline { background: transparent; }
 .badge-blue { background: rgba(59, 130, 246, 0.1); color: #3b82f6; border-color: rgba(59, 130, 246, 0.3); }
+.badge-green { background: var(--brand-light); color: var(--brand); border-color: var(--brand); }
+.badge-gold { background: rgba(245, 158, 11, 0.1); color: var(--warning); border-color: rgba(245, 158, 11, 0.3); }
+.badge-red { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
 .foodDesc { font-size: 1.1rem; color: var(--text-muted); max-width: 500px; margin: 0 auto 32px auto; }
 
 /* Modes Buttons */
@@ -253,6 +259,9 @@ body {
 
 /* Footer */
 .footer { text-align: center; color: var(--text-muted); padding: 40px 0; font-size: 0.9rem; }
+.footer__contact { margin-top: 12px; font-weight: 600; }
+.footer__link { color: var(--brand); text-decoration: none; transition: var(--transition); }
+.footer__link:hover { color: var(--brand-hover); text-decoration: underline; }
 .footer__small { margin-top: 8px; font-size: 0.8rem; opacity: 0.7; }
 
 /* --- Mobile Sticky Nav --- */

@@ -79,27 +79,46 @@
         <div class="panel__grid">
           <div class="panel__group">
             <div class="panel__sectionTitle" data-i18n="includeTitle">Include</div>
+            
             <div class="tags-container">
+              <!-- Type / Budget -->
               <label class="tag-checkbox"><input id="studentOnly" type="checkbox" /> <span data-i18n="studentFriendly">🎓 Student Friendly</span></label>
               <label class="tag-checkbox"><input id="cheapOnly" type="checkbox" /> <span data-i18n="cheap">🪙 Cheap (&lt; 6 DT)</span></label>
               <label class="tag-checkbox"><input id="expensiveOnly" type="checkbox" /> <span data-i18n="expensive">💸 Costs money</span></label>
+              <label class="tag-checkbox"><input id="healthyOnly" type="checkbox" /> <span data-i18n="healthy">🥗 Healthy</span></label>
+              
               <div class="divider"></div>
+              
+              <!-- Region -->
               <label class="tag-checkbox"><input id="tunisianStyle" type="checkbox" /> <span data-i18n="tunisianStyle">🇹🇳 Tunisian</span></label>
               <label class="tag-checkbox"><input id="asianStyle" type="checkbox" /> <span data-i18n="asianStyle">🥢 Asian</span></label>
+              <label class="tag-checkbox"><input id="americanStyle" type="checkbox" /> <span data-i18n="americanStyle">🇺🇸 American</span></label>
+              <label class="tag-checkbox"><input id="europeanStyle" type="checkbox" /> <span data-i18n="europeanStyle">🇪🇺 European</span></label>
+              <label class="tag-checkbox"><input id="middleEasternStyle" type="checkbox" /> <span data-i18n="middleEasternStyle">🌍 Middle Eastern</span></label>
+              
               <div class="divider"></div>
+              
+              <!-- Ingredients & Style -->
               <label class="tag-checkbox"><input id="withChicken" type="checkbox" /> <span data-i18n="withChicken">🍗 Chicken</span></label>
+              <label class="tag-checkbox"><input id="withBeef" type="checkbox" /> <span data-i18n="withBeef">🥩 Beef</span></label>
               <label class="tag-checkbox"><input id="loveFish" type="checkbox" /> <span data-i18n="fish">🐟 Fish</span></label>
+              <label class="tag-checkbox"><input id="withCheese" type="checkbox" /> <span data-i18n="withCheese">🧀 Cheesy</span></label>
+              <label class="tag-checkbox"><input id="withPasta" type="checkbox" /> <span data-i18n="withPasta">🍝 Pasta</span></label>
               <label class="tag-checkbox"><input id="friedOnly" type="checkbox" /> <span data-i18n="fried">🍟 Fried</span></label>
-              <label class="tag-checkbox"><input id="vegan" type="checkbox" /> <span data-i18n="vegan">🥗 Vegan</span></label>
+              <label class="tag-checkbox"><input id="vegan" type="checkbox" /> <span data-i18n="vegan">🌱 Vegan</span></label>
+              <label class="tag-checkbox"><input id="withDessert" type="checkbox" /> <span data-i18n="withDessert">🍰 Dessert</span></label>
             </div>
           </div>
 
           <div class="panel__group">
             <div class="panel__sectionTitle exclude" data-i18n="excludeTitle">Blacklist (Exclude)</div>
             <div class="tags-container">
-              <label class="tag-checkbox exclude"><input id="noFish" type="checkbox" /> <span data-i18n="noFish">🚫🐟 No Fish</span></label>
               <label class="tag-checkbox exclude"><input id="noChicken" type="checkbox" /> <span data-i18n="noChicken">🚫🍗 No Chicken</span></label>
+              <label class="tag-checkbox exclude"><input id="noBeef" type="checkbox" /> <span data-i18n="noBeef">🚫🥩 No Beef</span></label>
+              <label class="tag-checkbox exclude"><input id="noFish" type="checkbox" /> <span data-i18n="noFish">🚫🐟 No Fish</span></label>
+              <label class="tag-checkbox exclude"><input id="noCheese" type="checkbox" /> <span data-i18n="noCheese">🚫🧀 No Cheese</span></label>
               <label class="tag-checkbox exclude"><input id="noSpicy" type="checkbox" /> <span data-i18n="noSpicy">🚫🌶️ No Spicy</span></label>
+              <label class="tag-checkbox exclude"><input id="noSweets" type="checkbox" /> <span data-i18n="noSweets">🚫🍰 No Sweets</span></label>
             </div>
 
             <div class="panel__footer">
@@ -163,6 +182,10 @@
       <!-- Footer -->
       <footer class="footer">
         <div data-i18n="footerText">Helping students eat better, one click at a time.</div>
+        <div class="footer__contact">
+          <span data-i18n="contactDev">Contact Dev:</span> 
+          <a href="mailto:omarbenayed2026@gmail.com" class="footer__link">omarbenayed2026@gmail.com</a>
+        </div>
         <div class="footer__small">
           © <span id="year"></span> Lettuce Guess — <span data-i18n="rights">All rights reserved.</span>
         </div>

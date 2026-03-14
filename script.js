@@ -1,11 +1,7 @@
-/* =========================================
-   Lettuce Guess — Huge Expansion (55 Recipes, Exact Measurements)
-   ========================================= */
-
 const translations = {
   en: {
     brandPill: "fast • cheap • tasty",
-    welcome: "What are we eating today?",
+    welcome: "Lettuce find something to prepare! 🥬",
     seoIntro: "Welcome to the ultimate random recipe generator. We help students and lazy cooks find delicious, budget-friendly meals. Choose your preferences, then hit Discover.",
     discover: "Discover",
     discoverHint: "Tip: tap Discover again for a new meal.",
@@ -34,13 +30,13 @@ const translations = {
     noFish: "🚫🐟 No Fish",
     noChicken: "🚫🍗 No Chicken",
     noBeef: "🚫🥩 No Beef",
-    noSpicy: "🚫🌶️ No Spicy",
     noCheese: "🚫🧀 No Cheese",
+    noSpicy: "🚫🌶️ No Spicy",
     noSweets: "🚫🍰 No Sweets",
     reset: "Reset",
     apply: "Apply",
     notFoundTitle: "No matches found",
-    notFoundText: "Sorry, not available yet. We will find something soon! Try relaxing your filters.",
+    notFoundText: "Sorry, not available yet. We will find something soon!",
     relax: "Relax filters",
     lazyMode: "Lazy Mode",
     lazyHint: "Fast, cheap, microwave-friendly.",
@@ -52,13 +48,13 @@ const translations = {
     contactDev: "Contact Dev:",
     rights: "All rights reserved.",
     introTagline: "Pick a meal in seconds.",
-    introText: "Welcome! Use Discover to get a random meal. Open Preferences to filter by budget, cuisine, and ingredients. Tap again for a new suggestion.",
+    introText: "Welcome! Use Discover to get a random meal. Open Preferences to filter. Tap again for a new suggestion.",
     startDiscover: "Start discovering",
     funnyTexts: ["Checking your wallet...", "Finding something fast (and tasty)...", "Avoiding boring meals...", "Mixing up your menu...", "Doing the budget math..."]
   },
   fr: {
     brandPill: "rapide • pas cher • bon",
-    welcome: "Que mangeons-nous aujourd'hui ?",
+    welcome: "Trouvons quelque chose à préparer ! 🥬",
     seoIntro: "Le générateur de recettes pour étudiants. Choisissez vos préférences puis appuyez sur Découvrir.",
     discover: "Découvrir",
     discoverHint: "Astuce : appuyez encore sur Découvrir pour une nouvelle idée.",
@@ -87,13 +83,13 @@ const translations = {
     noFish: "🚫🐟 Sans poisson",
     noChicken: "🚫🍗 Sans poulet",
     noBeef: "🚫🥩 Sans bœuf",
-    noSpicy: "🚫🌶️ Pas épicé",
     noCheese: "🚫🧀 Sans fromage",
-    noSweets: "🚫🍰 Sans sucre",
+    noSpicy: "🚫🌶️ Pas épicé",
+    noSweets: "🚫🍰 Pas de sucreries",
     reset: "Réinitialiser",
     apply: "Appliquer",
     notFoundTitle: "Aucun résultat",
-    notFoundText: "Désolé, pas encore disponible. Essayez d'assouplir vos filtres !",
+    notFoundText: "Désolé, pas encore disponible. On trouvera quelque chose bientôt !",
     relax: "Assouplir les filtres",
     lazyMode: "Mode Fainéant",
     lazyHint: "Rapide, pas cher, micro-ondes.",
@@ -102,23 +98,23 @@ const translations = {
     ingredients: "Ingrédients & Épices",
     steps: "Instructions",
     footerText: "Aider les étudiants à mieux manger, un clic à la fois.",
-    contactDev: "Contacter le Développeur :",
+    contactDev: "Contacter le dév :",
     rights: "Tous droits réservés.",
     introTagline: "Choisis un plat en quelques secondes.",
-    introText: "Bienvenue ! Utilisez Découvrir pour une recette aléatoire. Ouvrez Préférences pour filtrer par budget et ingrédients.",
+    introText: "Bienvenue ! Utilisez Découvrir pour une recette aléatoire. Ouvrez Préférences pour filtrer par budget, style et ingrédients. Appuyez à nouveau pour une autre suggestion.",
     startDiscover: "Commencer",
     funnyTexts: ["Vérification du portefeuille...", "On cherche quelque chose de rapide...", "On évite les plats ennuyeux...", "On mélange ton menu...", "Calcul du budget..."]
   },
   ar: {
     brandPill: "سريع • رخيص • لذيذ",
-    welcome: "ماذا سنأكل اليوم؟",
+    welcome: "Lettuce Guess سيختار لك ماذا تطبخ! 🥬",
     seoIntro: "مولّد وصفات عشوائية للطلاب والطهاة الكسالى. اختر تفضيلاتك ثم اضغط «اكتشف».",
     discover: "اكتشف",
     discoverHint: "نصيحة: اضغط «اكتشف» مرة أخرى لاقتراح جديد.",
     dailyPick: "طبق اليوم",
     preferences: "التفضيلات",
     customize: "خصص رغباتك",
-    includeTitle: "إضا��ة",
+    includeTitle: "إضافة",
     excludeTitle: "القائمة السوداء (استبعاد)",
     studentFriendly: "🎓 مناسب للطلاب",
     cheap: "🪙 رخيص (أقل من 6 د.ت)",
@@ -130,23 +126,23 @@ const translations = {
     europeanStyle: "🇪🇺 أوروبي",
     middleEasternStyle: "🌍 شرق أوسطي",
     withChicken: "🍗 دجاج",
-    withBeef: "🥩 لحم بقري",
+    withBeef: "🥩 لحم بقر",
     fish: "🐟 سمك",
-    withCheese: "🧀 مليء بالجبن",
+    withCheese: "🧀 جبن",
     withPasta: "🍝 مكرونة",
     fried: "🍟 مقلي",
     vegan: "🌱 نباتي",
-    withDessert: "🍰 حلى",
+    withDessert: "🍰 حلويات",
     noFish: "🚫🐟 بدون سمك",
     noChicken: "🚫🍗 بدون دجاج",
-    noBeef: "🚫🥩 بدون لحم بقري",
-    noSpicy: "🚫🌶️ غير حار",
+    noBeef: "🚫🥩 بدون لحم",
     noCheese: "🚫🧀 بدون جبن",
-    noSweets: "🚫🍰 بدون حلى",
+    noSpicy: "🚫🌶️ غير حار",
+    noSweets: "🚫🍰 بدون حلويات",
     reset: "إعادة ضبط",
     apply: "تطبيق",
     notFoundTitle: "لا توجد نتائج",
-    notFoundText: "عذرًا، غير متوفر الآن. جرب تخفيف الفلاتر!",
+    notFoundText: "عذرًا، غير متوفر الآن. سنجد شيئًا قريبًا!",
     relax: "تخفيف الفلاتر",
     lazyMode: "وضع الكسل",
     lazyHint: "سريع، رخيص، ومناسب للميكروويف.",
@@ -158,15 +154,16 @@ const translations = {
     contactDev: "تواصل مع المطور:",
     rights: "جميع الحقوق محفوظة.",
     introTagline: "اختر وجبة في ثوانٍ.",
-    introText: "مرحبًا! استخدم «اكتشف» للحصول على وجبة عشوائية. افتح «التفضيلات» للتصفية. اضغط مرة أخرى لاقتراح جديد.",
+    introText: "مرحبًا! استخدم «اكتشف» للحصول على وجبة عشوائية. افتح «التفضيلات» للتصفية حسب الميزانية...",
     startDiscover: "ابدأ",
-    funnyTexts: ["جاري فحص محفظتك...", "نبحث عن شيء سريع ولذيذ...", "نتجنب الأكل الممل...", "ننوّع قائمة اليوم...", "جاري حساب الميزانية..."]
+    funnyTexts: ["جاري فحص محفظتك...", "نبحث عن شيء سريع ولذيذ...", "نتجنب الأكل الممل...", "ننوّع قائمة اليوم...", "جاري حساب ال..."]
   }
 };
 
-/* ---------- Complete Recipe Database (55 Recipes Total, with Exact Measurements) ---------- */
+let currentLang = "en";
+
+/* ---------- Recipe Database ---------- */
 const foodDatabase = [
-  // --- Original 35 Recipes ---
   {
     id: "tun_1", tags: ["fried", "fish", "student", "tunisian", "cheap"], emoji: "🥟", difficultyCSS: "medium",
     translations: {
@@ -1011,13 +1008,8 @@ const foodDatabase = [
   }
 ];
 
-// ---------------------------------------------------------
-// APP LOGIC
-// ---------------------------------------------------------
-
-let currentLang = "en";
 let currentFood = null;
-const RECENT_LIMIT = 8; // Increased limit slightly to handle larger pool
+const RECENT_LIMIT = 6;
 let recentIds = loadJson("lettuceRecentIds", []);
 let hintShown = loadStr("lettuceHintShown", "0") === "1";
 
@@ -1025,38 +1017,31 @@ const els = {
   languageSelect: document.getElementById("languageSelect"),
   themeToggleBtn: document.getElementById("themeToggleBtn"),
   helpBtn: document.getElementById("helpBtn"),
-  
   heroActions: document.getElementById("heroActions"),
   stickyBar: document.getElementById("stickyBar"),
-  
   discoverBtnTop: document.getElementById("discoverBtnTop"),
   dailyPickBtnTop: document.getElementById("dailyPickBtnTop"),
   preferencesBtnTop: document.getElementById("preferencesBtnTop"),
-  
-  loadingLine: document.getElementById("loadingLine"),
   funnyLoadingText: document.getElementById("funnyLoadingText"),
-  hintLine: document.getElementById("hintLine"), 
-  
+  hintLine: document.getElementById("hintLine"),
   discoverBtnSticky: document.getElementById("discoverBtnSticky"),
   dailyPickBtnSticky: document.getElementById("dailyPickBtnSticky"),
   preferencesBtnSticky: document.getElementById("preferencesBtnSticky"),
-  
   preferencesPanel: document.getElementById("preferencesPanel"),
   closePreferencesBtn: document.getElementById("closePreferencesBtn"),
   resetFiltersBtn: document.getElementById("resetFiltersBtn"),
   applyFiltersBtn: document.getElementById("applyFiltersBtn"),
   
+  // Tags
   studentOnly: document.getElementById("studentOnly"),
   cheapOnly: document.getElementById("cheapOnly"),
   expensiveOnly: document.getElementById("expensiveOnly"),
   healthyOnly: document.getElementById("healthyOnly"),
-  
   tunisianStyle: document.getElementById("tunisianStyle"),
   asianStyle: document.getElementById("asianStyle"),
   americanStyle: document.getElementById("americanStyle"),
   europeanStyle: document.getElementById("europeanStyle"),
   middleEasternStyle: document.getElementById("middleEasternStyle"),
-  
   withChicken: document.getElementById("withChicken"),
   withBeef: document.getElementById("withBeef"),
   loveFish: document.getElementById("loveFish"),
@@ -1065,7 +1050,6 @@ const els = {
   friedOnly: document.getElementById("friedOnly"),
   vegan: document.getElementById("vegan"),
   withDessert: document.getElementById("withDessert"),
-  
   noChicken: document.getElementById("noChicken"),
   noBeef: document.getElementById("noBeef"),
   noFish: document.getElementById("noFish"),
@@ -1077,22 +1061,18 @@ const els = {
   notFound: document.getElementById("notFound"),
   relaxFiltersBtn: document.getElementById("relaxFiltersBtn"),
   openPreferencesBtn2: document.getElementById("openPreferencesBtn2"),
-  
   foodEmoji: document.getElementById("foodEmoji"),
   foodName: document.getElementById("foodName"),
   foodOrigin: document.getElementById("foodOrigin"),
   foodCost: document.getElementById("foodCost"),
   foodDifficulty: document.getElementById("foodDifficulty"),
   foodDesc: document.getElementById("foodDesc"),
-  
   lazyModeBtn: document.getElementById("lazyModeBtn"),
   chefModeBtn: document.getElementById("chefModeBtn"),
-  
   introModal: document.getElementById("introModal"),
   closeIntroBtn: document.getElementById("closeIntroBtn"),
   introDiscoverBtn: document.getElementById("introDiscoverBtn"),
   introPreferencesBtn: document.getElementById("introPreferencesBtn"),
-  
   recipeModal: document.getElementById("recipeModal"),
   closeRecipeBtn: document.getElementById("closeRecipeBtn"),
   modalModeEmoji: document.getElementById("modalModeEmoji"),
@@ -1101,32 +1081,35 @@ const els = {
   tempVal: document.getElementById("tempVal"),
   modalIngredients: document.getElementById("modalIngredients"),
   modalSteps: document.getElementById("modalSteps"),
-  copyrightYear: document.getElementById("year")
+  copyrightYear: document.getElementById("year"),
+
+  // Favorites & PWA
+  favoritesBtn: document.getElementById("favoritesBtn"),
+  saveFavoriteBtn: document.getElementById("saveFavoriteBtn"),
+  favoritesModal: document.getElementById("favoritesModal"),
+  closeFavoritesBtn: document.getElementById("closeFavoritesBtn"),
+  favoritesList: document.getElementById("favoritesList"),
+  installAppBtn: document.getElementById("installAppBtn")
 };
 
 boot();
 
 function boot() {
   if (els.copyrightYear) els.copyrightYear.textContent = String(new Date().getFullYear());
-  
   const savedLang = loadStr("lettuceLang", "en");
   currentLang = savedLang;
   if (els.languageSelect) els.languageSelect.value = savedLang;
   applyLanguage(savedLang);
-  
   const savedTheme = loadStr("lettuceTheme", "light");
   setTheme(savedTheme);
-  
   const introDone = loadStr("lettuceIntroDone", "0") === "1";
   if (!introDone) openIntro();
-  
-  if (!hintShown && els.hintLine) {
-    els.hintLine.classList.remove("hidden");
+  if (!hintShown) {
+    els.hintLine?.classList.remove("hidden");
     hintShown = true;
     saveStr("lettuceHintShown", "1");
-    setTimeout(() => els.hintLine.classList.add("hidden"), 6000);
+    setTimeout(() => els.hintLine?.classList.add("hidden"), 6000);
   }
-  
   wireEvents();
 }
 
@@ -1134,21 +1117,22 @@ function wireEvents() {
   if (els.heroActions && els.stickyBar) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) els.stickyBar.classList.add("visible");
-        else els.stickyBar.classList.remove("visible");
+        if (!entry.isIntersecting) { els.stickyBar.classList.add("visible"); } 
+        else { els.stickyBar.classList.remove("visible"); }
       });
     }, { threshold: 0.1 });
     observer.observe(els.heroActions);
   }
 
   els.languageSelect?.addEventListener("change", (e) => {
-    currentLang = e.target.value;
-    saveStr("lettuceLang", currentLang);
-    applyLanguage(currentLang);
+    const lang = e.target.value;
+    currentLang = lang;
+    saveStr("lettuceLang", lang);
+    applyLanguage(lang);
     if (currentFood) renderFood(currentFood);
     if (els.recipeModal && !els.recipeModal.classList.contains("hidden")) {
-      const isLazy = (els.modalModeEmoji?.textContent || "").includes("🟢");
-      openRecipe(isLazy ? "simple" : "hard");
+      const mode = (els.modalModeEmoji?.textContent || "").includes("🟢") ? "simple" : "hard";
+      openRecipe(mode);
     }
   });
 
@@ -1157,13 +1141,12 @@ function wireEvents() {
     setTheme(isLight ? "dark" : "light");
   });
 
-  els.helpBtn?.addEventListener("click", openIntro);
+  els.helpBtn?.addEventListener("click", () => openIntro());
 
   const animateClick = (btn) => {
     if (!btn) return;
-    btn.classList.remove("pop");
-    void btn.offsetWidth;
-    btn.classList.add("pop");
+    btn.style.transform = "scale(0.92)";
+    setTimeout(() => btn.style.transform = "", 150);
   };
 
   const bindBtn = (btn, action) => {
@@ -1173,15 +1156,15 @@ function wireEvents() {
 
   bindBtn(els.discoverBtnTop, () => handleDiscover(false));
   bindBtn(els.discoverBtnSticky, () => handleDiscover(false));
-  bindBtn(els.introDiscoverBtn, () => { closeIntro(true); handleDiscover(false); });
-  
   bindBtn(els.dailyPickBtnTop, () => handleDiscover(true));
   bindBtn(els.dailyPickBtnSticky, () => handleDiscover(true));
-
-  bindBtn(els.preferencesBtnTop, togglePreferences);
-  bindBtn(els.preferencesBtnSticky, togglePreferences);
-  bindBtn(els.openPreferencesBtn2, togglePreferences);
-  bindBtn(els.introPreferencesBtn, () => { closeIntro(true); togglePreferences(); });
+  
+  els.introDiscoverBtn?.addEventListener("click", () => { closeIntro(true); handleDiscover(false); });
+  
+  els.preferencesBtnTop?.addEventListener("click", togglePreferences);
+  els.preferencesBtnSticky?.addEventListener("click", togglePreferences);
+  els.openPreferencesBtn2?.addEventListener("click", togglePreferences);
+  els.introPreferencesBtn?.addEventListener("click", () => { closeIntro(true); togglePreferences(); });
 
   els.closePreferencesBtn?.addEventListener("click", closePreferences);
   els.resetFiltersBtn?.addEventListener("click", resetFilters);
@@ -1194,12 +1177,11 @@ function wireEvents() {
   els.closeIntroBtn?.addEventListener("click", () => closeIntro(true));
   els.closeRecipeBtn?.addEventListener("click", closeRecipe);
   
-  document.querySelectorAll('.modal__backdrop').forEach(backdrop => {
-    backdrop.addEventListener('click', () => { closeIntro(true); closeRecipe(); });
-  });
+  els.introModal?.addEventListener("click", (e) => { if (e.target === els.introModal) closeIntro(true); });
+  els.recipeModal?.addEventListener("click", (e) => { if (e.target === els.recipeModal) closeRecipe(); });
 
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") { closePreferences(); closeRecipe(); closeIntro(true); }
+    if (e.key === "Escape") { closePreferences(); closeRecipe(); closeIntro(true); els.favoritesModal?.classList.add("hidden"); }
   });
 }
 
@@ -1207,32 +1189,38 @@ function setTheme(mode) {
   document.body.classList.remove("theme-dark", "theme-light");
   document.body.classList.add(mode === "light" ? "theme-light" : "theme-dark");
   saveStr("lettuceTheme", mode);
-  if (els.themeToggleBtn) els.themeToggleBtn.textContent = mode === "light" ? "🌙" : "☀️";
+  if (els.themeToggleBtn) {
+    els.themeToggleBtn.textContent = mode === "light" ? "🌙" : "☀️";
+  }
 }
 
 function applyLanguage(lang) {
   document.body.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
   const dict = translations[lang] || translations.en;
-  
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     if (!key) return;
     if (key === "brand") { el.textContent = "Lettuce Guess"; return; }
-    if (key === "brandPill" && lang === 'en') { el.textContent = translations.en.brandPill; return; }
-    if (dict[key] != null) el.textContent = dict[key];
+    if (key === "brandPill" && lang !== 'en') { el.textContent = dict[key]; return; }
+    if (dict[key] != null) {
+      if (el.innerHTML.includes("🟢") && key === "lazyMode") { el.innerHTML = `🟢 ${dict[key]}`; return; }
+      if (el.innerHTML.includes("🔴") && key === "chefMode") { el.innerHTML = `🔴 ${dict[key]}`; return; }
+      el.textContent = dict[key];
+    }
   });
 }
 
 let isPrefsOpen = false;
 function togglePreferences() {
-  if (!els.preferencesPanel) return;
-  isPrefsOpen = !isPrefsOpen;
-  
+  const p = els.preferencesPanel;
+  if (!p) return;
   if (isPrefsOpen) {
-    els.preferencesPanel.classList.remove("hidden");
-    els.preferencesPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    p.classList.add("hidden");
+    isPrefsOpen = false;
   } else {
-    els.preferencesPanel.classList.add("hidden");
+    p.classList.remove("hidden");
+    p.scrollIntoView({ behavior: "smooth", block: "start" });
+    isPrefsOpen = true;
   }
 }
 
@@ -1243,12 +1231,12 @@ function closePreferences() {
 
 function resetFilters() {
   const ids = [
-    "studentOnly","cheapOnly","expensiveOnly","healthyOnly",
-    "tunisianStyle","asianStyle","americanStyle","europeanStyle","middleEasternStyle",
-    "withChicken","withBeef","loveFish","withCheese","withPasta","friedOnly","vegan","withDessert",
-    "noChicken","noBeef","noFish","noCheese","noSpicy","noSweets"
+    "studentOnly", "cheapOnly", "expensiveOnly", "healthyOnly",
+    "tunisianStyle", "asianStyle", "americanStyle", "europeanStyle", "middleEasternStyle",
+    "withChicken", "withBeef", "loveFish", "withCheese", "withPasta", "friedOnly", "vegan", "withDessert",
+    "noChicken", "noBeef", "noFish", "noCheese", "noSpicy", "noSweets"
   ];
-  ids.forEach((id) => { const el = document.getElementById(id); if (el) el.checked = false; });
+  ids.forEach((id) => { const el = els[id]; if (el) el.checked = false; });
 }
 
 function openIntro() { els.introModal?.classList.remove("hidden"); }
@@ -1258,41 +1246,35 @@ function closeIntro(markDone) {
 }
 
 function handleDiscover(isDailyPick) {
-  els.result?.classList.add("hidden");
-  els.notFound?.classList.add("hidden");
-  
+  hideNotFound();
   const ui = translations[currentLang] || translations.en;
   showLoadingLine(ui.funnyTexts);
-  
   const filters = readFilters();
   const pool = filterDatabase(foodDatabase, filters);
-  
+  if (pool.length === 0) { hideLoadingLine(); showNotFound(); return; }
+  const picked = isDailyPick ? deterministicDailyPick(pool) : smartPick(pool);
   setTimeout(() => {
     hideLoadingLine();
-    if (pool.length === 0) { 
-      els.notFound?.classList.remove("hidden");
-      els.notFound?.scrollIntoView({ behavior: "smooth", block: "center" });
-      return; 
-    }
+    if (!picked) { showNotFound(); return; }
+    currentFood = picked; rememberPick(picked); renderFood(picked);
     
-    const picked = isDailyPick ? deterministicDailyPick(pool) : smartPick(pool);
-    currentFood = picked; 
-    rememberPick(picked); 
-    renderFood(picked);
+    els.result?.classList.remove("pop-animate");
+    void els.result?.offsetWidth; 
+    els.result?.classList.add("pop-animate");
     
     els.result?.scrollIntoView({ behavior: "smooth", block: "center" });
-  }, 800);
+  }, 500); 
 }
 
 function readFilters() {
   return {
-    include: {
-      student: !!els.studentOnly?.checked, cheap: !!els.cheapOnly?.checked, expensive: !!els.expensiveOnly?.checked, healthy: !!els.healthyOnly?.checked,
-      tunisian: !!els.tunisianStyle?.checked, asian: !!els.asianStyle?.checked, american: !!els.americanStyle?.checked, european: !!els.europeanStyle?.checked, middleEastern: !!els.middleEasternStyle?.checked,
-      chicken: !!els.withChicken?.checked, beef: !!els.withBeef?.checked, fish: !!els.loveFish?.checked, cheesy: !!els.withCheese?.checked, pasta: !!els.withPasta?.checked, fried: !!els.friedOnly?.checked, vegan: !!els.vegan?.checked, dessert: !!els.withDessert?.checked
+    include: { 
+      studentOnly: !!els.studentOnly?.checked, cheapOnly: !!els.cheapOnly?.checked, expensiveOnly: !!els.expensiveOnly?.checked, healthyOnly: !!els.healthyOnly?.checked,
+      tunisianStyle: !!els.tunisianStyle?.checked, asianStyle: !!els.asianStyle?.checked, americanStyle: !!els.americanStyle?.checked, europeanStyle: !!els.europeanStyle?.checked, middleEasternStyle: !!els.middleEasternStyle?.checked,
+      withChicken: !!els.withChicken?.checked, withBeef: !!els.withBeef?.checked, loveFish: !!els.loveFish?.checked, withCheese: !!els.withCheese?.checked, withPasta: !!els.withPasta?.checked, friedOnly: !!els.friedOnly?.checked, vegan: !!els.vegan?.checked, withDessert: !!els.withDessert?.checked
     },
     exclude: { 
-      chicken: !!els.noChicken?.checked, beef: !!els.noBeef?.checked, fish: !!els.noFish?.checked, cheesy: !!els.noCheese?.checked, spicy: !!els.noSpicy?.checked, dessert: !!els.noSweets?.checked 
+      noChicken: !!els.noChicken?.checked, noBeef: !!els.noBeef?.checked, noFish: !!els.noFish?.checked, noCheese: !!els.noCheese?.checked, noSpicy: !!els.noSpicy?.checked, noSweets: !!els.noSweets?.checked
     }
   };
 }
@@ -1300,19 +1282,32 @@ function readFilters() {
 function filterDatabase(db, filters) {
   return db.filter((food) => {
     const tags = food.tags || [];
+    if (filters.exclude.noFish && tags.includes("fish")) return false;
+    if (filters.exclude.noChicken && tags.includes("chicken")) return false;
+    if (filters.exclude.noBeef && tags.includes("beef")) return false;
+    if (filters.exclude.noCheese && tags.includes("cheese")) return false;
+    if (filters.exclude.noSpicy && tags.includes("spicy")) return false;
+    if (filters.exclude.noSweets && tags.includes("dessert")) return false;
     
-    // Process Exclusions
-    if (filters.exclude.fish && tags.includes("fish")) return false;
-    if (filters.exclude.chicken && tags.includes("chicken")) return false;
-    if (filters.exclude.beef && tags.includes("beef")) return false;
-    if (filters.exclude.spicy && tags.includes("spicy")) return false;
-    if (filters.exclude.cheesy && tags.includes("cheesy")) return false;
-    if (filters.exclude.dessert && tags.includes("dessert")) return false;
+    if (filters.include.studentOnly && !tags.includes("student")) return false;
+    if (filters.include.cheapOnly && !tags.includes("cheap")) return false;
+    if (filters.include.expensiveOnly && !tags.includes("expensive")) return false;
+    if (filters.include.healthyOnly && !tags.includes("healthy")) return false;
     
-    // Process Inclusions (AND logic - if it's checked, the recipe MUST have the tag)
-    for (const [tag, isChecked] of Object.entries(filters.include)) {
-      if (isChecked && !tags.includes(tag)) return false;
-    }
+    if (filters.include.tunisianStyle && !tags.includes("tunisian")) return false;
+    if (filters.include.asianStyle && !tags.includes("asian")) return false;
+    if (filters.include.americanStyle && !tags.includes("american")) return false;
+    if (filters.include.europeanStyle && !tags.includes("european")) return false;
+    if (filters.include.middleEasternStyle && !tags.includes("middleEast")) return false;
+    
+    if (filters.include.withChicken && !tags.includes("chicken")) return false;
+    if (filters.include.withBeef && !tags.includes("beef")) return false;
+    if (filters.include.loveFish && !tags.includes("fish")) return false;
+    if (filters.include.withCheese && !tags.includes("cheese")) return false;
+    if (filters.include.withPasta && !tags.includes("pasta")) return false;
+    if (filters.include.friedOnly && !tags.includes("fried")) return false;
+    if (filters.include.vegan && !tags.includes("vegan")) return false;
+    if (filters.include.withDessert && !tags.includes("dessert")) return false;
     
     return true;
   });
@@ -1345,13 +1340,7 @@ function renderFood(food) {
   if (!t) return;
   
   els.result?.classList.remove("hidden");
-  
-  const card = els.result.querySelector('.result-card');
-  if(card) {
-    card.classList.remove('bounce-in');
-    void card.offsetWidth;
-    card.classList.add('bounce-in');
-  }
+  els.notFound?.classList.add("hidden");
   
   if (els.foodEmoji) els.foodEmoji.textContent = food.emoji || "🍲";
   if (els.foodName) els.foodName.textContent = t.name || "Meal";
@@ -1359,20 +1348,30 @@ function renderFood(food) {
   if (els.foodCost) els.foodCost.textContent = t.cost || "";
   
   if (els.foodDifficulty) {
-    els.foodDifficulty.className = "pill"; 
+    els.foodDifficulty.className = "pill";
     const diff = (food.difficultyCSS || "").toLowerCase();
-    let textStr = t.difficulty || "—";
-    
-    if (diff === "easy") els.foodDifficulty.classList.add("badge-green");
-    else if (diff === "medium") els.foodDifficulty.classList.add("badge-gold");
-    else if (diff === "hard") els.foodDifficulty.classList.add("badge-red");
+    let txt = "MEDIUM";
+    if (diff === "easy") { els.foodDifficulty.classList.add("badge-green"); txt = "EASY"; }
+    else if (diff === "medium") { els.foodDifficulty.classList.add("badge-gold"); txt = "MEDIUM"; }
+    else if (diff === "hard") { els.foodDifficulty.classList.add("badge-red"); txt = "HARD"; }
     else els.foodDifficulty.classList.add("badge-blue");
-    
-    els.foodDifficulty.textContent = textStr.toUpperCase();
+    els.foodDifficulty.textContent = txt;
   }
   
   if (els.foodDesc) els.foodDesc.textContent = t.description || "";
+  
+  // Update heart button color
+  if (els.saveFavoriteBtn) {
+    if (myFavorites.includes(food.id)) {
+      els.saveFavoriteBtn.classList.add("liked");
+    } else {
+      els.saveFavoriteBtn.classList.remove("liked");
+    }
+  }
 }
+
+function showNotFound() { els.result?.classList.add("hidden"); els.notFound?.classList.remove("hidden"); }
+function hideNotFound() { els.notFound?.classList.add("hidden"); }
 
 function openRecipe(mode) {
   if (!currentFood) return;
@@ -1380,27 +1379,22 @@ function openRecipe(mode) {
   if (!t) return;
   const r = t[mode];
   if (!r) return;
-  
   const ui = translations[currentLang] || translations.en;
   if (els.modalModeEmoji) els.modalModeEmoji.textContent = mode === "simple" ? "🟢" : "🔴";
   if (els.modalTitle) els.modalTitle.textContent = mode === "simple" ? ui.lazyMode : ui.chefMode;
-  if (els.timeVal) els.timeVal.textContent = r.time || "N/A";
-  if (els.tempVal) els.tempVal.textContent = r.temp || "N/A";
+  if (els.timeVal) els.timeVal.textContent = r.time || "";
+  if (els.tempVal) els.tempVal.textContent = r.temp || "";
   
   if (els.modalIngredients) {
     els.modalIngredients.innerHTML = "";
     (r.ingredients || []).forEach((ing) => { 
-      const li = document.createElement("li"); 
-      li.textContent = ing; 
-      els.modalIngredients.appendChild(li); 
+      const li = document.createElement("li"); li.textContent = ing; els.modalIngredients.appendChild(li); 
     });
   }
   if (els.modalSteps) {
     els.modalSteps.innerHTML = "";
     (r.steps || []).forEach((step) => { 
-      const li = document.createElement("li"); 
-      li.textContent = step; 
-      els.modalSteps.appendChild(li); 
+      const li = document.createElement("li"); li.textContent = step; els.modalSteps.appendChild(li); 
     });
   }
   els.recipeModal?.classList.remove("hidden");
@@ -1408,16 +1402,118 @@ function openRecipe(mode) {
 
 function closeRecipe() { els.recipeModal?.classList.add("hidden"); }
 
+let loadingTimer = null;
 function showLoadingLine(funnyTexts) {
-  const arr = Array.isArray(funnyTexts) ? funnyTexts : (translations.en.funnyTexts || ["Thinking..."]);
+  const arr = Array.isArray(funnyTexts) ? funnyTexts : (translations.en.funnyTexts || []);
   const msg = arr[Math.floor(Math.random() * arr.length)];
-  if (els.loadingLine) els.loadingLine.classList.remove("hidden");
-  if (els.funnyLoadingText) els.funnyLoadingText.textContent = msg;
+  if (els.funnyLoadingText) { els.funnyLoadingText.textContent = msg; els.funnyLoadingText.classList.remove("hidden"); }
+  clearTimeout(loadingTimer);
 }
-function hideLoadingLine() { els.loadingLine?.classList.add("hidden"); }
+function hideLoadingLine() { els.funnyLoadingText?.classList.add("hidden"); }
 
 function loadStr(key, fallback = "") { try { const v = localStorage.getItem(key); return v == null ? fallback : v; } catch { return fallback; } }
 function saveStr(key, value) { try { localStorage.setItem(key, value); } catch {} }
 function loadJson(key, fallback) { try { const raw = localStorage.getItem(key); if (!raw) return fallback; return JSON.parse(raw); } catch { return fallback; } }
 function saveJson(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} }
 
+
+/* =========================================================================
+   NEW LOGIC: FAVORITES & PWA "GET APP" 
+   ========================================================================= */
+
+// --- Favorites Logic ---
+let myFavorites = loadJson("lettuceFavorites", []);
+
+function toggleFavorite() {
+  if (!currentFood) return;
+  const index = myFavorites.findIndex(f => f === currentFood.id);
+  
+  if (index > -1) {
+    myFavorites.splice(index, 1);
+    if(els.saveFavoriteBtn) els.saveFavoriteBtn.classList.remove("liked");
+  } else {
+    myFavorites.push(currentFood.id);
+    if(els.saveFavoriteBtn) {
+      els.saveFavoriteBtn.classList.add("liked");
+      els.saveFavoriteBtn.style.transform = "scale(1.2)";
+      setTimeout(() => els.saveFavoriteBtn.style.transform = "scale(1)", 200);
+    }
+  }
+  saveJson("lettuceFavorites", myFavorites);
+  renderFavoritesList(); // <-- THIS WAS MISSING! It updates the list immediately
+}
+
+function renderFavoritesList() {
+  if (!els.favoritesList) return;
+  els.favoritesList.innerHTML = "";
+  if (myFavorites.length === 0) {
+    els.favoritesList.innerHTML = "<li style='list-style: none; text-align: center; color: var(--text-muted); padding: 20px 0;'>No favorites yet. Go find something tasty!</li>";
+    return;
+  }
+  
+  myFavorites.forEach(id => {
+    const food = foodDatabase.find(f => f.id === id);
+    if (!food) return;
+    const t = food.translations?.[currentLang] || food.translations?.en;
+    
+    const li = document.createElement("li");
+    li.className = "fav-item";
+    
+    li.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 1.8rem;">${food.emoji}</span>
+        <span style="font-weight: 700; color: var(--text);">${t.name}</span>
+      </div>
+      <span class="pill badge-blue" style="font-size: 0.75rem; padding: 4px 10px;">${t.difficulty}</span>
+    `;
+    
+    li.addEventListener("click", () => {
+      els.favoritesModal.classList.add("hidden");
+      currentFood = food; 
+      renderFood(food);
+      els.result?.classList.remove("pop-animate");
+      void els.result?.offsetWidth; 
+      els.result?.classList.add("pop-animate");
+      els.result?.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+    
+    els.favoritesList.appendChild(li);
+  });
+}
+
+els.saveFavoriteBtn?.addEventListener("click", toggleFavorite);
+els.favoritesBtn?.addEventListener("click", () => {
+  renderFavoritesList();
+  els.favoritesModal?.classList.remove("hidden");
+});
+els.closeFavoritesBtn?.addEventListener("click", () => els.favoritesModal?.classList.add("hidden"));
+els.favoritesModal?.addEventListener("click", (e) => { if (e.target === els.favoritesModal) els.favoritesModal.classList.add("hidden"); });
+
+
+// --- PWA "Get App" Logic ---
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if(els.installAppBtn) els.installAppBtn.classList.remove('hidden'); 
+});
+
+els.installAppBtn?.addEventListener('click', async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') els.installAppBtn.classList.add('hidden');
+    deferredPrompt = null;
+  }
+});
+
+window.addEventListener('appinstalled', () => {
+  if(els.installAppBtn) els.installAppBtn.classList.add('hidden');
+  deferredPrompt = null;
+});
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  });
+}

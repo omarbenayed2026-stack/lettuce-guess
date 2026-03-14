@@ -316,3 +316,40 @@ body {
   .modal__actions { flex-direction: column; }
   .modal__actions .btn { width: 100%; }
 }
+
+/* =========================================
+   FAVORITES BUTTON & LIST STYLES (NEW)
+   ========================================= */
+
+.fav-btn {
+  color: var(--text-muted);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.fav-btn:hover {
+  background: var(--card-bg-hover);
+  transform: scale(1.1);
+}
+.fav-btn.liked {
+  color: var(--brand) !important;
+}
+.fav-btn.liked svg {
+  fill: var(--brand) !important;
+  stroke: var(--brand) !important;
+}
+.fav-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 8px !important;
+  border-radius: var(--radius-md);
+  background: var(--card-bg-hover);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.fav-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--brand);
+  box-shadow: var(--shadow-sm);
+}

@@ -1,5 +1,5 @@
-// TO PUSH AN UPDATE TO USERS: Change "v1" to "v2", "v3", etc.
-const CACHE_NAME = "lettuce-guess-v1";
+// TO PUSH AN UPDATE TO USERS: Change "v2" to "v3", "v4", etc.
+const CACHE_NAME = "lettuce-guess-v2";
 
 const assets = [
   "./",
@@ -10,30 +10,30 @@ const assets = [
   "./logo.png"
 ];
 
-// Install the new service worker and save files to memory
+// Install the new update
 self.addEventListener("install", (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(assets);
     })
   );
-  self.skipWaiting(); // Forces the new update to install immediately
+  self.skipWaiting(); // Forces the app to update immediately
 });
 
-// Clean up old versions of the app when the version number changes
+// Clean up old memory when the version number changes
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cache) => {
           if (cache !== CACHE_NAME) {
-            return caches.delete(cache); // Deletes old versions!
+            return caches.delete(cache); // Deletes old versions automatically
           }
         })
       );
     })
   );
-  self.clients.claim(); // Take control of the app immediately
+  self.clients.claim();
 });
 
 // Load from memory if offline

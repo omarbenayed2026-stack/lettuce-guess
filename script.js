@@ -1014,7 +1014,7 @@ let recentIds = loadJson("lettuceRecentIds", []);
 let hintShown = loadStr("lettuceHintShown", "0") === "1";
 
 const els = {
-  languageSelect: document.getElementById("languageSelect"),
+  // Navigation & UI Elements
   themeToggleBtn: document.getElementById("themeToggleBtn"),
   helpBtn: document.getElementById("helpBtn"),
   heroActions: document.getElementById("heroActions"),
@@ -1027,12 +1027,18 @@ const els = {
   discoverBtnSticky: document.getElementById("discoverBtnSticky"),
   dailyPickBtnSticky: document.getElementById("dailyPickBtnSticky"),
   preferencesBtnSticky: document.getElementById("preferencesBtnSticky"),
+  
+  // Custom Language Menu Modals
+  openLangBtn: document.getElementById("openLangBtn"),
+  langModal: document.getElementById("langModal"),
+  closeLangBtn: document.getElementById("closeLangBtn"),
+
+  // Preferences
   preferencesPanel: document.getElementById("preferencesPanel"),
   closePreferencesBtn: document.getElementById("closePreferencesBtn"),
   resetFiltersBtn: document.getElementById("resetFiltersBtn"),
   applyFiltersBtn: document.getElementById("applyFiltersBtn"),
   
-  // Tags
   studentOnly: document.getElementById("studentOnly"),
   cheapOnly: document.getElementById("cheapOnly"),
   expensiveOnly: document.getElementById("expensiveOnly"),
@@ -1057,6 +1063,7 @@ const els = {
   noSpicy: document.getElementById("noSpicy"),
   noSweets: document.getElementById("noSweets"),
   
+  // Display Results
   result: document.getElementById("result"),
   notFound: document.getElementById("notFound"),
   relaxFiltersBtn: document.getElementById("relaxFiltersBtn"),
@@ -1098,7 +1105,10 @@ function boot() {
   if (els.copyrightYear) els.copyrightYear.textContent = String(new Date().getFullYear());
   const savedLang = loadStr("lettuceLang", "en");
   currentLang = savedLang;
-  if (els.languageSelect) els.languageSelect.value = savedLang;
+  
+  // Update sleek language button text
+  if (els.openLangBtn) els.openLangBtn.textContent = savedLang.toUpperCase();
+  
   applyLanguage(savedLang);
   const savedTheme = loadStr("lettuceTheme", "light");
   setTheme(savedTheme);
@@ -1124,16 +1134,28 @@ function wireEvents() {
     observer.observe(els.heroActions);
   }
 
-  els.languageSelect?.addEventListener("change", (e) => {
-    const lang = e.target.value;
-    currentLang = lang;
-    saveStr("lettuceLang", lang);
-    applyLanguage(lang);
-    if (currentFood) renderFood(currentFood);
-    if (els.recipeModal && !els.recipeModal.classList.contains("hidden")) {
-      const mode = (els.modalModeEmoji?.textContent || "").includes("🟢") ? "simple" : "hard";
-      openRecipe(mode);
-    }
+  // Handle Sleek Language Menu
+  els.openLangBtn?.addEventListener("click", () => els.langModal?.classList.remove("hidden"));
+  els.closeLangBtn?.addEventListener("click", () => els.langModal?.classList.add("hidden"));
+  els.langModal?.addEventListener("click", (e) => { 
+    if (e.target.classList.contains("modal__backdrop")) els.langModal.classList.add("hidden"); 
+  });
+
+  document.querySelectorAll(".lang-opt").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const lang = e.target.getAttribute("data-lang");
+      currentLang = lang;
+      saveStr("lettuceLang", lang);
+      applyLanguage(lang);
+      
+      if (els.openLangBtn) els.openLangBtn.textContent = lang.toUpperCase(); 
+      if (currentFood) renderFood(currentFood);
+      if (els.recipeModal && !els.recipeModal.classList.contains("hidden")) {
+        const mode = (els.modalModeEmoji?.textContent || "").includes("🟢") ? "simple" : "hard";
+        openRecipe(mode);
+      }
+      els.langModal?.classList.add("hidden"); 
+    });
   });
 
   els.themeToggleBtn?.addEventListener("click", () => {
@@ -1181,7 +1203,11 @@ function wireEvents() {
   els.recipeModal?.addEventListener("click", (e) => { if (e.target === els.recipeModal) closeRecipe(); });
 
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") { closePreferences(); closeRecipe(); closeIntro(true); els.favoritesModal?.classList.add("hidden"); }
+    if (e.key === "Escape") { 
+      closePreferences(); closeRecipe(); closeIntro(true); 
+      els.favoritesModal?.classList.add("hidden"); 
+      els.langModal?.classList.add("hidden");
+    }
   });
 }
 
@@ -1203,8 +1229,8 @@ function applyLanguage(lang) {
     if (key === "brand") { el.textContent = "Lettuce Guess"; return; }
     if (key === "brandPill" && lang !== 'en') { el.textContent = dict[key]; return; }
     if (dict[key] != null) {
-      if (el.innerHTML.includes("🟢") && key === "lazyMode") { el.innerHTML = `🟢 ${dict[key]}`; return; }
-      if (el.innerHTML.includes("🔴") && key === "chefMode") { el.innerHTML = `🔴 ${dict[key]}`; return; }
+      if (key === "lazyMode") { el.innerHTML = `🟢 ${dict[key]}`; return; }
+      if (key === "chefMode") { el.innerHTML = `🔴 ${dict[key]}`; return; }
       el.textContent = dict[key];
     }
   });
@@ -1360,7 +1386,6 @@ function renderFood(food) {
   
   if (els.foodDesc) els.foodDesc.textContent = t.description || "";
   
-  // Update heart button color
   if (els.saveFavoriteBtn) {
     if (myFavorites.includes(food.id)) {
       els.saveFavoriteBtn.classList.add("liked");
@@ -1418,10 +1443,9 @@ function saveJson(key, value) { try { localStorage.setItem(key, JSON.stringify(v
 
 
 /* =========================================================================
-   NEW LOGIC: FAVORITES & PWA "GET APP" 
+   FAVORITES & PWA "GET APP" 
    ========================================================================= */
 
-// --- Favorites Logic ---
 let myFavorites = loadJson("lettuceFavorites", []);
 
 function toggleFavorite() {
@@ -1435,12 +1459,10 @@ function toggleFavorite() {
     myFavorites.push(currentFood.id);
     if(els.saveFavoriteBtn) {
       els.saveFavoriteBtn.classList.add("liked");
-      els.saveFavoriteBtn.style.transform = "scale(1.2)";
-      setTimeout(() => els.saveFavoriteBtn.style.transform = "scale(1)", 200);
     }
   }
   saveJson("lettuceFavorites", myFavorites);
-  renderFavoritesList(); // <-- THIS WAS MISSING! It updates the list immediately
+  renderFavoritesList();
 }
 
 function renderFavoritesList() {
@@ -1489,8 +1511,7 @@ els.favoritesBtn?.addEventListener("click", () => {
 els.closeFavoritesBtn?.addEventListener("click", () => els.favoritesModal?.classList.add("hidden"));
 els.favoritesModal?.addEventListener("click", (e) => { if (e.target === els.favoritesModal) els.favoritesModal.classList.add("hidden"); });
 
-
-// --- PWA "Get App" Logic ---
+// --- PWA Logic ---
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
@@ -1512,6 +1533,7 @@ window.addEventListener('appinstalled', () => {
   deferredPrompt = null;
 });
 
+// SERVICE WORKER REGISTRATION
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./sw.js").catch(() => {});

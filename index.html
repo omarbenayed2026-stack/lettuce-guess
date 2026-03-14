@@ -6,11 +6,17 @@
   <title>Lettuce Guess</title>
   <meta name="description" content="Random recipe generator for students: fast, cheap, tasty." />
   
-  <!-- PWA & App Colors -->
+  <!-- PWA App Manifest -->
   <link rel="manifest" href="./manifest.json" />
   <meta name="theme-color" content="#10b981" />
 
-  <!-- Custom Logo for Browser Tab & App Icon -->
+  <!-- iOS (iPhone) App Support -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Lettuce Guess" />
+  <link rel="apple-touch-icon" href="./logo.png?v=2" />
+
+  <!-- Custom Logo for Browser Tab & Android App Icon -->
   <link rel="icon" href="./logo.png?v=2" />
   
   <link rel="stylesheet" href="./styles.css" />
@@ -37,11 +43,9 @@
         </svg>
       </button>
 
-      <select id="languageSelect" class="select" aria-label="Language">
-        <option value="en">EN</option>
-        <option value="fr">FR</option>
-        <option value="ar">AR</option>
-      </select>
+      <!-- NEW SLEEK LANGUAGE BUTTON -->
+      <button id="openLangBtn" class="iconbtn" style="font-weight: 800; font-size: 0.85rem;" title="Language">EN</button>
+      
       <button id="helpBtn" class="iconbtn" title="Help">?</button>
       <button id="themeToggleBtn" class="iconbtn" title="Toggle theme">☀️</button>
     </div>
@@ -95,7 +99,6 @@
             <div class="panel__sectionTitle" data-i18n="includeTitle">Include</div>
             
             <div class="tags-container">
-              <!-- Type / Budget -->
               <label class="tag-checkbox"><input id="studentOnly" type="checkbox" /> <span data-i18n="studentFriendly">🎓 Student Friendly</span></label>
               <label class="tag-checkbox"><input id="cheapOnly" type="checkbox" /> <span data-i18n="cheap">🪙 Cheap (&lt; 6 DT)</span></label>
               <label class="tag-checkbox"><input id="expensiveOnly" type="checkbox" /> <span data-i18n="expensive">💸 Costs money</span></label>
@@ -103,7 +106,6 @@
               
               <div class="divider"></div>
               
-              <!-- Region -->
               <label class="tag-checkbox"><input id="tunisianStyle" type="checkbox" /> <span data-i18n="tunisianStyle">🇹🇳 Tunisian</span></label>
               <label class="tag-checkbox"><input id="asianStyle" type="checkbox" /> <span data-i18n="asianStyle">🥢 Asian</span></label>
               <label class="tag-checkbox"><input id="americanStyle" type="checkbox" /> <span data-i18n="americanStyle">🇺🇸 American</span></label>
@@ -112,7 +114,6 @@
               
               <div class="divider"></div>
               
-              <!-- Ingredients & Style -->
               <label class="tag-checkbox"><input id="withChicken" type="checkbox" /> <span data-i18n="withChicken">🍗 Chicken</span></label>
               <label class="tag-checkbox"><input id="withBeef" type="checkbox" /> <span data-i18n="withBeef">🥩 Beef</span></label>
               <label class="tag-checkbox"><input id="loveFish" type="checkbox" /> <span data-i18n="fish">🐟 Fish</span></label>
@@ -163,7 +164,7 @@
             
             <!-- FIXED HEART BUTTON (Added z-index: 10 so the big emoji doesn't block clicks) -->
             <button id="saveFavoriteBtn" class="iconbtn fav-btn" style="position: absolute; top: 0; right: 0; z-index: 10; background: transparent; border-color: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Save to Favorites">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events: none;">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events: none;">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
               </svg>
             </button>
@@ -252,10 +253,26 @@
     <div class="modal__backdrop"></div>
     <div class="modal__card bounce-in">
       <button id="closeFavoritesBtn" class="iconbtn modal__close">✕</button>
-      <div class="modal__icon">❤️</div>
+      <div class="modal__icon" style="font-size: 2.5rem; margin-bottom: 12px;">💚</div>
       <h2 class="modal__title">My Favorites</h2>
-      <p class="modal__text">Click a recipe to view it again.</p>
+      <p class="modal__text" style="margin-bottom: 8px;">Click a recipe to view it again.</p>
       <ul id="favoritesList" class="list" style="margin-top: 16px; padding-left: 0;"></ul>
+    </div>
+  </div>
+
+  <!-- NEW: Sleek Language Modal -->
+  <div id="langModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__card bounce-in" style="max-width: 320px; text-align: center; padding: 32px 24px;">
+      <button id="closeLangBtn" class="iconbtn modal__close">✕</button>
+      <div class="modal__icon" style="font-size: 2.5rem; margin-bottom: 8px;">🌍</div>
+      <h2 class="modal__title" style="font-size: 1.5rem;">Language</h2>
+      
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 24px;">
+        <button class="btn btn-secondary lang-opt" data-lang="en">🇬🇧 English</button>
+        <button class="btn btn-secondary lang-opt" data-lang="fr">🇫🇷 Français</button>
+        <button class="btn btn-secondary lang-opt" data-lang="ar">🇹🇳 العربية</button>
+      </div>
     </div>
   </div>
 

@@ -6,8 +6,12 @@
   <title>Lettuce Guess</title>
   <meta name="description" content="Random recipe generator for students: fast, cheap, tasty." />
   
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥬</text></svg>" />
+  <!-- PWA & App Colors -->
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#10b981" />
+
+  <!-- Custom Logo for Browser Tab & App Icon -->
+  <link rel="icon" href="./logo.png?v=2" />
   
   <link rel="stylesheet" href="./styles.css" />
 </head>
@@ -23,6 +27,16 @@
     </div>
 
     <div class="topbar__right">
+      <!-- Get App & Favorites Buttons -->
+      <button id="installAppBtn" class="btn btn-primary hidden" style="padding: 6px 12px; font-size: 0.8rem; margin-right: 4px;">Get App</button>
+      
+      <!-- Green Topbar Heart -->
+      <button id="favoritesBtn" class="iconbtn" title="Favorites" style="color: var(--brand); border-color: transparent; background: var(--brand-light);">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="var(--brand)" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events: none;">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      </button>
+
       <select id="languageSelect" class="select" aria-label="Language">
         <option value="en">EN</option>
         <option value="fr">FR</option>
@@ -145,7 +159,15 @@
       <!-- Result Section -->
       <section id="result" class="result hidden">
         <div class="card result-card bounce-in">
-          <div class="card__top">
+          <div class="card__top" style="position: relative;">
+            
+            <!-- FIXED HEART BUTTON (Added z-index: 10 so the big emoji doesn't block clicks) -->
+            <button id="saveFavoriteBtn" class="iconbtn fav-btn" style="position: absolute; top: 0; right: 0; z-index: 10; background: transparent; border-color: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Save to Favorites">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events: none;">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </button>
+            
             <div id="foodEmoji" class="foodEmoji">🍲</div>
             <div class="card__meta">
               <h2 id="foodName" class="foodName">—</h2>
@@ -201,7 +223,7 @@
     </aside>
   </div>
 
-  <!-- Smart Sticky Bottom Bar (Appears on scroll for mobile) -->
+  <!-- Smart Sticky Bottom Bar -->
   <div class="stickybar" id="stickyBar">
     <button id="dailyPickBtnSticky" class="btn btn-ghost" data-i18n="dailyPick">Menu of the Day</button>
     <button id="discoverBtnSticky" class="btn btn-primary" data-i18n="discover">Discover</button>
@@ -222,6 +244,18 @@
         <button id="introDiscoverBtn" class="btn btn-primary" data-i18n="startDiscover">Start discovering</button>
         <button id="introPreferencesBtn" class="btn btn-secondary" data-i18n="preferences">Preferences</button>
       </div>
+    </div>
+  </div>
+
+  <!-- Favorites Modal -->
+  <div id="favoritesModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__card bounce-in">
+      <button id="closeFavoritesBtn" class="iconbtn modal__close">✕</button>
+      <div class="modal__icon">❤️</div>
+      <h2 class="modal__title">My Favorites</h2>
+      <p class="modal__text">Click a recipe to view it again.</p>
+      <ul id="favoritesList" class="list" style="margin-top: 16px; padding-left: 0;"></ul>
     </div>
   </div>
 

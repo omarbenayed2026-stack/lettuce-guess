@@ -69,14 +69,12 @@ body {
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
   
-  /* Fun background ambient glow */
   background-image: 
     radial-gradient(circle at 15% 10%, var(--brand-light) 0%, transparent 40%),
     radial-gradient(circle at 85% 90%, var(--brand-light) 0%, transparent 40%);
   background-attachment: fixed;
 }
 
-/* Magic for Arabic Font */
 [dir="rtl"], [dir="rtl"] * { 
   font-family: 'Tajawal', system-ui, sans-serif !important; 
 }
@@ -159,10 +157,6 @@ body {
   font-size: 1.1rem; transition: var(--transition);
 }
 .iconbtn:hover { background: var(--card-bg-hover); transform: scale(1.1); }
-.select {
-  appearance: none; background: var(--card-bg); border: 1px solid var(--border);
-  color: var(--text); padding: 8px 16px; border-radius: var(--radius-pill); font-weight: 600; cursor: pointer;
-}
 
 /* --- Cards & Panels --- */
 .panel, .card {
@@ -341,7 +335,6 @@ body {
 }
 
 @media (max-width: 640px) {
-  /* TIGHTEN THE TOPBAR FOR PHONES */
   .topbar { padding: 10px 12px; border-radius: 20px; top: 12px; gap: 8px; }
   .topbar__right { gap: 4px; }
   .iconbtn { width: 34px; height: 34px; font-size: 1rem; }
@@ -364,9 +357,4 @@ body {
   .modal__card--wide { padding: 32px 20px; }
   .modal__actions { flex-direction: column; }
   .modal__actions .btn { width: 100%; }
-}
-
-/* HIDE BRAND TEXT ON EXTRA SMALL PHONES to save space */
-@media (max-width: 380px) {
-  .brand__name { display: none; }
 }

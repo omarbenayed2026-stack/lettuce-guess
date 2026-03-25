@@ -183,7 +183,7 @@ const translations = {
     suggestDesc: "ساعد المجتمع بتقديم وجبتك المفضلة الرخيصة أو السريعة!",
     formNameLabel: "اسم الوصفة والإيموجي",
     formTagsLabel: "علامات (مثال: رخيص، طالب، دجاج)",
-    formIngLabel: "المكونات (مع ال��ميات)",
+    formIngLabel: "المكونات (مع الكميات)",
     formStepsLabel: "الخطوات (طريقة التحضير)",
     formSubmit: "إرسال (يفتح البريد الإلكتروني)",
     suggestDisclaimer: "*بتقديمك لهذه الوصفة، أنت توافق على مشاركتها بحرية مع المجتمع بدون حقوق طبع ونشر.",
@@ -195,7 +195,8 @@ let currentLang = "en";
 
 /* ---------- Recipe Database ---------- */
 const foodDatabase = [
-  id: "tun_1", tags: ["fried", "fish", "student", "tunisian", "cheap"], emoji: "🥟", difficultyCSS: "medium",
+  {
+    id: "tun_1", tags: ["fried", "fish", "student", "tunisian", "cheap"], emoji: "🥟", difficultyCSS: "medium",
     translations: {
       en: { name: "Tunisian Brika", origin: "Tunisia", difficulty: "Medium", cost: "Est. 3.00 DT", description: "A crispy Tunisian pastry filled with tuna, herbs, and a delicious egg center.", simple: { time: "15 mins", temp: "Medium", ingredients: ["1 Brik pastry sheet", "1 Egg", "50g Tuna (drained)", "1 tbsp Chopped parsley", "1 tbsp Chopped onion", "Pinch of salt & pepper"], steps: ["Mix tuna, parsley, and onion", "Place mixture on pastry edge", "Crack egg gently in center", "Fold into triangle and fry until golden"] }, hard: { time: "30 mins", temp: "Medium High", ingredients: ["1 Brik pastry sheet", "1 Egg", "50g Tuna", "1 tbsp Parsley", "1 tbsp Green onion", "1/2 Boiled potato (mashed)", "1 tsp Capers (optional)", "Salt & pepper"], steps: ["Prepare mashed potato and mix with tuna, herbs, and capers", "Shape filling along pastry edges", "Season center and crack egg inside", "Fold carefully and fry in hot oil until crispy and golden"] } },
       fr: { name: "Brik Tunisien", origin: "Tunisie", difficulty: "Moyen", cost: "Env. 3.00 DT", description: "Une pâte croustillante garnie de thon, herbes et un œuf savoureux.", simple: { time: "15 mins", temp: "Moyen", ingredients: ["1 Feuille de brik", "1 Oeuf", "50g de Thon égoutté", "1 c.à.s de Persil", "1 c.à.s d'Oignon haché", "Sel et poivre"], steps: ["Mélanger thon, persil et oignon", "Déposer sur la feuille", "Ajouter l'œuf au centre", "Plier et frire jusqu'à doré"] }, hard: { time: "30 mins", temp: "Moyen Fort", ingredients: ["1 Feuille de brik", "1 Oeuf", "50g de Thon", "Persil", "Oignon vert", "1/2 Pomme de terre écrasée", "Câpres (optionnel)", "Sel et poivre"], steps: ["Préparer la pomme de terre et mélanger avec thon et herbes", "Disposer la farce sur les bords", "Assaisonner puis ajouter l'œuf", "Plier et frire jusqu'à croustillant"] } },
@@ -1043,6 +1044,7 @@ const RECENT_LIMIT = 6;
 let myFavorites = loadJson("lettuceFavorites", []);
 let recentIds = loadJson("lettuceRecentIds", []);
 let hintShown = loadStr("lettuceHintShown", "0") === "1";
+let isPrefsOpen = false;
 
 const els = {
   // Navigation
@@ -1147,34 +1149,38 @@ const els = {
 boot();
 
 function boot() {
-  if (els.copyrightYear) els.copyrightYear.textContent = String(new Date().getFullYear());
-  const savedLang = loadStr("lettuceLang", "en");
-  currentLang = savedLang;
-  
-  if (els.openLangBtn) els.openLangBtn.textContent = savedLang.toUpperCase();
-  applyLanguage(savedLang);
-  
-  const savedTheme = loadStr("lettuceTheme", "light");
-  setTheme(savedTheme);
-  
-  const introDone = loadStr("lettuceIntroDone", "0") === "1";
-  if (!introDone) openIntro();
-  
-  if (!hintShown) {
-    els.hintLine?.classList.remove("hidden");
-    hintShown = true;
-    saveStr("lettuceHintShown", "1");
-    setTimeout(() => els.hintLine?.classList.add("hidden"), 6000);
+  try {
+    if (els.copyrightYear) els.copyrightYear.textContent = String(new Date().getFullYear());
+    const savedLang = loadStr("lettuceLang", "en");
+    currentLang = savedLang;
+    
+    if (els.openLangBtn) els.openLangBtn.textContent = savedLang.toUpperCase();
+    applyLanguage(savedLang);
+    
+    const savedTheme = loadStr("lettuceTheme", "light");
+    setTheme(savedTheme);
+    
+    const introDone = loadStr("lettuceIntroDone", "0") === "1";
+    if (!introDone) openIntro();
+    
+    if (!hintShown) {
+      els.hintLine?.classList.remove("hidden");
+      hintShown = true;
+      saveStr("lettuceHintShown", "1");
+      setTimeout(() => els.hintLine?.classList.add("hidden"), 6000);
+    }
+    wireEvents();
+  } catch(e) {
+    console.error("Error booting app:", e);
   }
-  wireEvents();
 }
 
 function wireEvents() {
   if (els.heroActions && els.stickyBar) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) { els.stickyBar.classList.add("visible"); } 
-        else { els.stickyBar.classList.remove("visible"); }
+        if (!entry.isIntersecting) { els.stickyBar?.classList.add("visible"); } 
+        else { els.stickyBar?.classList.remove("visible"); }
       });
     }, { threshold: 0.1 });
     observer.observe(els.heroActions);
@@ -1184,7 +1190,7 @@ function wireEvents() {
   els.openLangBtn?.addEventListener("click", () => els.langModal?.classList.remove("hidden"));
   els.closeLangBtn?.addEventListener("click", () => els.langModal?.classList.add("hidden"));
   els.langModal?.addEventListener("click", (e) => { 
-    if (e.target.classList.contains("modal__backdrop")) els.langModal.classList.add("hidden"); 
+    if (e.target.classList.contains("modal__backdrop")) els.langModal?.classList.add("hidden"); 
   });
 
   document.querySelectorAll(".lang-opt").forEach(btn => {
@@ -1251,7 +1257,7 @@ function wireEvents() {
 
   els.introModal?.addEventListener("click", (e) => { if (e.target === els.introModal) closeIntro(true); });
   els.recipeModal?.addEventListener("click", (e) => { if (e.target === els.recipeModal) closeRecipe(); });
-  els.suggestModal?.addEventListener("click", (e) => { if (e.target === els.suggestModal) els.suggestModal.classList.add("hidden"); });
+  els.suggestModal?.addEventListener("click", (e) => { if (e.target === els.suggestModal) els.suggestModal?.classList.add("hidden"); });
 
   // Favorites
   els.saveFavoriteBtn?.addEventListener("click", toggleFavorite);
@@ -1260,7 +1266,7 @@ function wireEvents() {
     els.favoritesModal?.classList.remove("hidden");
   });
   els.closeFavoritesBtn?.addEventListener("click", () => els.favoritesModal?.classList.add("hidden"));
-  els.favoritesModal?.addEventListener("click", (e) => { if (e.target === els.favoritesModal) els.favoritesModal.classList.add("hidden"); });
+  els.favoritesModal?.addEventListener("click", (e) => { if (e.target === els.favoritesModal) els.favoritesModal?.classList.add("hidden"); });
 
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") { 
@@ -1345,7 +1351,6 @@ function handleDiscover(isDailyPick) {
   hideNotFound();
   els.result?.classList.add("hidden");
   
-  // Guard against missing foodDatabase
   if (!foodDatabase || foodDatabase.length === 0) {
     showNotFound();
     return;
@@ -1395,7 +1400,6 @@ function runRouletteAnimation(pool, finalPick) {
         els.rouletteModal?.classList.add("hidden");
         renderFood(finalPick);
         
-        // Use "pop" from CSS to trigger bouncy reveal
         els.result?.classList.remove("pop");
         void els.result?.offsetWidth; 
         els.result?.classList.add("pop");
@@ -1625,7 +1629,7 @@ function renderFavoritesList() {
     `;
     
     li.addEventListener("click", () => {
-      els.favoritesModal.classList.add("hidden");
+      els.favoritesModal?.classList.add("hidden");
       currentFood = food; 
       renderFood(food);
       els.result?.classList.remove("pop");
@@ -1650,7 +1654,7 @@ els.installAppBtn?.addEventListener('click', async () => {
   if (deferredPrompt) {
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') els.installAppBtn.classList.add('hidden');
+    if (outcome === 'accepted') els.installAppBtn?.classList.add('hidden');
     deferredPrompt = null;
   }
 });

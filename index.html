@@ -10,25 +10,24 @@
   <link rel="manifest" href="./manifest.json" />
   <meta name="theme-color" content="#10b981" />
 
-  <!-- iOS (iPhone) App Support -->
+  <!-- iOS App Support -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Lettuce Guess" />
   <link rel="apple-touch-icon" href="./logo.png?v=2" />
 
-  <!-- Custom Logo for Browser Tab & Android App Icon -->
+  <!-- Custom Logo -->
   <link rel="icon" href="./logo.png?v=2" />
   
   <link rel="stylesheet" href="./styles.css" />
 
-  <!-- Google Analytics (Placeholder) -->
-  <!-- REPLACE 'YOUR_MEASUREMENT_ID' with your actual GA4 ID -->
+  <!-- Google Analytics (Replace YOUR_MEASUREMENT_ID with your real ID) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_MEASUREMENT_ID"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'YOUR_MEASUREMENT_ID');
+    gtag('config', 'G-6EJ9LX138P');
   </script>
 </head>
 
@@ -83,10 +82,6 @@
           <button id="preferencesBtnTop" class="btn btn-secondary" data-i18n="preferences">Preferences</button>
         </div>
 
-        <div id="loadingLine" class="loading-wrapper hidden">
-          <div class="spinner"></div>
-          <div id="funnyLoadingText" class="loading-text font-bold"></div>
-        </div>
         <div id="hintLine" class="hint hidden" data-i18n="discoverHint">Tip: tap Discover again for a new meal.</div>
       </section>
 
@@ -200,14 +195,13 @@
         </div>
       </section>
 
-      <!-- Footer & About Section -->
+      <!-- Footer & About Section (Fixed: Small, blended, centered) -->
       <footer class="footer">
-        <div class="footer__about card" style="text-align: left; margin-bottom: 32px; padding: 24px;">
-          <h3 data-i18n="aboutTitle" style="font-size: 1.2rem; font-weight: 800; color: var(--text); margin-bottom: 8px;">About Lettuce Guess</h3>
-          <p data-i18n="aboutText" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
-            Created specifically for students and busy people who don't know what to cook. Fast, cheap, and tasty meals at the click of a button! This project is open source and community-driven. Have an amazing recipe? Share it with us!
+        <div style="max-width: 600px; margin: 0 auto 32px auto; text-align: center; padding: 0 20px;">
+          <p data-i18n="aboutText" style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 16px;">
+            Created for students and busy people who don't know what to cook. Fast, cheap, and tasty meals! This project is open source. Have an amazing recipe? Share it with us!
           </p>
-          <button id="openSuggestBtn" class="btn btn-secondary" data-i18n="suggestBtn">💡 Suggest a Recipe</button>
+          <button id="openSuggestBtn" class="btn btn-secondary" style="padding: 10px 24px; font-size: 0.9rem; border-radius: var(--radius-pill);" data-i18n="suggestBtn">💡 Suggest a Recipe</button>
         </div>
 
         <div class="footer__contact">

@@ -49,6 +49,8 @@ const translations = {
     introTagline: "Pick a meal in seconds.",
     introText: "Welcome! Use Discover to get a random meal. Open Preferences to filter. Tap again for a new suggestion.",
     startDiscover: "Start discovering",
+    
+    // ABOUT & SUGGEST TRANSLATIONS
     aboutText: "Created for students and busy people who don't know what to cook. Fast, cheap, and tasty meals! This project is open source. Have an amazing recipe? Share it with us!",
     suggestBtn: "💡 Suggest a Recipe",
     suggestTitle: "Share Your Recipe",
@@ -57,9 +59,12 @@ const translations = {
     formTagsLabel: "Tags (Select all that apply)",
     formIngLabel: "Ingredients (with amounts)",
     formStepsLabel: "Steps (How to cook it)",
-    formSubmit: "Submit Recipe (Opens Email)",
+    formSubmit: "Submit Recipe",
     suggestDisclaimer: "*By submitting, you agree to share this recipe freely with the community without copyright restrictions.",
-    thanksSuggest: "Thanks! Opening your email app now. Just hit send!"
+    emailOpening: "Opening your email app! 📧",
+    emailFallback: "If nothing happened automatically, copy the recipe below and email it to omarbenayed2026@gmail.com",
+    copyRecipe: "📋 Copy Recipe",
+    copied: "✅ Copied!"
   },
   fr: {
     brandPill: "rapide • pas cher • bon",
@@ -119,9 +124,12 @@ const translations = {
     formTagsLabel: "Tags (Sélectionnez ceux qui s'appliquent)",
     formIngLabel: "Ingrédients (avec quantités)",
     formStepsLabel: "Étapes (Comment cuisiner)",
-    formSubmit: "Soumettre (Ouvre votre E-mail)",
+    formSubmit: "Soumettre",
     suggestDisclaimer: "*En soumettant, vous acceptez de partager cette recette librement sans restrictions de droits d'auteur.",
-    thanksSuggest: "Merci ! Ouverture de votre application e-mail. Envoyez simplement !"
+    emailOpening: "Ouverture de votre E-mail! 📧",
+    emailFallback: "Si rien ne s'est passé, copiez la recette ci-dessous et envoyez-la à omarbenayed2026@gmail.com",
+    copyRecipe: "📋 Copier la recette",
+    copied: "✅ Copié!"
   },
   ar: {
     brandPill: "سريع • رخيص • لذيذ",
@@ -181,9 +189,12 @@ const translations = {
     formTagsLabel: "علامات (اختر ما ينطبق)",
     formIngLabel: "المكونات (مع الكميات)",
     formStepsLabel: "الخطوات (طريقة التحضير)",
-    formSubmit: "إرسال (يفتح البريد الإلكتروني)",
+    formSubmit: "إرسال",
     suggestDisclaimer: "*بتقديمك لهذه الوصفة، أنت توافق على مشاركتها بحرية مع المجتمع بدون حقوق طبع ونشر.",
-    thanksSuggest: "شكراً! جاري فتح تطبيق البريد الإلكتروني الخاص بك. فقط اضغط إرسال!"
+    emailOpening: "جاري فتح بريدك الإلكتروني! 📧",
+    emailFallback: "إذا لم يفتح التطبيق، انسخ الوصفة أدناه وأرسلها إلى omarbenayed2026@gmail.com",
+    copyRecipe: "📋 نسخ الوصفة",
+    copied: "✅ تم النسخ!"
   }
 };
 
@@ -191,7 +202,7 @@ let currentLang = "en";
 
 /* ---------- Recipe Database ---------- */
 const foodDatabase = [
-  {
+{
     id: "tun_1", tags: ["fried", "fish", "student", "tunisian", "cheap"], emoji: "🥟", difficultyCSS: "medium",
     translations: {
       en: { name: "Tunisian Brika", origin: "Tunisia", difficulty: "Medium", cost: "Est. 3.00 DT", description: "A crispy Tunisian pastry filled with tuna, herbs, and a delicious egg center.", simple: { time: "15 mins", temp: "Medium", ingredients: ["1 Brik pastry sheet", "1 Egg", "50g Tuna (drained)", "1 tbsp Chopped parsley", "1 tbsp Chopped onion", "Pinch of salt & pepper"], steps: ["Mix tuna, parsley, and onion", "Place mixture on pastry edge", "Crack egg gently in center", "Fold into triangle and fry until golden"] }, hard: { time: "30 mins", temp: "Medium High", ingredients: ["1 Brik pastry sheet", "1 Egg", "50g Tuna", "1 tbsp Parsley", "1 tbsp Green onion", "1/2 Boiled potato (mashed)", "1 tsp Capers (optional)", "Salt & pepper"], steps: ["Prepare mashed potato and mix with tuna, herbs, and capers", "Shape filling along pastry edges", "Season center and crack egg inside", "Fold carefully and fry in hot oil until crispy and golden"] } },
@@ -1119,6 +1130,7 @@ const els = {
   rouletteContent: document.getElementById("rouletteContent"),
   rouletteEmoji: document.getElementById("rouletteEmoji"),
   rouletteName: document.getElementById("rouletteName"),
+  
   openSuggestBtn: document.getElementById("openSuggestBtn"),
   suggestModal: document.getElementById("suggestModal"),
   closeSuggestBtn: document.getElementById("closeSuggestBtn"),
@@ -1126,7 +1138,11 @@ const els = {
   sugName: document.getElementById("sugName"),
   sugTime: document.getElementById("sugTime"),
   sugIng: document.getElementById("sugIng"),
-  sugSteps: document.getElementById("sugSteps")
+  sugSteps: document.getElementById("sugSteps"),
+  suggestFormContent: document.getElementById("suggestFormContent"),
+  suggestSuccessContent: document.getElementById("suggestSuccessContent"),
+  fallbackEmailBody: document.getElementById("fallbackEmailBody"),
+  copyEmailBtn: document.getElementById("copyEmailBtn")
 };
 
 boot();
@@ -1232,9 +1248,20 @@ function wireEvents() {
   els.closeIntroBtn?.addEventListener("click", () => closeIntro(true));
   els.closeRecipeBtn?.addEventListener("click", closeRecipe);
   
+  // Suggest Feature Event Listeners
   els.openSuggestBtn?.addEventListener("click", () => els.suggestModal?.classList.remove("hidden"));
-  els.closeSuggestBtn?.addEventListener("click", () => els.suggestModal?.classList.add("hidden"));
+  els.closeSuggestBtn?.addEventListener("click", resetAndCloseSuggestModal);
   els.submitSuggestBtn?.addEventListener("click", submitRecipeSuggestion);
+
+  els.copyEmailBtn?.addEventListener("click", () => {
+    if(!els.fallbackEmailBody) return;
+    navigator.clipboard.writeText(els.fallbackEmailBody.value);
+    const dict = translations[currentLang] || translations.en;
+    els.copyEmailBtn.textContent = dict.copied || "✅ Copied!";
+    setTimeout(() => {
+      els.copyEmailBtn.textContent = dict.copyRecipe || "📋 Copy Recipe";
+    }, 2500);
+  });
 
   document.querySelectorAll('.sug-tag-btn').forEach(btn => {
     btn.addEventListener('click', () => btn.classList.toggle('active'));
@@ -1249,7 +1276,7 @@ function wireEvents() {
 
   els.introModal?.addEventListener("click", (e) => { if (e.target === els.introModal) closeIntro(true); });
   els.recipeModal?.addEventListener("click", (e) => { if (e.target === els.recipeModal) closeRecipe(); });
-  els.suggestModal?.addEventListener("click", (e) => { if (e.target === els.suggestModal) els.suggestModal?.classList.add("hidden"); });
+  els.suggestModal?.addEventListener("click", (e) => { if (e.target === els.suggestModal) resetAndCloseSuggestModal(); });
 
   els.saveFavoriteBtn?.addEventListener("click", toggleFavorite);
   els.favoritesBtn?.addEventListener("click", () => {
@@ -1264,7 +1291,7 @@ function wireEvents() {
       closePreferences(); closeRecipe(); closeIntro(true); 
       els.favoritesModal?.classList.add("hidden"); 
       els.langModal?.classList.add("hidden");
-      els.suggestModal?.classList.add("hidden");
+      resetAndCloseSuggestModal();
     }
   });
 }
@@ -1396,7 +1423,7 @@ function runRouletteAnimation(pool, finalPick) {
   setTimeout(() => {
     clearInterval(spinInterval);
     
-    // Stop the CSS blur so it sits perfectly still (No shaking!)
+    // Stop the CSS blur so it sits perfectly still
     if (els.rouletteContent) els.rouletteContent.classList.remove("spin-motion-blur");
     
     // Show the actual picked meal
@@ -1559,7 +1586,7 @@ function loadJson(key, fallback) { try { const raw = localStorage.getItem(key); 
 function saveJson(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} }
 
 /* =========================================================================
-   SUGGEST RECIPE LOGIC
+   SUGGEST RECIPE LOGIC (WITH FALLBACK)
    ========================================================================= */
 function submitRecipeSuggestion() {
   const name = els.sugName?.value || "N/A";
@@ -1575,27 +1602,43 @@ function submitRecipeSuggestion() {
   const activeDiff = document.querySelector('.diff-btn.active');
   const diffStr = activeDiff ? activeDiff.textContent : "N/A";
 
-  const emailBody = `NEW RECIPE SUGGESTION!%0D%0A%0D%0A` +
-    `Name & Emoji: ${name}%0D%0A` +
-    `Tags: ${tagsStr}%0D%0A` +
-    `Time: ${time}%0D%0A` +
-    `Difficulty: ${diffStr}%0D%0A%0D%0A` +
-    `Ingredients:%0D%0A${encodeURIComponent(ing)}%0D%0A%0D%0A` +
-    `Steps:%0D%0A${encodeURIComponent(steps)}%0D%0A`;
+  const rawBodyText = `NEW RECIPE SUGGESTION!\n\n` +
+    `Name & Emoji: ${name}\n` +
+    `Tags: ${tagsStr}\n` +
+    `Time: ${time}\n` +
+    `Difficulty: ${diffStr}\n\n` +
+    `Ingredients:\n${ing}\n\n` +
+    `Steps:\n${steps}\n`;
 
-  const dict = translations[currentLang] || translations.en;
-  alert(dict.thanksSuggest || translations.en.thanksSuggest);
+  // 1. Hide Form, Show Success UI
+  if(els.suggestFormContent) els.suggestFormContent.classList.add("hidden");
+  if(els.suggestSuccessContent) els.suggestSuccessContent.classList.remove("hidden");
   
+  // 2. Put text in fallback box in case mail app doesn't open
+  if(els.fallbackEmailBody) els.fallbackEmailBody.value = rawBodyText;
+
+  // 3. Attempt to trigger the email app
+  const emailBody = encodeURIComponent(rawBodyText);
+  window.location.href = `mailto:omarbenayed2026@gmail.com?subject=Lettuce Guess - New Recipe!&body=${emailBody}`;
+}
+
+function resetAndCloseSuggestModal() {
   els.suggestModal?.classList.add("hidden");
   
-  if(els.sugName) els.sugName.value = "";
-  if(els.sugTime) els.sugTime.value = "";
-  if(els.sugIng) els.sugIng.value = "";
-  if(els.sugSteps) els.sugSteps.value = "";
-  document.querySelectorAll('.sug-tag-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
-
-  window.location.href = `mailto:omarbenayed2026@gmail.com?subject=Lettuce Guess - New Recipe!&body=${emailBody}`;
+  // Wait for transition to finish before resetting forms so it doesn't blink
+  setTimeout(() => {
+    // Reset Form visibility
+    if(els.suggestFormContent) els.suggestFormContent.classList.remove("hidden");
+    if(els.suggestSuccessContent) els.suggestSuccessContent.classList.add("hidden");
+    
+    // Clear inputs
+    if(els.sugName) els.sugName.value = "";
+    if(els.sugTime) els.sugTime.value = "";
+    if(els.sugIng) els.sugIng.value = "";
+    if(els.sugSteps) els.sugSteps.value = "";
+    document.querySelectorAll('.sug-tag-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+  }, 300);
 }
 
 /* =========================================================================

@@ -22,12 +22,12 @@
   <link rel="stylesheet" href="./styles.css" />
 
   <!-- Google Analytics (Replace YOUR_MEASUREMENT_ID with your real ID) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_MEASUREMENT_ID"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6EJ9LX138P"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-6EJ9LX138P');
+    gtag('config', 'YOUR_MEASUREMENT_ID');
   </script>
 </head>
 
@@ -194,24 +194,25 @@
           </div>
         </div>
       </section>
-
-      <!-- Footer & About Section (Fixed: Small, blended, centered) -->
+      
+      <!-- Footer is physically separated down here via CSS border -->
       <footer class="footer">
-        <div style="max-width: 600px; margin: 0 auto 32px auto; text-align: center; padding: 0 20px;">
-          <p data-i18n="aboutText" style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 16px;">
+        <div class="footer__inner">
+          <p data-i18n="aboutText" style="margin-bottom: 12px; font-size: 0.9rem;">
             Created for students and busy people who don't know what to cook. Fast, cheap, and tasty meals! This project is open source. Have an amazing recipe? Share it with us!
           </p>
-          <button id="openSuggestBtn" class="btn btn-secondary" style="padding: 10px 24px; font-size: 0.9rem; border-radius: var(--radius-pill);" data-i18n="suggestBtn">💡 Suggest a Recipe</button>
-        </div>
+          <button id="openSuggestBtn" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.85rem; border-radius: var(--radius-pill); margin-bottom: 24px;" data-i18n="suggestBtn">💡 Suggest a Recipe</button>
 
-        <div class="footer__contact">
-          <span data-i18n="contactDev">Contact Developer:</span> 
-          <a href="mailto:omarbenayed2026@gmail.com" class="footer__link">omarbenayed2026@gmail.com</a>
-        </div>
-        <div class="footer__small">
-          © <span id="year"></span> Lettuce Guess — <span data-i18n="rights">All rights reserved.</span>
+          <div class="footer__contact">
+            <span data-i18n="contactDev">Contact Developer:</span> 
+            <a href="mailto:omarbenayed2026@gmail.com" class="footer__link">omarbenayed2026@gmail.com</a>
+          </div>
+          <div class="footer__small">
+            © <span id="year"></span> Lettuce Guess — <span data-i18n="rights">All rights reserved.</span>
+          </div>
         </div>
       </footer>
+
     </main>
 
     <!-- Right Ad Space -->

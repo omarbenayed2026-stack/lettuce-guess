@@ -44,13 +44,26 @@ const translations = {
     chefHint: "Use the stove, impress your friends.",
     ingredients: "Ingredients & Spices",
     steps: "Instructions",
-    footerText: "Helping students eat better, one click at a time.",
-    contactDev: "Contact Dev:",
+    contactDev: "Contact Developer:",
     rights: "All rights reserved.",
     introTagline: "Pick a meal in seconds.",
     introText: "Welcome! Use Discover to get a random meal. Open Preferences to filter. Tap again for a new suggestion.",
     startDiscover: "Start discovering",
-    funnyTexts: ["Checking your wallet...", "Finding something fast (and tasty)...", "Avoiding boring meals...", "Mixing up your menu...", "Doing the budget math..."]
+    funnyTexts: ["Checking your wallet...", "Finding something fast (and tasty)...", "Avoiding boring meals...", "Mixing up your menu...", "Doing the budget math..."],
+    
+    // NEW ABOUT & SUGGEST TRANSLATIONS
+    aboutTitle: "About Lettuce Guess",
+    aboutText: "Created specifically for students and busy people who don't know what to cook. Fast, cheap, and tasty meals at the click of a button! This project is open source and community-driven. Have an amazing recipe? Share it with us!",
+    suggestBtn: "💡 Suggest a Recipe",
+    suggestTitle: "Share Your Recipe",
+    suggestDesc: "Help the community by submitting your favorite fast, cheap, or tasty meal!",
+    formNameLabel: "Recipe Name & Emoji",
+    formTagsLabel: "Tags / Vibe (e.g. Cheap, Student, Chicken)",
+    formIngLabel: "Ingredients (with amounts)",
+    formStepsLabel: "Steps (How to cook it)",
+    formSubmit: "Submit Recipe (Opens Email)",
+    suggestDisclaimer: "*By submitting, you agree to share this recipe freely with the community without copyright restrictions.",
+    thanksSuggest: "Thanks! Opening your email app now. Just hit send!"
   },
   fr: {
     brandPill: "rapide • pas cher • bon",
@@ -97,13 +110,25 @@ const translations = {
     chefHint: "Cuisine sérieusement, impressionne tes amis.",
     ingredients: "Ingrédients & Épices",
     steps: "Instructions",
-    footerText: "Aider les étudiants à mieux manger, un clic à la fois.",
     contactDev: "Contacter le dév :",
     rights: "Tous droits réservés.",
     introTagline: "Choisis un plat en quelques secondes.",
-    introText: "Bienvenue ! Utilisez Découvrir pour une recette aléatoire. Ouvrez Préférences pour filtrer par budget, style et ingrédients. Appuyez à nouveau pour une autre suggestion.",
+    introText: "Bienvenue ! Utilisez Découvrir pour une recette aléatoire. Ouvrez Préférences pour filtrer par budget, style et ingrédients.",
     startDiscover: "Commencer",
-    funnyTexts: ["Vérification du portefeuille...", "On cherche quelque chose de rapide...", "On évite les plats ennuyeux...", "On mélange ton menu...", "Calcul du budget..."]
+    funnyTexts: ["Vérification du portefeuille...", "On cherche quelque chose de rapide...", "On évite les plats ennuyeux...", "On mélange ton menu..."],
+    
+    aboutTitle: "À propos de Lettuce Guess",
+    aboutText: "Créé spécifiquement pour les étudiants et les gens pressés qui ne savent pas quoi cuisiner. Des plats rapides, pas chers et savoureux ! Ce projet est open source. Vous avez une bonne recette ? Partagez-la avec nous !",
+    suggestBtn: "💡 Proposer une recette",
+    suggestTitle: "Partagez votre recette",
+    suggestDesc: "Aidez la communauté en soumettant votre repas préféré !",
+    formNameLabel: "Nom de la recette & Emoji",
+    formTagsLabel: "Tags (ex. Pas cher, Étudiant, Poulet)",
+    formIngLabel: "Ingrédients (avec quantités)",
+    formStepsLabel: "Étapes (Comment cuisiner)",
+    formSubmit: "Soumettre (Ouvre votre E-mail)",
+    suggestDisclaimer: "*En soumettant, vous acceptez de partager cette recette librement sans restrictions de droits d'auteur.",
+    thanksSuggest: "Merci ! Ouverture de votre application e-mail. Envoyez simplement !"
   },
   ar: {
     brandPill: "سريع • رخيص • لذيذ",
@@ -150,13 +175,25 @@ const translations = {
     chefHint: "استخدم الموقد وأبهر أصدقاءك.",
     ingredients: "المكونات والبهارات",
     steps: "طريقة التحضير",
-    footerText: "نساعد الطلاب على تناول طعام أفضل بضغطة زر.",
     contactDev: "تواصل مع المطور:",
     rights: "جميع الحقوق محفوظة.",
     introTagline: "اختر وجبة في ثوانٍ.",
-    introText: "مرحبًا! استخدم «اكتشف» للحصول على وجبة عشوائية. افتح «التفضيلات» للتصفية حسب الميزانية...",
+    introText: "مرحبًا! استخدم «اكتشف» للحصول على وجبة عشوائية.",
     startDiscover: "ابدأ",
-    funnyTexts: ["جاري فحص محفظتك...", "نبحث عن شيء سريع ولذيذ...", "نتجنب الأكل الممل...", "ننوّع قائمة اليوم...", "جاري حساب ال..."]
+    funnyTexts: ["جاري فحص محفظتك...", "نبحث عن شيء سريع ولذيذ...", "نتجنب الأكل الممل...", "ننوّع قائمة اليوم..."],
+    
+    aboutTitle: "حول Lettuce Guess",
+    aboutText: "تم إنشاؤه خصيصًا للطلاب والأشخاص المشغولين. وجبات سريعة ورخيصة ولذيذة! هذا المشروع مفتوح المصدر. هل لديك وصفة رائعة؟ شاركها معنا!",
+    suggestBtn: "💡 اقترح وصفة",
+    suggestTitle: "شارك وصفتك",
+    suggestDesc: "ساعد المجتمع بتقديم وجبتك المفضلة الرخيصة أو السريعة!",
+    formNameLabel: "اسم الوصفة والإيموجي",
+    formTagsLabel: "علامات (مثال: رخيص، طالب، دجاج)",
+    formIngLabel: "المكونات (مع الكميات)",
+    formStepsLabel: "الخطوات (طريقة التحضير)",
+    formSubmit: "إرسال (يفتح البريد الإلكتروني)",
+    suggestDisclaimer: "*بتقديمك لهذه الوصفة، أنت توافق على مشاركتها بحرية مع المجتمع بدون حقوق طبع ونشر.",
+    thanksSuggest: "شكراً! جاري فتح تطبيق البريد الإلكتروني الخاص بك. فقط اضغط إرسال!"
   }
 };
 
@@ -164,36 +201,35 @@ let currentLang = "en";
 
 /* ---------- Recipe Database ---------- */
 const foodDatabase = [
-  {
-    id: "tun_1", tags: ["fried", "fish", "student", "tunisian", "cheap"], emoji: "🥟", difficultyCSS: "medium",
+id: "tun_1", tags: ["fried", "fish", "student", "tunisian", "cheap"], emoji: "🥟", difficultyCSS: "medium",
     translations: {
-      en: { name: "Tunisian Brika", origin: "Tunisia", difficulty: "Medium", cost: "Est. 3.00 DT", description: "A perfectly crispy triangle pastry, stuffed with tuna, parsley, and a runny egg.", simple: { time: "10 mins", temp: "Medium", ingredients: ["1 Brik pastry sheet", "50g Canned tuna", "1 Egg", "1 tbsp Chopped parsley", "Pinch of salt/pepper"], steps: ["Mix tuna and parsley", "Crack egg inside pastry", "Fold into a triangle", "Fry until golden"] }, hard: { time: "20 mins", temp: "Medium High", ingredients: ["1 Brik pastry sheet", "50g Tuna", "1 tsp Capers", "1/2 Boiled potato (mashed)", "1 Egg", "1 tbsp Parsley"], steps: ["Boil and mash potato", "Mix with tuna, parsley, and capers", "Fold pastry, crack egg inside", "Fry carefully until crispy"] } },
-      fr: { name: "Brik Tunisien", origin: "Tunisie", difficulty: "Moyen", cost: "Env. 3.00 DT", description: "Un triangle de pâte croustillante, farci au thon, persil et un œuf coulant.", simple: { time: "10 mins", temp: "Moyen", ingredients: ["1 Feuille de brik", "50g de Thon", "1 Oeuf", "1 c.à.s de Persil haché"], steps: ["Mélanger thon et persil", "Casser l'oeuf au centre", "Plier en triangle", "Frire jusqu'à dorure"] }, hard: { time: "20 mins", temp: "Moyen Fort", ingredients: ["1 Feuille de brik", "50g de Thon", "1 c.à.c de Câpres", "1/2 Pomme de terre (écrasée)", "1 Oeuf", "Persil"], steps: ["Écraser la pomme de terre", "Mélanger avec thon et câpres", "Plier, casser l'oeuf", "Frire délicatement"] } },
-      ar: { name: "بريك تونسي", origin: "تونس", difficulty: "متوسط", cost: "حوالي 3.00 د.ت", description: "مثلث عجين مقرمش محشو بالتونة، البقدونس، وبيضة.", simple: { time: "10 دقائق", temp: "متوسط", ingredients: ["1 ورقة ملسوقة", "50غ تونة", "1 بيضة", "1 ملعقة كبيرة بقدونس مفروم"], steps: ["اخلط التونة والبقدونس", "ضع الخليط واكسر البيضة", "اطوها على شكل مثلث", "اقليها حتى تحمر"] }, hard: { time: "20 دقائق", temp: "عالي", ingredients: ["1 ورقة ملسوقة", "50غ تونة", "1 ملعقة صغيرة كبار", "نصف حبة بطاطا مسلوقة ومهروسة", "1 بيضة", "بقدونس"], steps: ["اسلق البطاطا واهرسها", "اخلطها مع التونة والكبار", "ضعها في الملسوقة مع البيضة", "اقليها بحذر"] } }
+      en: { name: "Tunisian Brika", origin: "Tunisia", difficulty: "Medium", cost: "Est. 3.00 DT", description: "A crispy Tunisian pastry filled with tuna, herbs, and a delicious egg center.", simple: { time: "15 mins", temp: "Medium", ingredients: ["1 Brik pastry sheet", "1 Egg", "50g Tuna (drained)", "1 tbsp Chopped parsley", "1 tbsp Chopped onion", "Pinch of salt & pepper"], steps: ["Mix tuna, parsley, and onion", "Place mixture on pastry edge", "Crack egg gently in center", "Fold into triangle and fry until golden"] }, hard: { time: "30 mins", temp: "Medium High", ingredients: ["1 Brik pastry sheet", "1 Egg", "50g Tuna", "1 tbsp Parsley", "1 tbsp Green onion", "1/2 Boiled potato (mashed)", "1 tsp Capers (optional)", "Salt & pepper"], steps: ["Prepare mashed potato and mix with tuna, herbs, and capers", "Shape filling along pastry edges", "Season center and crack egg inside", "Fold carefully and fry in hot oil until crispy and golden"] } },
+      fr: { name: "Brik Tunisien", origin: "Tunisie", difficulty: "Moyen", cost: "Env. 3.00 DT", description: "Une pâte croustillante garnie de thon, herbes et un œuf savoureux.", simple: { time: "15 mins", temp: "Moyen", ingredients: ["1 Feuille de brik", "1 Oeuf", "50g de Thon égoutté", "1 c.à.s de Persil", "1 c.à.s d'Oignon haché", "Sel et poivre"], steps: ["Mélanger thon, persil et oignon", "Déposer sur la feuille", "Ajouter l'œuf au centre", "Plier et frire jusqu'à doré"] }, hard: { time: "30 mins", temp: "Moyen Fort", ingredients: ["1 Feuille de brik", "1 Oeuf", "50g de Thon", "Persil", "Oignon vert", "1/2 Pomme de terre écrasée", "Câpres (optionnel)", "Sel et poivre"], steps: ["Préparer la pomme de terre et mélanger avec thon et herbes", "Disposer la farce sur les bords", "Assaisonner puis ajouter l'œuf", "Plier et frire jusqu'à croustillant"] } },
+      ar: { name: "بريك تونسي", origin: "تونس", difficulty: "متوسط", cost: "حوالي 3.00 د.ت", description: "عجينة تونسية مقلية ومقرمشة محشوة بالتونة والأعشاب وبيضة لذيذة.", simple: { time: "15 دقيقة", temp: "متوسط", ingredients: ["1 ورقة ملسوقة", "1 بيضة", "50غ تونة مصفاة", "1 ملعقة كبيرة بقدونس", "1 ملعقة كبيرة بصل مفروم", "ملح وفلفل"], steps: ["اخلط التونة مع البقدونس والبصل", "ضع الحشوة على الحافة", "اكسر البيضة في الوسط", "اطوِها واقلِها حتى تصبح ذهبية"] }, hard: { time: "30 دقيقة", temp: "عالي", ingredients: ["1 ورقة ملسوقة", "1 بيضة", "50غ تونة", "بقدونس", "بصل أخضر","نصف بطاطا مسلوقة ومهروسة", "كبار (اختياري)", "ملح وفلفل"], steps: ["حضّر البطاطا واخلطها مع التونة والأعشاب", "ضع الحشوة على أطراف الملسوقة", "أضف التوابل ثم البيضة", "اطوِها واقلِها حتى تصبح مقرمشة"] } }
     }
   },
   {
     id: "tun_2", tags: ["boiled", "student", "spicy", "vegan", "tunisian", "cheap", "middleEastern"], emoji: "🥣", difficultyCSS: "easy",
     translations: {
-      en: { name: "Spicy Lablebi", origin: "Tunisia", difficulty: "Easy", cost: "Est. 3.50 DT", description: "The ultimate cheap, garlicky chickpea street-food soup poured over day-old bread.", simple: { time: "15 mins", temp: "High", ingredients: ["1 Can (400g) chickpeas", "1/2 Stale baguette", "1 tbsp Harissa", "2 Cloves garlic", "1 tsp Cumin", "Salt"], steps: ["Heat chickpeas with minced garlic and cumin", "Break bread into small pieces in a bowl", "Pour hot soup over bread", "Top with harissa"] }, hard: { time: "12 hours", temp: "Low", ingredients: ["200g Dry chickpeas", "1/2 Baguette", "1 tbsp Harissa", "2 tbsp Olive oil", "50g Tuna", "1 Boiled egg", "Garlic & Cumin"], steps: ["Soak chickpeas overnight with baking soda", "Boil gently until extremely soft", "Mix broth with garlic and cumin", "Assemble bowl with bread, tuna, egg, and olive oil"] } },
-      fr: { name: "Lablebi Épicé", origin: "Tunisie", difficulty: "Facile", cost: "Env. 3.50 DT", description: "Soupe de rue pas chère aux pois chiches et à l'ail, versée sur du pain de la veille.", simple: { time: "15 mins", temp: "Fort", ingredients: ["1 Boîte (400g) de pois chiches", "1/2 Baguette rassise", "1 c.à.s d'Harissa", "2 Gousses d'ail", "Cumin"], steps: ["Chauffer les pois chiches avec ail et cumin", "Couper le pain en morceaux dans un bol", "Verser la soupe chaude", "Ajouter l'harissa"] }, hard: { time: "12 heures", temp: "Doux", ingredients: ["200g Pois chiches secs", "1/2 Baguette", "1 c.à.s Harissa", "2 c.à.s Huile d'olive", "50g Thon", "1 Oeuf mollet"], steps: ["Tremper les pois chiches la veille", "Bouillir jusqu'à ce qu'ils soient très tendres", "Dresser le bol avec pain, thon, œuf et huile"] } },
-      ar: { name: "لبلابي حار", origin: "تونس", difficulty: "سهل", cost: "حوالي 3.50 د.ت", description: "حساء الشارع الشهير والرخيص بالحمص والثوم.", simple: { time: "15 دقيقة", temp: "عالي", ingredients: ["علبة حمص (400غ)", "نصف باقيت بايت", "ملعقة كبيرة هريسة", "فصان ثوم", "ملعقة صغيرة كمون"], steps: ["سخن الحمص مع الثوم المفروم والكمون", "فتت الخبز في وعاء", "اسكب الحساء الساخن على الخبز", "أضف الهريسة"] }, hard: { time: "12 ساعة", temp: "هادئ", ingredients: ["200غ حمص جاف", "نصف خبزة باقيت", "هريسة", "ملعقتان زيت زيتون", "50غ تونة", "بيضة مسلوقة أو بروشت", "ثوم وكمون"], steps: ["انقع الحمص ليلة كاملة مع بيكربونات", "اغله ببطء حتى يصبح طرياً جداً", "تبل المرق بالثوم والكمون", "قدمه فوق الخبز مع التونة والبيضة والزيت"] } }
+      en: { name: "Spicy Lablebi", origin: "Tunisia", difficulty: "Easy", cost: "Est. 3.50 DT", description: "A comforting Tunisian chickpea soup infused with garlic and spices, often served over bread.", simple: { time: "20 mins", temp: "High", ingredients: ["100g Pre-soaked chickpeas", "1/2 Stale baguette", "1 tbsp Harissa", "2 Cloves garlic", "1 tsp Cumin", "1 Egg", "Salt & pepper"], steps: ["Simmer chickpeas with garlic, cumin, salt, and pepper until soft", "Tear bread into a bowl", "Pour hot chickpea broth over bread", "Top with harissa and a poached egg"] }, hard: { time: "1.5 hours", temp: "Low", ingredients: ["100g Pre-soaked chickpeas", "1/2 Baguette", "1 tbsp Harissa", "2 tbsp Olive oil", "50g Tuna", "1 Egg", "Garlic", "Cumin", "Bouillon", "Calf’s foot (for hargma)"], steps: ["Cook calf’s foot separately in salted water until tender, then set aside", "Boil chickpeas gently with garlic, cumin, and bouillon until very soft", "Prepare broth and adjust seasoning", "Serve over bread and top with tuna, egg, olive oil, and pieces of hargma"] } },
+      fr: { name: "Lablebi Épicé", origin: "Tunisie", difficulty: "Facile", cost: "Env. 3.50 DT", description: "Une soupe tunisienne réconfortante aux pois chiches, parfumée à l'ail et aux épices.", simple: { time: "20 mins", temp: "Fort", ingredients: ["100g Pois chiches déjà trempés", "1/2 Baguette rassise", "1 c.à.s Harissa", "2 Gousses d'ail", "1 c.à.c Cumin", "1 Oeuf", "Sel et poivre"], steps: ["Cuire les pois chiches avec ail, cumin, sel et poivre", "Mettre le pain en morceaux dans un bol", "Verser le bouillon chaud dessus", "Ajouter l’harissa et un œuf poché"] }, hard: { time: "1.5 heures", temp: "Doux", ingredients: ["100g Pois chiches trempés", "1/2 Baguette", "Harissa", "Huile d'olive", "50g Thon", "1 Oeuf", "Ail", "Cumin", "Bouillon", "Pied de veau"], steps: ["Cuire le pied de veau à part dans de l’eau salée jusqu’à ce qu’il soit tendre", "Faire mijoter les pois chiches avec ail, cumin et bouillon", "Ajuster l’assaisonnement du bouillon", "Servir avec pain, thon, œuf, huile d’olive et morceaux de hargma"] } },
+      ar: { name: "لبلابي حار", origin: "تونس", difficulty: "سهل", cost: "حوالي 3.50 د.ت", description: "حساء تونسي دافئ بالحمص مع نكهة الثوم والتوابل يقدم عادة مع الخبز.", simple: { time: "20 دقيقة", temp: "عالي", ingredients: ["100غ حمص منقوع مسبقاً", "نصف خبز بايت", "ملعقة كبيرة هريسة", "فصان ثوم", "ملعقة صغيرة كمون", "1 بيضة", "ملح وفلفل"], steps: ["اطبخ الحمص مع الثوم والكمون والملح والفلفل حتى يطرى", "ضع الخبز في وعاء", "اسكب المرق الساخن فوقه", "أضف الهريسة وبيضة مسلوقة أو مفقوعة"] }, hard: { time: "ساعة و30 دقيقة", temp: "هادئ", ingredients: ["100غ حمص منقوع", "نصف خبز", "هريسة", "زيت زيتون", "50غ تونة", "1 بيضة", "ثوم", "كمون", "مرق (Bouillon)", "رجل عجل"], steps: ["اطبخ رجل العجل لوحدها في ماء مملح حتى تنضج جيداً", "اطبخ الحمص مع الثوم والكمون والمرق حتى يصبح طرياً جداً", "عدّل التوابل", "قدّم مع الخبز والتونة والبيضة وزيت الزيتون وقطع الهرڨمة"] } }
     }
   },
   {
     id: "tun_3", tags: ["boiled", "tunisian", "expensive", "beef"], emoji: "🥘", difficultyCSS: "hard",
     translations: {
-      en: { name: "Traditional Mloukhiya", origin: "Tunisia", difficulty: "Hard", cost: "Est. 25.00 DT", description: "A rich, dark green stew simmered for hours, made with jute leaf powder and beef.", simple: { time: "2 hours", temp: "Low", ingredients: ["5 tbsp Mloukhiya powder", "1/2 cup Olive oil", "3 Cloves garlic", "300g Beef chunks", "1 tbsp Tomato paste"], steps: ["Mix powder with cold oil", "Heat up, then slowly add boiling water", "Add meat, garlic, and paste", "Simmer for 2 hours"] }, hard: { time: "5 hours", temp: "Very Low", ingredients: ["100g Mloukhiya powder", "1 cup Extra virgin olive oil", "500g Beef (with some fat)", "3 Bay leaves", "1 head of Garlic (mashed)", "1 tbsp Tabil spice", "Pinch of dried mint"], steps: ["Fry powder gently in oil for 5 mins", "Slowly whisk in 2 liters of boiling water", "Marinate beef with garlic, tabil, and mint", "Add meat and bay leaves", "Simmer uncovered for 4-5 hours until the oil perfectly separates on top"] } },
-      fr: { name: "Mloukhiya", origin: "Tunisie", difficulty: "Difficile", cost: "Env. 25.00 DT", description: "Ragoût vert foncé riche, mijoté pendant des heures avec de la viande.", simple: { time: "2 heures", temp: "Doux", ingredients: ["5 c.à.s Poudre de Mloukhiya", "1/2 tasse Huile", "300g Bœuf", "3 Gousses d'ail"], steps: ["Mélanger poudre et huile froide", "Chauffer et ajouter l'eau bouillante", "Ajouter viande et ail", "Mijoter 2h"] }, hard: { time: "5 heures", temp: "Très Doux", ingredients: ["100g Poudre", "1 tasse Huile d'olive", "500g Bœuf", "3 Feuilles de laurier", "1 Tête d'ail", "1 c.à.s Épices Tabil"], steps: ["Frire la poudre dans l'huile 5 mins", "Ajouter 2L d'eau bouillante lentement", "Ajouter la viande marinée à l'ail", "Mijoter 4-5h jusqu'à ce que l'huile remonte"] } },
-      ar: { name: "ملوخية دياري", origin: "تونس", difficulty: "صعب", cost: "حوالي 25.00 د.ت", description: "يخنة غنية وداكنة تُطبخ لساعات من مسحوق الملوخية واللحم.", simple: { time: "ساعتان", temp: "هادئ", ingredients: ["5 ملاعق كبيرة ملوخية مرحية", "نصف كوب زيت", "300غ لحم بقري", "3 فصوص ثوم"], steps: ["اخلط الزيت البارد والملوخية", "سخنها ثم أضف الماء المغلي تدريجياً", "أضف اللحم والثوم", "اتركها تطبخ لساعتين"] }, hard: { time: "5 ساعات", temp: "هادئ جدا", ingredients: ["100غ ملوخية", "كوب زيت زيتون", "500غ لحم بقري", "3 أوراق رند", "رأس ثوم كامل مهروش", "ملعقة كبيرة تابل وكروية", "رشة نعناع شايح"], steps: ["اقلي الملوخية في الزيت لـ 5 دقائق", "أضف لترين ماء مغلي مع التحريك", "تبل اللحم بالثوم والتابل وأضفه", "اتركها تطبخ بدون غطاء 4-5 ساعات حتى يطفو الزيت"] } }
+      en: { name: "Traditional Mloukhiya", origin: "Tunisia", difficulty: "Hard", cost: "Est. 25.00 DT", description: "A deep, slow-cooked green stew made with mloukhiya powder and richly spiced meat.", simple: { time: "2.5 hours", temp: "Low", ingredients: ["5 tbsp Mloukhiya powder", "1 cup Cooking oil", "5 Garlic cloves", "300g Lamb or beef", "1 tsp Caraway", "1 tbsp Tabil"], steps: ["Blend mloukhiya powder with oil until smooth", "Gradually add hot water and bring to a boil", "Add garlic, spices, and meat", "Simmer gently until meat is tender"] }, hard: { time: "4–5 hours", temp: "Very Low", ingredients: ["100g Mloukhiya powder", "2 cups Cooking oil", "500g Lamb (bone-in)", "3–4 Bay leaves", "5 Garlic cloves (crushed)", "2 tbsp Tabil", "1 tsp Caraway", "Salt & pepper"], steps: ["Mix mloukhiya powder with oil until no lumps remain", "Slowly pour in about 2L hot water while stirring", "Add bay leaves and simmer covered for 2 hours", "Marinate meat with garlic, tabil, caraway, and harissa", "Add meat to the pot and continue cooking on low heat for 2 more hours until tender and oil rises to the surface"] } },
+      fr: { name: "Mloukhiya", origin: "Tunisie", difficulty: "Difficile", cost: "Env. 25.00 DT", description: "Un ragoût vert profond, mijoté longuement avec des épices et de la viande.", simple: { time: "2.5 heures", temp: "Doux", ingredients: ["5 c.à.s Poudre de Mloukhiya", "1 tasse Huile", "5 Gousses d'ail", "300g Viande", "1 c.à.c Carvi", "1 c.à.s Tabil"], steps: ["Mélanger la poudre avec l’huile", "Ajouter progressivement de l’eau chaude", "Incorporer ail, épices et viande", "Laisser mijoter jusqu’à cuisson complète"] }, hard: { time: "4–5 heures", temp: "Très Doux", ingredients: ["100g Poudre de Mloukhiya", "2 tasses Huile", "500g Agneau avec os", "3–4 Feuilles de laurier", "5 Gousses d’ail écrasées", "2 c.à.s Tabil", "1 c.à.c Carvi", "Sel et poivre"], steps: ["Bien mélanger la mloukhiya avec l’huile", "Ajouter environ 2L d’eau chaude progressivement", "Ajouter le laurier et cuire 2 heures à feu doux", "Mariner la viande avec ail et épices", "Ajouter la viande et continuer la cuisson jusqu’à ce qu’elle soit tendre et que l’huile remonte"] } },
+      ar: { name: "ملوخية دياري", origin: "تونس", difficulty: "صعب", cost: "حوالي 25.00 د.ت", description: "يخنة تونسية تقليدية داكنة تُطهى لساعات طويلة مع اللحم والتوابل.", simple: { time: "ساعتان ونصف", temp: "هادئ", ingredients: ["ملوخية 5 ملاعق كبيرة", "زيت كوب", "ثوم 5 فصوص", "لحم 300 غ", "كروية ملعقة صغيرة", "تابل ملعقة كبيرة"], steps: ["اخلط الملوخية مع الزيت جيداً", "أضف الماء الساخن تدريجياً", "أضف الثوم والتوابل واللحم", "اتركها تطبخ حتى ينضج اللحم"] }, hard: { time: "4 إلى 5 ساعات", temp: "هادئ جدا", ingredients: ["ملوخية 100 غ", "زيت كوبين", "لحم غنم مع العظم 500 غ", "أوراق رند 3-4", "ثوم مهروس 5 فصوص", "تابل 2 ملعقة كبيرة", "كروية ملعقة صغيرة", "هريسة أو طماطم", "ملح وفلفل"], steps: ["امزج الملوخية مع الزيت حتى تختفي الكتل", "أضف حوالي 2 لتر ماء ساخن مع التحريك", "أضف الرند واتركها تطبخ ساعتين", "تبّل اللحم بالثوم والتوابل", "أضف اللحم واتركها تطبخ حتى يطرى ويطفو الزيت على السطح"] } }
     }
   },
   {
     id: "int_5", tags: ["student", "boiled", "cheap", "pasta", "european", "cheesy"], emoji: "🍝", difficultyCSS: "medium",
     translations: {
-      en: { name: "Garlic Butter Pasta", origin: "Italy", difficulty: "Medium", cost: "Est. 4.00 DT", description: "A 5-star tasting meal made from standard, cheap pantry ingredients.", simple: { time: "15 mins", temp: "Medium", ingredients: ["200g Pasta", "2 tbsp Butter", "3 Cloves garlic (minced)", "Salt & Black pepper"], steps: ["Boil pasta in salted water until soft", "Melt butter in a pan and fry garlic lightly", "Drain pasta and toss in the garlic butter"] }, hard: { time: "25 mins", temp: "Medium", ingredients: ["200g Spaghetti", "3 tbsp High-quality Butter", "4 Cloves fresh Garlic", "50g Parmesan cheese (grated)", "1 tbsp Fresh parsley", "1/2 cup Pasta water"], steps: ["Boil spaghetti al dente (save 1/2 cup pasta water)", "Brown minced garlic in butter until fragrant", "Add pasta water to pan and emulsify into a creamy sauce", "Toss in pasta, remove from heat, vigorously stir in parmesan and parsley"] } },
-      fr: { name: "Pâtes Beurre et Ail", origin: "Italie", difficulty: "Moyen", cost: "Env. 4.00 DT", description: "Un repas 5 étoiles réalisé avec des ingrédients simples et pas chers.", simple: { time: "15 mins", temp: "Moyen", ingredients: ["200g de Pâtes", "2 c.à.s de Beurre", "3 Gousses d'ail", "Sel/Poivre"], steps: ["Cuire les pâtes dans l'eau salée", "Fondre le beurre et dorer l'ail", "Mélanger les pâtes au beurre"] }, hard: { time: "25 mins", temp: "Moyen", ingredients: ["200g Spaghetti", "3 c.à.s Beurre", "4 Gousses d'ail frais", "50g Parmesan râpé", "1 c.à.s Persil", "Eau de cuisson"], steps: ["Cuire al dente et garder 1/2 tasse d'eau", "Émulsionner beurre, ail et eau de cuisson", "Hors du feu, mélanger vigoureusement avec parmesan et persil"] } },
-      ar: { name: "مكرونة بالثوم والزبدة", origin: "إيطاليا", difficulty: "متوسط", cost: "حوالي 4.00 د.ت", description: "وجبة بمذاق 5 نجوم بمكونات بسيطة ورخيصة.", simple: { time: "15 دقيقة", temp: "متوسط", ingredients: ["200غ مكرونة", "ملعقتان زبدة", "3 فصوص ثوم مفروم", "ملح وفلفل أسود"], steps: ["اسلق المكرونة في ماء مالح", "ذوب الزبدة وحمر الثوم قليلاً", "صف المكرونة واخلطها مع زبدة الثوم"] }, hard: { time: "25 دقيقة", temp: "متوسط", ingredients: ["200غ سباغيتي", "3 ملاعق زبدة جيدة", "4 فصوص ثوم طازج", "50غ جبن بارميزان مبشور", "ملعقة بقدونس طازج", "نصف كوب من ماء سلق المكرونة"], steps: ["اسلق المكرونة (ألدينتي) واحتفظ ببعض ماء السلق", "حمر الثوم في الزبدة", "أضف ماء السلق للمقلاة لصنع صلصة كريمية", "أضف المكرونة، ارفعها عن النار، وقلب بسرعة مع البارميزان والبقدونس"] } }
+      en: { name: "Garlic Butter Pasta", origin: "Italy", difficulty: "Medium", cost: "Est. 4.00 DT", description: "A simple yet flavorful pasta dish made with everyday ingredients.", simple: { time: "15 mins", temp: "Medium", ingredients: ["200g Pasta", "2 tbsp Butter", "3 Cloves garlic (sliced)", "Salt & Black pepper"], steps: ["Boil pasta in salted water until tender", "Melt butter and gently cook garlic", "Drain pasta and mix with garlic butter"] }, hard: { time: "25 mins", temp: "Medium", ingredients: ["200g Spaghetti", "3 tbsp Butter", "4 Cloves garlic", "50g Parmesan cheese (grated)", "1 tbsp Fresh parsley", "1 cup Pasta water", "Salt"], steps: ["Cook pasta and save some cooking water", "Melt butter and lightly sauté garlic", "Add pasta with a bit of water and toss to form a sauce", "Remove from heat and mix in parmesan and parsley until creamy"] } },
+      fr: { name: "Pâtes Beurre et Ail", origin: "Italie", difficulty: "Moyen", cost: "Env. 4.00 DT", description: "Un plat de pâtes simple et savoureux avec des ingrédients du quotidien.", simple: { time: "15 mins", temp: "Moyen", ingredients: ["200g de Pâtes", "2 c.à.s de Beurre", "3 Gousses d'ail", "Sel/Poivre"], steps: ["Cuire les pâtes dans l'eau salée", "Faire fondre le beurre et cuire légèrement l'ail", "Mélanger les pâtes avec le beurre"] }, hard: { time: "25 mins", temp: "Moyen", ingredients: ["200g Spaghetti", "3 c.à.s Beurre", "4 Gousses d'ail", "50g Parmesan râpé", "1 c.à.s Persil frais", "1 tasse Eau de cuisson", "Sel"], steps: ["Cuire les pâtes et garder un peu d'eau", "Faire revenir l'ail dans le beurre", "Ajouter les pâtes avec un peu d'eau et mélanger", "Hors du feu, ajouter parmesan et persil et bien mélanger"] } },
+      ar: { name: "مكرونة بالثوم والزبدة", origin: "إيطاليا", difficulty: "متوسط", cost: "حوالي 4.00 د.ت", description: "طبق مكرونة بسيط ولذيذ بمكونات متوفرة في كل مطبخ.", simple: { time: "15 دقيقة", temp: "متوسط", ingredients: ["مكرونة 200 غ", "زبدة ملعقتان", "ثوم 3 فصوص", "ملح وفلفل أسود"], steps: ["اسلق المكرونة في ماء مملح حتى تنضج", "ذوب الزبدة واطبخ الثوم قليلاً", "صف المكرونة واخلطها مع الزبدة"] }, hard: { time: "25 دقيقة", temp: "متوسط", ingredients: ["سباغيتي 200 غ", "زبدة 3 ملاعق", "ثوم 4 فصوص", "جبن بارميزان 50 غ", "بقدونس ملعقة", "ماء سلق المكرونة كوب", "ملح"], steps: ["اسلق المكرونة واحتفظ بجزء من ماء السلق", "اطبخ الثوم في الزبدة على نار متوسطة", "أضف المكرونة مع قليل من ماء السلق وقلّب", "ارفعها من النار وأضف الجبن والبقدونس وامزج جيداً"] } }
     }
   },
   {
@@ -201,15 +237,15 @@ const foodDatabase = [
     translations: {
       en: { name: "Spicy Fried Chicken", origin: "USA", difficulty: "Hard", cost: "Est. 18.00 DT", description: "Golden, ultra-crispy fried chicken with heavy spices.", simple: { time: "30 mins", temp: "High", ingredients: ["500g Chicken cuts", "1 cup Flour", "3 tbsp Hot sauce", "1 tsp Paprika", "Cooking oil"], steps: ["Coat chicken thoroughly in hot sauce", "Dredge heavily in flour and paprika", "Deep fry in hot oil for 12-15 mins until crispy and cooked through"] }, hard: { time: "24 hours", temp: "High", ingredients: ["1 Whole Chicken (cut into 8)", "2 cups Buttermilk", "2 tbsp Cayenne pepper", "2 cups Flour", "1/2 cup Cornstarch", "1 tsp Garlic powder", "Frying Oil"], steps: ["Marinate chicken in buttermilk and spices overnight in fridge", "Mix flour, cornstarch, and dry spices", "Double coat chicken (flour, dip in buttermilk again, flour)", "Deep fry at exactly 170°C for 15 mins"] } },
       fr: { name: "Poulet Frit Épicé", origin: "USA", difficulty: "Difficile", cost: "Env. 18.00 DT", description: "Poulet frit doré et ultra-croustillant avec beaucoup d'épices.", simple: { time: "30 mins", temp: "Fort", ingredients: ["500g Poulet", "1 tasse Farine", "3 c.à.s Sauce piquante", "1 c.à.c Paprika", "Huile"], steps: ["Enrober le poulet de sauce piquante", "Paner dans la farine", "Frire dans l'huile chaude 15 mins"] }, hard: { time: "24 heures", temp: "Fort", ingredients: ["1 Poulet entier coupé", "2 tasses Lait ribot", "2 c.à.s Piment de Cayenne", "2 tasses Farine", "1/2 tasse Maïzena", "Huile de friture"], steps: ["Mariner 24h dans le lait ribot et épices", "Mélanger farine et maïzena", "Double panure", "Frire à 170°C pendant 15 mins"] } },
-      ar: { name: "دجاج مقلي حار", origin: "أمريكا", difficulty: "صعب", cost: "حوالي 18.00 د.ت", description: "دجاج مقلي ذهبي ومقرمش جداً ومليء بالبهارات.", simple: { time: "30 دقيقة", temp: "عالي", ingredients: ["500غ قطع دجاج", "كوب دقيق", "3 ملاعق صلصة حارة", "ملعقة صغيرة بابريكا", "زيت للقلي"], steps: ["غلف الدجاج بالصلصة الحارة", "اغمسه جيداً في الدقيق والبابريكا", "اقليه في زيت غزير وحار 15 دقيقة"] }, hard: { time: "24 ساعة", temp: "عالي", ingredients: ["دجاجة كاملة مقطعة 8 قطع", "كوبان حليب رائب (Buttermilk)", "ملعقتان فلفل حار (كايين)", "كوبان دقيق", "نصف كوب نشا", "ثوم بودرة", "زيت غزير"], steps: ["انقع الدجاج في الحليب الرائب والبهارات ليلة كاملة", "اخلط الدقيق والنشا والبهارات الجافة", "غلف الدجاج مرتين (دقيق ثم حليب ثم دقيق)", "اقليه في درجة حرارة 170 مئوية لـ 15 دقيقة"] } }
+      ar: { name: "دجاج مقلي حار", origin: "أمريكا", difficulty: "صعب", cost: "حوالي 18.00 د.ت", description: "دجاج مقلي ذهبي ومقرمش جداً ومليء بالبهارات.", simple: { time: "30 دقيقة", temp: "عالي", ingredients: ["500غ قطع دجاج", "كوب دقيق", "3 ملاعق صلصة حارة", "ملعقة صغيرة بابريكا", "زيت للقلي"], steps: ["غلف الدجاج بالصلصة الحارة", "اغمسه جيداً في الدقيق والبابريكا", "اقليه في زيت غزير وحار 15 دقيقة"] }, hard: { time: "24 ساعة", temp: "عالي", ingredients: ["دجاجة كاملة مقطعة 8 قطع", "كوبان حليب رائب ", "ملعقتان فلفل حار (كايين)", "كوبان دقيق", "نصف كوب نشا", "ثوم بودرة", "زيت غزير"], steps: ["انقع الدجاج في الحليب الرائب والبهارات ليلة كاملة", "اخلط الدقيق والنشا والبهارات الجافة", "غلف الدجاج مرتين (دقيق ثم حليب ثم دقيق)", "اقليه في درجة حرارة 170 مئوية لـ 15 دقيقة"] } }
     }
   },
   {
     id: "tun_4", tags: ["student", "cheap", "spicy", "tunisian", "healthy"], emoji: "🍳", difficultyCSS: "easy",
     translations: {
-      en: { name: "Shakshouka", origin: "Tunisia", difficulty: "Easy", cost: "Est. 3.50 DT", description: "A classic North African dish of eggs poached in a saucy, spicy tomato and pepper base.", simple: { time: "15 mins", temp: "Medium", ingredients: ["2 tbsp Tomato paste", "3 Eggs", "1 tsp Harissa", "1 Onion (chopped)", "3 tbsp Olive oil"], steps: ["Sauté onions in olive oil", "Add tomato paste, harissa, and 1/2 cup water", "Simmer for 5 mins", "Crack eggs on top and cover until cooked"] }, hard: { time: "30 mins", temp: "Medium", ingredients: ["4 Fresh ripe tomatoes", "2 Green bell peppers", "3 Cloves garlic", "4 Eggs", "1 tbsp Fresh Coriander", "1/4 cup Olive oil", "1 tsp Tabil"], steps: ["Roast and peel the green peppers", "Dice tomatoes and simmer with garlic and olive oil until it forms a rich sauce", "Add chopped roasted peppers and spices", "Gently poach eggs in the sauce", "Garnish with fresh coriander"] } },
-      fr: { name: "Chakchouka", origin: "Tunisie", difficulty: "Facile", cost: "Env. 3.50 DT", description: "Des œufs pochés dans une sauce épicée aux tomates et aux poivrons.", simple: { time: "15 mins", temp: "Moyen", ingredients: ["2 c.à.s Concentré de tomate", "3 Oeufs", "1 c.à.c Harissa", "1 Oignon", "3 c.à.s Huile d'olive"], steps: ["Faire revenir l'oignon", "Ajouter tomate, harissa et un peu d'eau", "Casser les œufs dessus et couvrir"] }, hard: { time: "30 mins", temp: "Moyen", ingredients: ["4 Tomates fraîches", "2 Poivrons verts", "3 Gousses d'ail", "4 Oeufs", "Coriandre fraîche", "Épices Tabil"], steps: ["Rôtir et peler les poivrons", "Réduire les tomates en sauce avec l'ail", "Ajouter poivrons et épices", "Pocher les œufs", "Garnir de coriandre"] } },
-      ar: { name: "شكشوكة", origin: "تونس", difficulty: "سهل", cost: "حوالي 3.50 د.ت", description: "بيض مطبوخ في صلصة طماطم وفلفل حارة ولذيذة.", simple: { time: "15 دقيقة", temp: "متوسط", ingredients: ["ملعقتان طماطم معجونة", "3 بيضات", "ملعقة صغيرة هريسة", "بصلة مفرومة", "3 ملاعق زيت زيتون"], steps: ["قلي البصل في الزيت", "أضف الطماطم، الهريسة ونصف كوب ماء", "اتركها تغلي ثم أضف البيض وغطِ المقلاة"] }, hard: { time: "30 دقيقة", temp: "متوسط", ingredients: ["4 حبات طماطم طازجة ناضجة", "قرنان فلفل أخضر", "3 فصوص ثوم", "4 بيضات", "كزبرة طازجة", "ملعقة صغيرة تابل وكروية"], steps: ["اشوِ الفلفل وقشره وقطعه", "اطبخ الطماطم مع الثوم والزيت ببطء لتصبح صلصة غنية", "أضف الفلفل المشوي والبهارات", "اكسر البيض بلطف لينسلق في الصلصة", "زين بالكزبرة"] } }
+      en: { name: "Shakshouka", origin: "Tunisia", difficulty: "Easy", cost: "Est. 3.50 DT", description: "A classic North African dish of eggs poached in a saucy, spicy tomato and pepper base.", simple: { time: "15 mins", temp: "Medium", ingredients: ["2 tbsp Tomato paste", "3 Eggs", "1 tsp Harissa", "1 Onion (chopped)", "3 tbsp Olive oil", "Salt & Black pepper"], steps: ["Sauté onions in olive oil", "Add tomato paste, harissa, and 1/2 cup water", "Simmer for 5 mins", "Crack eggs on top and cover until cooked"] }, hard: { time: "30 mins", temp: "Medium", ingredients: ["4 Fresh ripe tomatoes", "2 Green bell peppers", "3 Cloves garlic", "4 Eggs", "1 tbsp Fresh Coriander", "1/4 cup Olive oil", "1 tsp Tabil", "Salt & Black pepper"], steps: ["Roast and peel the green peppers", "Dice tomatoes and simmer with garlic and olive oil until it forms a rich sauce", "Add chopped roasted peppers and spices", "Gently poach eggs in the sauce", "Garnish with fresh coriander"] } },
+      fr: { name: "Chakchouka", origin: "Tunisie", difficulty: "Facile", cost: "Env. 3.50 DT", description: "Des œufs pochés dans une sauce épicée aux tomates et aux poivrons.", simple: { time: "15 mins", temp: "Moyen", ingredients: ["2 c.à.s Concentré de tomate", "3 Oeufs", "1 c.à.c Harissa", "1 Oignon", "3 c.à.s Huile d'olive", "Sel et poivre noir"], steps: ["Faire revenir l'oignon", "Ajouter tomate, harissa et un peu d'eau", "Casser les œufs dessus et couvrir"] }, hard: { time: "30 mins", temp: "Moyen", ingredients: ["4 Tomates fraîches", "2 Poivrons verts", "3 Gousses d'ail", "4 Oeufs", "Coriandre fraîche", "Épices Tabil", "Sel et poivre noir"], steps: ["Rôtir et peler les poivrons", "Réduire les tomates en sauce avec l'ail", "Ajouter poivrons et épices", "Pocher les œufs", "Garnir de coriandre"] } },
+      ar: { name: "شكشوكة", origin: "تونس", difficulty: "سهل", cost: "حوالي 3.50 د.ت", description: "بيض مطبوخ في صلصة طماطم وفلفل حارة ولذيذة.", simple: { time: "15 دقيقة", temp: "متوسط", ingredients: ["ملعقتان طماطم معجونة", "3 بيضات", "ملعقة صغيرة هريسة", "بصلة مفرومة", "3 ملاعق زيت زيتون", "ملح وفلفل أسود"], steps: ["قلي البصل في الزيت", "أضف الطماطم، الهريسة ونصف كوب ماء", "اتركها تغلي ثم أضف البيض وغطِ المقلاة"] }, hard: { time: "30 دقيقة", temp: "متوسط", ingredients: ["4 حبات طماطم طازجة ناضجة", "قرنان فلفل أخضر", "3 فصوص ثوم", "4 بيضات", "كزبرة طازجة", "ملعقة صغيرة تابل وكروية", "ملح وفلفل أسود"], steps: ["اشوِ الفلفل وقشره وقطعه", "اطبخ الطماطم مع الثوم والزيت ببطء لتصبح صلصة غنية", "أضف الفلفل المشوي والبهارات", "اكسر البيض بلطف لينسلق في الصلصة", "زين بالكزبرة"] } }
     }
   },
   {
@@ -239,9 +275,9 @@ const foodDatabase = [
   {
     id: "int_6", tags: ["student", "cheap", "asian", "spicy", "pasta"], emoji: "🍜", difficultyCSS: "easy",
     translations: {
-      en: { name: "Spicy Instant Ramen Upgrade", origin: "Asia", difficulty: "Easy", cost: "Est. 2.00 DT", description: "Turn cheap instant noodles into a gourmet, spicy, satisfying meal.", simple: { time: "5 mins", temp: "High", ingredients: ["1 pack Instant noodles", "1 Egg", "1 tbsp Sriracha or Hot sauce", "1 slice American cheese"], steps: ["Boil 2 cups of water and cook noodles", "Add flavor packet and hot sauce", "Crack an egg directly into the boiling broth", "Top with cheese slice to melt"] }, hard: { time: "15 mins", temp: "High", ingredients: ["1 pack High-quality Ramen", "1 clove Garlic (minced)", "1 tsp Sesame oil", "1 tbsp Soy sauce", "1 Soft-boiled egg (6 mins)", "Chopped Green onions", "Toasted sesame seeds"], steps: ["Sauté minced garlic in sesame oil for 30 seconds", "Add water, bring to boil, and cook noodles", "Mix flavor packet with soy sauce in the serving bowl", "Pour hot noodles and broth into bowl", "Slice soft-boiled egg in half and garnish with green onions and seeds"] } },
+      en: { name: "Spicy Instant Ramen Upgrade", origin: "Asia", difficulty: "Easy", cost: "Est. 2.00 DT", description: "Turn cheap instant noodles into a gourmet, spicy, satisfying meal.", simple: { time: "5 mins", temp: "High", ingredients: ["1 pack Instant noodles", "1 Egg", "1 tbsp Hot sauce", "1 slice American cheese"], steps: ["Boil 2 cups of water and cook noodles", "Add flavor packet and hot sauce", "Crack an egg directly into the boiling broth", "Top with cheese slice to melt"] }, hard: { time: "15 mins", temp: "High", ingredients: ["1 pack High-quality Ramen", "1 clove Garlic (minced)", "1 tsp Sesame oil", "1 tbsp Soy sauce", "1 Soft-boiled egg (6 mins)", "Chopped Green onions", "Toasted sesame seeds"], steps: ["Sauté minced garlic in sesame oil for 30 seconds", "Add water, bring to boil, and cook noodles", "Mix flavor packet with soy sauce in the serving bowl", "Pour hot noodles and broth into bowl", "Slice soft-boiled egg in half and garnish with green onions and seeds"] } },
       fr: { name: "Ramen Épicé Amélioré", origin: "Asie", difficulty: "Facile", cost: "Env. 2.00 DT", description: "Transformez des nouilles instantanées en un repas gourmet et épicé.", simple: { time: "5 mins", temp: "Fort", ingredients: ["1 sachet de Nouilles", "1 Oeuf", "1 c.à.s Sauce piquante", "1 Tranche de fromage"], steps: ["Bouillir l'eau et cuire les nouilles", "Ajouter les épices et sauce", "Casser l'œuf dans le bouillon", "Fondre le fromage dessus"] }, hard: { time: "15 mins", temp: "Fort", ingredients: ["1 sachet de Ramen", "1 Gousse d'ail", "1 c.à.c Huile de sésame", "1 c.à.s Sauce soja", "1 Oeuf mollet (6 mins)", "Cébette"], steps: ["Sauter l'ail dans l'huile de sésame", "Bouillir l'eau et cuire les nouilles", "Mélanger sauce soja et épices dans le bol", "Verser le bouillon et dresser avec œuf et cébette"] } },
-      ar: { name: "إندومي حار مطور", origin: "آسيا", difficulty: "سهل", cost: "حوالي 2.00 د.ت", description: "حول النودلز الرخيصة إلى وجبة لذيذة وحارة ومشبعة.", simple: { time: "5 دقائق", temp: "عالي", ingredients: ["كيس نودلز (إندومي)", "بيضة", "ملعقة صلصة حارة أو سيراتشا", "شريحة جبن"], steps: ["اغلِ كوبين من الماء واطبخ النودلز", "أضف البهارات والصلصة الحارة", "اكسر البيضة مباشرة في المرق المغلي", "ضع شريحة الجبن لتذوب على الوجه"] }, hard: { time: "15 دقيقة", temp: "عالي", ingredients: ["كيس رامين جيد", "فص ثوم مفروم", "ملعقة صغيرة زيت سمسم", "ملعقة صويا صوص", "بيضة نصف مسلوقة (6 دقائق)", "بصل أخضر وسمسم محمص"], steps: ["حمر الثوم في زيت السمسم لـ 30 ثانية", "أضف الماء واطبخ النودلز", "اخلط البهارات مع الصويا في وعاء التقديم", "اسكب النودلز والمرق فوقها", "زين بنصف البيضة المسلوقة والبصل الأخضر والسمسم"] } }
+      ar: { name: "إندومي حار مطور", origin: "آسيا", difficulty: "سهل", cost: "حوالي 2.00 د.ت", description: "حول النودلز الرخيصة إلى وجبة لذيذة وحارة ومشبعة.", simple: { time: "5 دقائق", temp: "عالي", ingredients: ["كيس نودلز (إندومي)", "بيضة", "ملعقة صلصة حارة", "شريحة جبن"], steps: ["اغلِ كوبين من الماء واطبخ النودلز", "أضف البهارات والصلصة الحارة", "اكسر البيضة مباشرة في المرق المغلي", "ضع شريحة الجبن لتذوب على الوجه"] }, hard: { time: "15 دقيقة", temp: "عالي", ingredients: ["كيس رامين جيد", "فص ثوم مفروم", "ملعقة صغيرة زيت سمسم", "ملعقة صويا صوص", "بيضة نصف مسلوقة (6 دقائق)", "بصل أخضر وسمسم محمص"], steps: ["حمر الثوم في زيت السمسم لـ 30 ثانية", "أضف الماء واطبخ النودلز", "اخلط البهارات مع الصويا في وعاء التقديم", "اسكب النودلز والمرق فوقها", "زين بنصف البيضة المسلوقة والبصل الأخضر والسمسم"] } }
     }
   },
   {
@@ -1096,7 +1132,23 @@ const els = {
   favoritesModal: document.getElementById("favoritesModal"),
   closeFavoritesBtn: document.getElementById("closeFavoritesBtn"),
   favoritesList: document.getElementById("favoritesList"),
-  installAppBtn: document.getElementById("installAppBtn")
+  installAppBtn: document.getElementById("installAppBtn"),
+
+  // Animation & Suggestions
+  rouletteModal: document.getElementById("rouletteModal"),
+  rouletteEmoji: document.getElementById("rouletteEmoji"),
+  rouletteName: document.getElementById("rouletteName"),
+  
+  openSuggestBtn: document.getElementById("openSuggestBtn"),
+  suggestModal: document.getElementById("suggestModal"),
+  closeSuggestBtn: document.getElementById("closeSuggestBtn"),
+  submitSuggestBtn: document.getElementById("submitSuggestBtn"),
+  sugName: document.getElementById("sugName"),
+  sugTags: document.getElementById("sugTags"),
+  sugTime: document.getElementById("sugTime"),
+  sugDiff: document.getElementById("sugDiff"),
+  sugIng: document.getElementById("sugIng"),
+  sugSteps: document.getElementById("sugSteps")
 };
 
 boot();
@@ -1106,9 +1158,7 @@ function boot() {
   const savedLang = loadStr("lettuceLang", "en");
   currentLang = savedLang;
   
-  // Update sleek language button text
   if (els.openLangBtn) els.openLangBtn.textContent = savedLang.toUpperCase();
-  
   applyLanguage(savedLang);
   const savedTheme = loadStr("lettuceTheme", "light");
   setTheme(savedTheme);
@@ -1199,14 +1249,21 @@ function wireEvents() {
   els.closeIntroBtn?.addEventListener("click", () => closeIntro(true));
   els.closeRecipeBtn?.addEventListener("click", closeRecipe);
   
+  // Suggest Recipe Events
+  els.openSuggestBtn?.addEventListener("click", () => els.suggestModal?.classList.remove("hidden"));
+  els.closeSuggestBtn?.addEventListener("click", () => els.suggestModal?.classList.add("hidden"));
+  els.submitSuggestBtn?.addEventListener("click", submitRecipeSuggestion);
+
   els.introModal?.addEventListener("click", (e) => { if (e.target === els.introModal) closeIntro(true); });
   els.recipeModal?.addEventListener("click", (e) => { if (e.target === els.recipeModal) closeRecipe(); });
+  els.suggestModal?.addEventListener("click", (e) => { if (e.target === els.suggestModal) els.suggestModal.classList.add("hidden"); });
 
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") { 
       closePreferences(); closeRecipe(); closeIntro(true); 
       els.favoritesModal?.classList.add("hidden"); 
       els.langModal?.classList.add("hidden");
+      els.suggestModal?.classList.add("hidden");
     }
   });
 }
@@ -1223,6 +1280,7 @@ function setTheme(mode) {
 function applyLanguage(lang) {
   document.body.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
   const dict = translations[lang] || translations.en;
+  
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     if (!key) return;
@@ -1231,12 +1289,15 @@ function applyLanguage(lang) {
     if (dict[key] != null) {
       if (key === "lazyMode") { el.innerHTML = `🟢 ${dict[key]}`; return; }
       if (key === "chefMode") { el.innerHTML = `🔴 ${dict[key]}`; return; }
-      el.textContent = dict[key];
+      if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+        // do not touch input values via i18n
+      } else {
+        el.textContent = dict[key];
+      }
     }
   });
 }
 
-let isPrefsOpen = false;
 function togglePreferences() {
   const p = els.preferencesPanel;
   if (!p) return;
@@ -1271,25 +1332,70 @@ function closeIntro(markDone) {
   if (markDone) saveStr("lettuceIntroDone", "1"); 
 }
 
+/* =========================================================================
+   NEW ROULETTE SEARCH ANIMATION 
+   ========================================================================= */
 function handleDiscover(isDailyPick) {
+  closePreferences(); // Close windows if open
   hideNotFound();
-  const ui = translations[currentLang] || translations.en;
-  showLoadingLine(ui.funnyTexts);
+  els.result?.classList.add("hidden"); // hide old result
+  
   const filters = readFilters();
   const pool = filterDatabase(foodDatabase, filters);
-  if (pool.length === 0) { hideLoadingLine(); showNotFound(); return; }
+  
+  if (pool.length === 0) { 
+    showNotFound(); 
+    return; 
+  }
+  
   const picked = isDailyPick ? deterministicDailyPick(pool) : smartPick(pool);
-  setTimeout(() => {
-    hideLoadingLine();
-    if (!picked) { showNotFound(); return; }
-    currentFood = picked; rememberPick(picked); renderFood(picked);
+  if (!picked) { showNotFound(); return; }
+  
+  currentFood = picked; 
+  rememberPick(picked); 
+  
+  runRouletteAnimation(pool, picked);
+}
+
+function runRouletteAnimation(pool, finalPick) {
+  els.rouletteModal?.classList.remove("hidden");
+  
+  // Create a fast visual sequence
+  let speed = 40; 
+  let ticks = 0;
+  const maxTicks = 25; // How many items flash by
+  
+  function tick() {
+    const randomFood = pool[Math.floor(Math.random() * pool.length)];
+    const t = randomFood.translations?.[currentLang] || randomFood.translations?.en;
     
-    els.result?.classList.remove("pop-animate");
-    void els.result?.offsetWidth; 
-    els.result?.classList.add("pop-animate");
+    if (els.rouletteEmoji) els.rouletteEmoji.textContent = randomFood.emoji || "🍲";
+    if (els.rouletteName) els.rouletteName.textContent = t.name || "Searching...";
     
-    els.result?.scrollIntoView({ behavior: "smooth", block: "center" });
-  }, 500); 
+    ticks++;
+    if (ticks < maxTicks) {
+      speed += (ticks * 1.5); // slow down curve
+      setTimeout(tick, speed);
+    } else {
+      // Land on final pick!
+      const ft = finalPick.translations?.[currentLang] || finalPick.translations?.en;
+      if (els.rouletteEmoji) els.rouletteEmoji.textContent = finalPick.emoji || "🍲";
+      if (els.rouletteName) els.rouletteName.textContent = ft.name || "Meal!";
+      
+      // Give them 1 second to see what it landed on, then reveal result
+      setTimeout(() => {
+        els.rouletteModal?.classList.add("hidden");
+        renderFood(finalPick);
+        
+        els.result?.classList.remove("pop-animate");
+        void els.result?.offsetWidth; 
+        els.result?.classList.add("pop-animate");
+        els.result?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 1000);
+    }
+  }
+  
+  tick(); // start animation
 }
 
 function readFilters() {
@@ -1427,19 +1533,46 @@ function openRecipe(mode) {
 
 function closeRecipe() { els.recipeModal?.classList.add("hidden"); }
 
-let loadingTimer = null;
-function showLoadingLine(funnyTexts) {
-  const arr = Array.isArray(funnyTexts) ? funnyTexts : (translations.en.funnyTexts || []);
-  const msg = arr[Math.floor(Math.random() * arr.length)];
-  if (els.funnyLoadingText) { els.funnyLoadingText.textContent = msg; els.funnyLoadingText.classList.remove("hidden"); }
-  clearTimeout(loadingTimer);
-}
-function hideLoadingLine() { els.funnyLoadingText?.classList.add("hidden"); }
-
 function loadStr(key, fallback = "") { try { const v = localStorage.getItem(key); return v == null ? fallback : v; } catch { return fallback; } }
 function saveStr(key, value) { try { localStorage.setItem(key, value); } catch {} }
 function loadJson(key, fallback) { try { const raw = localStorage.getItem(key); if (!raw) return fallback; return JSON.parse(raw); } catch { return fallback; } }
 function saveJson(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} }
+
+/* =========================================================================
+   SUGGEST RECIPE LOGIC
+   ========================================================================= */
+function submitRecipeSuggestion() {
+  const name = els.sugName?.value || "N/A";
+  const tags = els.sugTags?.value || "N/A";
+  const time = els.sugTime?.value || "N/A";
+  const diff = els.sugDiff?.value || "N/A";
+  const ing = els.sugIng?.value || "N/A";
+  const steps = els.sugSteps?.value || "N/A";
+
+  const emailBody = `NEW RECIPE SUGGESTION!%0D%0A%0D%0A` +
+    `Name & Emoji: ${name}%0D%0A` +
+    `Tags: ${tags}%0D%0A` +
+    `Time: ${time}%0D%0A` +
+    `Difficulty: ${diff}%0D%0A%0D%0A` +
+    `Ingredients:%0D%0A${encodeURIComponent(ing)}%0D%0A%0D%0A` +
+    `Steps:%0D%0A${encodeURIComponent(steps)}%0D%0A`;
+
+  // Provide user feedback
+  const dict = translations[currentLang] || translations.en;
+  alert(dict.thanksSuggest || translations.en.thanksSuggest);
+  
+  els.suggestModal?.classList.add("hidden");
+  
+  // Clean fields for next time
+  if(els.sugName) els.sugName.value = "";
+  if(els.sugTags) els.sugTags.value = "";
+  if(els.sugTime) els.sugTime.value = "";
+  if(els.sugIng) els.sugIng.value = "";
+  if(els.sugSteps) els.sugSteps.value = "";
+
+  // Open their native email client
+  window.location.href = `mailto:omarbenayed2026@gmail.com?subject=Lettuce Guess - New Recipe!&body=${emailBody}`;
+}
 
 
 /* =========================================================================

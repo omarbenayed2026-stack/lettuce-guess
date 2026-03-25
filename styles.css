@@ -204,6 +204,37 @@ body {
 }
 .divider { width: 100%; height: 1px; background: var(--border); margin: 8px 0; }
 
+/* --- SUGGEST MODAL CUSTOM BUTTONS --- */
+.sug-tag-btn {
+  background: var(--card-bg-hover); border: 2px solid transparent; color: var(--text-muted);
+  padding: 8px 16px; border-radius: var(--radius-pill); font-weight: 600; font-size: 0.85rem;
+  cursor: pointer; transition: var(--transition); font-family: inherit;
+}
+.sug-tag-btn:hover { transform: translateY(-2px); }
+.sug-tag-btn.active {
+  background: var(--brand-light); color: var(--brand); border-color: var(--brand); transform: scale(1.05);
+}
+
+.diff-btn-group { display: flex; gap: 8px; width: 100%; }
+.diff-btn {
+  flex: 1; padding: 12px 10px; font-family: inherit; font-size: 0.9rem; font-weight: 800;
+  border-radius: var(--radius-pill); border: 2px solid transparent; 
+  background: var(--card-bg-hover); color: var(--text-muted); 
+  cursor: pointer; transition: var(--transition);
+}
+.diff-easy.active { 
+  border-color: #10b981; background: rgba(16, 185, 129, 0.1); 
+  color: #10b981; box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); 
+}
+.diff-med.active { 
+  border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); 
+  color: #f59e0b; box-shadow: 0 0 15px rgba(245, 158, 11, 0.3); 
+}
+.diff-hard.active { 
+  border-color: #ef4444; background: rgba(239, 68, 68, 0.1); 
+  color: #ef4444; box-shadow: 0 0 15px rgba(239, 68, 68, 0.3); 
+}
+
 /* --- Result Card --- */
 .result-card { text-align: center; border: 2px solid var(--brand); box-shadow: var(--shadow-glow); }
 .foodEmoji { font-size: 6rem; margin-bottom: 16px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); }
@@ -233,14 +264,8 @@ body {
 .lazy-mode:hover { border-color: var(--brand); transform: translateY(-4px); box-shadow: 0 10px 20px var(--brand-light); }
 .chef-mode:hover { border-color: var(--danger); transform: translateY(-4px); box-shadow: 0 10px 20px var(--danger-light); }
 
-/* --- Loading Spinner & Hint --- */
-.loading-wrapper { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 16px; }
-.spinner { width: 24px; height: 24px; border: 3px solid var(--card-bg-hover); border-top-color: var(--brand); border-radius: 50%; animation: spin 1s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.loading-text { color: var(--brand); font-size: 0.95rem; }
-.hint { font-size: 0.9rem; color: var(--text-muted); margin-top: 16px; }
 
-/* --- Modals --- */
+/* --- Modals & ROULETTE --- */
 .modal { position: fixed; inset: 0; z-index: 999; display: flex; align-items: center; justify-content: center; padding: 16px; }
 .modal__backdrop { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .modal__card {
@@ -260,6 +285,26 @@ body {
 .modal__meta { display: flex; gap: 8px; }
 .modal__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
 
+/* GREEN ROULETTE WINDOW */
+.roulette-card-green {
+  border: 4px solid var(--brand);
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.4) !important;
+  background: var(--card-bg);
+}
+
+/* FAST MOTION BLUR ANIMATION */
+.spin-motion-blur {
+  animation: fastSlide 0.15s linear infinite;
+  will-change: transform, filter, opacity;
+}
+@keyframes fastSlide {
+  0% { transform: translateX(60px); filter: blur(6px); opacity: 0.2; }
+  30% { transform: translateX(0px); filter: blur(0px); opacity: 1; }
+  70% { transform: translateX(0px); filter: blur(0px); opacity: 1; }
+  100% { transform: translateX(-60px); filter: blur(6px); opacity: 0.2; }
+}
+
+
 .recipe-box { background: var(--card-bg-hover); padding: 24px; border-radius: var(--radius-md); }
 .recipe-title { font-size: 1.1rem; font-weight: 800; color: var(--brand); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
 .list { list-style-position: inside; color: var(--text); padding-left: 8px; font-size: 1rem; }
@@ -275,7 +320,6 @@ body {
 .notfound p { color: var(--text-muted); margin-bottom: 24px; }
 .notfound__actions { display: flex; justify-content: center; gap: 12px; }
 
-
 /* =========================================
    FOOTER (SEPARATED WITH A LINE)
    ========================================= */
@@ -285,7 +329,7 @@ body {
   margin-top: 64px; 
   padding-top: 40px;
   padding-bottom: 40px;
-  border-top: 1px solid var(--border); /* TINY LINE SEPARATION */
+  border-top: 1px solid var(--border); 
 }
 .footer__inner {
   max-width: 600px;
@@ -298,7 +342,6 @@ body {
 .footer__link { color: var(--brand); text-decoration: none; transition: var(--transition); }
 .footer__link:hover { color: var(--brand-hover); text-decoration: underline; }
 .footer__small { margin-top: 8px; font-size: 0.8rem; opacity: 0.7; }
-
 
 /* --- Mobile Sticky Nav --- */
 .stickybar {

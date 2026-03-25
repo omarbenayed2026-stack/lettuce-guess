@@ -275,12 +275,30 @@ body {
 .notfound p { color: var(--text-muted); margin-bottom: 24px; }
 .notfound__actions { display: flex; justify-content: center; gap: 12px; }
 
-/* Footer */
-.footer { text-align: center; color: var(--text-muted); padding: 40px 0; font-size: 0.9rem; }
-.footer__contact { margin-top: 12px; font-weight: 600; }
+
+/* =========================================
+   FOOTER (SEPARATED WITH A LINE)
+   ========================================= */
+.footer { 
+  text-align: center; 
+  color: var(--text-muted); 
+  margin-top: 64px; 
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-top: 1px solid var(--border); /* TINY LINE SEPARATION */
+}
+.footer__inner {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.footer__contact { margin-top: 12px; font-weight: 600; font-size: 0.9rem; }
 .footer__link { color: var(--brand); text-decoration: none; transition: var(--transition); }
 .footer__link:hover { color: var(--brand-hover); text-decoration: underline; }
 .footer__small { margin-top: 8px; font-size: 0.8rem; opacity: 0.7; }
+
 
 /* --- Mobile Sticky Nav --- */
 .stickybar {

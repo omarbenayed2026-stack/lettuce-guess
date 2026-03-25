@@ -20,7 +20,7 @@ const translations = {
     europeanStyle: "🇪🇺 European",
     middleEasternStyle: "🌍 Middle Eastern",
     withChicken: "🍗 Chicken",
-    withBeef: "��� Beef",
+    withBeef: "🥩 Beef",
     fish: "🐟 Fish",
     withCheese: "🧀 Cheesy",
     withPasta: "🍝 Pasta",
@@ -187,7 +187,7 @@ const translations = {
     formStepsLabel: "الخطوات (طريقة التحضير)",
     formSubmit: "إرسال (يفتح البريد الإلكتروني)",
     suggestDisclaimer: "*بتقديمك لهذه الوصفة، أنت توافق على مشاركتها بحرية مع المجتمع بدون حقوق طبع ونشر.",
-    thanksSuggest: "شكراً! جاري فتح تطبيق البريد الإلكتروني الخاص بك. فقط اضغط إرسال!"
+    thanksSuggest: "شكراً! جاري فتح تطبيق ا��بريد الإلكتروني الخاص بك. فقط اضغط إرسال!"
   }
 };
 
@@ -1357,7 +1357,7 @@ function closeIntro(markDone) {
 }
 
 /* =========================================================================
-   ROULETTE SEARCH ANIMATION (FASTER, WITH BLUR, GREEN WINDOW)
+   ROULETTE SEARCH ANIMATION (FAST, 1.3 SECONDS, SOFT BLUR)
    ========================================================================= */
 function handleDiscover(isDailyPick) {
   closePreferences(); 
@@ -1400,10 +1400,9 @@ function runRouletteAnimation(pool, finalPick) {
   // Turn ON the fast slide/blur animation effect
   if (els.rouletteContent) els.rouletteContent.classList.add("spin-motion-blur");
   
-  // Much faster initial speed for the text switching!
-  let speed = 20; 
+  let speed = 35; 
   let ticks = 0;
-  const maxTicks = 35; // Run it for more ticks since it's faster
+  const maxTicks = 20; // 20 frames = takes about 1 second to spin
   
   function tick() {
     const randomFood = pool[Math.floor(Math.random() * pool.length)];
@@ -1414,7 +1413,7 @@ function runRouletteAnimation(pool, finalPick) {
     
     ticks++;
     if (ticks < maxTicks) {
-      speed += (ticks * 1.1); // Gradual slow down
+      speed += 3; // Gradual slow down
       setTimeout(tick, speed);
     } else {
       // STOP searching. Show the final pick clearly.
@@ -1424,6 +1423,7 @@ function runRouletteAnimation(pool, finalPick) {
       if (els.rouletteEmoji) els.rouletteEmoji.textContent = finalPick.emoji || "🍲";
       if (els.rouletteName) els.rouletteName.textContent = (ft && ft.name) || "Meal!";
       
+      // Let user read the final choice for 0.6 seconds, then scroll down to it
       setTimeout(() => {
         els.rouletteModal?.classList.add("hidden");
         renderFood(finalPick);
@@ -1432,7 +1432,7 @@ function runRouletteAnimation(pool, finalPick) {
         void els.result?.offsetWidth; 
         els.result?.classList.add("pop");
         els.result?.scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 900); // Give user almost 1 second to read the final result before closing
+      }, 600); 
     }
   }
   

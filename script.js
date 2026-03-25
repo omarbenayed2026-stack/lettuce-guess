@@ -20,7 +20,7 @@ const translations = {
     europeanStyle: "🇪🇺 European",
     middleEasternStyle: "🌍 Middle Eastern",
     withChicken: "🍗 Chicken",
-    withBeef: "🥩 Beef",
+    withBeef: "��� Beef",
     fish: "🐟 Fish",
     withCheese: "🧀 Cheesy",
     withPasta: "🍝 Pasta",
@@ -56,7 +56,7 @@ const translations = {
     suggestTitle: "Share Your Recipe",
     suggestDesc: "Help the community by submitting your favorite fast, cheap, or tasty meal!",
     formNameLabel: "Recipe Name & Emoji",
-    formTagsLabel: "Tags / Vibe (e.g. Cheap, Student, Chicken)",
+    formTagsLabel: "Tags (Select all that apply)",
     formIngLabel: "Ingredients (with amounts)",
     formStepsLabel: "Steps (How to cook it)",
     formSubmit: "Submit Recipe (Opens Email)",
@@ -119,7 +119,7 @@ const translations = {
     suggestTitle: "Partagez votre recette",
     suggestDesc: "Aidez la communauté en soumettant votre repas préféré !",
     formNameLabel: "Nom de la recette & Emoji",
-    formTagsLabel: "Tags (ex. Pas cher, Étudiant, Poulet)",
+    formTagsLabel: "Tags (Sélectionnez ceux qui s'appliquent)",
     formIngLabel: "Ingrédients (avec quantités)",
     formStepsLabel: "Étapes (Comment cuisiner)",
     formSubmit: "Soumettre (Ouvre votre E-mail)",
@@ -182,7 +182,7 @@ const translations = {
     suggestTitle: "شارك وصفتك",
     suggestDesc: "ساعد المجتمع بتقديم وجبتك المفضلة الرخيصة أو السريعة!",
     formNameLabel: "اسم الوصفة والإيموجي",
-    formTagsLabel: "علامات (مثال: رخيص، طالب، دجاج)",
+    formTagsLabel: "علامات (اختر ما ينطبق)",
     formIngLabel: "المكونات (مع الكميات)",
     formStepsLabel: "الخطوات (طريقة التحضير)",
     formSubmit: "إرسال (يفتح البريد الإلكتروني)",
@@ -1131,6 +1131,7 @@ const els = {
 
   // Animation & Suggestions
   rouletteModal: document.getElementById("rouletteModal"),
+  rouletteContent: document.getElementById("rouletteContent"),
   rouletteEmoji: document.getElementById("rouletteEmoji"),
   rouletteName: document.getElementById("rouletteName"),
   
@@ -1139,13 +1140,12 @@ const els = {
   closeSuggestBtn: document.getElementById("closeSuggestBtn"),
   submitSuggestBtn: document.getElementById("submitSuggestBtn"),
   sugName: document.getElementById("sugName"),
-  sugTags: document.getElementById("sugTags"),
   sugTime: document.getElementById("sugTime"),
-  sugDiff: document.getElementById("sugDiff"),
   sugIng: document.getElementById("sugIng"),
   sugSteps: document.getElementById("sugSteps")
 };
 
+// Start App
 boot();
 
 function boot() {
@@ -1161,17 +1161,19 @@ function boot() {
     setTheme(savedTheme);
     
     const introDone = loadStr("lettuceIntroDone", "0") === "1";
-    if (!introDone) openIntro();
+    if (!introDone && els.introModal) els.introModal.classList.remove("hidden");
     
-    if (!hintShown) {
-      els.hintLine?.classList.remove("hidden");
+    if (!hintShown && els.hintLine) {
+      els.hintLine.classList.remove("hidden");
       hintShown = true;
       saveStr("lettuceHintShown", "1");
-      setTimeout(() => els.hintLine?.classList.add("hidden"), 6000);
+      setTimeout(() => els.hintLine.classList.add("hidden"), 6000);
     }
+    
     wireEvents();
   } catch(e) {
-    console.error("Error booting app:", e);
+    console.error("Critical error during app startup:", e);
+    alert("There might be a missing comma in your foodDatabase recipes! Open Console (F12) to check.");
   }
 }
 
@@ -1186,7 +1188,7 @@ function wireEvents() {
     observer.observe(els.heroActions);
   }
 
-  // Language Menu
+  // Language Menu (SAFE)
   els.openLangBtn?.addEventListener("click", () => els.langModal?.classList.remove("hidden"));
   els.closeLangBtn?.addEventListener("click", () => els.langModal?.classList.add("hidden"));
   els.langModal?.addEventListener("click", (e) => { 
@@ -1214,7 +1216,7 @@ function wireEvents() {
     setTheme(isLight ? "dark" : "light");
   });
 
-  els.helpBtn?.addEventListener("click", () => openIntro());
+  els.helpBtn?.addEventListener("click", () => els.introModal?.classList.remove("hidden"));
 
   const animateClick = (btn) => {
     if (!btn) return;
@@ -1227,6 +1229,7 @@ function wireEvents() {
     btn.addEventListener("click", () => { animateClick(btn); action(); });
   };
 
+  // Bind main buttons safely
   bindBtn(els.discoverBtnTop, () => handleDiscover(false));
   bindBtn(els.discoverBtnSticky, () => handleDiscover(false));
   bindBtn(els.dailyPickBtnTop, () => handleDiscover(true));
@@ -1250,10 +1253,23 @@ function wireEvents() {
   els.closeIntroBtn?.addEventListener("click", () => closeIntro(true));
   els.closeRecipeBtn?.addEventListener("click", closeRecipe);
   
-  // Suggest Form
+  // Suggest Form Functionality
   els.openSuggestBtn?.addEventListener("click", () => els.suggestModal?.classList.remove("hidden"));
   els.closeSuggestBtn?.addEventListener("click", () => els.suggestModal?.classList.add("hidden"));
   els.submitSuggestBtn?.addEventListener("click", submitRecipeSuggestion);
+
+  // Suggest Tags Interaction
+  document.querySelectorAll('.sug-tag-btn').forEach(btn => {
+    btn.addEventListener('click', () => btn.classList.toggle('active'));
+  });
+
+  // Suggest Difficulty Buttons Interaction
+  document.querySelectorAll('.diff-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+      e.currentTarget.classList.add('active');
+    });
+  });
 
   els.introModal?.addEventListener("click", (e) => { if (e.target === els.introModal) closeIntro(true); });
   els.recipeModal?.addEventListener("click", (e) => { if (e.target === els.recipeModal) closeRecipe(); });
@@ -1282,9 +1298,7 @@ function setTheme(mode) {
   document.body.classList.remove("theme-dark", "theme-light");
   document.body.classList.add(mode === "light" ? "theme-light" : "theme-dark");
   saveStr("lettuceTheme", mode);
-  if (els.themeToggleBtn) {
-    els.themeToggleBtn.textContent = mode === "light" ? "🌙" : "☀️";
-  }
+  if (els.themeToggleBtn) els.themeToggleBtn.textContent = mode === "light" ? "🌙" : "☀️";
 }
 
 function applyLanguage(lang) {
@@ -1342,9 +1356,8 @@ function closeIntro(markDone) {
   if (markDone) saveStr("lettuceIntroDone", "1"); 
 }
 
-
 /* =========================================================================
-   ROULETTE SEARCH ANIMATION 
+   ROULETTE SEARCH ANIMATION (FASTER, WITH BLUR, GREEN WINDOW)
    ========================================================================= */
 function handleDiscover(isDailyPick) {
   closePreferences(); 
@@ -1374,11 +1387,23 @@ function handleDiscover(isDailyPick) {
 }
 
 function runRouletteAnimation(pool, finalPick) {
-  els.rouletteModal?.classList.remove("hidden");
+  if(!els.rouletteModal) {
+    renderFood(finalPick);
+    els.result?.classList.remove("pop");
+    void els.result?.offsetWidth; 
+    els.result?.classList.add("pop");
+    return;
+  }
   
-  let speed = 40; 
+  els.rouletteModal.classList.remove("hidden");
+  
+  // Turn ON the fast slide/blur animation effect
+  if (els.rouletteContent) els.rouletteContent.classList.add("spin-motion-blur");
+  
+  // Much faster initial speed for the text switching!
+  let speed = 20; 
   let ticks = 0;
-  const maxTicks = 25; 
+  const maxTicks = 35; // Run it for more ticks since it's faster
   
   function tick() {
     const randomFood = pool[Math.floor(Math.random() * pool.length)];
@@ -1389,9 +1414,12 @@ function runRouletteAnimation(pool, finalPick) {
     
     ticks++;
     if (ticks < maxTicks) {
-      speed += (ticks * 1.5); 
+      speed += (ticks * 1.1); // Gradual slow down
       setTimeout(tick, speed);
     } else {
+      // STOP searching. Show the final pick clearly.
+      if (els.rouletteContent) els.rouletteContent.classList.remove("spin-motion-blur");
+      
       const ft = finalPick.translations?.[currentLang] || finalPick.translations?.en;
       if (els.rouletteEmoji) els.rouletteEmoji.textContent = finalPick.emoji || "🍲";
       if (els.rouletteName) els.rouletteName.textContent = (ft && ft.name) || "Meal!";
@@ -1404,7 +1432,7 @@ function runRouletteAnimation(pool, finalPick) {
         void els.result?.offsetWidth; 
         els.result?.classList.add("pop");
         els.result?.scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 1000);
+      }, 900); // Give user almost 1 second to read the final result before closing
     }
   }
   
@@ -1556,17 +1584,25 @@ function saveJson(key, value) { try { localStorage.setItem(key, JSON.stringify(v
    ========================================================================= */
 function submitRecipeSuggestion() {
   const name = els.sugName?.value || "N/A";
-  const tags = els.sugTags?.value || "N/A";
   const time = els.sugTime?.value || "N/A";
-  const diff = els.sugDiff?.value || "N/A";
   const ing = els.sugIng?.value || "N/A";
   const steps = els.sugSteps?.value || "N/A";
+  
+  // Gather active tags
+  const activeTags = Array.from(document.querySelectorAll('.sug-tag-btn.active'))
+                          .map(b => b.textContent)
+                          .join(', ');
+  const tagsStr = activeTags.length > 0 ? activeTags : "N/A";
+
+  // Gather active difficulty
+  const activeDiff = document.querySelector('.diff-btn.active');
+  const diffStr = activeDiff ? activeDiff.textContent : "N/A";
 
   const emailBody = `NEW RECIPE SUGGESTION!%0D%0A%0D%0A` +
     `Name & Emoji: ${name}%0D%0A` +
-    `Tags: ${tags}%0D%0A` +
+    `Tags: ${tagsStr}%0D%0A` +
     `Time: ${time}%0D%0A` +
-    `Difficulty: ${diff}%0D%0A%0D%0A` +
+    `Difficulty: ${diffStr}%0D%0A%0D%0A` +
     `Ingredients:%0D%0A${encodeURIComponent(ing)}%0D%0A%0D%0A` +
     `Steps:%0D%0A${encodeURIComponent(steps)}%0D%0A`;
 
@@ -1575,11 +1611,13 @@ function submitRecipeSuggestion() {
   
   els.suggestModal?.classList.add("hidden");
   
+  // Reset Form
   if(els.sugName) els.sugName.value = "";
-  if(els.sugTags) els.sugTags.value = "";
   if(els.sugTime) els.sugTime.value = "";
   if(els.sugIng) els.sugIng.value = "";
   if(els.sugSteps) els.sugSteps.value = "";
+  document.querySelectorAll('.sug-tag-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
 
   window.location.href = `mailto:omarbenayed2026@gmail.com?subject=Lettuce Guess - New Recipe!&body=${emailBody}`;
 }

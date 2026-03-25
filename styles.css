@@ -264,7 +264,6 @@ body {
 .lazy-mode:hover { border-color: var(--brand); transform: translateY(-4px); box-shadow: 0 10px 20px var(--brand-light); }
 .chef-mode:hover { border-color: var(--danger); transform: translateY(-4px); box-shadow: 0 10px 20px var(--danger-light); }
 
-
 /* --- Modals & ROULETTE --- */
 .modal { position: fixed; inset: 0; z-index: 999; display: flex; align-items: center; justify-content: center; padding: 16px; }
 .modal__backdrop { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
@@ -302,16 +301,15 @@ body {
   margin: 0 auto;
 }
 
-/* FAST MOTION BLUR ANIMATION - REDUCED SO IT DOESN'T HURT EYES */
+/* FAST FLICKER/BLUR ANIMATION (NO SHAKING LEFT/RIGHT) */
 .spin-motion-blur {
-  animation: fastSlide 0.2s linear infinite;
-  will-change: transform, filter, opacity;
+  animation: fastFlicker 0.15s infinite;
+  will-change: filter, opacity, transform;
 }
-@keyframes fastSlide {
-  0% { transform: translateX(15px); filter: blur(2px); opacity: 0.8; }
-  25% { transform: translateX(0px); filter: blur(0px); opacity: 1; }
-  75% { transform: translateX(0px); filter: blur(0px); opacity: 1; }
-  100% { transform: translateX(-15px); filter: blur(2px); opacity: 0.8; }
+@keyframes fastFlicker {
+  0% { opacity: 0.6; filter: blur(2px); transform: scale(0.96); }
+  50% { opacity: 1; filter: blur(0px); transform: scale(1); }
+  100% { opacity: 0.6; filter: blur(2px); transform: scale(0.96); }
 }
 
 

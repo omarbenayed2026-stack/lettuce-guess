@@ -245,69 +245,83 @@
     <div class="modal__backdrop"></div>
     <div class="modal__card modal__card--wide slide-up" style="max-height: 95vh;">
       <button id="closeSuggestBtn" class="iconbtn modal__close">✕</button>
-      <div class="modal__icon">💡</div>
-      <h2 class="modal__title" data-i18n="suggestTitle">Share Your Recipe</h2>
-      <p class="modal__text" data-i18n="suggestDesc">Help the community by submitting your favorite fast, cheap, or tasty meal!</p>
       
-      <div style="display: flex; flex-direction: column; gap: 24px; margin-bottom: 24px;">
-        <div>
-          <label data-i18n="formNameLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Recipe Name & Emoji</label>
-          <input type="text" id="sugName" class="form-input" placeholder="e.g. 🍝 Fast Tuna Pasta" />
-        </div>
+      <!-- FORM CONTENT -->
+      <div id="suggestFormContent">
+        <div class="modal__icon">💡</div>
+        <h2 class="modal__title" data-i18n="suggestTitle">Share Your Recipe</h2>
+        <p class="modal__text" data-i18n="suggestDesc">Help the community by submitting your favorite fast, cheap, or tasty meal!</p>
         
-        <!-- Toggle Button Tags -->
-        <div>
-          <label data-i18n="formTagsLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Tags (Select all that apply)</label>
-          <div class="tags-container" id="sugTagsContainer">
-            <button type="button" class="sug-tag-btn">🎓 Student Friendly</button>
-            <button type="button" class="sug-tag-btn">🪙 Cheap</button>
-            <button type="button" class="sug-tag-btn">🥗 Healthy</button>
-            <button type="button" class="sug-tag-btn">🇹🇳 Tunisian</button>
-            <button type="button" class="sug-tag-btn">🥢 Asian</button>
-            <button type="button" class="sug-tag-btn">🇺🇸 American</button>
-            <button type="button" class="sug-tag-btn">🇪🇺 European</button>
-            <button type="button" class="sug-tag-btn">🌍 Middle Eastern</button>
-            <button type="button" class="sug-tag-btn">🍗 Chicken</button>
-            <button type="button" class="sug-tag-btn">🥩 Beef</button>
-            <button type="button" class="sug-tag-btn">🐟 Fish</button>
-            <button type="button" class="sug-tag-btn">🧀 Cheesy</button>
-            <button type="button" class="sug-tag-btn">🍝 Pasta</button>
-            <button type="button" class="sug-tag-btn">🍟 Fried</button>
-            <button type="button" class="sug-tag-btn">🌱 Vegan</button>
-            <button type="button" class="sug-tag-btn">🍰 Dessert</button>
-          </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 24px; margin-bottom: 24px;">
           <div>
-            <label style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Prep Time</label>
-            <input type="text" id="sugTime" class="form-input" placeholder="e.g. 15 mins" />
+            <label data-i18n="formNameLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Recipe Name & Emoji</label>
+            <input type="text" id="sugName" class="form-input" placeholder="e.g. 🍝 Fast Tuna Pasta" />
           </div>
+          
           <div>
-            <label style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Difficulty</label>
-            <!-- Colored Glowing Buttons -->
-            <div class="diff-btn-group" id="sugDiffContainer">
-              <button type="button" class="diff-btn diff-easy">Easy</button>
-              <button type="button" class="diff-btn diff-med">Medium</button>
-              <button type="button" class="diff-btn diff-hard">Hard</button>
+            <label data-i18n="formTagsLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Tags (Select all that apply)</label>
+            <div class="tags-container" id="sugTagsContainer">
+              <button type="button" class="sug-tag-btn">🎓 Student Friendly</button>
+              <button type="button" class="sug-tag-btn">🪙 Cheap</button>
+              <button type="button" class="sug-tag-btn">🥗 Healthy</button>
+              <button type="button" class="sug-tag-btn">🇹🇳 Tunisian</button>
+              <button type="button" class="sug-tag-btn">🥢 Asian</button>
+              <button type="button" class="sug-tag-btn">🇺🇸 American</button>
+              <button type="button" class="sug-tag-btn">🇪🇺 European</button>
+              <button type="button" class="sug-tag-btn">🌍 Middle Eastern</button>
+              <button type="button" class="sug-tag-btn">🍗 Chicken</button>
+              <button type="button" class="sug-tag-btn">🥩 Beef</button>
+              <button type="button" class="sug-tag-btn">🐟 Fish</button>
+              <button type="button" class="sug-tag-btn">🧀 Cheesy</button>
+              <button type="button" class="sug-tag-btn">🍝 Pasta</button>
+              <button type="button" class="sug-tag-btn">🍟 Fried</button>
+              <button type="button" class="sug-tag-btn">🌱 Vegan</button>
+              <button type="button" class="sug-tag-btn">🍰 Dessert</button>
             </div>
           </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div>
+              <label style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Prep Time</label>
+              <input type="text" id="sugTime" class="form-input" placeholder="e.g. 15 mins" />
+            </div>
+            <div>
+              <label style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Difficulty</label>
+              <div class="diff-btn-group" id="sugDiffContainer">
+                <button type="button" class="diff-btn diff-easy">Easy</button>
+                <button type="button" class="diff-btn diff-med">Medium</button>
+                <button type="button" class="diff-btn diff-hard">Hard</button>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label data-i18n="formIngLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Ingredients (with amounts)</label>
+            <textarea id="sugIng" class="form-input" rows="3" placeholder="- 1 Can of Tuna&#10;- 200g Pasta"></textarea>
+          </div>
+          <div>
+            <label data-i18n="formStepsLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Steps (How to cook it)</label>
+            <textarea id="sugSteps" class="form-input" rows="4" placeholder="1. Boil water...&#10;2. Mix in tuna..."></textarea>
+          </div>
+          <p data-i18n="suggestDisclaimer" style="font-size: 0.75rem; color: var(--text-muted); opacity: 0.8; text-align: center;">
+            *By submitting, you agree to share this recipe freely with the community without copyright restrictions.
+          </p>
         </div>
 
-        <div>
-          <label data-i18n="formIngLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Ingredients (with amounts)</label>
-          <textarea id="sugIng" class="form-input" rows="3" placeholder="- 1 Can of Tuna&#10;- 200g Pasta"></textarea>
-        </div>
-        <div>
-          <label data-i18n="formStepsLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Steps (How to cook it)</label>
-          <textarea id="sugSteps" class="form-input" rows="4" placeholder="1. Boil water...&#10;2. Mix in tuna..."></textarea>
-        </div>
-        <p data-i18n="suggestDisclaimer" style="font-size: 0.75rem; color: var(--text-muted); opacity: 0.8; text-align: center;">
-          *By submitting, you agree to share this recipe freely with the community without copyright restrictions.
-        </p>
+        <button id="submitSuggestBtn" class="btn btn-primary" style="width: 100%;" data-i18n="formSubmit">Submit Recipe</button>
       </div>
 
-      <button id="submitSuggestBtn" class="btn btn-primary" style="width: 100%;" data-i18n="formSubmit">Submit Recipe</button>
+      <!-- SUCCESS / FALLBACK CONTENT (HIDDEN INITIALLY) -->
+      <div id="suggestSuccessContent" class="hidden" style="text-align: center; padding: 20px 0;">
+        <div style="font-size: 4rem; margin-bottom: 16px;">📧</div>
+        <h3 style="font-size: 1.5rem; margin-bottom: 8px; font-weight: 800;" data-i18n="emailOpening">Opening your email app!</h3>
+        <p style="color: var(--text-muted); margin-bottom: 24px; font-size: 0.95rem;" data-i18n="emailFallback">
+          If nothing happened automatically, copy the recipe below and email it to <strong>omarbenayed2026@gmail.com</strong>
+        </p>
+        <textarea id="fallbackEmailBody" class="form-input" rows="8" readonly style="margin-bottom: 16px; background: var(--bg); font-family: monospace; font-size: 0.85rem;"></textarea>
+        <button id="copyEmailBtn" class="btn btn-secondary" style="width: 100%; font-size: 1rem;" data-i18n="copyRecipe">📋 Copy Recipe</button>
+      </div>
+
     </div>
   </div>
 

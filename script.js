@@ -49,8 +49,6 @@ const translations = {
     introTagline: "Pick a meal in seconds.",
     introText: "Welcome! Use Discover to get a random meal. Open Preferences to filter. Tap again for a new suggestion.",
     startDiscover: "Start discovering",
-    
-    // ABOUT & SUGGEST TRANSLATIONS
     aboutText: "Created for students and busy people who don't know what to cook. Fast, cheap, and tasty meals! This project is open source. Have an amazing recipe? Share it with us!",
     suggestBtn: "💡 Suggest a Recipe",
     suggestTitle: "Share Your Recipe",
@@ -113,7 +111,6 @@ const translations = {
     introTagline: "Choisis un plat en quelques secondes.",
     introText: "Bienvenue ! Utilisez Découvrir pour une recette aléatoire. Ouvrez Préférences pour filtrer par budget, style et ingrédients.",
     startDiscover: "Commencer",
-    
     aboutText: "Créé pour les étudiants et les gens pressés qui ne savent pas quoi cuisiner. Des plats rapides, pas chers et savoureux ! Vous avez une bonne recette ? Partagez-la !",
     suggestBtn: "💡 Proposer une recette",
     suggestTitle: "Partagez votre recette",
@@ -176,7 +173,6 @@ const translations = {
     introTagline: "اختر وجبة في ثوانٍ.",
     introText: "مرحبًا! استخدم «اكتشف» للحصول على وجبة عشوائية.",
     startDiscover: "ابدأ",
-    
     aboutText: "تم إنشاؤه للطلاب والأشخاص المشغولين. وجبات سريعة ورخيصة ولذيذة! هذا المشروع مفتوح المصدر. هل لديك وصفة رائعة؟ شاركها معنا!",
     suggestBtn: "💡 اقترح وصفة",
     suggestTitle: "شارك وصفتك",
@@ -187,7 +183,7 @@ const translations = {
     formStepsLabel: "الخطوات (طريقة التحضير)",
     formSubmit: "إرسال (يفتح البريد الإلكتروني)",
     suggestDisclaimer: "*بتقديمك لهذه الوصفة، أنت توافق على مشاركتها بحرية مع المجتمع بدون حقوق طبع ونشر.",
-    thanksSuggest: "شكراً! جاري فتح تطبيق ا��بريد الإلكتروني الخاص بك. فقط اضغط إرسال!"
+    thanksSuggest: "شكراً! جاري فتح تطبيق البريد الإلكتروني الخاص بك. فقط اضغط إرسال!"
   }
 };
 
@@ -1047,7 +1043,6 @@ let hintShown = loadStr("lettuceHintShown", "0") === "1";
 let isPrefsOpen = false;
 
 const els = {
-  // Navigation
   themeToggleBtn: document.getElementById("themeToggleBtn"),
   helpBtn: document.getElementById("helpBtn"),
   heroActions: document.getElementById("heroActions"),
@@ -1059,13 +1054,9 @@ const els = {
   discoverBtnSticky: document.getElementById("discoverBtnSticky"),
   dailyPickBtnSticky: document.getElementById("dailyPickBtnSticky"),
   preferencesBtnSticky: document.getElementById("preferencesBtnSticky"),
-  
-  // Custom Language
   openLangBtn: document.getElementById("openLangBtn"),
   langModal: document.getElementById("langModal"),
   closeLangBtn: document.getElementById("closeLangBtn"),
-
-  // Preferences
   preferencesPanel: document.getElementById("preferencesPanel"),
   closePreferencesBtn: document.getElementById("closePreferencesBtn"),
   resetFiltersBtn: document.getElementById("resetFiltersBtn"),
@@ -1093,8 +1084,6 @@ const els = {
   noCheese: document.getElementById("noCheese"),
   noSpicy: document.getElementById("noSpicy"),
   noSweets: document.getElementById("noSweets"),
-  
-  // Display Results
   result: document.getElementById("result"),
   notFound: document.getElementById("notFound"),
   relaxFiltersBtn: document.getElementById("relaxFiltersBtn"),
@@ -1120,21 +1109,16 @@ const els = {
   modalIngredients: document.getElementById("modalIngredients"),
   modalSteps: document.getElementById("modalSteps"),
   copyrightYear: document.getElementById("year"),
-
-  // Favorites & PWA
   favoritesBtn: document.getElementById("favoritesBtn"),
   saveFavoriteBtn: document.getElementById("saveFavoriteBtn"),
   favoritesModal: document.getElementById("favoritesModal"),
   closeFavoritesBtn: document.getElementById("closeFavoritesBtn"),
   favoritesList: document.getElementById("favoritesList"),
   installAppBtn: document.getElementById("installAppBtn"),
-
-  // Animation & Suggestions
   rouletteModal: document.getElementById("rouletteModal"),
   rouletteContent: document.getElementById("rouletteContent"),
   rouletteEmoji: document.getElementById("rouletteEmoji"),
   rouletteName: document.getElementById("rouletteName"),
-  
   openSuggestBtn: document.getElementById("openSuggestBtn"),
   suggestModal: document.getElementById("suggestModal"),
   closeSuggestBtn: document.getElementById("closeSuggestBtn"),
@@ -1145,7 +1129,6 @@ const els = {
   sugSteps: document.getElementById("sugSteps")
 };
 
-// Start App
 boot();
 
 function boot() {
@@ -1172,8 +1155,7 @@ function boot() {
     
     wireEvents();
   } catch(e) {
-    console.error("Critical error during app startup:", e);
-    alert("There might be a missing comma in your foodDatabase recipes! Open Console (F12) to check.");
+    console.error("Error during startup:", e);
   }
 }
 
@@ -1188,7 +1170,6 @@ function wireEvents() {
     observer.observe(els.heroActions);
   }
 
-  // Language Menu (SAFE)
   els.openLangBtn?.addEventListener("click", () => els.langModal?.classList.remove("hidden"));
   els.closeLangBtn?.addEventListener("click", () => els.langModal?.classList.add("hidden"));
   els.langModal?.addEventListener("click", (e) => { 
@@ -1229,14 +1210,12 @@ function wireEvents() {
     btn.addEventListener("click", () => { animateClick(btn); action(); });
   };
 
-  // Bind main buttons safely
   bindBtn(els.discoverBtnTop, () => handleDiscover(false));
   bindBtn(els.discoverBtnSticky, () => handleDiscover(false));
   bindBtn(els.dailyPickBtnTop, () => handleDiscover(true));
   bindBtn(els.dailyPickBtnSticky, () => handleDiscover(true));
   
   els.introDiscoverBtn?.addEventListener("click", () => { closeIntro(true); handleDiscover(false); });
-  
   els.preferencesBtnTop?.addEventListener("click", togglePreferences);
   els.preferencesBtnSticky?.addEventListener("click", togglePreferences);
   els.openPreferencesBtn2?.addEventListener("click", togglePreferences);
@@ -1253,17 +1232,14 @@ function wireEvents() {
   els.closeIntroBtn?.addEventListener("click", () => closeIntro(true));
   els.closeRecipeBtn?.addEventListener("click", closeRecipe);
   
-  // Suggest Form Functionality
   els.openSuggestBtn?.addEventListener("click", () => els.suggestModal?.classList.remove("hidden"));
   els.closeSuggestBtn?.addEventListener("click", () => els.suggestModal?.classList.add("hidden"));
   els.submitSuggestBtn?.addEventListener("click", submitRecipeSuggestion);
 
-  // Suggest Tags Interaction
   document.querySelectorAll('.sug-tag-btn').forEach(btn => {
     btn.addEventListener('click', () => btn.classList.toggle('active'));
   });
 
-  // Suggest Difficulty Buttons Interaction
   document.querySelectorAll('.diff-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
@@ -1275,7 +1251,6 @@ function wireEvents() {
   els.recipeModal?.addEventListener("click", (e) => { if (e.target === els.recipeModal) closeRecipe(); });
   els.suggestModal?.addEventListener("click", (e) => { if (e.target === els.suggestModal) els.suggestModal?.classList.add("hidden"); });
 
-  // Favorites
   els.saveFavoriteBtn?.addEventListener("click", toggleFavorite);
   els.favoritesBtn?.addEventListener("click", () => {
     renderFavoritesList();
@@ -1357,7 +1332,7 @@ function closeIntro(markDone) {
 }
 
 /* =========================================================================
-   ROULETTE SEARCH ANIMATION (FAST, 1.3 SECONDS, SOFT BLUR)
+   ROULETTE SEARCH ANIMATION (MANUALLY CONFIGURABLE)
    ========================================================================= */
 function handleDiscover(isDailyPick) {
   closePreferences(); 
@@ -1397,46 +1372,50 @@ function runRouletteAnimation(pool, finalPick) {
   
   els.rouletteModal.classList.remove("hidden");
   
-  // Turn ON the fast slide/blur animation effect
+  // ==========================================
+  // MANUAL SETTINGS - CHANGE THESE NUMBERS!
+  // ==========================================
+  const SPIN_DURATION = 1500; // Total time it spins (1500 = 1.5 seconds)
+  const SPIN_SPEED = 80;      // How fast the emoji changes (80 = super fast)
+  const PAUSE_AT_END = 600;   // How long it pauses on the final meal before scrolling down
+  // ==========================================
+
+  // Turn ON the CSS motion blur
   if (els.rouletteContent) els.rouletteContent.classList.add("spin-motion-blur");
   
-  let speed = 35; 
-  let ticks = 0;
-  const maxTicks = 20; // 20 frames = takes about 1 second to spin
-  
-  function tick() {
+  // Start flipping through recipes
+  const spinInterval = setInterval(() => {
     const randomFood = pool[Math.floor(Math.random() * pool.length)];
     const t = randomFood.translations?.[currentLang] || randomFood.translations?.en;
     
     if (els.rouletteEmoji) els.rouletteEmoji.textContent = randomFood.emoji || "🍲";
     if (els.rouletteName) els.rouletteName.textContent = (t && t.name) || "Searching...";
+  }, SPIN_SPEED);
+
+  // Stop spinning after SPIN_DURATION
+  setTimeout(() => {
+    clearInterval(spinInterval);
     
-    ticks++;
-    if (ticks < maxTicks) {
-      speed += 3; // Gradual slow down
-      setTimeout(tick, speed);
-    } else {
-      // STOP searching. Show the final pick clearly.
-      if (els.rouletteContent) els.rouletteContent.classList.remove("spin-motion-blur");
+    // Stop the CSS blur so it sits perfectly still (No shaking!)
+    if (els.rouletteContent) els.rouletteContent.classList.remove("spin-motion-blur");
+    
+    // Show the actual picked meal
+    const ft = finalPick.translations?.[currentLang] || finalPick.translations?.en;
+    if (els.rouletteEmoji) els.rouletteEmoji.textContent = finalPick.emoji || "🍲";
+    if (els.rouletteName) els.rouletteName.textContent = (ft && ft.name) || "Meal!";
+    
+    // Pause briefly, then close the window and show the card
+    setTimeout(() => {
+      els.rouletteModal?.classList.add("hidden");
+      renderFood(finalPick);
       
-      const ft = finalPick.translations?.[currentLang] || finalPick.translations?.en;
-      if (els.rouletteEmoji) els.rouletteEmoji.textContent = finalPick.emoji || "🍲";
-      if (els.rouletteName) els.rouletteName.textContent = (ft && ft.name) || "Meal!";
-      
-      // Let user read the final choice for 0.6 seconds, then scroll down to it
-      setTimeout(() => {
-        els.rouletteModal?.classList.add("hidden");
-        renderFood(finalPick);
-        
-        els.result?.classList.remove("pop");
-        void els.result?.offsetWidth; 
-        els.result?.classList.add("pop");
-        els.result?.scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 600); 
-    }
-  }
-  
-  tick(); 
+      els.result?.classList.remove("pop");
+      void els.result?.offsetWidth; 
+      els.result?.classList.add("pop");
+      els.result?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, PAUSE_AT_END);
+
+  }, SPIN_DURATION);
 }
 
 function readFilters() {
@@ -1588,13 +1567,11 @@ function submitRecipeSuggestion() {
   const ing = els.sugIng?.value || "N/A";
   const steps = els.sugSteps?.value || "N/A";
   
-  // Gather active tags
   const activeTags = Array.from(document.querySelectorAll('.sug-tag-btn.active'))
                           .map(b => b.textContent)
                           .join(', ');
   const tagsStr = activeTags.length > 0 ? activeTags : "N/A";
 
-  // Gather active difficulty
   const activeDiff = document.querySelector('.diff-btn.active');
   const diffStr = activeDiff ? activeDiff.textContent : "N/A";
 
@@ -1611,7 +1588,6 @@ function submitRecipeSuggestion() {
   
   els.suggestModal?.classList.add("hidden");
   
-  // Reset Form
   if(els.sugName) els.sugName.value = "";
   if(els.sugTime) els.sugTime.value = "";
   if(els.sugIng) els.sugIng.value = "";

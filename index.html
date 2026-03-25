@@ -6,22 +6,17 @@
   <title>Lettuce Guess</title>
   <meta name="description" content="Random recipe generator for students: fast, cheap, tasty." />
   
-  <!-- PWA App Manifest -->
   <link rel="manifest" href="./manifest.json" />
   <meta name="theme-color" content="#10b981" />
-
-  <!-- iOS App Support -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Lettuce Guess" />
   <link rel="apple-touch-icon" href="./logo.png?v=2" />
-
-  <!-- Custom Logo -->
   <link rel="icon" href="./logo.png?v=2" />
   
   <link rel="stylesheet" href="./styles.css" />
 
-  <!-- Google Analytics (Replace YOUR_MEASUREMENT_ID with your real ID) -->
+  <!-- Google Analytics with your exact ID -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6EJ9LX138P"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -195,7 +190,7 @@
         </div>
       </section>
       
-      <!-- Footer is physically separated down here via CSS border -->
+      <!-- Footer & About Section -->
       <footer class="footer">
         <div class="footer__inner">
           <p data-i18n="aboutText" style="margin-bottom: 12px; font-size: 0.9rem;">
@@ -234,9 +229,11 @@
   <!-- Roulette / Spinning Animation Modal -->
   <div id="rouletteModal" class="modal hidden" role="dialog" aria-modal="true" style="z-index: 1000;">
     <div class="modal__backdrop"></div>
-    <div class="modal__card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; max-width: 320px; padding: 40px 20px;">
-      <div id="rouletteEmoji" style="font-size: 6rem; margin-bottom: 16px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); transition: transform 0.1s;">🍲</div>
-      <h2 id="rouletteName" style="font-size: 1.5rem; font-weight: 800; color: var(--text);">Searching...</h2>
+    <div class="modal__card roulette-card-green" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; max-width: 320px; padding: 40px 20px; overflow: hidden;">
+      <div id="rouletteContent">
+        <div id="rouletteEmoji" style="font-size: 6rem; margin-bottom: 16px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));">🍲</div>
+        <h2 id="rouletteName" style="font-size: 1.5rem; font-weight: 800; color: var(--text); padding: 0 10px;">Searching...</h2>
+      </div>
     </div>
   </div>
 
@@ -249,15 +246,35 @@
       <h2 class="modal__title" data-i18n="suggestTitle">Share Your Recipe</h2>
       <p class="modal__text" data-i18n="suggestDesc">Help the community by submitting your favorite fast, cheap, or tasty meal!</p>
       
-      <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px;">
+      <div style="display: flex; flex-direction: column; gap: 24px; margin-bottom: 24px;">
         <div>
           <label data-i18n="formNameLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Recipe Name & Emoji</label>
           <input type="text" id="sugName" class="form-input" placeholder="e.g. 🍝 Fast Tuna Pasta" />
         </div>
+        
+        <!-- Toggle Button Tags -->
         <div>
-          <label data-i18n="formTagsLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Tags / Vibe (e.g. Cheap, Student, Chicken)</label>
-          <input type="text" id="sugTags" class="form-input" placeholder="e.g. Cheap, Student, Pasta..." />
+          <label data-i18n="formTagsLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Tags (Select all that apply)</label>
+          <div class="tags-container" id="sugTagsContainer">
+            <button type="button" class="sug-tag-btn">🎓 Student Friendly</button>
+            <button type="button" class="sug-tag-btn">🪙 Cheap</button>
+            <button type="button" class="sug-tag-btn">🥗 Healthy</button>
+            <button type="button" class="sug-tag-btn">🇹🇳 Tunisian</button>
+            <button type="button" class="sug-tag-btn">🥢 Asian</button>
+            <button type="button" class="sug-tag-btn">🇺🇸 American</button>
+            <button type="button" class="sug-tag-btn">🇪🇺 European</button>
+            <button type="button" class="sug-tag-btn">🌍 Middle Eastern</button>
+            <button type="button" class="sug-tag-btn">🍗 Chicken</button>
+            <button type="button" class="sug-tag-btn">🥩 Beef</button>
+            <button type="button" class="sug-tag-btn">🐟 Fish</button>
+            <button type="button" class="sug-tag-btn">🧀 Cheesy</button>
+            <button type="button" class="sug-tag-btn">🍝 Pasta</button>
+            <button type="button" class="sug-tag-btn">🍟 Fried</button>
+            <button type="button" class="sug-tag-btn">🌱 Vegan</button>
+            <button type="button" class="sug-tag-btn">🍰 Dessert</button>
+          </div>
         </div>
+
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
           <div>
             <label style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Prep Time</label>
@@ -265,13 +282,15 @@
           </div>
           <div>
             <label style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Difficulty</label>
-            <select id="sugDiff" class="form-input">
-              <option value="Easy">Easy</option>
-              <option value="Medium">Medium</option>
-              <option value="Hard">Hard</option>
-            </select>
+            <!-- Colored Glowing Buttons -->
+            <div class="diff-btn-group" id="sugDiffContainer">
+              <button type="button" class="diff-btn diff-easy">Easy</button>
+              <button type="button" class="diff-btn diff-med">Medium</button>
+              <button type="button" class="diff-btn diff-hard">Hard</button>
+            </div>
           </div>
         </div>
+
         <div>
           <label data-i18n="formIngLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Ingredients (with amounts)</label>
           <textarea id="sugIng" class="form-input" rows="3" placeholder="- 1 Can of Tuna&#10;- 200g Pasta"></textarea>

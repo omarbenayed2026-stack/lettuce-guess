@@ -20,6 +20,16 @@
   <link rel="icon" href="./logo.png?v=2" />
   
   <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Google Analytics (Placeholder) -->
+  <!-- REPLACE 'YOUR_MEASUREMENT_ID' with your actual GA4 ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'YOUR_MEASUREMENT_ID');
+  </script>
 </head>
 
 <body class="theme-light" dir="ltr">
@@ -33,19 +43,15 @@
     </div>
 
     <div class="topbar__right">
-      <!-- Get App Button -->
       <button id="installAppBtn" class="btn btn-primary hidden" style="padding: 6px 12px; font-size: 0.8rem; margin-right: 4px;">Get App</button>
       
-      <!-- Green Topbar Heart -->
       <button id="favoritesBtn" class="iconbtn" title="Favorites" style="color: var(--brand); border-color: transparent; background: var(--brand-light);">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="var(--brand)" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events: none;">
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
         </svg>
       </button>
 
-      <!-- Sleek Language Button -->
       <button id="openLangBtn" class="iconbtn" style="font-weight: 800; font-size: 0.85rem;" title="Language">EN</button>
-      
       <button id="helpBtn" class="iconbtn" title="Help">?</button>
       <button id="themeToggleBtn" class="iconbtn" title="Toggle theme">☀️</button>
     </div>
@@ -97,23 +103,18 @@
         <div class="panel__grid">
           <div class="panel__group">
             <div class="panel__sectionTitle" data-i18n="includeTitle">Include</div>
-            
             <div class="tags-container">
               <label class="tag-checkbox"><input id="studentOnly" type="checkbox" /> <span data-i18n="studentFriendly">🎓 Student Friendly</span></label>
               <label class="tag-checkbox"><input id="cheapOnly" type="checkbox" /> <span data-i18n="cheap">🪙 Cheap (&lt; 6 DT)</span></label>
               <label class="tag-checkbox"><input id="expensiveOnly" type="checkbox" /> <span data-i18n="expensive">💸 Costs money</span></label>
               <label class="tag-checkbox"><input id="healthyOnly" type="checkbox" /> <span data-i18n="healthy">🥗 Healthy</span></label>
-              
               <div class="divider"></div>
-              
               <label class="tag-checkbox"><input id="tunisianStyle" type="checkbox" /> <span data-i18n="tunisianStyle">🇹🇳 Tunisian</span></label>
               <label class="tag-checkbox"><input id="asianStyle" type="checkbox" /> <span data-i18n="asianStyle">🥢 Asian</span></label>
               <label class="tag-checkbox"><input id="americanStyle" type="checkbox" /> <span data-i18n="americanStyle">🇺🇸 American</span></label>
               <label class="tag-checkbox"><input id="europeanStyle" type="checkbox" /> <span data-i18n="europeanStyle">🇪🇺 European</span></label>
               <label class="tag-checkbox"><input id="middleEasternStyle" type="checkbox" /> <span data-i18n="middleEasternStyle">🌍 Middle Eastern</span></label>
-              
               <div class="divider"></div>
-              
               <label class="tag-checkbox"><input id="withChicken" type="checkbox" /> <span data-i18n="withChicken">🍗 Chicken</span></label>
               <label class="tag-checkbox"><input id="withBeef" type="checkbox" /> <span data-i18n="withBeef">🥩 Beef</span></label>
               <label class="tag-checkbox"><input id="loveFish" type="checkbox" /> <span data-i18n="fish">🐟 Fish</span></label>
@@ -135,7 +136,6 @@
               <label class="tag-checkbox exclude"><input id="noSpicy" type="checkbox" /> <span data-i18n="noSpicy">🚫🌶️ No Spicy</span></label>
               <label class="tag-checkbox exclude"><input id="noSweets" type="checkbox" /> <span data-i18n="noSweets">🚫🍰 No Sweets</span></label>
             </div>
-
             <div class="panel__footer">
               <button id="resetFiltersBtn" class="btn btn-ghost" data-i18n="reset">Reset</button>
               <button id="applyFiltersBtn" class="btn btn-primary" data-i18n="apply">Apply</button>
@@ -189,7 +189,6 @@
                 <div class="modebtn__sub" data-i18n="lazyHint">Fast, cheap, microwave-friendly.</div>
               </div>
             </button>
-
             <button id="chefModeBtn" class="modebtn chef-mode">
               <div class="modebtn__icon">🔴</div>
               <div class="modebtn__content">
@@ -201,11 +200,18 @@
         </div>
       </section>
 
-      <!-- Footer -->
+      <!-- Footer & About Section -->
       <footer class="footer">
-        <div data-i18n="footerText">Helping students eat better, one click at a time.</div>
+        <div class="footer__about card" style="text-align: left; margin-bottom: 32px; padding: 24px;">
+          <h3 data-i18n="aboutTitle" style="font-size: 1.2rem; font-weight: 800; color: var(--text); margin-bottom: 8px;">About Lettuce Guess</h3>
+          <p data-i18n="aboutText" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
+            Created specifically for students and busy people who don't know what to cook. Fast, cheap, and tasty meals at the click of a button! This project is open source and community-driven. Have an amazing recipe? Share it with us!
+          </p>
+          <button id="openSuggestBtn" class="btn btn-secondary" data-i18n="suggestBtn">💡 Suggest a Recipe</button>
+        </div>
+
         <div class="footer__contact">
-          <span data-i18n="contactDev">Contact Dev:</span> 
+          <span data-i18n="contactDev">Contact Developer:</span> 
           <a href="mailto:omarbenayed2026@gmail.com" class="footer__link">omarbenayed2026@gmail.com</a>
         </div>
         <div class="footer__small">
@@ -228,6 +234,64 @@
     <button id="dailyPickBtnSticky" class="btn btn-ghost" data-i18n="dailyPick">Menu of the Day</button>
     <button id="discoverBtnSticky" class="btn btn-primary" data-i18n="discover">Discover</button>
     <button id="preferencesBtnSticky" class="btn btn-ghost" data-i18n="preferences">Preferences</button>
+  </div>
+
+  <!-- Roulette / Spinning Animation Modal -->
+  <div id="rouletteModal" class="modal hidden" role="dialog" aria-modal="true" style="z-index: 1000;">
+    <div class="modal__backdrop"></div>
+    <div class="modal__card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; max-width: 320px; padding: 40px 20px;">
+      <div id="rouletteEmoji" style="font-size: 6rem; margin-bottom: 16px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); transition: transform 0.1s;">🍲</div>
+      <h2 id="rouletteName" style="font-size: 1.5rem; font-weight: 800; color: var(--text);">Searching...</h2>
+    </div>
+  </div>
+
+  <!-- Suggest a Recipe Modal -->
+  <div id="suggestModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__card modal__card--wide slide-up" style="max-height: 95vh;">
+      <button id="closeSuggestBtn" class="iconbtn modal__close">✕</button>
+      <div class="modal__icon">💡</div>
+      <h2 class="modal__title" data-i18n="suggestTitle">Share Your Recipe</h2>
+      <p class="modal__text" data-i18n="suggestDesc">Help the community by submitting your favorite fast, cheap, or tasty meal!</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px;">
+        <div>
+          <label data-i18n="formNameLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Recipe Name & Emoji</label>
+          <input type="text" id="sugName" class="form-input" placeholder="e.g. 🍝 Fast Tuna Pasta" />
+        </div>
+        <div>
+          <label data-i18n="formTagsLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Tags / Vibe (e.g. Cheap, Student, Chicken)</label>
+          <input type="text" id="sugTags" class="form-input" placeholder="e.g. Cheap, Student, Pasta..." />
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div>
+            <label style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Prep Time</label>
+            <input type="text" id="sugTime" class="form-input" placeholder="e.g. 15 mins" />
+          </div>
+          <div>
+            <label style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Difficulty</label>
+            <select id="sugDiff" class="form-input">
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label data-i18n="formIngLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Ingredients (with amounts)</label>
+          <textarea id="sugIng" class="form-input" rows="3" placeholder="- 1 Can of Tuna&#10;- 200g Pasta"></textarea>
+        </div>
+        <div>
+          <label data-i18n="formStepsLabel" style="display:block; font-weight:700; margin-bottom:8px; font-size:0.9rem;">Steps (How to cook it)</label>
+          <textarea id="sugSteps" class="form-input" rows="4" placeholder="1. Boil water...&#10;2. Mix in tuna..."></textarea>
+        </div>
+        <p data-i18n="suggestDisclaimer" style="font-size: 0.75rem; color: var(--text-muted); opacity: 0.8; text-align: center;">
+          *By submitting, you agree to share this recipe freely with the community without copyright restrictions.
+        </p>
+      </div>
+
+      <button id="submitSuggestBtn" class="btn btn-primary" style="width: 100%;" data-i18n="formSubmit">Submit Recipe</button>
+    </div>
   </div>
 
   <!-- Intro Modal -->
@@ -259,14 +323,13 @@
     </div>
   </div>
 
-  <!-- Sleek Language Modal -->
+  <!-- Language Modal -->
   <div id="langModal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="modal__backdrop"></div>
     <div class="modal__card bounce-in" style="max-width: 320px; text-align: center; padding: 32px 24px;">
       <button id="closeLangBtn" class="iconbtn modal__close">✕</button>
       <div class="modal__icon" style="font-size: 2.5rem; margin-bottom: 8px;">🌍</div>
       <h2 class="modal__title" style="font-size: 1.5rem;">Language</h2>
-      
       <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 24px;">
         <button class="btn btn-secondary lang-opt" data-lang="en">🇬🇧 English</button>
         <button class="btn btn-secondary lang-opt" data-lang="fr">🇫🇷 Français</button>
@@ -280,7 +343,6 @@
     <div class="modal__backdrop"></div>
     <div class="modal__card modal__card--wide slide-up">
       <button id="closeRecipeBtn" class="iconbtn modal__close">✕</button>
-
       <div class="modal__header">
         <div class="modal__mode">
           <span id="modalModeEmoji" class="mode-emoji">🟢</span>
@@ -291,7 +353,6 @@
           <div class="pill outline">🔥 <span id="tempVal"></span></div>
         </div>
       </div>
-
       <div class="modal__grid">
         <div class="recipe-box">
           <h3 class="recipe-title" data-i18n="ingredients">Ingredients & Spices</h3>
